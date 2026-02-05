@@ -16,6 +16,14 @@ use App\Http\Controllers\Admin\projectArchiveController;
 use App\Http\Controllers\Admin\projectController;
 use App\Http\Controllers\Admin\sliderController;
 use App\Http\Controllers\Admin\subscribeController;
+use App\Http\Controllers\Admin\ExecutiveCommitteeController;
+use App\Http\Controllers\Admin\TeamMemberController;
+use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\ImpactController;
+use App\Http\Controllers\Admin\StoryController;
+use App\Http\Controllers\Admin\ChiefMessageController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\VolunteerController;
 use Illuminate\Support\Facades\Auth;
 
 Route::group(['prefix' => 'admin'], function(){
@@ -126,5 +134,68 @@ Route::prefix('admin')->group(function () {
     Route::get('logo/edit/{id}',[applicationController::class,'edit'])->name('logo.edit');
     Route::post('logo/update/{id}',[applicationController::class,'update'])->name('logo.update');
 
+    //__ Executive Committee __//
+    Route::get('executive/add', [ExecutiveCommitteeController::class, 'add'])->name('executive.add');
+    Route::post('executive/store', [ExecutiveCommitteeController::class, 'store'])->name('executive.store');
+    Route::get('executive/index', [ExecutiveCommitteeController::class, 'index'])->name('executive.index');
+    Route::get('executive/delete/{id}',[ExecutiveCommitteeController::class,'destroy'])->name('executive.delete');
+    Route::get('executive/edit/{id}',[ExecutiveCommitteeController::class,'edit'])->name('executive.edit');
+    Route::post('executive/update/{id}',[ExecutiveCommitteeController::class,'update'])->name('executive.update');
+
+    //__ Team Members __//
+    Route::get('team/add', [TeamMemberController::class, 'add'])->name('team.add');
+    Route::post('team/store', [TeamMemberController::class, 'store'])->name('team.store');
+    Route::get('team/index', [TeamMemberController::class, 'index'])->name('team.index');
+    Route::get('team/delete/{id}',[TeamMemberController::class,'destroy'])->name('team.delete');
+    Route::get('team/edit/{id}',[TeamMemberController::class,'edit'])->name('team.edit');
+    Route::post('team/update/{id}',[TeamMemberController::class,'update'])->name('team.update');
+
+    //__ Programs __//
+    Route::get('programs/add', [ProgramController::class, 'add'])->name('programs.add');
+    Route::post('programs/store', [ProgramController::class, 'store'])->name('programs.store');
+    Route::get('programs/index', [ProgramController::class, 'index'])->name('programs.index');
+    Route::get('programs/delete/{id}',[ProgramController::class,'destroy'])->name('programs.delete');
+    Route::get('programs/edit/{id}',[ProgramController::class,'edit'])->name('programs.edit');
+    Route::post('programs/update/{id}',[ProgramController::class,'update'])->name('programs.update');
+
+    //__ Impact __//
+    Route::get('impact/add', [ImpactController::class, 'add'])->name('impact.add');
+    Route::post('impact/store', [ImpactController::class, 'store'])->name('impact.store');
+    Route::get('impact/index', [ImpactController::class, 'index'])->name('impact.index');
+    Route::get('impact/delete/{id}',[ImpactController::class,'destroy'])->name('impact.delete');
+    Route::get('impact/edit/{id}',[ImpactController::class,'edit'])->name('impact.edit');
+    Route::post('impact/update/{id}',[ImpactController::class,'update'])->name('impact.update');
+
+    //__ Success Stories __//
+    Route::get('stories/add', [StoryController::class, 'add'])->name('stories.add');
+    Route::post('stories/store', [StoryController::class, 'store'])->name('stories.store');
+    Route::get('stories/index', [StoryController::class, 'index'])->name('stories.index');
+    Route::get('stories/delete/{id}',[StoryController::class,'destroy'])->name('stories.delete');
+    Route::get('stories/edit/{id}',[StoryController::class,'edit'])->name('stories.edit');
+    Route::post('stories/update/{id}',[StoryController::class,'update'])->name('stories.update');
+
+    //__ Chief Executive Message __//
+    Route::get('chief/message/add', [ChiefMessageController::class, 'add'])->name('chief.message.add');
+    Route::post('chief/message/store', [ChiefMessageController::class, 'store'])->name('chief.message.store');
+    Route::get('chief/message/index', [ChiefMessageController::class, 'index'])->name('chief.message.index');
+    Route::get('chief/message/delete/{id}',[ChiefMessageController::class,'destroy'])->name('chief.message.delete');
+    Route::get('chief/message/edit/{id}',[ChiefMessageController::class,'edit'])->name('chief.message.edit');
+    Route::post('chief/message/update/{id}',[ChiefMessageController::class,'update'])->name('chief.message.update');
+
+    //__ FAQ __//
+    Route::get('faq/add', [FaqController::class, 'add'])->name('faq.add');
+    Route::post('faq/store', [FaqController::class, 'store'])->name('faq.store');
+    Route::get('faq/index', [FaqController::class, 'index'])->name('faq.index');
+    Route::get('faq/delete/{id}',[FaqController::class,'destroy'])->name('faq.delete');
+    Route::get('faq/edit/{id}',[FaqController::class,'edit'])->name('faq.edit');
+    Route::post('faq/update/{id}',[FaqController::class,'update'])->name('faq.update');
+
+    //__ Volunteers __//
+    Route::get('volunteers/add', [VolunteerController::class, 'add'])->name('volunteers.add');
+    Route::post('volunteers/store', [VolunteerController::class, 'store'])->name('volunteers.store');
+    Route::get('volunteers/index', [VolunteerController::class, 'index'])->name('volunteers.index');
+    Route::get('volunteers/delete/{id}',[VolunteerController::class,'destroy'])->name('volunteers.delete');
+    Route::get('volunteers/edit/{id}',[VolunteerController::class,'edit'])->name('volunteers.edit');
+    Route::post('volunteers/update/{id}',[VolunteerController::class,'update'])->name('volunteers.update');
 
 });
