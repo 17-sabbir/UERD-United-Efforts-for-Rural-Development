@@ -170,7 +170,30 @@ class frontController extends Controller
 
     // Donate
     public function donate(){
-        return view('frontend.donate');
+        $paymentMethods = \App\Models\PaymentMethod::active()->get();
+        return view('frontend.donate', compact('paymentMethods'));
+    }
+
+    // Donation Submit
+    public function donationSubmit(Request $request){
+        $validatedData = $request->validate([
+            'donor_name' => 'required|string|max:255',
+            'donor_phone' => 'required|string|max:20',
+            'transaction_id' => 'required|string|max:255',
+            'amount' => 'required|numeric|min:1',
+            'payment_method_id' => 'required|exists:payment_methods,id',
+        ]);
+
+        \App\Models\Donation::create([
+            'donor_name' => $request->donor_name,
+            'donor_phone' => $request->donor_phone,
+            'transaction_id' => $request->transaction_id,
+            'amount' => $request->amount,
+            'payment_method_id' => $request->payment_method_id,
+            'status' => 'pending',
+        ]);
+
+        return redirect()->back()->with('success', 'Thank you for your donation! We will verify it soon.');
     }
 
     // Fundraising

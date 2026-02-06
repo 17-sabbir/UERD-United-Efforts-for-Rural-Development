@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\ChiefMessageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\VolunteerController;
+use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\DonationController;
 use Illuminate\Support\Facades\Auth;
 
 Route::group(['prefix' => 'admin'], function(){
@@ -198,5 +200,21 @@ Route::prefix('admin')->group(function () {
     Route::get('volunteers/delete/{id}',[VolunteerController::class,'destroy'])->name('volunteers.delete');
     Route::get('volunteers/edit/{id}',[VolunteerController::class,'edit'])->name('volunteers.edit');
     Route::post('volunteers/update/{id}',[VolunteerController::class,'update'])->name('volunteers.update');
+
+    //__ Payment Methods __//
+    Route::get('payment-methods/add', [PaymentMethodController::class, 'add'])->name('admin.payment_methods.add');
+    Route::post('payment-methods/store', [PaymentMethodController::class, 'store'])->name('admin.payment_methods.store');
+    Route::get('payment-methods/index', [PaymentMethodController::class, 'index'])->name('admin.payment_methods.index');
+    Route::get('payment-methods/delete/{id}', [PaymentMethodController::class, 'destroy'])->name('admin.payment_methods.delete');
+    Route::get('payment-methods/edit/{id}', [PaymentMethodController::class, 'edit'])->name('admin.payment_methods.edit');
+    Route::post('payment-methods/update/{id}', [PaymentMethodController::class, 'update'])->name('admin.payment_methods.update');
+    Route::get('payment-methods/toggle/{id}', [PaymentMethodController::class, 'toggleStatus'])->name('admin.payment_methods.toggle');
+
+    //__ Donations __//
+    Route::get('donations/index', [DonationController::class, 'index'])->name('admin.donations.index');
+    Route::get('donations/show/{id}', [DonationController::class, 'show'])->name('admin.donations.show');
+    Route::post('donations/verify/{id}', [DonationController::class, 'verify'])->name('admin.donations.verify');
+    Route::post('donations/reject/{id}', [DonationController::class, 'reject'])->name('admin.donations.reject');
+    Route::get('donations/delete/{id}', [DonationController::class, 'destroy'])->name('admin.donations.delete');
 
 });
