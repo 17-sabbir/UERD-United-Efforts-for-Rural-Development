@@ -415,10 +415,10 @@
 					</a>
 					<ul>
 						<li>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Add Publication</a>
+                            <a href="{{ route('publications.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Publication</a>
 						</li>
 						<li>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i>All Publication</a>
+                            <a href="{{ route('publications.index') }}"><i class="bx bx-right-arrow-alt"></i>All Publications</a>
 						</li>
 					</ul>
 				</li>
@@ -445,10 +445,10 @@
 					</a>
 					<ul>
 						<li>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Add Contact</a>
+                            <a href="{{ route('contact.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Contact</a>
 						</li>
 						<li>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i>All Contact</a>
+                            <a href="{{ route('contact.index') }}"><i class="bx bx-right-arrow-alt"></i>All Contact</a>
 						</li>
 					</ul>
 				</li>
