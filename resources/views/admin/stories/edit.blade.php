@@ -14,9 +14,13 @@
                     <form class="row g-3" action="{{ route('stories.update',$data->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $data->title }}">
-                            @error('title')
+                            <label for="rating" class="form-label">Rating</label>
+                            <select name="rating" class="form-control @error('rating') is-invalid @enderror" id="rating">
+                                <option value="">Select Rating</option>
+                                <option value="5" {{ $data->rating == 5 ? 'selected' : '' }}>5 Stars (★★★★★)</option>
+                                <option value="4" {{ $data->rating == 4 ? 'selected' : '' }}>4 Stars (★★★★☆)</option>
+                            </select>
+                            @error('rating')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -24,6 +28,13 @@
                             <label for="beneficiary_name" class="form-label">Beneficiary Name</label>
                             <input type="text" name="beneficiary_name" class="form-control @error('beneficiary_name') is-invalid @enderror" id="beneficiary_name" value="{{ $data->beneficiary_name }}">
                             @error('beneficiary_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label for="beneficiary_title" class="form-label">Beneficiary Title</label>
+                            <input type="text" name="beneficiary_title" class="form-control @error('beneficiary_title') is-invalid @enderror" id="beneficiary_title" value="{{ $data->beneficiary_title }}" placeholder="e.g., Community Leader, Sylhet">
+                            @error('beneficiary_title')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
