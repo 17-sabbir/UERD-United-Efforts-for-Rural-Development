@@ -18,18 +18,39 @@
     <div class="container bg-white py-5" data-aos="fade-up">
       <div class="section-title">
         <h2>Success Story</h2>
+        @if(isset($story))
         <div class="row">
             <div class="col text-start">
-                <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="w-50">
-                <h3 class="mt-3">Women's Empowerment Initiative</h3>
-                <p style="text-align: justify;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias minima harum eaque eligendi quae ab atque nobis tempora, necessitatibus expedita illo rem blanditiis ratione quod, doloremque animi? Quod dolor commodi minus dolorum nisi veritatis incidunt nam, molestiae reiciendis dicta obcaecati! Officia, explicabo quibusdam commodi aliquid fugit deserunt alias voluptatum velit ea itaque totam quas consequatur incidunt fugiat deleniti in error amet accusamus veritatis? Nemo aut excepturi et, perspiciatis ratione, incidunt minima ad voluptatibus distinctio obcaecati laborum ex voluptates corporis ipsum libero accusantium? Repellat accusamus quidem labore tempora, praesentium minima, officiis voluptate a, qui fugit molestiae. Placeat repellendus quam expedita dolore quos, assumenda nesciunt omnis vero, dicta eum dolor hic sint minus voluptate amet ipsum sequi, nam aut minima? Voluptatem tenetur ducimus, quos earum itaque excepturi. Ex veniam similique tempora? Voluptas iusto tempora autem aut maxime aliquam, aliquid numquam quia minus neque, impedit beatae sunt, suscipit in culpa consequuntur itaque cum!
+                @if($story->image)
+                <img src="{{ asset('images/stories/'.$story->image) }}" alt="{{ $story->beneficiary_name }}" class="w-50 mb-3">
+                @endif
+                <h3 class="mt-3">{{ $story->beneficiary_name }}</h3>
+                @if($story->beneficiary_title)
+                <p class="text-muted"><em>{{ $story->beneficiary_title }}</em></p>
+                @endif
+                <div class="rating mb-3">
+                    @for($i = 1; $i <= 5; $i++)
+                        @if($i <= $story->rating)
+                            <span class="text-warning fs-5">&#9733;</span>
+                        @else
+                            <span class="text-muted fs-5">&#9734;</span>
+                        @endif
+                    @endfor
+                </div>
+                <p style="text-align: justify; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%;">
+                    {{ $story->description }}
                 </p>
+                @if($story->date)
+                <p class="text-muted"><small><strong>Date:</strong> {{ date('F d, Y', strtotime($story->date)) }}</small></p>
+                @endif
                 <div class="py-3">
                     <a href="{{ route('success.stories') }}" class="btn btn-danger"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Stories</a>
                 </div>
             </div>
         </div>
+        @else
+        <p class="text-center text-muted">Story not found.</p>
+        @endif
       </div>
     </div>
   </section>

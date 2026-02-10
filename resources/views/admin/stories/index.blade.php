@@ -18,9 +18,10 @@
                         <thead>
                             <tr>
                                 <th>SL.</th>
-                                <th>Title</th>
+                                <th>Beneficiary Name</th>
+                                <th>Beneficiary Title</th>
                                 <th>Image</th>
-                                <th>Beneficiary</th>
+                                <th>Rating</th>
                                 <th>Date</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -29,11 +30,20 @@
                             @foreach ($data as $key=>$item)
                             <tr>
                                 <td class="align-middle">{{ ++$key }}</td>
-                                <td class="align-middle">{{ $item->title }}</td>
+                                <td class="align-middle">{{ $item->beneficiary_name }}</td>
+                                <td class="align-middle">{{ $item->beneficiary_title }}</td>
                                 <td class="align-middle">
                                     <img src="{{ asset('images/stories/'.$item->image) }}" alt="" width="50">
                                 </td>
-                                <td class="align-middle">{{ $item->beneficiary_name }}</td>
+                                <td class="align-middle">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        @if($i <= $item->rating)
+                                            <span class="text-warning">&#9733;</span>
+                                        @else
+                                            <span class="text-muted">&#9734;</span>
+                                        @endif
+                                    @endfor
+                                </td>
                                 <td class="align-middle">{{ $item->date }}</td>
                                 <td class="text-center align-middle">
                                     <a href="{{ route('stories.edit',$item->id) }}" class="btn btn-sm btn-primary text-white text-center">

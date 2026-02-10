@@ -18,10 +18,11 @@ class StoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
+            'rating' => 'required|integer|min:1|max:5',
             'description' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg,gif',
             'beneficiary_name' => 'required',
+            'beneficiary_title' => 'required',
         ]);
 
         $imageName = '';
@@ -31,10 +32,11 @@ class StoryController extends Controller
         }
 
         $data = array(
-            'title' => $request->title,
+            'rating' => $request->rating,
             'description' => $request->description,
             'image' => $imageName,
             'beneficiary_name' => $request->beneficiary_name,
+            'beneficiary_title' => $request->beneficiary_title,
             'date' => $request->date
         );
 
@@ -73,9 +75,10 @@ class StoryController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
+            'rating' => 'required|integer|min:1|max:5',
             'description' => 'required',
             'beneficiary_name' => 'required',
+            'beneficiary_title' => 'required',
         ]);
 
         $item = DB::table('stories')->where('id', $id)->first();
@@ -94,10 +97,11 @@ class StoryController extends Controller
         }
 
         $data = array(
-            'title' => $request->title,
+            'rating' => $request->rating,
             'description' => $request->description,
             'image' => $imageName,
             'beneficiary_name' => $request->beneficiary_name,
+            'beneficiary_title' => $request->beneficiary_title,
             'date' => $request->date
         );
 
