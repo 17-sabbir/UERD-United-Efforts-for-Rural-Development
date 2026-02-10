@@ -16,9 +16,12 @@ return new class extends Migration
             $table->string('image')->nullable()->after('description');
         });
 
-        // Ensure column is NOT NULL (avoid doctrine/dbal dependency)
+        // Ensure column is NOT NULL using Schema builder
         DB::table('strategic_plans')->whereNull('pdf_file')->update(['pdf_file' => '']);
-        DB::statement('ALTER TABLE strategic_plans MODIFY pdf_file VARCHAR(255) NOT NULL');
+        
+        Schema::table('strategic_plans', function (Blueprint $table) {
+            $table->string('pdf_file', 255)->nullable(false)->change();
+        });
     }
 
     /**
@@ -27,7 +30,9 @@ return new class extends Migration
     public function down(): void
     {
         // Make nullable again
-        DB::statement('ALTER TABLE strategic_plans MODIFY pdf_file VARCHAR(255) NULL');
+        Schema::table('strategic_plans', function (Blueprint $table) {
+            $table->string('pdf_file', 255)->nullable()->change();
+        });
 
         Schema::table('strategic_plans', function (Blueprint $table) {
             $table->dropColumn('image');

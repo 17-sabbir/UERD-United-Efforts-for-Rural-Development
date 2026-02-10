@@ -336,62 +336,64 @@ Association for Alternative Development
 </div>
 {{-- End of Impact part --}}
 
-{{-- Testimonial --}}
+{{-- Success Stories --}}
 <div class="bg-light pb-5" style=" background-image: url('{{asset('img/testimonial_back.jpg')}}');">
     <div class="container">
         <div class="py-5">
-            <h3 class="text-center text-white">Testimonial</h3>
+            <h3 class="text-center text-white">Success Stories</h3>
         </div>
-        {{-- Testimonial Slider --}}
+        
+        {{-- Rating Filter --}}
+        <div class="text-center mb-4">
+            <button class="btn btn-light me-2 filter-btn" data-rating="5">5 Star</button>
+            <button class="btn btn-light me-2 filter-btn" data-rating="4">4 Star</button>
+            <button class="btn btn-light me-2 filter-btn" data-rating="3">3 Star</button>
+            <button class="btn btn-light me-2 filter-btn" data-rating="2">2 Star</button>
+            <button class="btn btn-light me-2 filter-btn" data-rating="1">1 Star</button>
+            <button class="btn btn-light filter-btn active" data-rating="0">All</button>
+        </div>
+        
+        {{-- Success Stories Slider --}}
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- Testimonial Item 1 -->
-                <div class="carousel-item active">
-                    <div class="text-center">
-                        <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial 1" width="100" height="100">
-                        <h5 class="mt-3 text-white">John Doe</h5>
-                        <p class="text-white">AFAD's dedication to empowering women and fostering community resilience is truly commendable. Their impactful programs have made a significant difference in the lives of countless individuals in northern Bangladesh.</p>
-                        <div class="rating">
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-white">&#9734;</span>
+                @forelse($stories as $index => $story)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }} story-item" data-rating="{{ $story->rating }}">
+                    <div class="text-center px-3">
+                        <div class="rating mb-3">
+                            @for($i = 1; $i <= 5; $i++)
+                                @if($i <= $story->rating)
+                                    <span class="text-warning fs-4">&#9733;</span>
+                                @else
+                                    <span class="text-white fs-4">&#9734;</span>
+                                @endif
+                            @endfor
                         </div>
+                        <p class="text-white mt-3 mb-4 px-2" style="font-style: italic; font-size: 1.1rem; word-wrap: break-word; overflow-wrap: break-word;">"{{ Str::limit($story->description, 200) }}"</p>
+                        <img src="{{ asset('images/stories/'.$story->image) }}" class="img-fluid rounded-circle border" alt="{{ $story->beneficiary_name }}" width="100" height="100">
+                        <h5 class="mt-3 text-white mb-0">{{ $story->beneficiary_name }}</h5>
+                        <p class="text-muted" style="color: #ddd !important;">{{ $story->beneficiary_title }}</p>
                     </div>
                 </div>
-                <!-- Testimonial Item 2 -->
-                <div class="carousel-item">
+                @empty
+                <!-- Default Testimonial if no stories exist -->
+                <div class="carousel-item active story-item" data-rating="3">
                     <div class="text-center">
-                        <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial 1" width="100" height="100">
-                        <h5 class="mt-3 text-white">Jane Smith</h5>
-                        <p class="text-white">I have been privileged to witness firsthand the positive impact of AFAD's initiatives. Their commitment to sustainable development and disaster preparedness is inspiring and has helped build stronger, more resilient communities.</p>
-                        <div class="rating">
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-white">&#9734;</span>
-                        <span class="text-white">&#9734;</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial Item 3 -->
-                <div class="carousel-item">
-                    <div class="text-center">
-                        <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial 3" width="100" height="100">
+                        <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial" width="100" height="100">
                         <h5 class="mt-3 text-white">Jane Alam</h5>
                         <p class="text-white">AFAD's tireless efforts in promoting education, healthcare, and economic opportunities have transformed the lives of many marginalized individuals. Their holistic approach to development is making a lasting difference in our region.</p>
                         <div class="rating">
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-warning">&#9733;</span>
-                        <span class="text-white">&#9734;</span>
-                        <span class="text-white">&#9734;</span>
+                            <span class="text-warning">&#9733;</span>
+                            <span class="text-warning">&#9733;</span>
+                            <span class="text-warning">&#9733;</span>
+                            <span class="text-white">&#9734;</span>
+                            <span class="text-white">&#9734;</span>
                         </div>
                     </div>
                 </div>
+                @endforelse
             </div>
             <!-- Carousel Controls -->
+            @if($stories && count($stories) > 1)
             <button class="carousel-control-prev text-dark" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -400,11 +402,34 @@ Association for Alternative Development
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+            @endif
         </div>
-        {{-- End of Testimonial Slider --}}
+        {{-- End of Success Stories Slider --}}
     </div>
 </div>
-{{-- End of Testimonial --}}
+{{-- End of Success Stories --}}
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const selectedRating = this.getAttribute('data-rating');
+        
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter stories
+        const stories = document.querySelectorAll('.story-item');
+        stories.forEach(story => {
+            if (selectedRating === '0') {
+                story.style.display = 'block';
+            } else {
+                story.style.display = story.getAttribute('data-rating') === selectedRating ? 'block' : 'none';
+            }
+        });
+    });
+});
+</script>
 
 {{-- subscription part --}}
 <div class="bg-light pb-5">
