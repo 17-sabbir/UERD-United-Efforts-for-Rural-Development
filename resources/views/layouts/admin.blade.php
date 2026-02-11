@@ -25,6 +25,300 @@
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/dark-theme.css') }}" />
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/semi-dark.css') }}" />
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/header-colors.css') }}" />
+    <style>
+        /* Colorful & Interactive Professional Sidebar */
+        .sidebar-wrapper .metismenu {
+            padding: 10px;
+        }
+
+        .sidebar-wrapper .metismenu a {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border-radius: 12px;
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+            font-weight: 500;
+        }
+
+        /* Hover & Active States with "Glass" effect */
+        .sidebar-wrapper .metismenu a:hover,
+        .sidebar-wrapper .metismenu .mm-active > a {
+            background: linear-gradient(90deg, #f0f4ff 0%, #ffffff 100%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transform: translateX(5px);
+            padding-left: 15px;
+        }
+
+        /* Colorful Icons & Text Cycling */
+        /* Group 1: Blue */
+        #menu > li:nth-child(4n+1) > a:hover, 
+        #menu > li:nth-child(4n+1).mm-active > a { 
+            color: #0d6efd; 
+            border-left: 5px solid #0d6efd;
+        }
+        #menu > li:nth-child(4n+1) > a:hover .parent-icon,
+        #menu > li:nth-child(4n+1).mm-active > a .parent-icon { color: #0d6efd; }
+
+        /* Group 2: Purple */
+        #menu > li:nth-child(4n+2) > a:hover, 
+        #menu > li:nth-child(4n+2).mm-active > a { 
+            color: #6f42c1; 
+            border-left: 5px solid #6f42c1;
+        }
+        #menu > li:nth-child(4n+2) > a:hover .parent-icon,
+        #menu > li:nth-child(4n+2).mm-active > a .parent-icon { color: #6f42c1; }
+
+        /* Group 3: Teal/Green */
+        #menu > li:nth-child(4n+3) > a:hover, 
+        #menu > li:nth-child(4n+3).mm-active > a { 
+            color: #20c997; 
+            border-left: 5px solid #20c997;
+        }
+        #menu > li:nth-child(4n+3) > a:hover .parent-icon,
+        #menu > li:nth-child(4n+3).mm-active > a .parent-icon { color: #20c997; }
+
+        /* Group 4: Orange/Pink */
+        #menu > li:nth-child(4n+4) > a:hover, 
+        #menu > li:nth-child(4n+4).mm-active > a { 
+            color: #fd7e14; 
+            border-left: 5px solid #fd7e14;
+        }
+        #menu > li:nth-child(4n+4) > a:hover .parent-icon,
+        #menu > li:nth-child(4n+4).mm-active > a .parent-icon { color: #fd7e14; }
+
+        /* Icon Animation */
+        .sidebar-wrapper .metismenu .parent-icon {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .sidebar-wrapper .metismenu a:hover .parent-icon,
+        .sidebar-wrapper .metismenu .mm-active > a .parent-icon {
+            transform: scale(1.2);
+        }
+
+        /* Submenu Styling - Enhanced */
+        .sidebar-wrapper .metismenu ul {
+            padding: 5px 0 5px 25px; /* Indent submenus */
+            background: transparent;
+        }
+
+        .sidebar-wrapper .metismenu ul a {
+            padding: 8px 15px 8px 10px;
+            font-size: 0.92em;
+            margin: 2px 0;
+            border-radius: 8px; /* Softer rounded corners */
+            color: #6c757d;    /* Muted default text */
+            display: flex;
+            align-items: center;
+            border: 1px solid transparent;
+        }
+        
+        .sidebar-wrapper .metismenu ul a i {
+            font-size: 12px;
+            margin-right: 12px;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .sidebar-wrapper .metismenu ul a:hover {
+            transform: translateX(5px);
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        /* Beautiful Submenu Colors Matching Parents */
+        /* Group 1: Blue Subitems */
+        #menu > li:nth-child(4n+1) ul a:hover { 
+            color: #0d6efd; 
+            border-color: rgba(13, 110, 253, 0.1);
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+        #menu > li:nth-child(4n+1) ul a:hover i { color: #0d6efd; opacity: 1; font-size: 14px; }
+
+        /* Group 2: Purple Subitems */
+        #menu > li:nth-child(4n+2) ul a:hover { 
+            color: #6f42c1; 
+            border-color: rgba(111, 66, 193, 0.1);
+            background-color: rgba(111, 66, 193, 0.05);
+        }
+        #menu > li:nth-child(4n+2) ul a:hover i { color: #6f42c1; opacity: 1; font-size: 14px; }
+
+        /* Group 3: Teal Subitems */
+        #menu > li:nth-child(4n+3) ul a:hover { 
+            color: #20c997; 
+            border-color: rgba(32, 201, 151, 0.1);
+            background-color: rgba(32, 201, 151, 0.05);
+        }
+        #menu > li:nth-child(4n+3) ul a:hover i { color: #20c997; opacity: 1; font-size: 14px; }
+
+        /* Group 4: Orange Subitems */
+        #menu > li:nth-child(4n+4) ul a:hover { 
+            color: #fd7e14; 
+            border-color: rgba(253, 126, 20, 0.1);
+            background-color: rgba(253, 126, 20, 0.05);
+        }
+        #menu > li:nth-child(4n+4) ul a:hover i { color: #fd7e14; opacity: 1; font-size: 14px; }
+
+        /* Card Hover Effect for Dashboard */
+        .card-hover-zoom {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card-hover-zoom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Modern Arrow Customization */
+        .sidebar-wrapper .metismenu .has-arrow::after {
+            width: 7px;
+            height: 7px;
+            border-width: 2px 0 0 2px;
+            border-style: solid;
+            border-color: #a0a0a0; /* Neutral gray */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+        }
+        
+        /* Arrow becomes colorful on hover (Inherits the colorful text color) */
+        .sidebar-wrapper .metismenu a:hover .has-arrow::after,
+        .sidebar-wrapper .metismenu .mm-active > .has-arrow::after {
+            border-color: currentColor; /* Takes the Blue/Purple/Green/Orange from text */
+            box-shadow: -1px -1px 0px rgba(0,0,0,0.1); /* Subtle depth */
+        }
+
+        /* Entry Animation for Menu Items */
+        @keyframes slideInMenuItem {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .sidebar-wrapper .metismenu > li {
+            animation: slideInMenuItem 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Stagger the animation for first 15 items */
+        .sidebar-wrapper .metismenu > li:nth-child(1) { animation-delay: 0.05s; }
+        .sidebar-wrapper .metismenu > li:nth-child(2) { animation-delay: 0.1s; }
+        .sidebar-wrapper .metismenu > li:nth-child(3) { animation-delay: 0.15s; }
+        .sidebar-wrapper .metismenu > li:nth-child(4) { animation-delay: 0.2s; }
+        .sidebar-wrapper .metismenu > li:nth-child(5) { animation-delay: 0.25s; }
+        .sidebar-wrapper .metismenu > li:nth-child(6) { animation-delay: 0.3s; }
+        .sidebar-wrapper .metismenu > li:nth-child(7) { animation-delay: 0.35s; }
+        .sidebar-wrapper .metismenu > li:nth-child(8) { animation-delay: 0.4s; }
+        .sidebar-wrapper .metismenu > li:nth-child(9) { animation-delay: 0.45s; }
+        .sidebar-wrapper .metismenu > li:nth-child(10) { animation-delay: 0.5s; }
+        .sidebar-wrapper .metismenu > li:nth-child(11) { animation-delay: 0.55s; }
+        .sidebar-wrapper .metismenu > li:nth-child(12) { animation-delay: 0.6s; }
+        .sidebar-wrapper .metismenu > li:nth-child(13) { animation-delay: 0.65s; }
+        .sidebar-wrapper .metismenu > li:nth-child(14) { animation-delay: 0.7s; }
+        .sidebar-wrapper .metismenu > li:nth-child(15) { animation-delay: 0.75s; }
+
+        /* Smooth Custom Scrollbar */
+        .sidebar-wrapper .simplebar-scrollbar::before {
+            background-color: rgba(0,0,0,0.2);
+            width: 4px;
+            border-radius: 4px;
+        }
+
+        /* Click/Active Ripple Simulation */
+        .sidebar-wrapper .metismenu a:active {
+            transform: scale(0.98) translateX(5px); /* Gentle press effect */
+            transition: transform 0.1s;
+        }
+
+        /* ----------------------------------------------------------------- */
+        /* GLOBAL CONTENT DESIGN UPGRADE (Tables, Cards, Forms)               */
+        /* ----------------------------------------------------------------- */
+
+        /* Premium Card Design for Content Pages */
+        .page-content .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Soft, airy shadow */
+            transition: transform 0.3s;
+        }
+        
+        .page-content .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+        }
+
+        /* Modern Table Design */
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden; /* Needed for border-radius on table */
+        }
+
+        .table thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            color: #6c757d;
+            background-color: #f8f9fa; /* Light gray header */
+            border-bottom: none;
+            padding: 15px;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+            color: #495057;
+            font-size: 0.95rem;
+            padding: 15px;
+            border-bottom: 1px solid #f0f4f8;
+        }
+        
+        /* Table Row Hover - Professional Lift */
+        .table-hover tbody tr:hover {
+            background-color: #fcfdfe;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transform: scale(1.001); /* Micro lift to keep it crisp */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Action Buttons (Edit/Delete) Upgrade */
+        .btn-sm {
+            border-radius: 8px; /* Softer buttons */
+            padding: 6px 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        /* Soft Effect for Buttons */
+        .btn-primary.btn-sm {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+            border: none;
+        }
+        .btn-primary.btn-sm:hover {
+            background-color: #0d6efd;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2);
+        }
+
+        .btn-danger.btn-sm {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: none;
+        }
+        .btn-danger.btn-sm:hover {
+            background-color: #dc3545;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+        }
+        
+        /* Image Styling in Tables */
+        .table img {
+            border-radius: 6px; /* Smooth corners for thumbnails */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
 	<title>ERA | Admin</title>
 </head>
 
@@ -53,7 +347,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-slider-alt"></i>
 						</div>
 						<div class="menu-title">Slider</div>
@@ -68,7 +362,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-square"></i>
 						</div>
 						<div class="menu-title">Ongoing Project</div>
@@ -83,7 +377,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-news"></i>
 						</div>
 						<div class="menu-title">Latest News</div>
@@ -98,7 +392,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="lni lni-image"></i>
 						</div>
 						<div class="menu-title">Photo Gallery</div>
@@ -113,7 +407,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-bell"></i>
 						</div>
 						<div class="menu-title">Subscribe</div>
@@ -125,7 +419,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-donate-heart"></i>
 						</div>
 						<div class="menu-title">Donate Now</div>
@@ -143,7 +437,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-target-lock"></i>
 						</div>
 						<div class="menu-title">Key Focus Area</div>
@@ -186,7 +480,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-detail'></i>
 						</div>
 						<div class="menu-title">Origin & Legal Affilation</div>
@@ -201,7 +495,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-user-circle'></i>
 						</div>
 						<div class="menu-title">Executive Committee</div>
@@ -216,7 +510,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-group'></i>
 						</div>
 						<div class="menu-title">Team Members</div>
@@ -231,7 +525,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-briefcase'></i>
 						</div>
 						<div class="menu-title">Programs</div>
@@ -246,7 +540,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-trending-up'></i>
 						</div>
 						<div class="menu-title">Impact Metrics</div>
@@ -261,7 +555,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-book-heart'></i>
 						</div>
 						<div class="menu-title">Success Stories</div>
@@ -276,7 +570,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='lni lni-network'></i>
 						</div>
 						<div class="menu-title">Chief Executive Message</div>
@@ -291,7 +585,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-help-circle'></i>
 						</div>
 						<div class="menu-title">FAQ</div>
@@ -306,7 +600,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-heart'></i>
 						</div>
 						<div class="menu-title">Volunteers</div>
@@ -321,7 +615,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-message-rounded-dots'></i>
 						</div>
 						<div class="menu-title">User Message</div>
@@ -333,7 +627,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-user-check'></i>
 						</div>
 						<div class="menu-title">Partners & Donor</div>
@@ -348,7 +642,7 @@
 					</ul>
 				</li>
 				{{-- <li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-area'></i>
 						</div>
 						<div class="menu-title">Key Focus Ares</div>
@@ -363,7 +657,7 @@
 					</ul>
 				</li> --}}
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-notification'></i>
 						</div>
 						<div class="menu-title">Project Archive</div>
@@ -378,7 +672,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-file'></i>
 						</div>
 						<div class="menu-title">Strategic Plan</div>
@@ -393,7 +687,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-file'></i>
 						</div>
 						<div class="menu-title">Policy and Guideline</div>
@@ -408,7 +702,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-file'></i>
 						</div>
 						<div class="menu-title">Publication</div>
@@ -423,7 +717,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-star'></i>
 						</div>
 						<div class="menu-title">Career</div>
@@ -438,7 +732,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-phone-call'></i>
 						</div>
 						<div class="menu-title">Contact</div>
@@ -452,6 +746,13 @@
 						</li>
 					</ul>
 				</li>
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <div class="parent-icon"><i class='bx bx-log-out-circle'></i>
+                        </div>
+                        <div class="menu-title">Logout</div>
+                    </a>
+                </li>
 			</ul>
 			<!--end navigation-->
 		</div>
@@ -514,268 +815,39 @@
 								</div>
 							</li> --}}
 							<li class="nav-item dropdown dropdown-large d-none">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">7</span>
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class='bx bx-bell'></i>
 								</a>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;">
+									<a >
 										<div class="msg-header">
 											<p class="msg-header-title">Notifications</p>
 											<p class="msg-header-clear ms-auto">Marks all as read</p>
 										</div>
 									</a>
 									<div class="header-notifications-list">
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-primary text-primary"><i class="bx bx-group"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
-												ago</span></h6>
-													<p class="msg-info">5 new user registered</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-danger text-danger"><i class="bx bx-cart-alt"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
-												ago</span></h6>
-													<p class="msg-info">You have recived new orders</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-success text-success"><i class="bx bx-file"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">24 PDF File<span class="msg-time float-end">19 min
-												ago</span></h6>
-													<p class="msg-info">The pdf files generated</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-warning text-warning"><i class="bx bx-send"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Time Response <span class="msg-time float-end">28 min
-												ago</span></h6>
-													<p class="msg-info">5.1 min avarage time response</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-info text-info"><i class="bx bx-home-circle"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Product Approved <span
-												class="msg-time float-end">2 hrs ago</span></h6>
-													<p class="msg-info">Your new product has approved</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-danger text-danger"><i class="bx bx-message-detail"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Comments <span class="msg-time float-end">4 hrs
-												ago</span></h6>
-													<p class="msg-info">New customer comments recived</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-success text-success"><i class='bx bx-check-square'></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5 hrs
-												ago</span></h6>
-													<p class="msg-info">Successfully shipped your item</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-primary text-primary"><i class='bx bx-user-pin'></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
-												ago</span></h6>
-													<p class="msg-info">24 new authors joined last week</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-warning text-warning"><i class='bx bx-door-open'></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2 weeks
-												ago</span></h6>
-													<p class="msg-info">45% less alerts last 4 weeks</p>
-												</div>
-											</div>
-										</a>
+                                        <p class="text-center mt-3">No new notifications</p>
 									</div>
-									<a href="javascript:;">
+									<a >
 										<div class="text-center msg-footer">View All Notifications</div>
 									</a>
 								</div>
 							</li>
 							<li class="nav-item dropdown dropdown-large d-none">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class='bx bx-comment'></i>
 								</a>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;">
+									<a >
 										<div class="msg-header">
 											<p class="msg-header-title">Messages</p>
 											<p class="msg-header-clear ms-auto">Marks all as read</p>
 										</div>
 									</a>
 									<div class="header-message-list">
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-1.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
-												ago</span></h6>
-													<p class="msg-info">The standard chunk of lorem</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-2.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
-												sec ago</span></h6>
-													<p class="msg-info">Many desktop publishing packages</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-3.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
-												ago</span></h6>
-													<p class="msg-info">Various versions have evolved over</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-4.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
-												min ago</span></h6>
-													<p class="msg-info">Making this the first true generator</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-5.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
-												ago</span></h6>
-													<p class="msg-info">Duis aute irure dolor in reprehenderit</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-6.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
-												ago</span></h6>
-													<p class="msg-info">The passage is attributed to an unknown</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-7.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
-												ago</span></h6>
-													<p class="msg-info">The point of using Lorem</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-8.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
-												ago</span></h6>
-													<p class="msg-info">It was popularised in the 1960s</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-9.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
-												ago</span></h6>
-													<p class="msg-info">Various versions have evolved over</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-10.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
-												ago</span></h6>
-													<p class="msg-info">If you are going to use a passage</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-														<img src="{{ asset('admin/assets/images/avatars/avatar-11.png') }}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
-												ago</span></h6>
-													<p class="msg-info">All the Lorem Ipsum generators</p>
-												</div>
-											</div>
-										</a>
+                                        <p class="text-center mt-3">No new messages</p>
 									</div>
-									<a href="javascript:;">
+									<a >
 										<div class="text-center msg-footer">View All Messages</div>
 									</a>
 								</div>
@@ -791,7 +863,7 @@
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							{{-- <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+							{{-- <li><a class="dropdown-item" ><i class="bx bx-user"></i><span>Profile</span></a>
 							</li> --}}
 							{{-- <li>
 								<div class="dropdown-divider mb-0"></div>

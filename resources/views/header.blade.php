@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div>
-            <img src="{{ asset('images/application/'.application()->main_logo) }}" alt="Logo" id="logo">
+            <img src="{{ asset('images/application/771129main_logo.jpg') }}" alt="Logo" id="logo" style="height: 50px; width: auto;">
             </div>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
                     About us
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                    <li><a class="dropdown-item" href="{{ route('about.us') }}">About AFAD</a></li>
+                    <li><a class="dropdown-item" href="{{ route('about.us') }}">About ERA</a></li>
                     <li><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission, Vision & Values</a></li>
                     <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li>
                     <li><a class="dropdown-item" href="{{ route('team.members') }}">Team Members</a></li>
@@ -62,7 +62,7 @@
                     <li><a class="dropdown-item" href="{{ route('donate') }}">Donate</a></li>
                     <li><a class="dropdown-item" href="{{ route('fundraising') }}">Fundraising Campaign</a></li>
                     <li><a class="dropdown-item" href="{{ route('corporate.partnership') }}">Corporate Partnership</a></li>
-                    <li><a class="dropdown-item" href="{{ route('invoked.career') }}">Career with AFAD</a></li>
+                    <li><a class="dropdown-item" href="{{ route('invoked.career') }}">Career with ERA</a></li>
                 </ul>
                 </li>
 
@@ -75,7 +75,7 @@
                     <li><a class="dropdown-item" href="{{ route('latest.news.all') }}">News & Events</a></li>
                     <li><a class="dropdown-item" href="{{ route('events.calender') }}">Events Calender</a></li>
                     <li><a class="dropdown-item" href="{{ route('youtube.video') }}">Youtube Video</a></li>
-                    <li><a class="dropdown-item" href="{{ route('strategic.plan') }}">AFAD Strategic Plan</a></li>
+                    <li><a class="dropdown-item" href="{{ route('strategic.plan') }}">ERA Strategic Plan</a></li>
                     <li><a class="dropdown-item" href="{{ route('policy.guideline') }}">Policy & Guideline</a></li>
                     <li><a class="dropdown-item" href="{{ route('publication') }}">Publication</a></li>
                 </ul>
