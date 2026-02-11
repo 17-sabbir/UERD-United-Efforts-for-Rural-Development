@@ -21,7 +21,7 @@
       <div class="section-title">
         <h2>Origin and Legal Affiliation: </h2>
         <p>
-            AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People's Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 )  from the Directorate of Women’s Affairs (DWA) in 1999. At the same time, AFAD has the registration from the Directorate of Youth Development, Govt. of Bangladesh.
+            ERA is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People's Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 )  from the Directorate of Women’s Affairs (DWA) in 1999. At the same time, ERA has the registration from the Directorate of Youth Development, Govt. of Bangladesh.
         </p>
       </div>
 

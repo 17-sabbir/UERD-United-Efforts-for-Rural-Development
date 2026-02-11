@@ -16,6 +16,90 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+            background: #f0f2f5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Glass Navbar & Header Improvements */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95); 
+        }
+        
+        /* Modernize Buttons */
+        .btn {
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(45deg, #dc3545, #ff6b6b);
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+            border: none;
+        }
+
+        /* Modernize Cards */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+            transition: transform 0.3s ease;
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        }
+        .card-img-top {
+            transition: transform 0.5s ease;
+        }
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        /* Modern Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dc3545;
+            border-radius: 5px;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
     @stack('css')
 </head>
 <body>

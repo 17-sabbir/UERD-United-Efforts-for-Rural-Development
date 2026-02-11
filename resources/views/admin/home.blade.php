@@ -2,14 +2,31 @@
 
 @section('content')
 
+<!-- Welcome Banner -->
+<div class="card bg-primary text-white mb-4 shadow-sm border-0 rounded-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="card-body p-4 position-relative overflow-hidden">
+        <div class="d-flex align-items-center">
+            <div class="ms-3">
+                <h3 class="font-weight-bold mb-1">Welcome Back, Admin!</h3>
+                <p class="mb-0 text-light opacity-75">Here is your daily impact overview for ERA.</p>
+            </div>
+            <div class="ms-auto d-none d-md-block">
+                <i class="bx bx-bar-chart-alt-2 text-white" style="font-size: 4rem; opacity: 0.2;"></i>
+            </div>
+        </div>
+        <!-- Decorative Circle -->
+        <div class="position-absolute top-0 end-0 rounded-circle bg-white opacity-10" style="width: 200px; height: 200px; margin-right: -50px; margin-top: -50px;"></div>
+    </div>
+</div>
+
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
     <div class="col">
         <a href="{{ route('project.index') }}" class="text-decoration-none text-dark">
-            <div class="card radius-10 border-start border-0 border-3 border-info">
+            <div class="card radius-10 border-start border-0 border-3 border-info card-hover-zoom">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Projects</p>
+                            <p class="mb-0 text-secondary font-weight-bold">Total Projects</p>
                             <h4 class="my-1 text-info">{{ $total_projects }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
@@ -22,11 +39,11 @@
     </div>
     <div class="col">
         <a href="{{ route('admin.donations.index') }}" class="text-decoration-none text-dark">
-            <div class="card radius-10 border-start border-0 border-3 border-danger">
+            <div class="card radius-10 border-start border-0 border-3 border-danger card-hover-zoom">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Donations</p>
+                            <p class="mb-0 text-secondary font-weight-bold">Total Raised</p>
                             <h4 class="my-1 text-danger">{{ $total_donations }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
@@ -39,11 +56,11 @@
     </div>
     <div class="col">
         <a href="{{ route('team.index') }}" class="text-decoration-none text-dark">
-            <div class="card radius-10 border-start border-0 border-3 border-success">
+            <div class="card radius-10 border-start border-0 border-3 border-success card-hover-zoom">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Members</p>
+                            <p class="mb-0 text-secondary font-weight-bold">Active Members</p>
                             <h4 class="my-1 text-success">{{ $total_members }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
@@ -56,11 +73,11 @@
     </div>
     <div class="col">
         <a href="{{ route('news.index') }}" class="text-decoration-none text-dark">
-            <div class="card radius-10 border-start border-0 border-3 border-warning">
+            <div class="card radius-10 border-start border-0 border-3 border-warning card-hover-zoom">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">News/Updates</p>
+                            <p class="mb-0 text-secondary font-weight-bold">Latest Updates</p>
                             <h4 class="my-1 text-warning">{{ $total_news }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">

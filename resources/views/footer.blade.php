@@ -5,9 +5,9 @@
             {{-- logo and short description --}}
             <div class="col-md-4 d-flex align-items-center">
                 <div>
-                    <img src="{{ asset('images/application/'.application()->main_logo) }}" alt="Logo" width="75%">
+                    <img src="{{ asset('images/application/771129main_logo.jpg') }}" alt="Logo" style="width: 200px; height: auto;">
                     <p class="py-3 text-justified text-white" style="font-size: 14px;">
-                        AFAD is a women led organization working in norther Bangladesh since 1999. AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of of People's Republic of Government of Bangladesh.
+                        ERA is a women led organization working in norther Bangladesh since 1999. ERA is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of of People's Republic of Government of Bangladesh.
                     </p>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">Who we are</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('about.us') }}">About AFAD</a></li>
+                            <li class="py-1"><a class="dropdown-item" href="{{ route('about.us') }}">About ERA</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission & Vision</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and legal Affiliation</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
@@ -84,7 +84,7 @@
 {{-- copyright --}}
 <div class="p-3" style="background: #000;">
     <div class="container text-white d-flex justify-content-between">
-       <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="Association for Alternative Development">AFAD</abbr></small>
+       <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="United Efforts for Rural Development">ERA</abbr></small>
        <small> Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small>
     </div>
 </div>

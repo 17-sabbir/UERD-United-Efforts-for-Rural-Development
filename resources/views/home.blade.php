@@ -10,7 +10,7 @@ Association for Alternative Development
     <div class="carousel-inner">
         @foreach ($slider as $skey => $slider)
         <div class="carousel-item @if($skey == 0) active @endif">
-            <img src="{{ asset('images/slider/'.$slider->image) }}" class="d-block" alt="AFAD" width="100%" height="auto">
+            <img src="{{ asset('images/slider/'.$slider->image) }}" class="d-block" alt="ERA" width="100%" height="auto">
             <div class="carousel-caption" style="position:absolute;top:150px; text-align:left;">
                 <h2 class="text-white text-start typing-text" style="font-size: 3rem">{{ $slider->title }}</span></h1>
                 <div class="my-2" style="width:100px;border-bottom:5px solid #dc3545;"></div>
@@ -43,7 +43,7 @@ Association for Alternative Development
 
         <div class="row g-4 pb-3">
             <div class="col-lg-10 col-md-12 col-12 mx-auto">
-                <p class="text-center text-secondary">AFAD is a women led organization working in norther Bangladesh since 1999. AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People's Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 ) from the Directorate of Women’s Affairs (DWA) in 1999. AFAD also has the registration from the Directorate of Youth Development, Govt. of Bangladesh.</p>
+                <p class="text-center text-secondary">ERA is a women led organization working in norther Bangladesh since 1999. ERA is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People's Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 ) from the Directorate of Women’s Affairs (DWA) in 1999. ERA also has the registration from the Directorate of Youth Development, Govt. of Bangladesh.</p>
             </div>
         </div>
         <div class="text-center pb-5">
@@ -63,7 +63,7 @@ Association for Alternative Development
             <div class="col-md-4 col-12 mx-auto">
                 <h3 class="text-center text-white"><span style="border-bottom:3px solid #e00324;">Mission</span> <i class="fa-solid fa-bullseye text-danger"></i></h3>
                 <p style="text-align: justify;" class="text-white">
-                    AFAD mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore AFAD undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.
+                    ERA mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore ERA undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.
                 </p>
             </div>
             <div class="col-md-4 my-2">
@@ -86,7 +86,7 @@ Association for Alternative Development
     <div class="container bg-white px-2">
         <div class="pt-5 pb-3">
             <h3 class="text-center"> Featured <span class="text-danger">Programs</span></h3>
-            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: AFAD's Featured Program brings transformative opportunities to communities in northern Bangladesh.</p>
+            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: ERA's Featured Program brings transformative opportunities to communities in northern Bangladesh.</p>
         </div>
 
         <div class="row p-3">
@@ -161,7 +161,7 @@ Association for Alternative Development
     <div class="container bg-white px-2">
         <div class="pt-3 pb-3">
             <h3 class="text-center">Ongoing <span class="text-danger">Projects</span></h3>
-            <p class="text-center text-secondary">AFAD's Ongoing Projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
+            <p class="text-center text-secondary">ERA's Ongoing Projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
         </div>
 
         {{-- card --}}
@@ -202,7 +202,7 @@ Association for Alternative Development
         <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Sponsor</span> for Growing Fund</h4>
         <div class="d-flex justify-content-center">
             <p class="text-white text-center py-3">
-            Sponsor AFAD's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
+            Sponsor ERA's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
         </p>
         </div>
 
@@ -257,7 +257,7 @@ Association for Alternative Development
             <div class="col-md-12">
                 <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Become</span> a Volunteer</h4>
                 <p class="text-white py-2 text-center">
-                    Sponsor AFAD's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
+                    Sponsor ERA's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
                 </p>
                 <div class="text-center">
                     <a href="#" class="btn btn-danger"><i class="fa-solid fa-user-plus"></i> Registration</a>
@@ -273,7 +273,7 @@ Association for Alternative Development
     <div class="container bg-white">
         <div class="pt-5 pb-2">
             <h3 class="text-center">Photo <span class="text-danger">Gallery</span></h3>
-            <p class="text-center text-secondary">Stay updated with AFAD's latest news and events, offering insights into our impactful initiatives and community engagements.</p>
+            <p class="text-center text-secondary">Stay updated with ERA's latest news and events, offering insights into our impactful initiatives and community engagements.</p>
         </div>
 
         {{-- photo --}}
@@ -380,7 +380,7 @@ Association for Alternative Development
                     <div class="text-center">
                         <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial" width="100" height="100">
                         <h5 class="mt-3 text-white">Jane Alam</h5>
-                        <p class="text-white">AFAD's tireless efforts in promoting education, healthcare, and economic opportunities have transformed the lives of many marginalized individuals. Their holistic approach to development is making a lasting difference in our region.</p>
+                        <p class="text-white">ERA's tireless efforts in promoting education, healthcare, and economic opportunities have transformed the lives of many marginalized individuals. Their holistic approach to development is making a lasting difference in our region.</p>
                         <div class="rating">
                             <span class="text-warning">&#9733;</span>
                             <span class="text-warning">&#9733;</span>
