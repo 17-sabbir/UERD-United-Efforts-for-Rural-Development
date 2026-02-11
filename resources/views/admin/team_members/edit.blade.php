@@ -14,15 +14,15 @@
                     <form class="row g-3" action="{{ route('team.update',$data->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ $data->name }}">
+                            <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ $data->name }}" required>
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="designation" class="form-label">Designation</label>
-                            <input type="text" name="designation" class="form-control @error('designation') is-invalid @enderror" id="designation" value="{{ $data->designation }}">
+                            <label for="designation" class="form-label">Designation <span class="text-danger">*</span></label>
+                            <input type="text" name="designation" class="form-control @error('designation') is-invalid @enderror" id="designation" value="{{ $data->designation }}" required>
                             @error('designation')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

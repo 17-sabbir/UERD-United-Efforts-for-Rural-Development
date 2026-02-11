@@ -31,7 +31,7 @@
                                 <td class="align-middle">{{ $message->email }}</td>
                                 <td class="align-middle">{{ $message->subject }}</td>
                                 <td class="text-center align-middle">
-                                    <a href="{{ route('message.delete',$message->id) }}" class="btn btn-sm btn-danger text-white text-center">
+                                    <a href="{{ route('message.delete',$message->id) }}" class="btn btn-sm btn-danger text-white text-center" onclick="return confirm('Are you sure you want to delete this item?');">
                                         <i class="fadeIn animated bx bx-trash-alt"></i>
                                     </a>
                                     <a href="{{ route('message.view',$message->id) }}" class="btn btn-sm btn-info text-white text-center">
