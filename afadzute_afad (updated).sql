@@ -2,9 +2,9 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 05, 2026 at 01:06 PM
--- Server version: 10.4.32-MariaDB
+-- Host: turntable.proxy.rlwy.net:27869
+-- Generation Time: Feb 11, 2026 at 08:47 AM
+-- Server version: 9.4.0
 -- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `about_us` (
-  `id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `id` int NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `about_us` (
 --
 
 INSERT INTO `about_us` (`id`, `description`) VALUES
-(1, 'AFAD is a women led organization working in norther Bangladesh since 1999. AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People\'s Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 ) from the Directorate of Women’s Affairs (DWA) in 1999. AFAD also has the registration from the Directorate of Youth Development, Govt. of Bangladesh.'),
+(1, 'AFAD is a women led organization working in norther Bangladesh since 1999. AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People\'s Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 ) from the Directorate of Women’s Affairs (DWA) in 1999. AFAD also has the registration from the Directorate of Youth Development, Govt. of Bangladesh.\r\n  Testing by robiul'),
 (3, 'AFAD is a women led organization working in norther Bangladesh since 1999. AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People\'s Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 ) from the Directorate of Women’s Affairs (DWA) in 1999. AFAD also has the registration from the Directorate of Youth Development, Govt. of Bangladesh.');
 
 -- --------------------------------------------------------
@@ -47,13 +47,13 @@ INSERT INTO `about_us` (`id`, `description`) VALUES
 --
 
 CREATE TABLE `applications` (
-  `id` int(11) NOT NULL,
-  `main_logo` varchar(255) NOT NULL,
-  `fav_icon` varchar(255) NOT NULL,
-  `facebook` varchar(255) NOT NULL,
-  `twitter` varchar(255) NOT NULL,
-  `instagram` varchar(255) NOT NULL,
-  `youtube` varchar(255) NOT NULL
+  `id` int NOT NULL,
+  `main_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fav_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -61,6 +61,7 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id`, `main_logo`, `fav_icon`, `facebook`, `twitter`, `instagram`, `youtube`) VALUES
+(1, '771129main_logo.jpg', '47014fav.png', 'https://www.facebook.com/afad.kurigram.1994', 'https://twitter.com/sayda_yesmin', 'http://www.instagram.com', 'http://www.youtube.com'),
 (2, '86562logo.png', '47014fav.png', 'https://www.facebook.com/afad.kurigram.1994', 'https://twitter.com/sayda_yesmin', 'http://www.instagram.com', 'http://www.youtube.com');
 
 -- --------------------------------------------------------
@@ -70,16 +71,105 @@ INSERT INTO `applications` (`id`, `main_logo`, `fav_icon`, `facebook`, `twitter`
 --
 
 CREATE TABLE `chief_executive_message` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `message` text NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `designation` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `signature` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `chief_executive_message`
+--
+
+INSERT INTO `chief_executive_message` (`id`, `title`, `message`, `name`, `designation`, `photo`, `signature`, `created_at`, `updated_at`) VALUES
+(2, 'Schedule', '9-10 AM - Opening\r\n10-11 Am - Closing', 'Shamim mojumder', 'Software Developer', '72717chief.jpg', '', NULL, NULL),
+(3, 'National Day', '12 February is our National day', 'Ismail', 'Software Developer', '', '', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` bigint UNSIGNED NOT NULL,
+  `type` enum('head_office','branch','person') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `skype` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `whatsapp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `type`, `title`, `address`, `name`, `mobile`, `mobile2`, `email`, `email2`, `skype`, `whatsapp`, `twitter`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'head_office', NULL, 'R.K Road Khalilganj Bazar, Kurigram', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', '2026-02-06 16:04:54', '2026-02-06 16:04:54'),
+(2, 'person', 'Chief Executive', NULL, 'Sayda Yesmin', '01719-691409', '01324-194889', 'yesminafad@gmail.com', 'yesminafad@yahoo.com', 'yesminafad@hotmail.com', '01719691409', NULL, 'active', '2026-02-06 16:07:56', '2026-02-06 16:07:56'),
+(3, 'person', 'Admin Officer', NULL, 'Md Al Muzahid', '01713-202608', NULL, 'muzahid.afad@gmail.com', NULL, NULL, '01713-202608', NULL, 'active', '2026-02-06 16:17:47', '2026-02-06 16:17:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `name`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'IT', 'IT jobs', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donations`
+--
+
+CREATE TABLE `donations` (
+  `id` bigint UNSIGNED NOT NULL,
+  `donor_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `donor_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `transaction_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `payment_method_id` bigint UNSIGNED NOT NULL,
+  `status` enum('pending','verified','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `admin_note` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `donations`
+--
+
+INSERT INTO `donations` (`id`, `donor_name`, `donor_phone`, `transaction_id`, `amount`, `payment_method_id`, `status`, `admin_note`, `created_at`, `updated_at`) VALUES
+(1, 'Mofassel Alam Maruf', '01997900840', '34HUHIF8472X', 10000.00, 2, 'pending', NULL, '2026-02-06 07:12:16', '2026-02-06 07:12:16');
 
 -- --------------------------------------------------------
 
@@ -88,19 +178,27 @@ CREATE TABLE `chief_executive_message` (
 --
 
 CREATE TABLE `executive_committee` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `designation` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `bio` text DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `instagram` varchar(255) DEFAULT NULL,
-  `youtube` varchar(255) DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `executive_committee`
+--
+
+INSERT INTO `executive_committee` (`id`, `name`, `designation`, `photo`, `bio`, `facebook`, `twitter`, `instagram`, `youtube`, `order`, `created_at`, `updated_at`) VALUES
+(1, 'Ismail', 'Student', '73539executive.jpg', '12 tarikh saradin, daripallay vote din', NULL, NULL, NULL, NULL, 2, NULL, NULL),
+(2, 'Shamim, mojumder', 'Software Developer', '59295executive.jpg', NULL, 'https://www.facebook.com/share/p/1817a4TAU9/', NULL, 'https://www.instagram.com/imshamimmozumder?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExd2ZJTmt3ajVGdFZLQXU5V3NydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR5He4Hqt0EUYBmQkN1eAePy-JWdoPOJaTjU_lI_bAaVlqMrZMSq5CUMoi_z3g_aem_bSFfupaVNL7dT3nFt4IS2w', 'https://youtu.be/WsllF4THOYk?si=1WwNcSdRlYwu6y3-', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,13 +207,13 @@ CREATE TABLE `executive_committee` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -125,14 +223,55 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `faq` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `question` text NOT NULL,
-  `answer` text NOT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `question` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `question`, `answer`, `category`, `order`, `created_at`, `updated_at`) VALUES
+(4, '1. What is AFAD?', 'AFAD (Association for Alternative Development) is a non-profit organization working to empower marginalized communities, especially women and youth, through education, social development programs, and sustainable initiatives.', 'General', 1, NULL, NULL),
+(5, '2. Who can participate in AFAD programs?', 'Anyone from disadvantaged or underprivileged communities can participate. AFAD focuses mainly on women, youth, and rural populations seeking skills, education, or community support.', 'General', 2, NULL, NULL),
+(6, '3. How can I volunteer with AFAD?', 'You can apply through the website’s volunteer registration form. AFAD welcomes individuals who want to contribute their time, skills, or expertise to community development initiatives.', 'General', 3, NULL, NULL),
+(7, '4. How can I donate to AFAD?', 'Donations can be made through online payment gateways, bank transfers, or official fundraising campaigns listed on the website. Every contribution supports community empowerment programs.', 'General', 4, NULL, NULL),
+(8, '5. Where does AFAD operate?', 'AFAD mainly operates in northern Bangladesh, working closely with rural and marginalized communities to promote education, human rights, and sustainable development.', 'General', 5, NULL, NULL),
+(9, '6. Are AFAD programs free?', 'Most programs are free or highly subsidized to ensure accessibility for underprivileged individuals who need support the most.', 'General', 6, NULL, NULL),
+(10, '7. How can I stay updated with AFAD activities?', 'You can follow AFAD on social media, subscribe to newsletters, or regularly check the website for updates on events, projects, and community programs.', 'General', 7, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `focus_areas`
+--
+
+CREATE TABLE `focus_areas` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `focus_areas`
+--
+
+INSERT INTO `focus_areas` (`id`, `title`, `description`, `icon_path`, `image_path`, `order`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'women impowerment', 'edrftgyhunjmkl,;.vbnm ,', 'focus_areas/icons/eyLRKq0y1IpMoKqwdffabSp1t4pypEg8foglHT4e.png', 'focus_areas/EtkHduu8cYdHiy1TrmlHmhXaXIEeLyCz2SKUmCMm.jpg', 1, 1, '2026-02-06 15:09:49', '2026-02-06 19:17:39'),
+(2, 'student wellfare', 'tyghbudnjkxsl,a \r\n\r\n\r\nvgybhnjkml,;.', 'focus_areas/icons/sIj5EtbxM0mI29kNTMWLA006MjRrGa8KSWi0yepm.png', 'focus_areas/LOuv6vZZQFsjJ0LZ1gPHIzTXqXYk9YraBBn5OP0L.png', 2, 1, '2026-02-06 15:11:54', '2026-02-06 19:25:40'),
+(3, 'sedrcftgvybhnjkml,', 'sedrftgybhnjkm,l.', 'focus_areas/icons/bAxnkztDLg0M2I16eUyiOzg05HaTSnuQqJLseHJ7.png', 'focus_areas/JXWoycDCY41dAElMn51rmXtYY8CbWbxIXk3NmfdW.png', 3, 1, '2026-02-06 15:19:44', '2026-02-06 19:54:16'),
+(4, 'hello test', 'hello hello test test test', NULL, 'focus_areas/6Eq40tKmh6s52e4WXeViMpD1wG9r6YUSzG5DsUNT.jpg', 0, 1, '2026-02-06 15:35:44', '2026-02-06 15:35:44');
 
 -- --------------------------------------------------------
 
@@ -141,10 +280,10 @@ CREATE TABLE `faq` (
 --
 
 CREATE TABLE `gallery` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -152,10 +291,10 @@ CREATE TABLE `gallery` (
 --
 
 INSERT INTO `gallery` (`id`, `title`, `description`, `image`) VALUES
-(2, 'IEEE', 'IEEE', '71834gallery.jpg'),
-(3, 'jane alam adnan', 'asdf', '89222gallery.jpg'),
+(3, 'jane alam', 'asdf  asdf', '89222gallery.jpg'),
 (4, 'All the Lorem Ipsum', 'All the Lorem Ipsum', '11857gallery.jpg'),
-(5, 'Lorem Ipsum', 'Lorem Ipsum', '53976gallery.jpg');
+(5, 'Lorem Ipsum', 'Lorem Ipsum', '53976gallery.jpg'),
+(6, 'akjdkjf', 'ajdflkjf', '20021gallery.jpeg');
 
 -- --------------------------------------------------------
 
@@ -164,17 +303,24 @@ INSERT INTO `gallery` (`id`, `title`, `description`, `image`) VALUES
 --
 
 CREATE TABLE `impact` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `metric_value` varchar(255) NOT NULL,
-  `metric_unit` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metric_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metric_unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `year` int DEFAULT NULL,
+  `order` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `impact`
+--
+
+INSERT INTO `impact` (`id`, `title`, `metric_value`, `metric_unit`, `description`, `icon`, `year`, `order`, `created_at`, `updated_at`) VALUES
+(1, 'Lives Impacted', '500+', 'people', 'Hello people', 'bx bx-group', 2026, 0, '2026-02-05 19:12:39', '2026-02-05 19:12:39');
 
 -- --------------------------------------------------------
 
@@ -183,9 +329,58 @@ CREATE TABLE `impact` (
 --
 
 CREATE TABLE `invoked` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `file` varchar(255) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `job_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_id` bigint UNSIGNED NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_type` enum('Full-time','Part-time','Volunteer','Internship') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `responsibilities` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requirements` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deadline` date NOT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `job_title`, `department_id`, `location`, `job_type`, `description`, `responsibilities`, `requirements`, `deadline`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Programer', 1, 'Dhaka', 'Full-time', 'IT jobs', 'dgd\r\njg', 'hggf', '2026-02-28', 'active', '2026-02-07 18:29:58', '2026-02-07 18:29:58', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_applications`
+--
+
+CREATE TABLE `job_applications` (
+  `id` bigint UNSIGNED NOT NULL,
+  `job_id` bigint UNSIGNED NOT NULL,
+  `applicant_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `applicant_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `applicant_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resume_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cover_letter` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('pending','reviewed','shortlisted','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `admin_notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -195,10 +390,10 @@ CREATE TABLE `invoked` (
 --
 
 CREATE TABLE `latest_news` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -220,9 +415,9 @@ INSERT INTO `latest_news` (`id`, `title`, `description`, `image`) VALUES
 --
 
 CREATE TABLE `legal_affilation` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `file` varchar(255) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -238,7 +433,8 @@ INSERT INTO `legal_affilation` (`id`, `name`, `file`) VALUES
 (12, 'AFAD-Legal Status', '64929legal_affilation.pdf'),
 (13, 'AFAD Organogram', '76380legal_affilation.pdf'),
 (14, 'AFAD Strategic Plan', '95068legal_affilation.pdf'),
-(15, 'NGO Affairs Bureau Registration Certificate  2029', '51191legal_affilation.pdf');
+(15, 'NGO Affairs Bureau Registration Certificate  2029', '51191legal_affilation.pdf'),
+(16, 'Upload by Robiul', '58929legal_affilation.pdf');
 
 -- --------------------------------------------------------
 
@@ -247,11 +443,11 @@ INSERT INTO `legal_affilation` (`id`, `name`, `file`) VALUES
 --
 
 CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `message` text NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -259,7 +455,6 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
-(1, 'Jane Alam Adnan', 'xahid111@gmail.com', 'I would like to donate', 'Please Tell me'),
 (4, 'Khalilur Rahman', 'khalilnstu@gmail.com', 'The nature is more beautiful', 'The nature is more beautiful'),
 (5, 'Imran Hossain', 'imran@gmail.com', 'I would like to donate', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
 (6, 'Jane Alam Adnan', 'imran@gmail.com', 'I would like to donate', 'I would like to donate'),
@@ -484,7 +679,7 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (223, 'LeeEtess', 'zekisuquc419@gmail.com', 'Hallo  i am write about     prices', 'Ndewo, achọrọ m ịmara ọnụahịa gị.'),
 (224, 'Rudy Asmus', 'rudy.asmus@googlemail.com', 'World’s First AI App That Rank Any Link We Want #1 In Google For Any Keyword We Want...', 'We have a promotional offer for your website afadbd.org.\r\nIn 30 Seconds Or Less…\r\nSending Us A Surge Of 1,478 Clicks A Day 100% FREE\r\n(Sneak Any URL You Want, Even Affiliate Links, We Send Traffic To Affiliate Links Directly, And Make $285.78 A Day Doing That )\r\n(You Don’t Need A Website, Hosting, A Domain, Or Even To Write A Single word…)\r\nNo Technical Skills - No Experience - No Coding - No Setup - No Waiting\r\nWatch How We Generate 342 Clicks Per Hour In 27 Seconds Flat…\r\n\r\nSee it in action: https://www.novaai.expert/SneakAI\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (225, 'Mike Gabriel Wouters', 'info@speed-seo.net', 'Find afadbd.org SEO Issues totally free', 'Hi, \r\nWorried about hidden SEO issues on your website? Let us help — completely free. \r\nRun a 100% free SEO check and discover the exact problems holding your site back from ranking higher on Google. \r\n \r\nRun Your Free SEO Check Now \r\nhttps://www.speed-seo.net/check-site-seo-score/ \r\n \r\nOr chat with us and our agent will run the report for you: https://www.speed-seo.net/whatsapp-with-us/ \r\n \r\nBest regards, \r\n \r\n \r\nMike Gabriel Wouters\r\n \r\nSpeed SEO Digital \r\nEmail: info@speed-seo.net \r\nPhone/WhatsApp: +1 (833) 454-8622'),
-(226, 'Lou Goulburn', 'lou.goulburn@hotmail.com', 'Monetizing Your Future', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nCreate with Purpose\r\n������ Feeling stuck, overwhelmed, or unsure where to start?\r\nThis video breaks it all down. Step-by-step. No fluff. No hype. Watch it now. It might just be the turning point you’ve been waiting for. Watch now before it’s too late. \r\n\r\nWatch this video before it\'s gone. \r\n\r\nSee it in action: https://goldsolutions.pro/MonetizeYourFuture\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
+(226, 'Lou Goulburn', 'lou.goulburn@hotmail.com', 'Monetizing Your Future', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nCreate with Purpose\r\n'),
 (227, 'Octavia Fink', 'octavia.fink@gmail.com', 'a $1,000/Day WiFI CASH BOT', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\n“30-Second Trick Turns My Phone Into\r\na $1,000/Day WiFI CASH BOT”\r\nJust Tap The \"Secret Button\" To Cash In From This $385 Billion A.I WiFi Cash Loophole!\r\n\r\nSee it in action: https://goldsolutions.pro/WiFiCashBot\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (228, 'Abi', 'businessprocessoutsourcing1@outlook.com', 'E-Commerce Operations Expert @ $10/hr', 'With 9 years’ eCommerce experience, I handle core operations at $10/hr — product uploads, inventory updates, order processing, returns, price management, managing spreadsheets, plus chat & email support. We manage Amazon, eBay, Shopify, WooCommerce, Google Merchant, Facebook Shop, Walmart, Etsy & more. Let’s jump on a Zoom call and get your store running at its best!\r\nE-mail me: Businessprocessoutsourcing1@outlook.com'),
 (229, 'Mike Helmuth Frangois', 'info@professionalseocleanup.com', 'Urgent: Toxic Links Found on afadbd.org', 'Hi, \r\nWhile reviewing afadbd.org, we spotted toxic backlinks that could put your site at risk of a Google penalty. \r\n \r\nWe can clean up your link profile and protect your rankings — all for just $5. \r\n \r\nFix it now before Google does: \r\nhttps://www.professionalseocleanup.com/ \r\n \r\nNeed help or questions? Chat here: \r\nhttps://www.professionalseocleanup.com/whatsapp/ \r\n \r\nBest, \r\nMike Helmuth Frangois\r\n \r\n+1 (855) 221-7591 \r\ninfo@professionalseocleanup.com'),
@@ -500,7 +695,7 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (239, 'Audra Urquhart', 'audra.urquhart73@gmail.com', 'OUR BEST VALUE TRAFFIC OFFER EVER!', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\n DAILY TRAFFIC TO ANY URL FROM 10 X HIGH PERFORMING TRAFFIC SOURCES\r\nNO EXPERIENCE, EMAIL LIST OR TECH SKILLS REQUIRED\r\n\r\nSee it in action: https://goldsolutions.pro/TrafficManiac\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (240, 'Christi Piguenit', 'piguenit.christi@gmail.com', 'ask', 'While others cut back, smart businesses get louder. We’ll send your message exactly like you received this one—through website contact forms.\r\n\r\n\r\nLet’s discuss how this can work for you—contact me below.  \r\n\r\nRegards,  \r\nChristi Piguenit  \r\nEmail: Christi.Piguenit@reachout2me.pro  \r\nWebsite: https://boostyourmarketingwithcontactforms.pro'),
 (241, 'Juliane Kimbrell', 'juliane.kimbrell@gmail.com', 'Just Pick Your Built-In AI Worker (Copywriter, Designer, Developer, Assistant, & More)...', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\n\r\n No Product. No Skills. No Work. No Talking. No Selling…\r\n\r\nWorld’s First AI App That Lets You Launch A Fully-Automated Freelancing Business Without Doing Any Of The Freelancing Yourself & Without Hiring Anyone\r\nJust Pick Your Built-In AI Worker (Copywriter, Designer, Developer, Assistant, & More)...\r\nLet Them Deliver Jobs For You… While You Sit Back & Get Paid…\r\nNo Experience - No Skills - No Upfront Cost - No Waiting - Instant Results\r\n\r\nSee it in action: https://www.novaai.expert/TaskManAI\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
-(242, 'Aubrey Crow', 'aubrey.crow@gmail.com', 'Monetizing Your Future', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nCreate with Purpose\r\n������ Feeling stuck, overwhelmed, or unsure where to start?\r\nThis video breaks it all down. Step-by-step. No fluff. No hype. Watch it now. It might just be the turning point you’ve been waiting for. Watch now before it’s too late. \r\n\r\nWatch this video before it\'s gone. \r\n\r\nSee it in action: https://goldsolutions.pro/MonetizeYourFuture\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
+(242, 'Aubrey Crow', 'aubrey.crow@gmail.com', 'Monetizing Your Future', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nCreate with Purpose\r\n'),
 (243, 'Lauren Murphy', 'laurenseo434@gmail.com', 'SEO Services for afadbd.org', 'Hi,\r\n\r\nI hope this email finds you well.\r\n\r\nMy name is Lauren from SEO Now, and I\'m reaching out because I believe we can significantly boost your online visibility and drive more business to afadbd.org.\r\n\r\nWe specialize in a comprehensive suite of SEO services designed to help businesses like yours thrive in the digital landscape. Our core offerings include:\r\n\r\n1. Keyword Research: Identifying the most impactful keywords your customers use to find services like yours.\r\n2. Ultimate Optimization Package: An all-in-one solution covering in-depth keyword research, content strategy, on-page SEO, technical audits, and competitor analysis.\r\n3. Google Map Citations: Enhancing your local search presence and Google Map Pack rankings.\r\n4. High-Authority Backlinks: Improving your search rankings and domain authority through quality, relevant backlinks.\r\n5. Ahrefs Reports: Providing on-demand, comprehensive SEO reports (like competitor analysis, keyword research, and backlink profiles) without the need for a full Ahrefs subscription.\r\n\r\nWe focus on delivering measurable results through a meticulous process of analysis, strategy, execution, and continuous improvement.\r\n\r\nIf this is of interest, please get back to me and we can discuss further.\r\n\r\nKind Regards,\r\nLauren'),
 (244, 'Terence McAlexander', 'mcalexander.terence@gmail.com', 'Dear afadbd.org Owner!', 'Chat with a live psychic today! Visit PsychicChat.com'),
 (245, 'SimonEtess', 'irinademenkova86@gmail.com', 'Aloha, i writing about your the price for reseller', 'Hi, მინდოდა ვიცოდე თქვენი ფასი.'),
@@ -542,9 +737,9 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (281, 'Edwarddrida', 'dianajalun@gmail.com', 'Withdraw your $213,495.23 urgently', 'Hello. \r\nYou have 24 hours left to withdraw your money $213,495.23 - https://script.google.com/macros/s/AKfycbyzC3N1zmy9WdQw5devAfZzEQldk2_FBYarl_cC2RK_ew7DRw2ugezSfv5oaR5tpeQ/exec/3z9t9l2y/3z0z/x/24/1r5l9j5p/3c5q/r/e0/5x7t7d2u/3q5f/e/yi \r\nAfter 24 hours, your balance in our system will be reset.'),
 (282, 'Edwarddrida', 'dianajalun@gmail.com', 'Withdraw your $213,495.23 urgently', 'Hello. \r\nYou have 24 hours left to withdraw your money $213,495.23 - https://script.google.com/macros/s/AKfycbyzC3N1zmy9WdQw5devAfZzEQldk2_FBYarl_cC2RK_ew7DRw2ugezSfv5oaR5tpeQ/exec/3z9t9l2y/3z0z/x/24/1r5l9j5p/3c5q/r/e0/5x7t7d2u/3q5f/e/yi \r\nAfter 24 hours, your balance in our system will be reset.'),
 (283, 'Edwarddrida', 'dianajalun@gmail.com', 'Withdraw your $213,495.23 urgently', 'Hello. \r\nYou have 24 hours left to withdraw your money $213,495.23 - https://script.google.com/macros/s/AKfycbyzC3N1zmy9WdQw5devAfZzEQldk2_FBYarl_cC2RK_ew7DRw2ugezSfv5oaR5tpeQ/exec/3z9t9l2y/3z0z/x/24/1r5l9j5p/3c5q/r/e0/5x7t7d2u/3q5f/e/yi \r\nAfter 24 hours, your balance in our system will be reset.'),
-(284, 'Edwarddrida', 'dianajalun@gmail.com', 'Withdraw your $213,495.23 urgently', 'Hello. \r\nYou have 24 hours left to withdraw your money $213,495.23 - https://script.google.com/macros/s/AKfycbyzC3N1zmy9WdQw5devAfZzEQldk2_FBYarl_cC2RK_ew7DRw2ugezSfv5oaR5tpeQ/exec/3z9t9l2y/3z0z/x/24/1r5l9j5p/3c5q/r/e0/5x7t7d2u/3q5f/e/yi \r\nAfter 24 hours, your balance in our system will be reset.');
+(284, 'Edwarddrida', 'dianajalun@gmail.com', 'Withdraw your $213,495.23 urgently', 'Hello. \r\nYou have 24 hours left to withdraw your money $213,495.23 - https://script.google.com/macros/s/AKfycbyzC3N1zmy9WdQw5devAfZzEQldk2_FBYarl_cC2RK_ew7DRw2ugezSfv5oaR5tpeQ/exec/3z9t9l2y/3z0z/x/24/1r5l9j5p/3c5q/r/e0/5x7t7d2u/3q5f/e/yi \r\nAfter 24 hours, your balance in our system will be reset.'),
+(285, 'Hyman Slone', 'hyman.slone@hotmail.com', 'ChatGPT, Gemini, Stable Diffusion & More… Without Monthly Fees', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhat if you could use the best AI models in the world without limits or extra costs?\r\nNow you can. With our brand-new AI-powered app, you’ll have ChatGPT, Gemini Pro, Stable Diffusion, Cohere AI, Leonardo AI Pro, and more — all under one roof.\r\n\r\nNo monthly subscriptions\r\n\r\nNo API key expenses\r\n\r\nNo experience required\r\n\r\nJust one dashboard, one payment, and endless possibilities.\r\n\r\nSee it in action: https://www.novaai.expert/AIModelSuite\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker');
 INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
-(285, 'Hyman Slone', 'hyman.slone@hotmail.com', 'ChatGPT, Gemini, Stable Diffusion & More… Without Monthly Fees', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhat if you could use the best AI models in the world without limits or extra costs?\r\nNow you can. With our brand-new AI-powered app, you’ll have ChatGPT, Gemini Pro, Stable Diffusion, Cohere AI, Leonardo AI Pro, and more — all under one roof.\r\n\r\nNo monthly subscriptions\r\n\r\nNo API key expenses\r\n\r\nNo experience required\r\n\r\nJust one dashboard, one payment, and endless possibilities.\r\n\r\nSee it in action: https://www.novaai.expert/AIModelSuite\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (286, 'Jami McCollister', 'mccollister.jami@yahoo.com', 'THE FASTEST WAY TO CREATE, PUBLISH & PROFIT FROM EBOOKS', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nForget spending weeks writing — Ebook Writer AI lets you create a polished eBook in just 10–15 minutes. Simply enter your topic, and the tool will generate chapters, format the text, add images, and even include affiliate links.\r\n\r\nWhy choose Ebook Writer AI?\r\n\r\nFast: a complete eBook in minutes.\r\n\r\nProfessional design, no skills required.\r\n\r\nBuilt-in monetization.\r\n\r\nPerfect for bloggers, coaches, marketers, and anyone who wants to sell knowledge through eBooks.\r\n\r\nTry it today > https://www.novaai.expert/eBookWriterAI\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (287, 'RaymondWal', 'raymondmighbeirm@gmail.com', 'A revolutionary technique of email dissemination.', 'Hi there! afadbd.org \r\n \r\nReach new clients legally and efficiently with targeted communication. \r\nWhen such proposals are sent, no personal data is used, and messages are sent to securely configured contact forms. \r\nBecause Contact Forms are designed for legitimate messages, submissions made through them are less likely to be marked as spam. \r\nTry it now for free and see the benefits for yourself. \r\nYou can count on us to send up to 50,000 messages efficiently. \r\n \r\nThe cost of sending one million messages is $59. \r\n \r\nThis offer is automatically generated. \r\n \r\nContact us. \r\nTelegram - https://t.me/FeedbackFormEU \r\nWhatsApp - +375259112693 \r\nWhatsApp  https://wa.me/+375259112693 \r\nWe only use chat for communication.'),
 (288, 'Fredric Ganz', 'ganz.fredric85@outlook.com', 'The Fastest Way to Save Real Money in 2025', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nhese Ready-to-Use Prompts Turn Free AI Tools Like ChatGPT into a Personal Deal Hunter That Finds You Cheaper Alternatives, Travel Hacks, Cashback Opportunities, and Budget Wins in Seconds -\r\nAll Without Changing a Thing About Your Routine\r\nNo Coupons | No Extensions | No Guesswork | 100% Real Savings | 100% Resell Rights\r\n\r\nSee it in action: https://goldsolutions.pro/money-saving-prompts\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
@@ -567,7 +762,7 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (305, 'Nila Brisbane', 'nila.brisbane@googlemail.com', 'Create, Host and Sell Your Own Courses & Keep 100% Of The Profits..', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWorld’s First AI App That Instantly Builds Your Own “Udemy-Like” eLearning Platform - Preloaded With 100+ Ready-To-Sell, Red-Hot Online Courses\r\nIn One Single Dashboard, For A Low One-Time Fee!\r\nOnly 3 EASY Clicks - Create & Sell Stunning Online Courses on Your Own Udemy™-Style Platform to Hungry Buyers for Top Dollar.\r\n\r\nNo Reserach | No Course Creation | No Tech  Skills | No Monthly Fees Required\r\n\r\nSee it in action: https://www.novaai.expert/CourseBeastAI\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (306, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Aloha  i write about   the price', 'Hæ, ég vildi vita verð þitt.'),
 (307, 'Chun Naylor', 'chun.naylor@msn.com', 'Launch Your AI Store Today – No Design. No Code. Just Profit', 'Hi,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhy do you need this? Imagine launching your own AI store on WordPress, stocked with ready-to-sell GPTs and AI prompts—and starting to make money today. No design headaches, no tech setup, just a polished storefront that builds trust and delivers real sales straight out of the box.\r\n\r\nWhether you\'re a webmaster or money-maker, AI Store Fortune removes the tech barrier. Made for people who’d rather grow their traffic and income than tinker with confusing plugins. Want to finally turn AI ideas into stable income? Click to see how effortlessly you can own—and profit from—your AI business.\r\n\r\nSee it in action: https://smartexperts.pro/AIStoreFortune\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://smartexperts.pro/unsub?domain=afadbd.org \r\nAddress: Address: 1464 Lewis Street Roselle, IL 60177\r\nLooking out for you, Michael Turner.'),
-(308, 'Margaret Julia', 'jiutiven@gmail.com', '������ Instagram Promotion: Grow your followers by 700 each month', 'Hi. We run an Instagram growth service, which increases your number of followers both safety and practically.\r\n\r\n- We guarantee to gain you new 300-700+ followers per month\r\n- Real human followers: People follow you because they are interested in your business or niche\r\n- All actions are made manually by our team. We do not use any bots.\r\n\r\nThe price is just $60 (USD) per month, and we can start immediately. If you are interested and would like to see some of our previous work, let me know and we can discuss further.\r\n\r\nKind Regards,\r\n\r\nTo Unsubscribe, reply with the word unsubscribe in the subject.'),
+(308, 'Margaret Julia', 'jiutiven@gmail.com', '', 'Hi. We run an Instagram growth service, which increases your number of followers both safety and practically.\r\n\r\n- We guarantee to gain you new 300-700+ followers per month\r\n- Real human followers: People follow you because they are interested in your business or niche\r\n- All actions are made manually by our team. We do not use any bots.\r\n\r\nThe price is just $60 (USD) per month, and we can start immediately. If you are interested and would like to see some of our previous work, let me know and we can discuss further.\r\n\r\nKind Regards,\r\n\r\nTo Unsubscribe, reply with the word unsubscribe in the subject.'),
 (309, 'Mike Lukas Martin', 'mike@monkeydigital.co', 'Increase Your Website Traffic with Targeted Social Ads – Only $10 for 10K Visits!', 'Hi there, \r\n \r\nI wanted to reach out with something that could seriously boost your website’s visitor count. We work with a trusted ad network that allows us to deliver genuine, geo-targeted social ads traffic for just $10 per 10,000 visits. \r\n \r\nThis isn\'t junk clicks—it’s engaged traffic, tailored to your target country and niche. \r\n \r\nWhat you get: \r\n \r\n10,000+ genuine visitors for just $10 \r\nGeo-targeted traffic for your chosen location \r\nLarger traffic packages available based on your needs \r\nTrusted by SEO experts—we even use this for our SEO clients! \r\n \r\nWant to give it a try? Check out the details here: \r\nhttps://www.monkeydigital.co/product/country-targeted-traffic/ \r\n \r\nOr chat with us on WhatsApp: \r\nhttps://monkeydigital.co/whatsapp-us/ \r\n \r\nLet\'s get started today! \r\n \r\nBest, \r\nMike Lukas Martin\r\n \r\nPhone/whatsapp: +1 (775) 314-7914'),
 (310, 'Ulrich Papst', 'papst.ulrich@gmail.com', 'Get Free Google Traffic Fast — Even Without a Website!', 'Hi,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhy you need this: to have every campaign, affiliate offer, or project start delivering traffic and income today — without spending a dime on ads or tech headaches. Ghost Pages turns you into a stealth engine that Google absolutely trusts: you build invisible pages using a secret Google asset, and they quietly start delivering targeted visitors — while your competition is nowhere the wiser.\r\n\r\nIt’s easy, it’s fast, it’s genius: no domains, hosting, social media, or technical skills required — if you can click and copy, you can do this. Plus, it really works and scales: launch one Ghost Page and BAM — traffic flows wherever you want: affiliate links, e‑com, leads — you choose. Ready to start in minutes? Discover how and get results that might blow your mind.\r\n\r\nSee it in action: http://smartexperts.pro/GhostPages\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://smartexperts.pro/unsub?domain=afadbd.org \r\nAddress: Address: 1464 Lewis Street Roselle, IL 60177\r\nLooking out for you, Michael Turner.'),
 (311, 'LeeEtess', 'zekisuquc419@gmail.com', 'Aloha    writing about your the prices', 'Sawubona, bengifuna ukwazi intengo yakho.'),
@@ -614,10 +809,10 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (352, '* * * <a href=\"https://xlr8ar.com/index.php?uvdc01\">Free money? Yeah, we said it</a> * * * hs=d13784673f637677426b66b478044a25* ххх*', 'paouqua@mailbox.in.ua', 'l7i1av', 'gdvhrq'),
 (353, 'Marilynn Forlong', 'marilynn.forlong@outlook.com', 'Craft Unique Kids’ Animations Effortlessly — Without Prior Experience , One-Time Access', 'Hi,\r\n\r\nTake a look at a unique offer made for afadbd.org afadbd.org : https://goldsolutions.pro/KidsTaleAI?afadbd.org\r\n\r\nWhy consider this? this solution quickly converts any idea into colorful story clips for kids in just minutes — no design background, without costly apps, no monthly payments. Your stories feature storytelling audio, poetic style, audio tracks, written dialogue — type your story and share instantly.\r\n\r\nSee how rapidly you might expand into the kids’ content niche: upload to YouTube, TikTok, shorts platforms and see engagement flow. Or sell them on Fiverr, Etsy, or Gumroad at between $50 and $500. You get resale access, immediate login, and help whenever needed — for a one-time fair price. Looking to open new income channels?\r\n\r\nWatch how it works: https://goldsolutions.pro/KidsTaleAI?afadbd.org\r\n\r\nYou are receiving this info because we feel this might be of interest to you.  \r\nIf you do not want further details from us, visit this page to UNSUBSCRIBE:  \r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org  \r\n\r\nAddress: 209 West Street Comstock Park, MI 49321  \r\n\r\nBest regards,  \r\nEthan Parker'),
 (354, 'Venus Hipkiss', 'venus.hipkiss@yahoo.com', 'Experience Success', 'Hello,\r\n\r\nWe have a personalized suggestion for your website afadbd.org : https://goldsolutions.pro/VibeCodeBlueprint?afadbd.org\r\n\r\nWhy should this matter to you? Because Vibe Code Blueprint is your new framework — launch high-value digital assets in moments, with no technical setup and zero budget, while visitors and revenue start coming in. Imagine being the strategist behind the curtain, benefiting on autopilot — while others are still working on funnels.\r\n\r\nThis isn’t just another platform — it’s a special edge, like early Bitcoin but for digital assets, and it’s happening now. Start early, take the lead before the crowd notices!\r\n\r\nDiscover more here: https://goldsolutions.pro/VibeCodeBlueprint?afadbd.org\r\n\r\nYou are receiving this message because we believe our proposal may be of interest to you.  \r\nIf you do not wish to receive further messages, please click here to UNSUBSCRIBE:  \r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org  \r\n\r\nAddress: 209 West Street Comstock Park, MI 49321  \r\nSincerely,  \r\nEthan Parker'),
-(355, 'Roosevelt Shears', 'shears.roosevelt@googlemail.com', 'Create Video Scripts quickly: Done-for-you texts that bring response', 'Hi,\r\n\r\nWe prepared an exclusive opportunity connected with afadbd.org afadbd.org https://goldsolutions.pro/VideoScriptProGPT?afadbd.org \r\n\r\nIf you monetize sites looking for efficient tools?  \r\nPicture this: no wasted hours on writing engaging content — Video Script Pro GPT covers the task, optimized for you.  \r\nNo guessing words, just sharp, conversion-friendly scripts that speak to your audience — and increase your results with minimal input.\r\n\r\nReady to check how it helps you increase attention, save hours, and allow focus on your projects?\r\n\r\nCheck it out: https://goldsolutions.pro/VideoScriptProGPT?afadbd.org\r\n\r\nYou are receiving this information because it seems our solution may help in your case.  \r\nIf you do not wish to be sent future messages from us, please click here to UNSUBSCRIBE:  \r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\n\r\nAddress: 209 West Street Comstock Park, MI 49321  \r\nBest regards,  \r\nEthan Parker');
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
+(355, 'Roosevelt Shears', 'shears.roosevelt@googlemail.com', 'Create Video Scripts quickly: Done-for-you texts that bring response', 'Hi,\r\n\r\nWe prepared an exclusive opportunity connected with afadbd.org afadbd.org https://goldsolutions.pro/VideoScriptProGPT?afadbd.org \r\n\r\nIf you monetize sites looking for efficient tools?  \r\nPicture this: no wasted hours on writing engaging content — Video Script Pro GPT covers the task, optimized for you.  \r\nNo guessing words, just sharp, conversion-friendly scripts that speak to your audience — and increase your results with minimal input.\r\n\r\nReady to check how it helps you increase attention, save hours, and allow focus on your projects?\r\n\r\nCheck it out: https://goldsolutions.pro/VideoScriptProGPT?afadbd.org\r\n\r\nYou are receiving this information because it seems our solution may help in your case.  \r\nIf you do not wish to be sent future messages from us, please click here to UNSUBSCRIBE:  \r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\n\r\nAddress: 209 West Street Comstock Park, MI 49321  \r\nBest regards,  \r\nEthan Parker'),
 (356, 'Vaibhav', 'webdesignservices111@outlook.com', 'Premium High Quality Website Design', 'Is your current website delivering the premium, modern feel your brand deserves—or are you considering a redesign? I offer high-quality builds starting from $2,000.\r\nCan we schedule a short meeting? Let me know a suitable day and time by emailing me at webdesignservices111@outlook.com'),
-(357, 'LeeEtess', 'zekisuquc419@gmail.com', 'Hi    wrote about     price for reseller', 'Hi, ego volo scire vestri pretium.'),
+(357, 'LeeEtess', 'zekisuquc419@gmail.com', 'Hi    wrote about     price for reseller', 'Hi, ego volo scire vestri pretium.');
+INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (358, 'Russell Hanslow', 'russell.hanslow63@gmail.com', 'Expand Google discovery in no time — even if you don’t have a site', 'Greetings,\r\n\r\nHere’s a unique opportunity designed for your domain : https://smartexperts.pro/GhostPage?afadbd.org\r\n\r\nWhy consider it: you’ll start seeing steady flow of people and growth almost instantly — with zero budget on promotion or tech hassle. Ghost Pages makes you operate like a hidden engine that Google trusts: you set up quiet pages using a private Google method, and they quietly attract relevant audiences — as rivals stay behind.\r\n\r\nIt’s hassle-free, it’s clever: forget about domains, servers, and socials, no technical know-how needed — if you can click and copy, you’re set. Plus, it delivers and scales: create one and watch the flow come in to any link you choose — the destination is yours to pick. Get going instantly? Discover the method and see surprising results.\r\n\r\nWatch it in action: https://smartexperts.pro/GhostPage?afadbd.org\r\n\r\nYou are receiving this message because it might align with your current needs.  \r\nIf you do not wish to receive further notes, please click here to UNSUBSCRIBE:  \r\nhttps://smartexperts.pro/unsub?domain=afadbd.org  \r\nAddress: 1464 Lewis Street Roselle, IL 60177  \r\n\r\nBest regards,  \r\nMichael Turner.'),
 (359, 'Tony', 'yourvirtualassistant23@outlook.com', 'Business Assistant Available @ $20/hr', 'I work as a business assistant and can help you with a variety of tasks including creating designs on Canva, writing content, managing emails, assisting in hiring, uploading website content, web research, bookkeeping, handling invoices, maintaining Google Sheets and Docs, following your SOPs, and working on your business software. I also handle data entry, create social media posts, and schedule them. My rate is $20/hr, and I can support you in managing day-to-day operations so you can focus more on growing your business. \r\n\r\nIf this is something you need, feel free to reach out at Yourvirtualassistant23@outlook.com'),
 (360, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Aloha,   wrote about   the prices', 'Dia duit, theastaigh uaim do phraghas a fháil.'),
@@ -725,7 +920,7 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (461, 'LeeEtess', 'zekisuquc419@gmail.com', 'Hallo, i write about your the price for reseller', 'Ողջույն, ես ուզում էի իմանալ ձեր գինը.'),
 (462, 'Carina Lavender', 'carina.lavender@msn.com', 'question for you', 'Ever stop to think how much you\'re spending on marked-up CPMs for Connected TV ads?\r\nIf you\'re using “premium” audience segments without verifying who you\'re actually reaching, that money is likely feeding someone else\'s family.\r\nNo pressure. Here’s the site if you\'re open to see a revolutionary vision for digital advertising\r\ntopshelfaudience.com using real-time Intent data from an Integration in our platform to Lotame.com. You can reach me at marketing@mrmarketingres.com or 843-720-7301. And if this isn\'t a fit please feel free to email me and I\'ll be sure not to reach out again.  Thanks!'),
 (463, 'Vincent', 'bposervices1@outlook.com', 'Reliable Back-Office Support for Your Business', 'Hello, Are back-office tasks slowing down your core business activities? I can help by managing:\r\n> Data entry and database updates\r\n> Order processing and invoice preparation\r\n> Bookkeeping and financial entries\r\n> Document management and record-keeping\r\n> Payroll and timesheet processing\r\n> Vendor and client communication follow-ups\r\n> CRM management and lead data organization\r\n> Preparing reports and spreadsheets\r\n> Email handling and scheduling support\r\n> Online research and data collection\r\n\r\nWith more than a decade of experience supporting businesses across industries, I ensure accuracy, confidentiality, and efficiency in every task. My pricing starts from $10/hr, depending on the project scope.\r\n\r\nIf you’d like to discuss your specific requirements, please email me at bposervices1@outlook.com. We can schedule a quick video call at your convenience to explore how I can support your operations.'),
-(464, 'Reginald', 'hireonline556600@outlook.com', 'Hire VA Now!!!', 'Hello Partner, \r\n\r\nThey say “Do what you do best and outsource the rest”—and that’s exactly where we come in!\r\n\r\nWe help busy entrepreneurs and business owners like you reclaim time by assigning repetitive, time-consuming tasks to a reliable Virtual Assistant.\r\n\r\nWhether it\'s:\r\n• Managing inboxes ������\r\n• Keeping up with your CRM ������\r\n• Coordinating social media & marketing ������\r\n• Handling listings and vendor follow-ups \r\n…we’ve got your back (virtually!)\r\n\r\nIf it feels aligned, let’s schedule a 15-minute intro call to see how we can support your workflow.\r\nAnd hey, here’s a quick one to lighten the mood:\r\n“Why did the entrepreneur hire a VA?\r\nTo delegate responsibility and escalate success!”\r\n\r\nLooking forward to hearing from you. Mail me at: Hireonline556600@outlook.com\r\nHave a productive (or relaxed) day!!!'),
+(464, 'Reginald', 'hireonline556600@outlook.com', 'Hire VA Now!!!', 'Hello Partner, \r\n\r\nThey say “Do what you do best and outsource the rest”—and that’s exactly where we come in!\r\n\r\nWe help busy entrepreneurs and business owners like you reclaim time by assigning repetitive, time-consuming tasks to a reliable Virtual Assistant.\r\n\r\nWhether it\'s:\r\n• Managing inboxes '),
 (465, 'Royal', 'info@hardaway.bangeshop.com', 'Royal Hardaway', 'Hello there, \r\n\r\nI hope you\'re doing well. I wanted to let you know about our new BANGE backpacks and sling bags that just released.\r\n\r\nBange is perfect for students, professionals and travelers. The backpacks and sling bags feature a built-in USB charging port, making it easy to charge your devices on the go.  Also they are waterproof and anti-theft design, making it ideal for carrying your valuables.\r\n\r\nBoth bags are made of durable and high-quality materials, and are perfect for everyday use or travel.\r\n\r\nOrder yours now at 50% OFF with FREE Shipping: http://bangeshop.com\r\n\r\nTo your success,\r\n\r\nRoyal'),
 (466, 'Consuelo McCrae', 'consuelo.mccrae@outlook.com', 'Hello afadbd.org Administrator.', 'Limited-Time Deal: Submit to 2M Sites — 50% Off This Week. You’re reading this message. That’s the system working. Questions? Email me at: phil.strategy@form-blast-promo.top'),
 (467, '* * * $3,222 credit available! Confirm your transaction here: http://www.uwiapartment.com/index.php?unhgqb * * * hs=d13784673f637677426b66b478044a25* ххх*', 'paouqua@mailbox.in.ua', 'lhodse', 'adzv5g'),
@@ -784,7 +979,7 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (520, 'Mandy', 'creativeteamhire@outlook.com', 'Content Writer and Copywriter', 'Hi, I\'m Mandy, a content and copywriter with over 12 years of experience creating content for various industries. I write blogs, rewrite old content, news articles, SEO-friendly web content, product descriptions, business service descriptions, newsletters, brochures, and more. My focus is on delivering content that connects with your audience, improves SEO, and gets results—all written without AI. I also provide reports from paid tools to back up my work. My rate is $50 per 1,000 words, offering great value for high-quality content. \r\n\r\nIf you\'d like to improve your content, feel free to email me at creativeteamhire@outlook.com'),
 (521, '* * * $3,222 deposit available! Confirm your transaction here: http://theeasyedi.com/index.php?6xfibn * * * hs=d13784673f637677426b66b478044a25* ххх*', 'paouqua@mailbox.in.ua', 'oms3gc', 'k4bxcu'),
 (522, '* * * <a href=\"http://theeasyedi.com/index.php?6xfibn\">$3,222 payment available</a> * * * hs=d13784673f637677426b66b478044a25* ххх*', 'paouqua@mailbox.in.ua', 'oms3gc', 'k4bxcu'),
-(523, 'Leonard Munger', 'munger.leonard@gmail.com', '???', 'T5 Power naturally enhances testosterone for more muscle, better mood, sharper focus, and unstoppable energy. It’s the #1 way to reclaim your vitality—without risky drugs. ������ \r\n \r\nFuels your total health transformation. Made in the USA. Lab-tested. 100% natural. \r\n\r\n������ Don’t wait — feel the difference now: bodyfuell.com/s/menhealth-testosterone'),
+(523, 'Leonard Munger', 'munger.leonard@gmail.com', '???', 'T5 Power naturally enhances testosterone for more muscle, better mood, sharper focus, and unstoppable energy. It’s the #1 way to reclaim your vitality—without risky drugs. '),
 (524, 'Ravi', 'businessgrowtogether@outlook.com', 'Personal Assistant', 'Are you looking for a personal assistant who can handle your daily business operations and make your life easier? I can help with tasks related to admin, marketing, gathering data from multiple websites, answering emails, website management, social media, content writing, planning new projects, bookkeeping, entering data into softwares, and back-office assistance. I have an Inhouse Content writer, social media specialist, Data Entry Operator, Website Developer and Bookkeeper. My costing varies from $8/hr to $30/hr depending on type of project and its complexity. \r\n\r\nIf you are interested, send me an email at Businessgrowtogether@outlook.com with a list of tasks you want to accomplish, and We can discuss our collaboration over a video call as per your convenience.'),
 (525, 'NAERTREGE2346694NEWETREWT', 'vyfkehdg@fringmail.com', 'TOTUTYJ2346694TIGFHFGER', 'MERTHYTJTJ2346694MAWRERGTRH'),
 (526, 'AvaAdary', 'oliviaIntapE517@yahoo.com', 'Your site got me curious', 'Hey, I just stumbled onto your site… are you always this good at catching attention, or did you make it just for me? Write to me on this website ---  https://rb.gy/ydlgvk?Anemeda  ---  my username is the same, I\'ll be waiting.'),
@@ -814,17 +1009,17 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (550, 'Marita Gallagher', 'marita.gallagher@gmail.com', 'afadbd.org', 'Take a look at my website for more info: https://submissiontodirectory.top/'),
 (551, 'Vana', 'bizassistance008@outlook.com', 'Experienced Bookkeeper', 'Hi, This is Vana, an experienced bookkeeper with more than a decade experience in bookkeeping for USA, UK, Canada, Europe and Australian Clients with expertise in:\r\n\r\nQuickBooks, Xero, Wave, FreshBooks, Sage, Zoho Books, MYOB, Kashoo, Tally, NetSuite, Odoo Accounting, Quicken, Microsoft Dynamics 365, ZipBooks, and FreeAgent.\r\n\r\nI can help you with:\r\n > Categorizing income and expense transactions accurately\r\n > Handling reconciliations for PayPal, Wise, Stripe, and business bank accounts\r\n > Maintaining clean and up-to-date financial records\r\n\r\nMy rate is USD 20 per hour.\r\n\r\nIf you’d like to discuss further, please reply to bizassistance008@outlook.com'),
 (552, 'Jere', 'jere@cazaly.medicopostura.com', 'Jere Cazaly', 'Hello there \r\n\r\nLooking to improve your posture and live a healthier life? Our Medico Postura™ Body Posture Corrector is here to help!\r\n\r\nExperience instant posture improvement with Medico Postura™. This easy-to-use device can be worn anywhere, anytime – at home, work, or even while you sleep.\r\n\r\nMade from lightweight, breathable fabric, it ensures comfort all day long.\r\n\r\nGrab it today at a fantastic 60% OFF: https://medicopostura.com\r\n\r\nPlus, enjoy FREE shipping for today only!\r\n\r\nDon\'t miss out on this amazing deal. Get yours now and start transforming your posture!\r\n\r\nHave a great time, \r\n\r\nJere'),
-(553, 'Lashawn Gann', 'lashawn.gann@outlook.com', '???', 'Manhood Shield boosts natural nitric oxide for rock-hard erections, stronger stamina, and explosive bedroom confidence. No pills, no pumps—just 1-2 capsules daily to reclaim your peak performance.  \r\n \r\n������Be the lover she can’t forget → Take charge now: bodyfuell.com/s/manhood-shield'),
+(553, 'Lashawn Gann', 'lashawn.gann@outlook.com', '???', 'Manhood Shield boosts natural nitric oxide for rock-hard erections, stronger stamina, and explosive bedroom confidence. No pills, no pumps—just 1-2 capsules daily to reclaim your peak performance.  \r\n \r\n'),
 (554, 'Mike Gustavo Fischer', 'info@professionalseocleanup.com', 'Fix August Google Spam update ranking problems for free', 'Hi, \r\nWhile reviewing afadbd.org, we spotted toxic backlinks that could put your site at risk of a Google penalty. Especially that this Google SPAM update had a high impact in ranks. This is an easy and quick fix for you. Totally free of charge. No obligations. \r\n \r\nFix it now: \r\nhttps://www.professionalseocleanup.com/ \r\n \r\nNeed help or questions? Chat here: \r\nhttps://www.professionalseocleanup.com/whatsapp/ \r\n \r\nBest, \r\nMike Gustavo Fischer\r\n \r\n+1 (855) 221-7591 \r\ninfo@professionalseocleanup.com'),
 (555, 'Deepu', 'businessprocessoutsourcing1@outlook.com', 'Video Editing and New Video Creation', 'I\'m Deepu. a remote Video Producer and Video Editor. My expertise is to create new promotional videos and reels, Making edits in existing videos, Making small clips out of longer videos, Creating video scripts and voiceovers. If you need any videos for your social media channels/websites/corporate events/product promotion/service promotion, then, you are at the right place. Softwares used by me are Premiere Pro, After Effects and DaVinchi Resolve. My Costing is $20/hr to $40/hr. \r\n\r\nCan you share your requirement with me at Businessprocessoutsourcing1@outlook.com?'),
-(556, 'Kelle Godwin', 'kelle.godwin11@gmail.com', '???', 'T5 Power naturally enhances testosterone for more muscle, better mood, sharper focus, and unstoppable energy. It’s the #1 way to reclaim your vitality—without risky drugs. ������ \r\n \r\nFuels your total health transformation. Made in the USA. Lab-tested. 100% natural. \r\n\r\n������ Don’t wait — feel the difference now: bodyfuell.com/s/menhealth-testosterone'),
+(556, 'Kelle Godwin', 'kelle.godwin11@gmail.com', '???', 'T5 Power naturally enhances testosterone for more muscle, better mood, sharper focus, and unstoppable energy. It’s the #1 way to reclaim your vitality—without risky drugs. '),
 (557, 'Ashely Madrigal', 'ashely.madrigal31@gmail.com', 'need info', 'Don’t miss out: your ad to 1M sites for just $55 today. Send your reply to hello@bestaitools.my'),
 (558, 'Emma', 'kontakt-institutionell@bafza.bund.de', 'Digital Partnership', 'Interested in high-paying affiliate program? 50% on all AI platform sales. Lifetime commission https://bit.ly/AllureAi'),
-(559, 'Jaqueline Dunlap', 'dunlap.jaqueline@gmail.com', 'ask', 'Ever stop to think how much you\'re spending on marked-up CPMs for Connected TV ads?\r\nIf you\'re using “premium” audience segments without verifying who you\'re actually reaching, that money is likely feeding someone else\'s family.\r\nNo pressure. Here’s the site if you\'re open to see a revolutionary vision for digital advertising\r\ntopshelfaudience.com using real-time Intent data from an Integration in our platform to Lotame.com. You can reach me at marketing@mrmarketingres.com or 843-720-7301. And if this isn\'t a fit please feel free to email me and I\'ll be sure not to reach out again.  Thanks!');
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
+(559, 'Jaqueline Dunlap', 'dunlap.jaqueline@gmail.com', 'ask', 'Ever stop to think how much you\'re spending on marked-up CPMs for Connected TV ads?\r\nIf you\'re using “premium” audience segments without verifying who you\'re actually reaching, that money is likely feeding someone else\'s family.\r\nNo pressure. Here’s the site if you\'re open to see a revolutionary vision for digital advertising\r\ntopshelfaudience.com using real-time Intent data from an Integration in our platform to Lotame.com. You can reach me at marketing@mrmarketingres.com or 843-720-7301. And if this isn\'t a fit please feel free to email me and I\'ll be sure not to reach out again.  Thanks!'),
 (560, 'Lonna Sissons', 'lonna.sissons@gmail.com', 'How To Turn SHORT, AI-GENERATED VIDEOS Into INCOME, FAST...', 'How Everyday People Are Turning \r\nFree AI Videos Into $500+ Days...\r\nWhile Chillin\' On Their Phone / Computer?\r\nhttps://smartexperts.pro/Vyralzz\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nto UNSUBSCRIBE:\r\nhttps://smartexperts.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321'),
 (561, 'Johnathan Benton', 'joel.fox.1965+afadbd.org@gmail.com', 'Create High-Quality Ebooks up to 180 Pages in Minutes', 'THE FASTEST WAY TO CREATE, PUBLISH, & PROFIT\r\nFROM EBOOKS… NO WRITING REQUIRED\r\n\r\nPROFIT-READY EBOOKS with covers, TOC, chapters, sections, links, images, & content!\r\nhttps://viewbet-24.site/eBookWriterAI\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nto UNSUBSCRIBE:\r\nhttps://viewbet-24.site/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321'),
-(562, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Aloha, i writing about     prices', 'Salut, ech wollt Äre Präis wëssen.'),
+(562, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Aloha, i writing about     prices', 'Salut, ech wollt Äre Präis wëssen.');
+INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (563, 'Odessa Marble', 'marble.odessa@gmail.com', 'Wanted to run an idea by you', 'Here is my site: https://submissiontodirectory.top/'),
 (564, 'Ashleigh Doughty', 'ashleigh.doughty@msn.com', 'query', 'Reach millions of website owners fast. Simple, effective, and affordable. Visit https://marketingwithcontactforms.ink for details.'),
 (565, 'Latta', 'dataentry756@outlook.com', 'Virtual Assistant', 'Hi, Accurate data management can save hours every week — and that’s exactly what I help with.\r\n\r\nServices include:\r\n• Manual & online data entry (PDFs, invoices, forms)\r\n• Product uploads (Shopify, WooCommerce, Amazon, Etsy)\r\n• Excel cleanup, formatting & consolidation\r\n• Web research, data collection & lead generation\r\n• Document conversion & organization\r\n• Report preparation & data analysis\r\n\r\nEvery task is handled with attention to detail and timely delivery.\r\n\r\nWould you like to begin with a small pilot project? If yes, please reply to Dataentry756@outlook.com'),
@@ -833,13 +1028,13 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (568, 'Abi', 'brandbuildingassistance@outlook.com', 'SEO Services Inquiry for Website Growth', 'Hello, I came across your website and wanted to reach out regarding SEO services. I specialize in result-driven SEO strategies focused on improving organic rankings, increasing traffic, and driving lead conversions.\r\n\r\nMy approach includes a complete website audit, on-page optimization, link building, and keyword strategy — all designed for sustainable, long-term visibility.\r\n\r\nIf you\'re open to enhancing your website’s search performance, I’d be happy to discuss a customized SEO plan aligned with your business goals.\r\n\r\nPlease let me know a convenient time for a quick call, or feel free to email me at Brandbuildingassistance@outlook.com to discuss further.'),
 (569, 'Cecila Fitzgerald', 'fitzgerald.cecila@gmail.com', 'Hello afadbd.org Admin.', 'https://postyouradfree.top\r\nhttp://postyouradfree.top'),
 (570, 'Victorina Lammon', 'victorina.lammon18@msn.com', 'Dear afadbd.org Administrator.', 'Feel free to visit my website for details: https://submissiontodirectory.top'),
-(571, 'Lyle Deacon', 'deacon.lyle@gmail.com', 'Turn Your Curiosity Into Profit — Start Trading Risk-Free Today!', 'Want to try trading without any risk? Open a demo account on Pocket Option and get virtual funds to practice right now. Test your strategies, explore the market, and gain real experience with zero investment. ������ Try the demo for free https://www.youtube.com/watch?v=VmHYisHHOtU\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nto UNSUBSCRIBE:\r\nhttps://casatemporada.site/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321'),
+(571, 'Lyle Deacon', 'deacon.lyle@gmail.com', 'Turn Your Curiosity Into Profit — Start Trading Risk-Free Today!', 'Want to try trading without any risk? Open a demo account on Pocket Option and get virtual funds to practice right now. Test your strategies, explore the market, and gain real experience with zero investment. '),
 (572, 'NARETGR2004671NEYRTHYT', 'hqnyfuns@tacoblastmail.com', 'TOTYJTRT2004671TIRTYRTTR', 'MEKYUJTYJ2004671MAMYJRTH'),
 (573, 'Ramon Stonor', 'stonor.ramon@gmail.com', 'Crazy-Simple Automated AI Process', 'We flipped the game on its head.\r\nWe give people what they want BEFORE they buy!?!?\r\nThe Money comes in for us 500 a pop all day every day!\r\n\r\nhttps://smartexperts.pro/500aPop\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nto UNSUBSCRIBE:\r\nhttps://smartexperts.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321'),
 (574, 'Ravi', 'businessgrowtogether@outlook.com', 'Personal Assistant', 'Are you looking for a personal assistant who can handle your daily business operations and make your life easier? I can help with tasks related to admin, marketing, gathering data from multiple websites, answering emails, website management, social media, content writing, planning new projects, bookkeeping, entering data into softwares, and back-office assistance. I have an Inhouse Content writer, social media specialist, Data Entry Operator, Website Developer and Bookkeeper. My costing varies from $8/hr to $30/hr depending on type of project and its complexity. \r\n\r\nIf you are interested, send me an email at Businessgrowtogether@outlook.com with a list of tasks you want to accomplish, and We can discuss our collaboration over a video call as per your convenience.'),
 (575, 'Joanna Riggs', 'joannariggs83@gmail.com', 'Explainer Video for your website', 'Hi,\r\n\r\nI just visited afadbd.org and wondered if you\'ve ever considered an impactful video to advertise your business? Our videos can generate impressive results on both your website and across social media.\r\n\r\nOur videos cost just $195 (USD) for a 30 second video ($239 for 60 seconds) and include a full script, voice-over and video.\r\n\r\nI can show you some previous videos we\'ve done if you want me to send some over. Let me know if you\'re interested in seeing samples of our previous work.\r\n\r\nRegards,\r\nJoanna\r\n\r\nUnsubscribe: https://unsubscribe.video/unsubscribe.php?d=afadbd.org'),
 (576, 'Ahmetswons', 'morrismi1@outlook.com', 'Introduce', 'I\'m Ahmet, a bank staff in a Turkish bank. I\'ve been looking for someone who has the same nationality as you. A citizen of your country died in the recent earthquake in Turkey, he had in our bank fixed deposit of $11.5 million. \r\n \r\nIf my bank executive finds out about his death ,They would use the funds for themselves, I would like to prevent that from happening only if I get your cooperation, I knew about it because I was his account manager. Last week my bank held a meeting for the purpose of a bank audit to note abandoned deposit accounts. that\'s why I\'m looking for a solution to deal with this situation because if my bank discovers his death, they will divert the funds to the board of directors.  I don\'t want that to happen. \r\n \r\nI request your cooperation to introduce you as the kin/heir of the account as you are of the same nationality as him.  There is no risk;  the transaction is carried out under a legal agreement that protects you from infringement. I suggest we split the funds, 60/40 and 40 for me. I need this fund for my daughter\'s surgery so keep this info confidential. email me so i can provide you with more info  ahmetassky@outlook.com.'),
-(577, 'Zulma Brigham', 'brigham.zulma24@yahoo.com', '???', 'T5 Power naturally enhances testosterone for more muscle, better mood, sharper focus, and unstoppable energy. It’s the #1 way to reclaim your vitality—without risky drugs. ������ \r\n \r\nFuels your total health transformation. Made in the USA. Lab-tested. 100% natural. \r\n\r\n������ Don’t wait — feel the difference now: bodyfuell.com/s/menhealth-testosterone'),
+(577, 'Zulma Brigham', 'brigham.zulma24@yahoo.com', '???', 'T5 Power naturally enhances testosterone for more muscle, better mood, sharper focus, and unstoppable energy. It’s the #1 way to reclaim your vitality—without risky drugs. '),
 (578, 'Patrice Wexler', 'wexler.patrice@gmail.com', 'Earn Real Passive Royalty Income Month After Month With Proven $431.29 Results!', 'World\'s FIRST AI System That Creates PROFITABLE Amazon Books In Under 6 Minutes Across 25+ Niches\r\nhttps://goldsolutions.pro/RoyaltyProfitsAI\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nto UNSUBSCRIBE:\r\nhttps://goldsolutions.pro/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321'),
 (579, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Hallo,   writing about your the price', 'Ciao, volevo sapere il tuo prezzo.'),
 (580, 'phillip Aldridge', 'phil9982@bestaitools.my', 'Inquiry About Options', 'Do you offer any satisfaction guarantees?'),
@@ -949,9 +1144,9 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (684, 'Darren O\'Brien', 'joel.fox.1965+afadbd.org@gmail.com', 'OUR BEST VALUE TRAFFIC OFFER EVER!', 'DAILY TRAFFIC TO ANY URL FROM 3 X HIGH PERFORMING TRAFFIC SOURCES FOR JUST $1\r\nhttps://maswebmas.ru/OneDollarBlackFriday\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nto UNSUBSCRIBE:\r\nhttps://maswebmas.ru/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321'),
 (685, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Aloha, i wrote about your the price', 'Zdravo, htio sam znati vašu cijenu.'),
 (686, 'Vana', 'bizassistance008@outlook.com', 'Experienced Bookkeeper', 'Hi, This is Vana, an experienced bookkeeper with more than a decade experience in bookkeeping for USA, UK, Canada, Europe and Australian Clients with expertise in:\r\n\r\nQuickBooks, Xero, Wave, FreshBooks, Sage, Zoho Books, MYOB, Kashoo, Tally, NetSuite, Odoo Accounting, Quicken, Microsoft Dynamics 365, ZipBooks, and FreeAgent.\r\n\r\nI can help you with:\r\n > Categorizing income and expense transactions accurately\r\n > Handling reconciliations for PayPal, Wise, Stripe, and business bank accounts\r\n > Maintaining clean and up-to-date financial records\r\n\r\nMy rate is USD 20 per hour.\r\n\r\nIf you’d like to discuss further, please reply to bizassistance008@outlook.com'),
-(687, 'OliviaAdary3060', 'emmagaica889137@yahoo.com', '“Bold sensual woman seeking a pulse-racing thrill!”', '“Barely-legal seductress hungers for forbidden pleasure.”  Here  --   rb.gy/3fy54w?Adary');
+(687, 'OliviaAdary3060', 'emmagaica889137@yahoo.com', '“Bold sensual woman seeking a pulse-racing thrill!”', '“Barely-legal seductress hungers for forbidden pleasure.”  Here  --   rb.gy/3fy54w?Adary'),
+(688, 'Lawerence Haynie', 'haynie.lawerence@outlook.com', 'Stop Waiting for Traffic — One Click and APEX AI Puts You on Google’s Page One!', 'Hi,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhy do you need this? So you can skip months of SEO and ad spend — all with just one click. APEX AI, powered by ChatGPT-5, instantly creates and ranks your content on Google’s first page—no domains, no skills, no costs. Just enter a keyword, click activate, and watch targeted, free traffic (and commissions!) roll in the very same day. It’s your fast-track to dominating the search results while others are still stuck in the old grind.\r\n\r\nSee it in action: https://smartexperts.pro/ApexAI?afadbd.org\r\n\r\n\r\n\r\n\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://smartexperts.pro/unsub?domain=afadbd.org \r\nAddress: Address: 1464 Lewis Street Roselle, IL 60177\r\nLooking out for you, Michael Turner.');
 INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
-(688, 'Lawerence Haynie', 'haynie.lawerence@outlook.com', 'Stop Waiting for Traffic — One Click and APEX AI Puts You on Google’s Page One!', 'Hi,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhy do you need this? So you can skip months of SEO and ad spend — all with just one click. APEX AI, powered by ChatGPT-5, instantly creates and ranks your content on Google’s first page—no domains, no skills, no costs. Just enter a keyword, click activate, and watch targeted, free traffic (and commissions!) roll in the very same day. It’s your fast-track to dominating the search results while others are still stuck in the old grind.\r\n\r\nSee it in action: https://smartexperts.pro/ApexAI?afadbd.org\r\n\r\n\r\n\r\n\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://smartexperts.pro/unsub?domain=afadbd.org \r\nAddress: Address: 1464 Lewis Street Roselle, IL 60177\r\nLooking out for you, Michael Turner.'),
 (689, 'Abi', 'bposervices1@outlook.com', 'Outsource Repetitive Tasks – Reliable VA Support', 'Hi,\r\n\r\nI help businesses reduce workload and save time by outsourcing repetitive operational processes to a reliable Virtual Assistant. Here’s what I can handle:\r\n\r\n>  Data entry and migration between tools or software\r\n>  Uploading product catalogs, price lists, or customer data\r\n>  Managing spreadsheets, reports, and admin documentation\r\n>  Handling CRM updates and task tracking\r\n>  File conversion (PDF to Word/Excel), transcription & formatting\r\n>  Cleaning and organizing large datasets\r\n>  Managing contact databases and verifying email lists\r\n>  Updating inventory or backend systems\r\n\r\nYou get accuracy, speed, and reliable support—all starting at $10/hour.\r\n\r\nWould you like to outsource some of your operational workload?\r\n\r\nBest regards,\r\nAbi Singh\r\nBposervices1@outlook.com'),
 (690, 'Rufus Menzies', 'menzies.rufus@gmail.com', 'Turn Select AI Tools Into One Profit-Machine', 'Hello,\r\n\r\nWe have a promotional offer for your website afadbd.org https://playoxwin.site/EveryAI?afadbd.org\r\n\r\nTired of paying for dozens of AI tools and bouncing between them for every project—from website copy to design to video ads? With EveryAI you get one dashboard that unlocks hundreds of premium AI models without monthly fees. Build sites, craft copy, generate logos, 8K motion videos, talking avatars… and keep 100% of your profit under a commercial license. Want to make more, work less, and finally control your income? It starts here.\r\n\r\nSee it in action: https://playoxwin.site/EveryAI?afadbd.org\r\n\r\n\r\n\r\n\r\n\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://www.novaai.expert/unsubscribe?domain=afadbd.org\r\nAddress: 209 West Street Comstock Park, MI 49321\r\nLooking out for you, Ethan Parker'),
 (691, 'Lin Matheson', 'matheson.lin@gmail.com', 'Get Free Google Traffic Fast — Even Without a Website!', 'Hi,\r\n\r\nWe have a promotional offer for your website afadbd.org.\r\n\r\nWhy you need this: to have every campaign, affiliate offer, or project start delivering traffic and income today — without spending a dime on ads or tech headaches. Ghost Pages turns you into a stealth engine that Google absolutely trusts: you build invisible pages using a secret Google asset, and they quietly start delivering targeted visitors — while your competition is nowhere the wiser.\r\n\r\nIt’s easy, it’s fast, it’s genius: no domains, hosting, social media, or technical skills required — if you can click and copy, you can do this. Plus, it really works and scales: launch one Ghost Page and BAM — traffic flows wherever you want: affiliate links, e‑com, leads — you choose. Ready to start in minutes? Discover how and get results that might blow your mind.\r\n\r\nSee it in action: https://pastelink.site/GhostPages\r\n\r\n\r\n\r\n\r\nYou are receiving this message because we believe our offer may be relevant to you. \r\nIf you do not wish to receive further communications from us, please click here to UNSUBSCRIBE:\r\nhttps://pastelink.site/unsub?domain=afadbd.org \r\nAddress: Address: 1464 Lewis Street Roselle, IL 60177\r\nLooking out for you, Michael Turner.'),
@@ -1021,12 +1216,12 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (755, 'Marguerite Belstead', 'belstead.marguerite64@gmail.com', 'How publishers use hundreds of detective plot prompts to create kids’ detective stories that fit activity packs', 'Consider using a large set of prepared case-solving story outlines that easily help create products parents, teachers, and tutors value — books, activity materials — without a blank page. This isn’t simply a random idea list. This is a well-organized prompt pack with usable structures that allows you to create quality young readers’ materials within hours, rather than weeks.\r\n\r\nhttps://6pr5pg.site/StoryPromptsDetective?afadbd.org\r\n\r\nIf you work as a webmaster, content creator, or KDP publisher, that it results in working within a long-term children’s niche with consistent interest, creating multiple products from a single base and opening reliable income paths. Want to see a simple approach to create and publish young readers mystery stories without months of writing? Click through to see how it works.\r\n\r\nhttps://6pr5pg.site/StoryPromptsDetective?afadbd.org\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nYou are getting this email \r\nas we believe \r\nthis offer \r\ncould be relevant to you.\r\n\r\nIf you don’t want to receive \r\nany more messages from us, \r\nplease click here to \r\nstop receiving emails:\r\n\r\nhttps://6pr5pg.site/unsub?domain=afadbd.org \r\nAddress: Address: 5586   Strada Bresciana 101, TA  74020\r\nLooking out for you, Marguerite Belstead.'),
 (756, 'EmmaAdary842', 'emmagaica379046@yahoo.com', '\"Sexy vixen seeks thrill!\"', '\"Enchanting nymphomaniac seeks steamy indulgence.\"  Here  --   Kj3fz2f.short.gy/ueeSek?Adary'),
 (757, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Hi, i write about     prices', 'হাই, আমি আপনার মূল্য জানতে চেয়েছিলাম.'),
-(758, 'Sal Deniehy', 'deniehy.sal@gmail.com', 'inquiring', 'Ever stop to think how much you\'re spending on marked-up CPMs for Connected TV ads?\r\nIf you\'re using “premium” audience segments without verifying who you\'re actually reaching, that money is likely feeding someone else\'s family.\r\nNo pressure. Here’s the site if you\'re open to see a revolutionary vision for digital advertising\r\ntopshelfaudience.com using real-time Intent data from an Integration in our platform to Lotame.com. You can reach me at marketing@mrmarketingres.com or 843-720-7301. And if this isn\'t a fit please feel free to email me and I\'ll be sure not to reach out again.  Thanks!');
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
+(758, 'Sal Deniehy', 'deniehy.sal@gmail.com', 'inquiring', 'Ever stop to think how much you\'re spending on marked-up CPMs for Connected TV ads?\r\nIf you\'re using “premium” audience segments without verifying who you\'re actually reaching, that money is likely feeding someone else\'s family.\r\nNo pressure. Here’s the site if you\'re open to see a revolutionary vision for digital advertising\r\ntopshelfaudience.com using real-time Intent data from an Integration in our platform to Lotame.com. You can reach me at marketing@mrmarketingres.com or 843-720-7301. And if this isn\'t a fit please feel free to email me and I\'ll be sure not to reach out again.  Thanks!'),
 (759, 'Saffet Erdogan', 'ceylanturks41@gmail.com', 'Request for Business Cooperation', 'Greetings, \r\n \r\nI am writing to present a brief biography about myself and to seek your business cooperation. \r\n \r\nI was born on 15 March 1968 in Turkey. I have lived a life defined by vision, resilience, and integrity. I am a devoted husband and a proud father of one son, and I embody the values of family, responsibility, and leadership in both my personal and professional journey. \r\n \r\nAs the Managing Director of a furniture manufacturing company and a towel and textile manufacturing company, I have built a reputation as a dynamic entrepreneur whose work combines creativity with discipline. My leadership style is marked by fairness, dedication, and a deep sense of responsibility toward my employees and business partners. I am admired for my ability to transform challenges into opportunities, guiding my businesses with wisdom and foresight. \r\n \r\nAs a Turkish Christian, I hold a strong belief in freedom of worship and advocate for respect, tolerance, and unity among people of different faiths. My spiritual values inspire me to live with compassion, humility, and a commitment to justice. I am known not only for my professional achievements but also for my moral strength and unwavering principles. \r\n \r\nMy personality reflects qualities that attract admiration: \r\n \r\n* Integrity and honesty in all dealings \r\n* Visionary leadership that inspires growth and innovation \r\n* Compassion and generosity, always mindful of the needs of others \r\n* Resilience and determination, never deterred by obstacles \r\n* Faith and humility, grounding success in values that transcend material wealth \r\n \r\nThrough my journey, I have become more than a successful businessman—a role model of responsibility, a man of faith, and a beacon of perseverance. My life story continues to inspire those around me, proving that true greatness lies not only in achievements but in the character and values that sustain them. \r\n \r\nI am currently experiencing issues with the Turkish government, as the Government of Turkey is planning to confiscate my assets. Therefore, I wish to invest my funds, totaling 85,000,000 euros, with you. \r\n \r\nFor further information, I would appreciate it if you could write to me with a brief biography about yourself as well. Please write to me directly at this email address, as I have this email application on my phone and can read emails quickly and give a prompt reply: *<>esaffet81@gmail.com ]   (mailto: esaffet81@gmail.com)*. \r\n \r\nMy regards, \r\n \r\nMr. Saffet Erdogan'),
-(760, 'Mike Steven Jensen', 'info@professionalseocleanup.com', 'Fix August Google Spam update ranking problems for free', 'Hi, \r\nWhile reviewing afadbd.org, we spotted toxic backlinks that could put your site at risk of a Google penalty. Especially that this Google SPAM update had a high impact in ranks. This is an easy and quick fix for you. Totally free of charge. No obligations. \r\n \r\nFix it now: \r\nhttps://www.professionalseocleanup.com/ \r\n \r\nNeed help or questions? Chat here: \r\nhttps://www.professionalseocleanup.com/whatsapp/ \r\n \r\nBest, \r\nMike Steven Jensen\r\n \r\n+1 (855) 221-7591 \r\ninfo@professionalseocleanup.com'),
+(760, 'Mike Steven Jensen', 'info@professionalseocleanup.com', 'Fix August Google Spam update ranking problems for free', 'Hi, \r\nWhile reviewing afadbd.org, we spotted toxic backlinks that could put your site at risk of a Google penalty. Especially that this Google SPAM update had a high impact in ranks. This is an easy and quick fix for you. Totally free of charge. No obligations. \r\n \r\nFix it now: \r\nhttps://www.professionalseocleanup.com/ \r\n \r\nNeed help or questions? Chat here: \r\nhttps://www.professionalseocleanup.com/whatsapp/ \r\n \r\nBest, \r\nMike Steven Jensen\r\n \r\n+1 (855) 221-7591 \r\ninfo@professionalseocleanup.com');
+INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (761, 'Joanna Riggs', 'joannariggs83@gmail.com', 'Video Promotion for your website', 'Hi,\r\n\r\nI just visited afadbd.org and wondered if you\'ve ever considered an impactful video to advertise your business? Our videos can generate impressive results on both your website and across social media.\r\n\r\nOur prices start from just $195 (USD).\r\n\r\nLet me know if you\'re interested in seeing samples of our previous work.\r\n\r\nRegards,\r\nJoanna'),
-(762, 'Natali Conti', 'nataliconti2030@gmail.com', '������45 million Global Business & Decision Makers Databases - 2026 Edition', 'Hi,\r\n\r\nI visited your website at afadbd.org and would\r\nlike to offer you something:\r\n\r\n\r\n\r\nUltimate Global Business Email Database Package – Get Millions of Verified B2B & Decision Makers Records for Just $299.99!\r\n\r\nLooking for authentic, \r\n\r\nhigh-quality B2B databases to supercharge your email marketing, lead generation, and sales outreach?\r\n\r\n\r\n\r\nAccess millions of verified, industry-specific business contacts from across major global markets — including CEOs, decision-makers, \r\n\r\nstartups, professionals, investors, and domain owners.\r\n\r\n\r\n\r\nThis complete Global Business Email Database Package helps you reach the right audience — fast, affordable, and accurate.\r\n\r\n\r\n\r\n������ Limited-Time Offer: $299 Only!\r\n\r\nDownload free samples Before you buy : \r\n\r\nhttps://mega.nz/file/PY8zlAAL#nStQIPUTP2NSALDkbwGuRZfG_N_VqE4Y8a0nNvrOtX8\r\n\r\n\r\n\r\nIf You interested send $299 to my paypal account :amrelsaka2030@gmail.com to send you a full data (7.96) GB\r\n\r\n\r\n\r\nwith No refund after you purchase the Database'),
+(762, 'Natali Conti', 'nataliconti2030@gmail.com', '', 'Hi,\r\n\r\nI visited your website at afadbd.org and would\r\nlike to offer you something:\r\n\r\n\r\n\r\nUltimate Global Business Email Database Package – Get Millions of Verified B2B & Decision Makers Records for Just $299.99!\r\n\r\nLooking for authentic, \r\n\r\nhigh-quality B2B databases to supercharge your email marketing, lead generation, and sales outreach?\r\n\r\n\r\n\r\nAccess millions of verified, industry-specific business contacts from across major global markets — including CEOs, decision-makers, \r\n\r\nstartups, professionals, investors, and domain owners.\r\n\r\n\r\n\r\nThis complete Global Business Email Database Package helps you reach the right audience — fast, affordable, and accurate.\r\n\r\n\r\n\r\n'),
 (763, 'LeeEtess', 'dinanikolskaya99@gmail.com', 'Hi, i write about     prices', 'Здравейте, исках да знам цената ви.'),
 (764, 'Lorna Cheney', 'lorna.cheney@googlemail.com', 'Never Pay For Traffic Ever Again…', 'World\'s First AI Agent Powered By ChatGPT-5…\r\nThat Writes And Ranks Anything We Want… On The First Page Of Google… With ZERO SEO. And Zero Ads… \r\n\r\nhttps://www.youtube.com/@AISolutionsTop'),
 (765, '* * * $3,222 credit available! Confirm your transaction here: http://nationwidepackaging.com/?vxpsu1 * * * hs=d13784673f637677426b66b478044a25* ххх*', 'ydx~nwa9pwyxz@mailbox.in.ua', 'v6uvo6', '3wilhn'),
@@ -1072,7 +1267,7 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (805, 'Mike Knut Davies', 'mike@monkeydigital.co', 'Monkey Digital - helping sites get discovered by AI engines', 'Hi, \r\n \r\nSearch is changing faster than most businesses realize. \r\n \r\nMore buyers are now discovering products and services through AI-driven platforms — not only traditional search results. This is why we created the AI Rankings SEO Plan at Monkey Digital. \r\n \r\nIt’s designed to help websites become clear, trusted, and discoverable by AI systems that increasingly influence how people find and choose businesses. \r\n \r\nYou can view the plan here: \r\nhttps://www.monkeydigital.co/ai-rankings/ \r\n \r\nIf you’d like to see whether this approach makes sense for your site, feel free to reach out directly — even a quick question is fine. Whatsapp: https://wa.link/b87jor \r\n \r\n \r\n \r\nBest regards, \r\nMike Knut Davies\r\n \r\nMonkey Digital \r\nmike@monkeydigital.co \r\nPhone/Whatsapp: +1 (775) 314-7914'),
 (806, 'RobertEtess', 'zekisuquc419@gmail.com', 'Hi  i writing about your the price for reseller', 'Hallo, ek wou jou prys ken.'),
 (807, 'OliviaAdary6313', 'avagaica43785@hotmail.com', '\"Craving Intense Connection\"', 'Desire pulses through every vein and nerve.   -    nMm5id.short.gy/?Adary'),
-(808, 'Leoma Willey', 'willey.leoma@gmail.com', 'Hi afadbd.org Administrator!', 'Hi there ������\r\n\r\nTrust this finds you in good spirits! \r\n\r\nI wanted to contact you as I\'m really impressed with your website\'s design ✨\r\n\r\nI\'m behind **DesignChan.org** - a premium gallery of outstanding web design creations. ������\r\n\r\nI\'m excited to showcase your amazing design work on our platform! This would give you:\r\n\r\n- Enhanced reach to creative professionals ������\r\n- Valuable SEO benefits from our established domain ������\r\n- Recognition among our active audience ������\r\n\r\nFurthermore, feel free to become part of our platform and post your work directly! It\'s completely free and excellent for network with other design enthusiasts. ������\r\n\r\nWould you be interested? I\'d be happy to send you more details or clarify anything you might have.\r\n\r\nYou can reach me directly at **Showcase@DesignChan.org** with any inquiries or to discuss details.\r\n\r\nThanks for considering this and keep creating beautiful designs! Hope to connecting with you ������\r\n\r\nKind regards,\r\n ADMIN - DesignChan.org\r\n\r\nPS - You can check out our current showcases at **https://designchan.org** to get a feel for the caliber of designs we feature! Our recent winners include some incredible designs that might inspire your own work. ������'),
+(808, 'Leoma Willey', 'willey.leoma@gmail.com', 'Hi afadbd.org Administrator!', 'Hi there '),
 (809, 'Vana', 'businessgrowtogether@outlook.com', 'Experienced Bookkeeper', 'Hi, This is Vana. I am a bookkeeper. I can categorize your transactions of incomes/expenses and can handle bank reconciliations. I can work on any software that you use for accounting. My rates are USD 20 per hour or We can set a monthly cost as per your convenience. \r\n\r\nReply me on Businessgrowtogether@outlook.com to discuss further.'),
 (810, 'Sam', 'dataentry756@outlook.com', 'Virtual Assistant', 'Hi, Accurate data management can save hours every week — and that’s exactly what I help with.\r\n\r\nServices include:\r\n • Manual & online data entry (PDFs, invoices, forms)\r\n • Product uploads (Shopify, WooCommerce, Amazon, Etsy)\r\n • Excel cleanup, formatting & consolidation\r\n • Web research, data collection & lead generation\r\n • Document conversion & organization\r\n • Report preparation & data analysis\r\n\r\nEvery task is handled with attention to detail and timely delivery.\r\n\r\nWould you like to begin with a small pilot project? If yes, please reply to Dataentry756@outlook.com'),
 (811, 'WilliamDuels', 'jacksrenome@gmx.com', 'Derefhefjwdkifhgijfkwoddjeifj jiwdokdiwfheijfwjdiw jidjwksaodjegfijwokdaijdfe', 'Vertyowdiwjodko kofkosfjwgojfsjf oijwfwsfjowehgewjiofwj jewfkwkfdoeguhrfkadwknfew ijedkaoaswnfeugjfkadcajsfn afadbd.org'),
@@ -1092,7 +1287,8 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (825, 'Nik', 'projectsbrandvisibilty@outlook.com', 'Website Redesign', 'Are you considering a complete redesign of your website to enhance its look and functionality? I specialize in creating modern, mobile-responsive, fast, and SEO-optimized websites that provide a seamless user experience and help convert visitors into clients. Whether you\'re looking to elevate your brand or boost product sales, I can assist. I just designed a Top-Notch Website for one of my clients and She is getting an amazing response right now. She is very happy. I can share her website link and you would definitely like it. \r\n\r\nFeel free to contact me at Projectsbrandvisibilty@outlook.com and let’s discuss it ahead.'),
 (826, 'Abi', 'brandbuildingassistance@outlook.com', 'Boost Your Local Presence', 'Boost your Local presence and stand out with our expert Local SEO and Google My Business services! Elevate your visibility, attract more customers, and dominate your local market. Reach out to me today at Brandbuildingassistance@outlook.com and let\'s optimize your online presence starting at just $200 a month.'),
 (827, 'Matt Bacak', 'mattbacak2025@gmail.com', 'What If You Could Run Local Agencies Without Doing the Work Yourself?', 'Imagine waking up to find your agency website already built, 100 pre-qualified leads discovered in your area, and outreach campaigns ready to send…\r\nAll done while you were sleeping.\r\nNo coding. No client-chasing. No proposals to write.\r\nThat’s exactly what LocalBizAI did for me.\r\nJust one click… and BOOM!\r\nA fully branded, profit-ready digital marketing agency with services, pricing, leads, and outreach campaigns set up in minutes.\r\n\r\n\r\nFor more click Here : https://jvz6.com/c/688203/424347/'),
-(828, 'Maruf', 'test@gmail.com', 'test', 'test test test');
+(828, 'Maruf', 'test@gmail.com', 'test', 'test test test'),
+(829, 'samir', 'samir@gmail.com', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -1101,9 +1297,9 @@ INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1123,7 +1319,23 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2026_02_05_110720_create_chief_executive_message_table', 2),
 (11, '2026_02_05_110731_create_faq_table', 2),
 (12, '2026_02_05_110742_create_volunteers_table', 2),
-(13, '2026_02_05_113231_add_social_links_to_executive_committee_and_team_members_tables', 3);
+(13, '2026_02_05_113231_add_social_links_to_executive_committee_and_team_members_tables', 3),
+(14, '2026_02_06_000001_add_values_to_mission_vision_table', 4),
+(15, '2026_02_05_190409_create_sessions_table', 5),
+(16, '2026_02_06_120000_create_payment_methods_table', 5),
+(17, '2026_02_06_120001_create_donations_table', 5),
+(18, '2026_02_06_120000_create_focus_areas_table', 6),
+(20, '2026_02_06_151308_create_contacts_table', 7),
+(21, '2026_02_07_000001_add_icon_path_to_focus_areas_table', 8),
+(22, '2026_02_07_142821_create_publications_table', 9),
+(23, '2026_02_07_180823_create_departments_table', 10),
+(24, '2026_02_07_180842_create_jobs_table', 10),
+(25, '2026_02_07_180857_create_job_applications_table', 10),
+(26, '2026_02_08_000001_create_strategic_plans_table', 11),
+(27, '2026_02_09_000001_add_description_to_strategic_plans_table', 12),
+(28, '2026_02_09_000002_make_pdf_file_nullable_in_strategic_plans_table', 13),
+(29, '2026_02_09_000003_add_image_and_make_pdf_required_in_strategic_plans_table', 14),
+(30, '2026_02_10_173058_add_rating_and_beneficiary_title_to_stories_table', 15);
 
 -- --------------------------------------------------------
 
@@ -1132,18 +1344,19 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `mission_vision` (
-  `id` int(11) NOT NULL,
-  `vision` text NOT NULL,
-  `mission` text NOT NULL
+  `id` int NOT NULL,
+  `vision` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `mission` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `values` text COLLATE utf8mb4_unicode_520_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `mission_vision`
 --
 
-INSERT INTO `mission_vision` (`id`, `vision`, `mission`) VALUES
-(1, 'Contribute to establish an enabling environment for realization and protection of fundamental human rights of men and women where people are self-reliant as individuals.', 'AFAD mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore AFAD undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.'),
-(3, 'Contribute to establish an enabling environment for realization and protection of fundamental human rights of men and women where people are self-reliant as individuals.', 'AFAD mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore AFAD undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.');
+INSERT INTO `mission_vision` (`id`, `vision`, `mission`, `values`) VALUES
+(1, 'Contribute to establish an enabling environment for realization and protection of fundamental human rights of men and women where people are self-reliant as individuals.\r\nTest by Robiul', 'AFAD mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore AFAD undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.\r\nTest by Robiul', 'AFAD, the Association for Alternative Development, embodies a set of core values that guide its mission to empower marginalized communities in northern Bangladesh. Committed to integrity and transparency, AFAD operates with a dedication to promoting equality and social justice. Through innovative programs and collaborative partnerships, AFAD works to empower individuals and communities, fostering sustainable development and resilience. With a focus on accountability and respect for diversity, AFAD ensures that its initiatives have lasting positive impacts while upholding the rights and dignity of all stakeholders.\r\nfix and update by Robiul.make it dynamic'),
+(3, 'Contribute to establish an enabling environment for realization and protection of fundamental human rights of men and women where people are self-reliant as individuals.', 'AFAD mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore AFAD undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.', NULL);
 
 -- --------------------------------------------------------
 
@@ -1152,10 +1365,10 @@ INSERT INTO `mission_vision` (`id`, `vision`, `mission`) VALUES
 --
 
 CREATE TABLE `ongoing_project` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -1166,8 +1379,7 @@ INSERT INTO `ongoing_project` (`id`, `title`, `description`, `image`) VALUES
 (18, 'Towards Greater Effectiveness and Timeliness in Humanitarian Emergency Response( ToGETHER)', 'The “Towards Greater Effectiveness and Timeliness in Humanitarian Emergency Response” Program, in short ToGETHER, is a collaborative initiative dedicated to advancing the localization of humanitarian action. Operating in eight countries, including Bangladesh, Colombia, DR Congo, Ethiopia, Indonesia, Myanmar, Pakistan, and Somalia, the program involves 40 local humanitarian partners and four international consortium partners from Germany (Caritas Germany, Diakonie Katastrophenhilfe, Malteser International, and Welthungerhilfe as the lead).\r\n\r\nThe primary goal of the ToGETHER Program is to support local humanitarian actors in taking a leading role in the delivery of effective, timely, accountable, and principled humanitarian actions in their respective countries. The implementation of the localization agenda is a prerequisite for achieving this overarching goal.', '9402508project.jpg'),
 (19, 'Resilience strengthening of vulnerable populations in northern, western and eastern Bangladesh through a network approach of 5 partner organizations (BMZ-PT)', 'Vulnerable households are more resilient to the effects of climate change through community organizing, advocacy, the development of alternative livelihoods, localization, and emergency preparedness.', '5972211project.jpg'),
 (20, 'Improve quality of life for women/girls and person with disabilities in Kurigram districts,Bangladesh through poverty alleviation and mainstreaming (AC-6) project', 'Vulnerable households are more resilient to the effects of climate change through community organizing, advocacy, device support, treatment support, the development of alternative livelihoods, localization, and emergency preparedness.', '3928750project.jpg'),
-(21, 'Empower Vulnerable Women (EVW)', 'Vulnerable households are more resilient to the effects of climate change through community organizing, advocacy, the development of alternative livelihoods, localization, and emergency preparedness.', '6351140project.jpg'),
-(22, 'Strengthening the Organisational Capacity of Women-Led Organisations for Championing Women’s Rights (SWOCCHAR)', 'The SWOCCHAR project aims to strengthen women’s economic rights and empowerment through the transformative role of women led organizations (WLOs). This will be achieved through three interlinked pillars: First, by providing small grant schemes and capacity development support to WLOs to strengthen their institutional and technical capacities including lobbying and advocacy capacity to influence national agendas and policies. Secondly, the project will also provide small innovation funds to Youth-Women Led Organisation (YWLO) to deliver gender-responsive, inclusive, and innovative campaign initiatives to change public perceptions and challenge social norms that constraint women’s access to economic opportunities. The recipients of the grant will also receive capacity development support to design, plan and implement their campaign initiatives and lastly, by providing technical support and resources to facilitate strategic and effective advocacy campaigns at the national level to influence changes needed to advance gender equality and women’s economic empowerment. The project interventions are aligned with and will contribute to achieve (1) the gender objectives of the 8th Five-Year Plan (2020-2025) of the Bangladesh government and (2) the fifth sustainable development goal (SDG) of gender equality and women’s empowerment.', '6064436project.png');
+(21, 'Empower Vulnerable Women (EVW)', 'Vulnerable households are more resilient to the effects of climate change through community organizing, advocacy, the development of alternative livelihoods, localization, and emergency preparedness.', '6351140project.jpg');
 
 -- --------------------------------------------------------
 
@@ -1176,7 +1388,7 @@ INSERT INTO `ongoing_project` (`id`, `title`, `description`, `image`) VALUES
 --
 
 CREATE TABLE `partners` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(52) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -1219,8 +1431,8 @@ INSERT INTO `partners` (`id`, `name`, `image`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1234,16 +1446,47 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_methods`
+--
+
+CREATE TABLE `payment_methods` (
+  `id` bigint UNSIGNED NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `account_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_details` text COLLATE utf8mb4_unicode_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `display_order` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payment_methods`
+--
+
+INSERT INTO `payment_methods` (`id`, `type`, `icon_image`, `account_name`, `account_number`, `bank_details`, `is_active`, `display_order`, `created_at`, `updated_at`) VALUES
+(1, 'bkash', NULL, 'AFAD Bangladesh', '+8801825-003211', NULL, 0, 1, '2026-02-06 06:14:40', '2026-02-06 07:06:57'),
+(2, 'nagad', NULL, 'AFAD Bangladesh', '+8801825-003211', NULL, 1, 2, '2026-02-06 06:14:40', '2026-02-06 06:14:40'),
+(3, 'rocket', NULL, 'AFAD Bangladesh', '+8801825-003211', NULL, 1, 3, '2026-02-06 06:14:40', '2026-02-06 06:14:40'),
+(4, 'upay', NULL, 'AFAD Bangladesh', '+8801825-003211', NULL, 1, 4, '2026-02-06 06:14:40', '2026-02-06 06:14:40'),
+(5, 'bank', NULL, 'AFAD Bangladesh', '2050 2250 2050 XXXX', '{\"bank_name\":\"Islami Bank Bangladesh Limited (IBBL)\",\"branch_name\":\"Maijdee Court, Maijdee, Noakhali Sadar, Noakhali, Bangladesh\",\"routing_number\":\"125260674\"}', 1, 5, '2026-02-06 06:14:40', '2026-02-06 06:14:40'),
+(7, 'visa', 'payment_icons/Azgy3Hy0cjv1b4WsIZFeesZFokqYgEcTfkAAVKYv.png', 'Maruf', '1234098779', NULL, 1, 0, '2026-02-06 07:11:15', '2026-02-06 07:11:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1256,9 +1499,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `policy_guideline` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `file` text NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1278,9 +1521,7 @@ INSERT INTO `policy_guideline` (`id`, `name`, `file`) VALUES
 (14, 'AFAD MEAL Policy', '78964policy_guideline.pdf'),
 (15, 'AFAD Safeguarding Policy', '24171policy_guideline.pdf'),
 (16, 'AFAD Safety & Security Policy', '17542policy_guideline.pdf'),
-(17, 'AFAD Whistleblowing Policy', '79815policy_guideline.pdf'),
-(18, 'AFAD Antifraud Policy', '27890policy_guideline.pdf'),
-(19, 'AFAD Emergnecy Response & Preparedness Plan (2025-2027)', '89734policy_guideline.pdf');
+(17, 'AFAD Whistleblowing Policy', '79815policy_guideline.pdf');
 
 -- --------------------------------------------------------
 
@@ -1289,15 +1530,22 @@ INSERT INTO `policy_guideline` (`id`, `name`, `file`) VALUES
 --
 
 CREATE TABLE `programs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
-  `status` enum('active','completed','upcoming') NOT NULL DEFAULT 'active',
+  `status` enum('active','completed','upcoming') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `programs`
+--
+
+INSERT INTO `programs` (`id`, `title`, `description`, `image`, `start_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'PADMA', 'Testing PADMA Program', '95353program.png', NULL, 'active', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1306,11 +1554,11 @@ CREATE TABLE `programs` (
 --
 
 CREATE TABLE `projects` (
-  `id` int(11) NOT NULL,
-  `name` text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `partners` text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `id` int NOT NULL,
+  `name` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `partners` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `from_date` date DEFAULT NULL,
-  `date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `date` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `to_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1355,14 +1603,54 @@ INSERT INTO `projects` (`id`, `name`, `partners`, `from_date`, `date`, `to_date`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `publications`
+--
+
+CREATE TABLE `publications` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pdf_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `publications`
+--
+
+INSERT INTO `publications` (`id`, `title`, `description`, `thumbnail`, `pdf_file`, `created_at`, `updated_at`) VALUES
+(2, 'Annual Impact Report 2025', 'Overview of our programs, outcomes, financials, and community impact across all regions.', '10445publication_thumbnail.jpg', '53467publication.pdf', NULL, NULL),
+(3, 'Water & Sanitation Sustainability Report 2024', 'Documentation of WASH interventions, challenges, and sustainability recommendations.', '70262publication_thumbnail.jpg', '16591publication.pdf', NULL, NULL),
+(4, 'Girls’ Education Empowerment Study', 'Research on enrollment, retention, and gender-based barriers in education for underserved communities.', '66140publication_thumbnail.jpg', '61147publication.pdf', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slider`
 --
 
 CREATE TABLE `slider` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -1371,7 +1659,8 @@ CREATE TABLE `slider` (
 
 INSERT INTO `slider` (`id`, `title`, `description`, `image`) VALUES
 (14, 'Association For Alternative Development (AFAD)', 'test test  Support the Women’s Empowerment Initiative today—help women build livelihoods, confidence and a brighter future.', '8163422slider.jpg'),
-(17, 'Women Leadership', 'A panel discussion on Women Leadership was held on 3rd November 2025 in Bali, Indonesia, as part of the South-South Exchange Workshop. Our Chief Executive, Sayda Yesmin, attended the meeting as a representative of Bangladesh. The discussion included participants from four countries — Indonesia, Myanmar, Pakistan, and Bangladesh — who shared their perspectives and experiences on promoting women’s leadership and empowerment.', '7509991slider.jpeg');
+(17, 'Women Leadership', 'A panel discussion on Women Leadership was held on 3rd November 2025 in Bali, Indonesia, as part of the South-South Exchange Workshop. Our Chief Executive, Sayda Yesmin, attended the meeting as a representative of Bangladesh. The discussion included participants from four countries — Indonesia, Myanmar, Pakistan, and Bangladesh — who shared their perspectives and experiences on promoting women’s leadership and empowerment.', '7509991slider.jpeg'),
+(19, 'hhhhhhhhhhhhhhh', 'vjhfLSDGFhSJLDvb lsjHGFi\r\n                           asghjsdm nvjdskHFKJcnjjvhbiHGjHHfihf', '8402279slider.jpg');
 
 -- --------------------------------------------------------
 
@@ -1380,15 +1669,48 @@ INSERT INTO `slider` (`id`, `title`, `description`, `image`) VALUES
 --
 
 CREATE TABLE `stories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `beneficiary_name` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `rating` int NOT NULL DEFAULT '5',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `beneficiary_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `beneficiary_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stories`
+--
+
+INSERT INTO `stories` (`id`, `rating`, `description`, `image`, `beneficiary_name`, `beneficiary_title`, `date`, `created_at`, `updated_at`) VALUES
+(1, 5, 'kala golar mala', '27420story.png', 'mee to me', 'cumilla', '2026-02-19', NULL, NULL),
+(2, 5, 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', '81196story.png', 'Dr kamal hossain', 'Sylhet', '2026-02-19', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `strategic_plans`
+--
+
+CREATE TABLE `strategic_plans` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pdf_file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `strategic_plans`
+--
+
+INSERT INTO `strategic_plans` (`id`, `title`, `description`, `image`, `pdf_file`, `created_at`, `updated_at`) VALUES
+(1, 'Padma-1', NULL, '86024strategic_plan_image.png', '35262strategic_plan.pdf', '2026-02-09 06:25:19', '2026-02-09 06:25:19'),
+(2, 'Padma-2', 'Introducing Padma-2', '88487strategic_plan_image.jpeg', '57393strategic_plan.pdf', '2026-02-09 06:27:59', '2026-02-09 06:27:59');
 
 -- --------------------------------------------------------
 
@@ -1397,9 +1719,9 @@ CREATE TABLE `stories` (
 --
 
 CREATE TABLE `subscribe` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(80) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `email` varchar(80) COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
@@ -1695,7 +2017,8 @@ INSERT INTO `subscribe` (`id`, `name`, `email`) VALUES
 (289, 'EhOQAgaYphmgLUPG', 'gehuhap195@gmail.com'),
 (290, 'NhojobbRJLqMsUwmYoi', 'o.wu.l.oz.i.w.44@gmail.com'),
 (291, 'fiwkgtmzph', 'iezgnowv@forms-checker.online'),
-(292, 'wIKGcGxXCgcvkaLdCI', 'z.u.k.a.s.o.c.i.ko.8.8@gmail.com');
+(292, 'wIKGcGxXCgcvkaLdCI', 'z.u.k.a.s.o.c.i.ko.8.8@gmail.com'),
+(293, 'admin123', 'mamaruf317@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -1704,17 +2027,17 @@ INSERT INTO `subscribe` (`id`, `name`, `email`) VALUES
 --
 
 CREATE TABLE `team_members` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `designation` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `department` varchar(255) DEFAULT NULL,
-  `bio` text DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `instagram` varchar(255) DEFAULT NULL,
-  `youtube` varchar(255) DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1724,7 +2047,7 @@ CREATE TABLE `team_members` (
 --
 
 INSERT INTO `team_members` (`id`, `name`, `designation`, `photo`, `department`, `bio`, `facebook`, `twitter`, `instagram`, `youtube`, `order`, `created_at`, `updated_at`) VALUES
-(1, 'Mofassel Alam Maruf', 'CEO', '61831team.png', 'AFAD', 'Hello I am Maruf', 'https://www.facebook.com/marufbro310', NULL, NULL, NULL, 0, NULL, NULL);
+(1, 'Mofassel Alam Maruf', 'chef', '61831team.png', 'AFAD', 'Hello I am Maruf', 'https://www.facebook.com/marufbro310', NULL, NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1733,13 +2056,13 @@ INSERT INTO `team_members` (`id`, `name`, `designation`, `photo`, `department`, 
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 0,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1752,7 +2075,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `is
 (1, 'Ashik', 'ashik@gmail.com', NULL, '$2y$10$.PEK0gswnXy0m1OD/Q3hQOpCGc8qmLr/uZujz1zDRQHdt9pRf10eW', 0, NULL, NULL, NULL),
 (2, 'Adnan', 'adnan@gmail.com', NULL, '$2y$10$.PEK0gswnXy0m1OD/Q3hQOpCGc8qmLr/uZujz1zDRQHdt9pRf10eW', 0, NULL, NULL, NULL),
 (3, 'Afadbd', 'afadbd@gmail.com', NULL, '$2y$10$.PEK0gswnXy0m1OD/Q3hQOpCGc8qmLr/uZujz1zDRQHdt9pRf10eW', 0, NULL, NULL, NULL),
-(5, 'Admin', 'mamaruf317@gmail.com', NULL, '$2y$10$Dtykr1/wXnZZhSBuRy58HOTkoDLCS.ZR8bWxy8CF6XtTB0pskVf8S', 0, 'Omw4USdxGs4YYhNGFqrAw3xfwA7gVcQNHQVFspUKuc2ul350c3fAhs1De8De', '2026-01-29 08:54:29', '2026-01-29 08:54:29');
+(5, 'Admin', 'mamaruf317@gmail.com', NULL, '$2y$10$Dtykr1/wXnZZhSBuRy58HOTkoDLCS.ZR8bWxy8CF6XtTB0pskVf8S', 0, 'qxP238dIlxOHOg5bkpCDiA5IPF6m71ITikDzRaryNwjeOtPK1m8iHKGv2yIl', '2026-01-29 08:54:29', '2026-01-29 08:54:29');
 
 -- --------------------------------------------------------
 
@@ -1761,15 +2084,24 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `is
 --
 
 CREATE TABLE `volunteers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `requirements` text DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `status` enum('open','closed') NOT NULL DEFAULT 'open',
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requirements` text COLLATE utf8mb4_unicode_ci,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('open','closed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `volunteers`
+--
+
+INSERT INTO `volunteers` (`id`, `title`, `description`, `requirements`, `location`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'test', 'test1', 'test2', 'dhaka', 'open', NULL, NULL),
+(2, 'test2', 'test3', 'test4', 'ctg', 'open', NULL, NULL),
+(3, 'testt', 'testt', 'testt', 'ctg', 'open', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1794,6 +2126,25 @@ ALTER TABLE `chief_executive_message`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `donations`
+--
+ALTER TABLE `donations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `donations_payment_method_id_foreign` (`payment_method_id`);
+
+--
 -- Indexes for table `executive_committee`
 --
 ALTER TABLE `executive_committee`
@@ -1813,6 +2164,12 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `focus_areas`
+--
+ALTER TABLE `focus_areas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `gallery`
 --
 ALTER TABLE `gallery`
@@ -1829,6 +2186,20 @@ ALTER TABLE `impact`
 --
 ALTER TABLE `invoked`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_department_id_foreign` (`department_id`);
+
+--
+-- Indexes for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `job_applications_job_id_foreign` (`job_id`);
 
 --
 -- Indexes for table `latest_news`
@@ -1879,6 +2250,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `payment_methods`
+--
+ALTER TABLE `payment_methods`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -1905,6 +2282,20 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `publications`
+--
+ALTER TABLE `publications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
 -- Indexes for table `slider`
 --
 ALTER TABLE `slider`
@@ -1914,6 +2305,12 @@ ALTER TABLE `slider`
 -- Indexes for table `stories`
 --
 ALTER TABLE `stories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `strategic_plans`
+--
+ALTER TABLE `strategic_plans`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1949,157 +2346,233 @@ ALTER TABLE `volunteers`
 -- AUTO_INCREMENT for table `about_us`
 --
 ALTER TABLE `about_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `chief_executive_message`
 --
 ALTER TABLE `chief_executive_message`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `donations`
+--
+ALTER TABLE `donations`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `executive_committee`
 --
 ALTER TABLE `executive_committee`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `focus_areas`
+--
+ALTER TABLE `focus_areas`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `impact`
 --
 ALTER TABLE `impact`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `invoked`
 --
 ALTER TABLE `invoked`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `latest_news`
 --
 ALTER TABLE `latest_news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `legal_affilation`
 --
 ALTER TABLE `legal_affilation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=829;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=830;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `mission_vision`
 --
 ALTER TABLE `mission_vision`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ongoing_project`
 --
 ALTER TABLE `ongoing_project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `payment_methods`
+--
+ALTER TABLE `payment_methods`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `policy_guideline`
 --
 ALTER TABLE `policy_guideline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `publications`
+--
+ALTER TABLE `publications`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `stories`
 --
 ALTER TABLE `stories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `strategic_plans`
+--
+ALTER TABLE `strategic_plans`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
 
 --
 -- AUTO_INCREMENT for table `team_members`
 --
 ALTER TABLE `team_members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
 --
 ALTER TABLE `volunteers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `donations`
+--
+ALTER TABLE `donations`
+  ADD CONSTRAINT `donations_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD CONSTRAINT `jobs_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  ADD CONSTRAINT `job_applications_job_id_foreign` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
