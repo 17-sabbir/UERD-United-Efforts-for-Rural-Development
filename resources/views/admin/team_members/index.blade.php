@@ -45,7 +45,7 @@
                                     <a href="{{ route('team.edit',$item->id) }}" class="btn btn-sm btn-primary text-white text-center">
                                         <i class="fadeIn animated bx bx-edit"></i>
                                     </a>
-                                    <a href="{{ route('team.delete',$item->id) }}" class="btn btn-sm btn-danger text-white text-center">
+                                    <a href="{{ route('team.delete',$item->id) }}" class="btn btn-sm btn-danger text-white text-center" onclick="return confirm('Are you sure you want to delete this item?');">
                                         <i class="fadeIn animated bx bx-trash-alt"></i>
                                     </a>
                                 </td>
