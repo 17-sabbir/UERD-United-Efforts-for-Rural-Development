@@ -15,8 +15,10 @@ return new class extends Migration
         // Normalize existing empty strings to NULL
         DB::table('strategic_plans')->where('pdf_file', '')->update(['pdf_file' => null]);
 
-        // Make column nullable (avoid doctrine/dbal dependency)
-        DB::statement('ALTER TABLE strategic_plans MODIFY pdf_file VARCHAR(255) NULL');
+        // Make column nullable using Schema builder (works for all databases)
+        Schema::table('strategic_plans', function (Blueprint $table) {
+            $table->string('pdf_file', 255)->nullable()->change();
+        });
     }
 
     /**
@@ -27,6 +29,8 @@ return new class extends Migration
         // Ensure no NULLs before making NOT NULL
         DB::table('strategic_plans')->whereNull('pdf_file')->update(['pdf_file' => '']);
 
-        DB::statement('ALTER TABLE strategic_plans MODIFY pdf_file VARCHAR(255) NOT NULL');
+        Schema::table('strategic_plans', function (Blueprint $table) {
+            $table->string('pdf_file', 255)->nullable(false)->change();
+        });
     }
 };
