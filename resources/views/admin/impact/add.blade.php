@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (iconClass) {
             iconPreview.innerHTML = 
-                '<i class="' + iconClass + '" style="font-size: 60px; color: #0d6efd;"></i>' +
+                '<i class="' + iconClass + ' text-accent" style="font-size: 60px;"></i>' +
                 '<p class="mt-2 mb-0 text-muted small">' + iconText + '</p>';
         } else {
             iconPreview.innerHTML = 

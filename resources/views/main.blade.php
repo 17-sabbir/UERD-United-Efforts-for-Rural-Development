@@ -14,6 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     {{-- css --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
+    {{-- Global Branding --}}
+    <link rel="stylesheet" href="{{ asset('css/branding.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <style>
@@ -21,36 +24,44 @@
 
         body {
             font-family: 'Poppins', sans-serif !important;
-            background: #f0f2f5;
+            background-color: #ffffff; /* Clean White */
+            color: #0A2540; /* Deep Navy Text */
             -webkit-font-smoothing: antialiased;
         }
         
         /* Glass Navbar & Header Improvements */
         .navbar {
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95); 
+            background: rgba(255, 255, 255, 0.98); 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
-        /* Modernize Buttons */
+        /* Modernize Buttons - Premium Style */
         .btn {
-            border-radius: 30px;
-            font-weight: 500;
+            border-radius: 6px; /* Professional, trustworthy */
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* Subtle shadow */
+            letter-spacing: 0.5px;
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
         }
         
         .btn-danger {
-            background: linear-gradient(45deg, #dc3545, #ff6b6b);
+            background-color: #e3342f;
             border: none;
         }
         
         .btn-primary {
-            background: linear-gradient(45deg, #0d6efd, #0dcaf0);
-            border: none;
+            background: #102A43 !important; /* Deep Navy Blue */
+            border: 1px solid #102A43 !important;
+            color: #ffffff !important;
+        }
+        .btn-primary:hover {
+            background: #0A2540 !important; /* Darker Navy */
+            border-color: #0A2540 !important;
         }
 
         /* Modernize Cards */
@@ -109,11 +120,11 @@
 
     @include('footer')
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     {{-- <script>

@@ -31,9 +31,9 @@
                 <div class="rating mb-3">
                     @for($i = 1; $i <= 5; $i++)
                         @if($i <= $story->rating)
-                            <span class="text-warning fs-5">&#9733;</span>
+                            <span class="text-accent fs-5">&#9733;</span>
                         @else
-                            <span class="text-muted fs-5">&#9734;</span>
+                            <span class="text-secondary fs-5">&#9734;</span>
                         @endif
                     @endfor
                 </div>

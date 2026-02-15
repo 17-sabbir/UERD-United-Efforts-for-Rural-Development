@@ -1,5 +1,5 @@
 {{-- Footer started --}}
-<div class="bg-dark" style="border-top:5px solid #dc3545;">
+<div class="bg-dark" style="border-top:5px solid #F0B429;">
     <div class="container py-5">
         <div class="row" id="footer_link_wrapper">
             {{-- logo and short description --}}
@@ -76,13 +76,13 @@
     </div>
 </div>
 <div class="text-end">
-    <a href="#" class="btn btn-danger shadow back-to-top">
+    <a href="#" class="btn btn-primary shadow back-to-top">
         <i class="fa fa-arrow-up" aria-hidden="true"></i>
     </a>
 </div>
 
 {{-- copyright --}}
-<div class="p-3" style="background: #000;">
+<div class="p-3" style="background: #0A2540;">
     <div class="container text-white d-flex justify-content-between">
        <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="United Efforts for Rural Development">ERA</abbr></small>
        <small> Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small>

@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Welcome Banner -->
-<div class="card bg-primary text-white mb-4 shadow-sm border-0 rounded-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<div class="card bg-primary text-white mb-4 shadow-sm border-0 rounded-3" style="background: linear-gradient(135deg, #102A43 0%, #0A2540 100%);">
     <div class="card-body p-4 position-relative overflow-hidden">
         <div class="d-flex align-items-center">
             <div class="ms-3">

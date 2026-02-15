@@ -38,9 +38,9 @@
                                 <td class="align-middle">
                                     @for($i = 1; $i <= 5; $i++)
                                         @if($i <= $item->rating)
-                                            <span class="text-warning">&#9733;</span>
+                                            <span class="text-accent">&#9733;</span>
                                         @else
-                                            <span class="text-muted">&#9734;</span>
+                                            <span class="text-secondary">&#9734;</span>
                                         @endif
                                     @endfor
                                 </td>

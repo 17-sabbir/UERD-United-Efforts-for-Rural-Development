@@ -17,7 +17,7 @@
   <section id="contact" class="contact bg-light p-0">
     <div class="container bg-white py-5" data-aos="fade-up">
       <div class="section-title">
-        <p class="text-uppercase text-center" style="color: #5cb85c; letter-spacing: 2px; font-weight: 600;">SUCCESS STORIES</p>
+        <p class="text-uppercase text-center text-primary" style="letter-spacing: 2px; font-weight: 600;">SUCCESS STORIES</p>
         <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 700;">Voices of Change</h2>
         <p class="text-center text-muted mb-5">Real stories from the communities we serve</p>
         @if(isset($stories) && count($stories) > 0)
@@ -30,9 +30,9 @@
                     <div class="rating">
                       @for($i = 1; $i <= 5; $i++)
                         @if($i <= ($story->rating ?? 0))
-                          <span class="text-warning">&#9733;</span>
+                          <span class="text-accent">&#9733;</span>
                         @else
-                          <span class="text-warning" style="opacity: 0.35;">&#9733;</span>
+                          <span class="text-accent" style="opacity: 0.35;">&#9733;</span>
                         @endif
                       @endfor
                     </div>

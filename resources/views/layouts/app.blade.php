@@ -17,6 +17,9 @@
     {{-- css --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    {{-- Global Branding --}}
+    <link rel="stylesheet" href="{{ asset('css/branding.css') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 

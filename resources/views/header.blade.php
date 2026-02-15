@@ -1,25 +1,20 @@
-<div style="border-bottom:5px solid #dc3545;">
+<div style="border-bottom:5px solid #F0B429; position: relative; z-index: 1000;">
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <div>
-            <img src="{{ asset('images/application/771129main_logo.jpg') }}" alt="Logo" id="logo" style="height: 50px; width: auto;">
-            </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
-            <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="navbarNavLabel">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body justify-content-end">
-            <ul class="navbar-nav">
-                <!-- Home -->
-                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link fw-bold text-dark">Home</a></li>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" style="position: static;">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <div>
+                <img src="{{ asset('images/application/771129main_logo.jpg') }}" alt="Logo" id="logo" style="height: 50px; width: auto;">
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Home -->
+                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link fw-bold text-dark">Home</a></li>
                 <!-- About us -->
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,10 +76,10 @@
                 </ul>
                 </li>
 
-                <!-- Contact -->
-                <li class="nav-item fw-bold"><a href="{{ route('contact') }}" class="nav-link text-dark">Contact</a></li>
-                <li class="nav-item fw-bold"><a href="{{ route('donate') }}" class="nav-link btn btn-danger text-white">Donate</a></li>
-            </ul>
+                    <!-- Contact -->
+                    <li class="nav-item fw-bold"><a href="{{ route('contact') }}" class="nav-link text-dark">Contact</a></li>
+                    <li class="nav-item fw-bold ps-3"><a href="{{ route('donate') }}" class="nav-link btn btn-primary text-white px-4">Donate</a></li>
+                </ul>
             </div>
         </div>
     </nav>

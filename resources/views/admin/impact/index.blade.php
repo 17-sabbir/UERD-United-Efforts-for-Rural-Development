@@ -48,7 +48,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td class="text-center">
                                     @if($item->icon)
-                                        <i class="{{ $item->icon }}" style="font-size: 28px; color: #0d6efd;"></i>
+                                        <i class="{{ $item->icon }} text-accent" style="font-size: 28px;"></i>
                                     @else
                                         <span class="badge bg-secondary">No Icon</span>
                                     @endif

@@ -124,7 +124,7 @@
                                     
                                     <div class="text-center p-4 mt-3 bg-light border rounded" id="iconPreview">
                                         @if($data->icon)
-                                            <i class="{{ $data->icon }}" style="font-size: 60px; color: #0d6efd;"></i>
+                                             <i class="{{ $data->icon }} text-primary" style="font-size: 60px;"></i>
                                         @else
                                             <i class="bx bx-image-add" style="font-size: 48px; color: #ccc;"></i>
                                             <p class="mt-2 mb-0 text-muted small">Select icon to preview</p>
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (iconClass) {
             iconPreview.innerHTML = 
-                '<i class="' + iconClass + '" style="font-size: 60px; color: #0d6efd;"></i>' +
+                '<i class="' + iconClass + ' text-accent" style="font-size: 60px;"></i>' +
                 '<p class="mt-2 mb-0 text-muted small">' + iconText + '</p>';
         } else {
             iconPreview.innerHTML = 

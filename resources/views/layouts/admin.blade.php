@@ -26,205 +26,237 @@
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/semi-dark.css') }}" />
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/header-colors.css') }}" />
     <style>
-        /* Colorful & Interactive Professional Sidebar */
+        /* ----------------------------------------------------------------- */
+        /* PREMIUM BRANDING OVERRIDE - TRUST & AUTHORITY THEME               */
+        /* ----------------------------------------------------------------- */
+        
+        :root {
+            --brand-navy: #102A43;
+            --brand-slate: #627D98;
+            --brand-gold: #F0B429;
+            --brand-white: #ffffff;
+            --brand-bg-light: #f8f9fa; /* Clean light gray for content area */
+        }
+
+        body {
+            background-color: var(--brand-bg-light);
+            font-family: 'Roboto', sans-serif;
+            color: var(--brand-navy);
+        }
+
+        /* SIDEBAR - COLORFUL & MODERN */
+        .sidebar-wrapper {
+            background-color: #ffffff !important;
+            border-right: 1px solid rgba(0,0,0,0.05);
+            background-image: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+        }
+
+        /* COLORFUL ICONS STRATEGY */
+        /* 1. Dashboard / Home - Blue */
+        .sidebar-wrapper .metismenu > li:nth-child(1) .parent-icon { color: #007bff; }
+        .sidebar-wrapper .metismenu > li:nth-child(1) a:hover { color: #007bff !important; background-color: rgba(0, 123, 255, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(1).mm-active > a { 
+            background: linear-gradient(45deg, #007bff, #0062cc); box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); 
+        }
+
+        /* 2. Slider / Media - Purple */
+        .sidebar-wrapper .metismenu > li:nth-child(2) .parent-icon { color: #6f42c1; }
+        .sidebar-wrapper .metismenu > li:nth-child(2) a:hover { color: #6f42c1 !important; background-color: rgba(111, 66, 193, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(2).mm-active > a { 
+            background: linear-gradient(45deg, #6f42c1, #59359a); box-shadow: 0 4px 10px rgba(111, 66, 193, 0.3); 
+        }
+
+        /* 3. About / Info - Tea/Cyan */
+        .sidebar-wrapper .metismenu > li:nth-child(3) .parent-icon { color: #17a2b8; }
+        .sidebar-wrapper .metismenu > li:nth-child(3) a:hover { color: #17a2b8 !important; background-color: rgba(23, 162, 184, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(3).mm-active > a { 
+            background: linear-gradient(45deg, #17a2b8, #117a8b); box-shadow: 0 4px 10px rgba(23, 162, 184, 0.3); 
+        }
+
+        /* 4. Programs / Projects - Orange */
+        .sidebar-wrapper .metismenu > li:nth-child(4) .parent-icon { color: #fd7e14; }
+        .sidebar-wrapper .metismenu > li:nth-child(4) a:hover { color: #fd7e14 !important; background-color: rgba(253, 126, 20, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(4).mm-active > a { 
+            background: linear-gradient(45deg, #fd7e14, #ca6510); box-shadow: 0 4px 10px rgba(253, 126, 20, 0.3); 
+        }
+
+        /* 5. Success Stories - Green */
+        .sidebar-wrapper .metismenu > li:nth-child(5) .parent-icon { color: #28a745; }
+        .sidebar-wrapper .metismenu > li:nth-child(5) a:hover { color: #28a745 !important; background-color: rgba(40, 167, 69, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(5).mm-active > a { 
+            background: linear-gradient(45deg, #28a745, #1e7e34); box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); 
+        }
+
+        /* 6. Events / News - Red/Pink */
+        .sidebar-wrapper .metismenu > li:nth-child(6) .parent-icon { color: #e83e8c; }
+        .sidebar-wrapper .metismenu > li:nth-child(6) a:hover { color: #e83e8c !important; background-color: rgba(232, 62, 140, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(6).mm-active > a { 
+            background: linear-gradient(45deg, #e83e8c, #bf266e); box-shadow: 0 4px 10px rgba(232, 62, 140, 0.3); 
+        }
+
+        /* General Fallback for anything after 6 - Brand Navy */
+        .sidebar-wrapper .metismenu > li:nth-child(n+7) .parent-icon { color: var(--brand-navy); }
+        .sidebar-wrapper .metismenu > li:nth-child(n+7) a:hover { color: var(--brand-navy) !important; background-color: rgba(16, 42, 67, 0.1); }
+        .sidebar-wrapper .metismenu > li:nth-child(n+7).mm-active > a { 
+            background: linear-gradient(45deg, var(--brand-navy), #102A43); box-shadow: 0 4px 10px rgba(16, 42, 67, 0.3); 
+        }
+
+        .sidebar-header {
+            background-color: #ffffff !important;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .logo-text {
+            background: -webkit-linear-gradient(45deg, #007bff, #6f42c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* MENU ITEMS - INTERACTIVE & GLASSY */
         .sidebar-wrapper .metismenu {
-            padding: 10px;
-        }
-
-        .sidebar-wrapper .metismenu a {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            border-radius: 12px;
-            margin-bottom: 5px;
-            border: 1px solid transparent;
-            font-weight: 500;
-        }
-
-        /* Hover & Active States with "Glass" effect */
-        .sidebar-wrapper .metismenu a:hover,
-        .sidebar-wrapper .metismenu .mm-active > a {
-            background: linear-gradient(90deg, #f0f4ff 0%, #ffffff 100%);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            transform: translateX(5px);
-            padding-left: 15px;
-        }
-
-        /* Colorful Icons & Text Cycling */
-        /* Group 1: Blue */
-        #menu > li:nth-child(4n+1) > a:hover, 
-        #menu > li:nth-child(4n+1).mm-active > a { 
-            color: #0d6efd; 
-            border-left: 5px solid #0d6efd;
-        }
-        #menu > li:nth-child(4n+1) > a:hover .parent-icon,
-        #menu > li:nth-child(4n+1).mm-active > a .parent-icon { color: #0d6efd; }
-
-        /* Group 2: Purple */
-        #menu > li:nth-child(4n+2) > a:hover, 
-        #menu > li:nth-child(4n+2).mm-active > a { 
-            color: #6f42c1; 
-            border-left: 5px solid #6f42c1;
-        }
-        #menu > li:nth-child(4n+2) > a:hover .parent-icon,
-        #menu > li:nth-child(4n+2).mm-active > a .parent-icon { color: #6f42c1; }
-
-        /* Group 3: Teal/Green */
-        #menu > li:nth-child(4n+3) > a:hover, 
-        #menu > li:nth-child(4n+3).mm-active > a { 
-            color: #20c997; 
-            border-left: 5px solid #20c997;
-        }
-        #menu > li:nth-child(4n+3) > a:hover .parent-icon,
-        #menu > li:nth-child(4n+3).mm-active > a .parent-icon { color: #20c997; }
-
-        /* Group 4: Orange/Pink */
-        #menu > li:nth-child(4n+4) > a:hover, 
-        #menu > li:nth-child(4n+4).mm-active > a { 
-            color: #fd7e14; 
-            border-left: 5px solid #fd7e14;
-        }
-        #menu > li:nth-child(4n+4) > a:hover .parent-icon,
-        #menu > li:nth-child(4n+4).mm-active > a .parent-icon { color: #fd7e14; }
-
-        /* Icon Animation */
-        .sidebar-wrapper .metismenu .parent-icon {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .sidebar-wrapper .metismenu a:hover .parent-icon,
-        .sidebar-wrapper .metismenu .mm-active > a .parent-icon {
-            transform: scale(1.2);
-        }
-
-        /* Submenu Styling - Enhanced */
-        .sidebar-wrapper .metismenu ul {
-            padding: 5px 0 5px 25px; /* Indent submenus */
+            padding: 15px 10px;
             background: transparent;
         }
 
+        .sidebar-wrapper .metismenu a {
+            color: #5e6e82;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy transition */
+            position: relative;
+            border-radius: 12px; /* Soft rounded pill */
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            font-weight: 600;
+            padding: 12px 15px;
+            /* overflow: hidden; Removed to fix text clipping */
+            z-index: 1;
+        }
+        
+        /* Shimmer Effect on Hover - Adjusted z-index */
+        .sidebar-wrapper .metismenu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%; /* Start width 0 instead of left -100% */
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+            transition: width 0.5s;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .sidebar-wrapper .metismenu a:hover::before {
+            width: 100%;
+        }
+
+        /* Active State Text - Always White */
+        .sidebar-wrapper .metismenu .mm-active > a {
+            color: #ffffff !important;
+            transform: scale(1.02); /* Slight pop */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* Parent Icon Animation */
+        .sidebar-wrapper .metismenu .parent-icon {
+            font-size: 22px;
+            margin-right: 15px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .sidebar-wrapper .metismenu a:hover .parent-icon {
+            transform: scale(1.2); /* Just scale */
+        }
+    
+        .sidebar-wrapper .metismenu .mm-active > a .parent-icon {
+            color: #ffffff !important; 
+            transform: scale(1.1);
+        }
+
+        /* SUBMENUS (SUN LIST) - ELEGANT DESIGN */
+        .sidebar-wrapper .metismenu ul {
+            background: rgba(248, 249, 250, 0.5) !important; /* Airy background */
+            padding: 5px 10px 5px 20px;
+            border-left: 1px solid rgba(0,0,0,0.05); /* Clean line instead of dashed */
+            margin-left: 15px;
+            position: relative;
+        }
+
         .sidebar-wrapper .metismenu ul a {
-            padding: 8px 15px 8px 10px;
-            font-size: 0.92em;
-            margin: 2px 0;
-            border-radius: 8px; /* Softer rounded corners */
-            color: #6c757d;    /* Muted default text */
+            padding: 10px 15px;
+            font-size: 0.88em;
+            color: #5e6e82;
+            border-radius: 8px; /* Soft rounded rectangle */
+            margin-bottom: 4px;
             display: flex;
             align-items: center;
-            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            background: transparent;
         }
-        
+
+        /* Tiny dot icon */
         .sidebar-wrapper .metismenu ul a i {
-            font-size: 12px;
-            margin-right: 12px;
-            opacity: 0.7;
-            transition: all 0.3s;
-        }
-
-        .sidebar-wrapper .metismenu ul a:hover {
-            transform: translateX(5px);
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        /* Beautiful Submenu Colors Matching Parents */
-        /* Group 1: Blue Subitems */
-        #menu > li:nth-child(4n+1) ul a:hover { 
-            color: #0d6efd; 
-            border-color: rgba(13, 110, 253, 0.1);
-            background-color: rgba(13, 110, 253, 0.05);
-        }
-        #menu > li:nth-child(4n+1) ul a:hover i { color: #0d6efd; opacity: 1; font-size: 14px; }
-
-        /* Group 2: Purple Subitems */
-        #menu > li:nth-child(4n+2) ul a:hover { 
-            color: #6f42c1; 
-            border-color: rgba(111, 66, 193, 0.1);
-            background-color: rgba(111, 66, 193, 0.05);
-        }
-        #menu > li:nth-child(4n+2) ul a:hover i { color: #6f42c1; opacity: 1; font-size: 14px; }
-
-        /* Group 3: Teal Subitems */
-        #menu > li:nth-child(4n+3) ul a:hover { 
-            color: #20c997; 
-            border-color: rgba(32, 201, 151, 0.1);
-            background-color: rgba(32, 201, 151, 0.05);
-        }
-        #menu > li:nth-child(4n+3) ul a:hover i { color: #20c997; opacity: 1; font-size: 14px; }
-
-        /* Group 4: Orange Subitems */
-        #menu > li:nth-child(4n+4) ul a:hover { 
-            color: #fd7e14; 
-            border-color: rgba(253, 126, 20, 0.1);
-            background-color: rgba(253, 126, 20, 0.05);
-        }
-        #menu > li:nth-child(4n+4) ul a:hover i { color: #fd7e14; opacity: 1; font-size: 14px; }
-
-        /* Card Hover Effect for Dashboard */
-        .card-hover-zoom {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card-hover-zoom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-        }
-
-        /* Modern Arrow Customization */
-        .sidebar-wrapper .metismenu .has-arrow::after {
-            width: 7px;
-            height: 7px;
-            border-width: 2px 0 0 2px;
-            border-style: solid;
-            border-color: #a0a0a0; /* Neutral gray */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+            display: none; /* Hide default icon to use custom CSS shape */
         }
         
-        /* Arrow becomes colorful on hover (Inherits the colorful text color) */
-        .sidebar-wrapper .metismenu a:hover .has-arrow::after,
+        /* Custom Dot */
+        .sidebar-wrapper .metismenu ul a::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            margin-right: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Submenu Hover */
+        .sidebar-wrapper .metismenu ul a:hover {
+            color: var(--brand-navy) !important;
+            background-color: #ffffff;
+            font-weight: 500;
+            transform: translateX(3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .sidebar-wrapper .metismenu ul a:hover::before {
+            background-color: var(--brand-gold);
+            transform: scale(1.5);
+            box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.2); /* Gold glow ring */
+        }
+        
+        /* Submenu Active */
+        .sidebar-wrapper .metismenu ul .mm-active > a {
+            color: var(--brand-navy) !important;
+            font-weight: 700;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-wrapper .metismenu ul .mm-active > a::before {
+            background-color: var(--brand-navy);
+            width: 8px;
+            height: 8px;
+            box-shadow: 0 0 0 2px rgba(16, 42, 67, 0.1); /* Navy ring */
+        }
+
+
+        /* SCROLLBAR & ARROWS */
+        .sidebar-wrapper .metismenu .has-arrow::after {
+            border-color: #a0a0a0;
+        }
+        
+        .sidebar-wrapper .metismenu a:hover .has-arrow::after {
+             border-color: var(--brand-navy);
+        }
+
         .sidebar-wrapper .metismenu .mm-active > .has-arrow::after {
-            border-color: currentColor; /* Takes the Blue/Purple/Green/Orange from text */
-            box-shadow: -1px -1px 0px rgba(0,0,0,0.1); /* Subtle depth */
+            border-color: #ffffff;
         }
 
-        /* Entry Animation for Menu Items */
-        @keyframes slideInMenuItem {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .sidebar-wrapper .metismenu > li {
-            animation: slideInMenuItem 0.4s ease-out forwards;
-            opacity: 0;
-        }
-
-        /* Stagger the animation for first 15 items */
-        .sidebar-wrapper .metismenu > li:nth-child(1) { animation-delay: 0.05s; }
-        .sidebar-wrapper .metismenu > li:nth-child(2) { animation-delay: 0.1s; }
-        .sidebar-wrapper .metismenu > li:nth-child(3) { animation-delay: 0.15s; }
-        .sidebar-wrapper .metismenu > li:nth-child(4) { animation-delay: 0.2s; }
-        .sidebar-wrapper .metismenu > li:nth-child(5) { animation-delay: 0.25s; }
-        .sidebar-wrapper .metismenu > li:nth-child(6) { animation-delay: 0.3s; }
-        .sidebar-wrapper .metismenu > li:nth-child(7) { animation-delay: 0.35s; }
-        .sidebar-wrapper .metismenu > li:nth-child(8) { animation-delay: 0.4s; }
-        .sidebar-wrapper .metismenu > li:nth-child(9) { animation-delay: 0.45s; }
-        .sidebar-wrapper .metismenu > li:nth-child(10) { animation-delay: 0.5s; }
-        .sidebar-wrapper .metismenu > li:nth-child(11) { animation-delay: 0.55s; }
-        .sidebar-wrapper .metismenu > li:nth-child(12) { animation-delay: 0.6s; }
-        .sidebar-wrapper .metismenu > li:nth-child(13) { animation-delay: 0.65s; }
-        .sidebar-wrapper .metismenu > li:nth-child(14) { animation-delay: 0.7s; }
-        .sidebar-wrapper .metismenu > li:nth-child(15) { animation-delay: 0.75s; }
-
-        /* Smooth Custom Scrollbar */
-        .sidebar-wrapper .simplebar-scrollbar::before {
-            background-color: rgba(0,0,0,0.2);
-            width: 4px;
-            border-radius: 4px;
-        }
-
-        /* Click/Active Ripple Simulation */
-        .sidebar-wrapper .metismenu a:active {
-            transform: scale(0.98) translateX(5px); /* Gentle press effect */
-            transition: transform 0.1s;
-        }
 
         /* ----------------------------------------------------------------- */
         /* GLOBAL CONTENT DESIGN UPGRADE (Tables, Cards, Forms)               */
@@ -236,68 +268,199 @@
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Soft, airy shadow */
             transition: transform 0.3s;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid transparent; /* Placeholder for color */
+            background-clip: padding-box; /* Ensures background doesn't bleed */
         }
+
+        /* Colorful Top Borders */
+        .page-content .card:nth-of-type(4n+1) { border-top-color: #007bff; } /* Blue */
+        .page-content .card:nth-of-type(4n+2) { border-top-color: #6f42c1; } /* Purple */
+        .page-content .card:nth-of-type(4n+3) { border-top-color: #fd7e14; } /* Orange */
+        .page-content .card:nth-of-type(4n+4) { border-top-color: #20c997; } /* Teal */
         
         .page-content .card-header {
             background-color: #fff;
-            border-bottom: 1px solid #f0f0f0;
-            padding: 1.5rem;
-            border-radius: 12px 12px 0 0;
+            border-bottom: 1px solid #edf2f7;
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .page-content .card-header h5, 
+        .page-content .card-header h6 {
+            margin-bottom: 0;
+            color: var(--brand-navy);
             font-weight: 600;
         }
 
-        /* Modern Table Design */
+        /* Modern Table Design - Clean & Trustworthy */
         .table-responsive {
-            border-radius: 10px;
-            overflow: hidden; /* Needed for border-radius on table */
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .table thead th {
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            color: #6c757d;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--brand-slate); /* Slate text for headers */
             background-color: #f8f9fa; /* Light gray header */
-            border-bottom: none;
+            border-bottom: 2px solid #edf2f7;
             padding: 15px;
         }
 
         .table tbody td {
             vertical-align: middle;
-            color: #495057;
+            color: var(--brand-navy); /* Dark text for data */
             font-size: 0.95rem;
             padding: 15px;
             border-bottom: 1px solid #f0f4f8;
         }
         
-        /* Table Row Hover - Professional Lift */
+        /* Table Row Hover */
         .table-hover tbody tr:hover {
-            background-color: #fcfdfe;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-            transform: scale(1.001); /* Micro lift to keep it crisp */
-            position: relative;
-            z-index: 1;
+            background-color: #f1f5f9; /* Slate tint on hover */
+            transform: scale(1); /* No scale, just color change for stability */
         }
 
-        /* Action Buttons (Edit/Delete) Upgrade */
-        .btn-sm {
-            border-radius: 8px; /* Softer buttons */
-            padding: 6px 12px;
+        /* Button Upgrades */
+        .btn {
+            border-radius: 4px; /* Professional square-ish corners */
             font-weight: 500;
-            transition: all 0.2s;
+            letter-spacing: 0.3px;
+            padding: 0.5rem 1rem;
         }
 
-        /* Soft Effect for Buttons */
-        .btn-primary.btn-sm {
-            background-color: rgba(13, 110, 253, 0.1);
-            color: #0d6efd;
-            border: none;
+        /* Primary Action Button (Navy) */
+        .btn-primary {
+            background-color: var(--brand-navy);
+            border-color: var(--brand-navy);
+            box-shadow: 0 4px 6px rgba(16, 42, 67, 0.2);
         }
-        .btn-primary.btn-sm:hover {
-            background-color: #0d6efd;
+
+        .btn-primary:hover {
+            background-color: #0a1c2e; /* Darker Navy */
+            border-color: #0a1c2e;
+            transform: translateY(-1px);
+        }
+
+        /* Secondary Action / Warning (Gold) */
+        .btn-warning {
+            background-color: var(--brand-gold);
+            border-color: var(--brand-gold);
             color: #fff;
-            transform: translateY(-2px);
+        }
+
+        .btn-warning:hover {
+            background-color: #d9a220;
+            border-color: #d9a220;
+            color: #fff;
+        }
+
+        /* Small Action Buttons in Tables */
+        .btn-sm {
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Edit/Delete specific styling override */
+        .btn-outline-primary {
+            color: var(--brand-navy);
+            border-color: var(--brand-navy);
+        }
+        .btn-outline-primary:hover {
+            background-color: var(--brand-navy);
+            color: #fff;
+        }
+
+        /* Form Inputs */
+        .form-control, .form-select {
+            border: 1px solid #cbd5e0; /* Slate border */
+            border-radius: 4px;
+            padding: 0.6rem 1rem;
+            color: var(--brand-navy);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--brand-navy);
+            box-shadow: 0 0 0 3px rgba(16, 42, 67, 0.1); /* Navy glow */
+        }
+
+        /* HEADER & TOPBAR - Clean & Minimal */
+        header .topbar {
+            background-color: #ffffff;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05); /* Soft shadow */
+            height: 60px;
+        }
+
+        .mobile-toggle-menu {
+            color: var(--brand-navy); /* Ensure menu icon is visible */
+            background-color: rgba(16, 42, 67, 0.05);
+            border-radius: 4px;
+        }
+
+        /* User Box in Header */
+        .user-box .user-info .user-name {
+            color: var(--brand-navy);
+            font-weight: 600;
+        }
+        
+        .user-box .user-info .designattion {
+            color: var(--brand-slate);
+        }
+
+        /* ----------------------------------------------------------------- */
+        /* ANIMATIONS & INTERACTIVITY                                        */
+        /* ----------------------------------------------------------------- */
+        
+        /* 1. Sidebar Entry Animation */
+        @keyframes slideInMenuItem {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .sidebar-wrapper .metismenu > li {
+            animation: slideInMenuItem 0.5s ease-out forwards;
+            opacity: 0; /* Hidden initially */
+        }
+        
+        /* Stagger the animation for a cascading effect */
+        .sidebar-wrapper .metismenu > li:nth-child(1) { animation-delay: 0.1s; }
+        .sidebar-wrapper .metismenu > li:nth-child(2) { animation-delay: 0.15s; }
+        .sidebar-wrapper .metismenu > li:nth-child(3) { animation-delay: 0.2s; }
+        .sidebar-wrapper .metismenu > li:nth-child(4) { animation-delay: 0.25s; }
+        .sidebar-wrapper .metismenu > li:nth-child(5) { animation-delay: 0.3s; }
+        .sidebar-wrapper .metismenu > li:nth-child(6) { animation-delay: 0.35s; }
+        .sidebar-wrapper .metismenu > li:nth-child(7) { animation-delay: 0.4s; }
+        .sidebar-wrapper .metismenu > li:nth-child(8) { animation-delay: 0.45s; }
+        .sidebar-wrapper .metismenu > li:nth-child(9) { animation-delay: 0.5s; }
+        .sidebar-wrapper .metismenu > li:nth-child(10) { animation-delay: 0.55s; }
+
+        /* 2. Main Content Fade In */
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-wrapper {
+            animation: fadeInPage 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* 3. Card Hover Lift */
+        .page-content .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Expanded shadow on lift */
+        }
+        
+        /* 4. Button Press Effect */
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+    </style>
             box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2);
         }
 
@@ -329,12 +492,13 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{{ asset('images/application/'.application()->fav_icon) }}" class="logo-icon" alt="logo icon">
+					<img src="{{ asset('images/application/771129main_logo.jpg') }}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
-					<h4 class="logo-text text-danger">ERA</h4>
+					<h4 class="logo-text text-dark">ERA</h4>
 				</div>
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-danger'></i>
+                <!-- Toggle Icon - White/Gold -->
+				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-dark'></i>
 				</div>
 			</div>
 			<!--navigation-->
@@ -1024,6 +1188,62 @@
 	  <script src="{{ asset('admin/assets/js/index.js') }}"></script>
 	<!--app JS-->
 	<script src="{{ asset('admin/assets/js/app.js') }}"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function(){
+            // --- 1. SweetAlert2 Delete Confirmation ---
+            // Intercept any link with 'delete' in its href
+            $(document).on('click', 'a[href*="delete"]', function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#F0B429', // Brand Gold
+                    cancelButtonColor: '#627D98', // Brand Slate
+                    confirmButtonText: '<span style="color:#102A43; font-weight:bold;">Yes, delete it!</span>',
+                    cancelButtonText: 'Cancel',
+                    background: '#ffffff',
+                    color: '#102A43', // Brand Navy Text
+                    iconColor: '#F0B429', // Brand Gold Icon
+                    width: '300px', // Smaller width
+                    padding: '1em', // Compact padding
+                    customClass: {
+                        popup: 'animated fadeInDown', // Animation
+                        title: 'fs-5', // Smaller title
+                        content: 'small' // Smaller text
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link;
+                    }
+                })
+            });
+
+            // --- 2. Sidebar Scroll Position Fix ---
+            // Using SimpleBar's scroll element
+            var sidebar = document.querySelector('.sidebar-wrapper .simplebar-content-wrapper');
+            
+            // If sidebar exists
+            if (sidebar) {
+                // Restore scroll position
+                var scrollPos = localStorage.getItem('sidebarScrollPos');
+                if (scrollPos) {
+                    sidebar.scrollTop = scrollPos;
+                }
+
+                // Save scroll position on scroll
+                sidebar.addEventListener('scroll', function() {
+                    localStorage.setItem('sidebarScrollPos', sidebar.scrollTop);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
