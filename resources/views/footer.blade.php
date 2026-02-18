@@ -20,8 +20,7 @@
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">Who we are</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('about.us') }}">About ERA</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission & Vision</a></li>
+                            <li class="py-1"><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and legal Affiliation</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
                         </ul>
@@ -29,7 +28,6 @@
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">What we do</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('project.archieve') }}">Project Archieve</a></li>
                             <li class="py-1"><a class="dropdown-item" href="{{ route('programs.all') }}">Programs</a></li>

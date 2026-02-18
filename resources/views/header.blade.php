@@ -27,9 +27,8 @@
                     About us
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                    <li><a class="dropdown-item" href="{{ route('about.us') }}">About ERA</a></li>
-                    <li><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission & Vision</a></li>
-                    <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li>
+                    <li><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
+                    {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li> --}}
                     <li><a class="dropdown-item" href="{{ route('team.members') }}">Team Members</a></li>
                     <li><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a></li>
                     <li><a class="dropdown-item" href="{{ route('executive.committee') }}">Executive Committee</a></li>
@@ -45,8 +44,9 @@
                     Programs
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+                    <li><a class="dropdown-item" href="{{ route('frontend.projects') }}">Our Projects</a></li>
                     <li><a class="dropdown-item" href="{{ route('programs.all') }}">Program Highlights</a></li>
-                    <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a></li>
+                    {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a></li> --}}
                     <li><a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Programs</a></li>
                     <li><a class="dropdown-item" href="{{ route('project.archieve') }}">Project Archieve</a></li>
                     <li><a class="dropdown-item" href="{{ route('success.stories') }}">Success Stories</a></li>
@@ -63,7 +63,7 @@
                     <li><a class="dropdown-item" href="{{ route('donate') }}">Donate</a></li>
                     <li><a class="dropdown-item" href="{{ route('fundraising') }}">Fundraising Campaign</a></li>
                     <li><a class="dropdown-item" href="{{ route('corporate.partnership') }}">Corporate Partnership</a></li>
-                    <li><a class="dropdown-item" href="{{ route('invoked.career') }}">Career with ERA</a></li>
+                    <li><a class="dropdown-item" href="{{ route('invoked.career') }}">Career with UERD</a></li>
                 </ul>
                 </li>
 
@@ -76,7 +76,7 @@
                     <li><a class="dropdown-item" href="{{ route('latest.news.all') }}">News & Events</a></li>
                     <li><a class="dropdown-item" href="{{ route('events.calender') }}">Events Calender</a></li>
                     <li><a class="dropdown-item" href="{{ route('youtube.video') }}">Youtube Video</a></li>
-                    <li><a class="dropdown-item" href="{{ route('strategic.plan') }}">ERA Strategic Plan</a></li>
+                    <li><a class="dropdown-item" href="{{ route('strategic.plan') }}">UERD Strategic Plan</a></li>
                     <li><a class="dropdown-item" href="{{ route('policy.guideline') }}">Policy & Guideline</a></li>
                     <li><a class="dropdown-item" href="{{ route('publication') }}">Publication</a></li>
                 </ul>

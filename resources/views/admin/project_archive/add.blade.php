@@ -15,33 +15,25 @@
                     <form class="row g-3" action="{{ route('project.archive.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
-                            <label for="name" class="form-label">Project Name<span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" placeholder="Enter Project Name">
-                            @error('name')
+                            <label for="project_name" class="form-label">Project Name<span class="text-danger">*</span></label>
+                            <input type="text" name="project_name" class="form-control @error('project_name') is-invalid @enderror" id="project_name" value="{{ old('project_name') }}" placeholder="Enter Project Name">
+                            @error('project_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-12">
-                            <label for="partner" class="form-label">Partner/Donor<span class="text-danger">*</span></label>
-                            <input type="text" name="partner" class="form-control @error('partner') is-invalid @enderror" id="partner" value="{{ old('partner') }}" placeholder="Enter Partner/Donor Name">
-                            @error('partner')
+                            <label for="donors" class="form-label">Partner/Donor<span class="text-danger">*</span></label>
+                            <input type="text" name="donors" class="form-control @error('donors') is-invalid @enderror" id="donors" value="{{ old('donors') }}" placeholder="Enter Partner/Donor Name">
+                            @error('donors')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-12">
-                            <label for="from" class="form-label">From</label>
-                            <input type="date" name="from" class="form-control @error('from') is-invalid @enderror" id="from" value="{{ old('from') }}" placeholder="From Date">
-                            @error('from')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="to" class="form-label">To</label>
-                            <input type="date" name="to" class="form-control @error('to') is-invalid @enderror" id="to" value="{{ old('to') }}" placeholder="To Date">
-                            @error('to')
+                            <label for="project_duration" class="form-label">Duration</label>
+                            <input type="text" name="project_duration" class="form-control @error('project_duration') is-invalid @enderror" id="project_duration" value="{{ old('project_duration') }}" placeholder="Enter Duration (e.g. 2023-2025)">
+                            @error('project_duration')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

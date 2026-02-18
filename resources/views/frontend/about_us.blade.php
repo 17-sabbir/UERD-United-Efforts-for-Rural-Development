@@ -7,7 +7,7 @@
     <div class="container">
       <ol>
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li>About ERA</li>
+        <li>About UERD</li>
       </ol>
       <h2>About ERA</h2>
     </div>

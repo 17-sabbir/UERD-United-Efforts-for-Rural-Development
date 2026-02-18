@@ -482,7 +482,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
     </style>
-	<title>ERA | Admin</title>
+	<title>UERD | Admin</title>
 </head>
 
 <body>
@@ -600,7 +600,7 @@
 						</li>
 					</ul>
 				</li>
-				<li>
+				{{-- <li>
 					<a  class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-target-lock"></i>
 						</div>
@@ -614,7 +614,7 @@
 					<a href="{{ route('admin.focus_areas.index') }}"><i class="bx bx-right-arrow-alt"></i>All Focus Areas</a>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 				<li>
 					<a href="{{ route('empowering_lives.create') }}">
 						<div class="parent-icon"><i class='bx bx-heart'></i>
@@ -1077,7 +1077,7 @@
 		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
 		<footer class="page-footer">
-			<p class="mb-0">Copyright © {{ @date('Y') }}. All right reserved ERA</p>
+			<p class="mb-0">Copyright © {{ @date('Y') }}. All right reserved UERD</p>
 		</footer>
 	</div>
 	<!--end wrapper-->

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\frontController;
+use App\Http\Controllers\Frontend\PageController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -65,7 +66,7 @@ Route::get('partner/donor', [frontController::class, 'partner'])->name('partner.
 Route::get('about/impact', [frontController::class, 'impact'])->name('about.impact');
 
 // Programs
-Route::get('key/focus', [frontController::class, 'key_focus'])->name('key.focus.area');
+// Route::get('key/focus', [frontController::class, 'key_focus'])->name('key.focus.area');
 Route::get('project/archieve', [frontController::class, 'proj_archieve'])->name('project.archieve');
 Route::get('ongoing/project', [frontController::class, 'ongoing_project'])->name('ongoing.project');
 Route::get('ongoing/project/view/{id}', [frontController::class, 'project_view'])->name('ongoing.project.view');
@@ -100,3 +101,9 @@ Route::get('gallery/album/{album}', [frontController::class, 'album_photos'])->n
 
 // FAQ
 Route::get('faq',[frontController::class, 'faq'])->name('faq');
+
+// Organization Profile
+Route::get('organization-profile', [PageController::class, 'profile'])->name('frontend.profile');
+
+// Projects
+Route::get('projects', [PageController::class, 'projects'])->name('frontend.projects');

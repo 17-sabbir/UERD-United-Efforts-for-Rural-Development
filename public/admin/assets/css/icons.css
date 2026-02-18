@@ -1,4 +1,3 @@
-
 /*
 Template Name: Rukada Admin
 Author: codervent
@@ -15,14 +14,13 @@ File: icons.css
 }
 
 .bx {
-	font-family: boxicons!important;
+	font-family: boxicons !important;
 	font-weight: 400;
 	font-style: normal;
 	font-variant: normal;
 	line-height: inherit;
 	display: inline-block;
 	text-transform: none;
-	speak: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale
 }
@@ -51,6 +49,7 @@ File: icons.css
 		-webkit-transform: rotate(0);
 		transform: rotate(0)
 	}
+
 	100% {
 		-webkit-transform: rotate(359deg);
 		transform: rotate(359deg)
@@ -62,6 +61,7 @@ File: icons.css
 		-webkit-transform: rotate(0);
 		transform: rotate(0)
 	}
+
 	100% {
 		-webkit-transform: rotate(359deg);
 		transform: rotate(359deg)
@@ -74,6 +74,7 @@ File: icons.css
 		transform: scale(1);
 		opacity: 1
 	}
+
 	90% {
 		-webkit-transform: scale(1.5);
 		transform: scale(1.5);
@@ -87,6 +88,7 @@ File: icons.css
 		transform: scale(1);
 		opacity: 1
 	}
+
 	90% {
 		-webkit-transform: scale(1.5);
 		transform: scale(1.5);
@@ -98,9 +100,11 @@ File: icons.css
 	0% {
 		opacity: 1
 	}
+
 	45% {
 		opacity: 0
 	}
+
 	90% {
 		opacity: 1
 	}
@@ -110,9 +114,11 @@ File: icons.css
 	0% {
 		opacity: 1
 	}
+
 	45% {
 		opacity: 0
 	}
+
 	90% {
 		opacity: 1
 	}
@@ -124,6 +130,7 @@ File: icons.css
 		transform: translateX(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateX(-20px);
 		transform: translateX(-20px);
@@ -137,6 +144,7 @@ File: icons.css
 		transform: translateX(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateX(-20px);
 		transform: translateX(-20px);
@@ -150,6 +158,7 @@ File: icons.css
 		transform: translateX(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateX(20px);
 		transform: translateX(20px);
@@ -163,6 +172,7 @@ File: icons.css
 		transform: translateX(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateX(20px);
 		transform: translateX(20px);
@@ -176,6 +186,7 @@ File: icons.css
 		transform: translateY(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateY(-20px);
 		transform: translateY(-20px);
@@ -189,6 +200,7 @@ File: icons.css
 		transform: translateY(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateY(-20px);
 		transform: translateY(-20px);
@@ -202,6 +214,7 @@ File: icons.css
 		transform: translateY(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateY(20px);
 		transform: translateY(20px);
@@ -215,6 +228,7 @@ File: icons.css
 		transform: translateY(0);
 		opacity: 1
 	}
+
 	75% {
 		-webkit-transform: translateY(20px);
 		transform: translateY(20px);
@@ -227,11 +241,13 @@ File: icons.css
 		-webkit-transform: scale3d(1, 1, 1);
 		transform: scale3d(1, 1, 1)
 	}
+
 	10%,
 	20% {
 		-webkit-transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg);
 		transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg)
 	}
+
 	30%,
 	50%,
 	70%,
@@ -239,12 +255,14 @@ File: icons.css
 		-webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
 		transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg)
 	}
+
 	40%,
 	60%,
 	80% {
 		-webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg);
 		transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg)
 	}
+
 	to {
 		-webkit-transform: scale3d(1, 1, 1);
 		transform: scale3d(1, 1, 1)
@@ -256,11 +274,13 @@ File: icons.css
 		-webkit-transform: scale3d(1, 1, 1);
 		transform: scale3d(1, 1, 1)
 	}
+
 	10%,
 	20% {
 		-webkit-transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg);
 		transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg)
 	}
+
 	30%,
 	50%,
 	70%,
@@ -268,12 +288,14 @@ File: icons.css
 		-webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
 		transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg)
 	}
+
 	40%,
 	60%,
 	80% {
 		-webkit-transform: rotate3d(0, 0, 1, -10deg);
 		transform: rotate3d(0, 0, 1, -10deg)
 	}
+
 	to {
 		-webkit-transform: scale3d(1, 1, 1);
 		transform: scale3d(1, 1, 1)
@@ -361,15 +383,15 @@ File: icons.css
 }
 
 .bx-xs {
-	font-size: 1rem!important
+	font-size: 1rem !important
 }
 
 .bx-sm {
-	font-size: 1.55rem!important
+	font-size: 1.55rem !important
 }
 
 .bx-md {
-	font-size: 2.25rem!important
+	font-size: 2.25rem !important
 }
 
 .bx-fw {
@@ -377,22 +399,22 @@ File: icons.css
 	line-height: .8em;
 	width: 1.2857142857em;
 	height: .8em;
-	margin-top: -.2em!important;
+	margin-top: -.2em !important;
 	vertical-align: middle
 }
 
 .bx-lg {
-	font-size: 3rem!important
+	font-size: 3rem !important
 }
 
 .bx-pull-left {
 	float: left;
-	margin-right: .3em!important
+	margin-right: .3em !important
 }
 
 .bx-pull-right {
 	float: right;
-	margin-left: .3em!important
+	margin-left: .3em !important
 }
 
 .bx-rotate-90 {
@@ -6439,7 +6461,6 @@ File: icons.css
 	display: inline-block;
 	font: normal normal normal 32px/1'LineIcons';
 	font-size: inherit;
-	speak: none;
 	text-transform: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale

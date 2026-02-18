@@ -6,29 +6,37 @@ United Efforts for Rural Development (UERD)
 
 @section('content')
 {{-- slider --}}
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         @foreach ($slider as $skey => $slider)
         <div class="carousel-item @if($skey == 0) active @endif">
-            <img src="{{ asset('images/slider/'.$slider->image) }}" class="d-block" alt="ERA" width="100%" height="auto">
-            <div class="carousel-caption" style="position:absolute;top:150px; text-align:left;">
-                <h2 class="text-white text-start typing-text" style="font-size: 3rem">{{ $slider->title }}</span></h1>
-                <div class="my-2" style="width:100px;border-bottom:5px solid #dc3545;"></div>
-                <p style="font-size:1rem;" class="text-white">
-                    {{ $slider->description }}
-                </p>
-                <a href="{{ route('donate') }}" class="btn btn-warning" style="box-shadow: 5px 5px 0 rgba(0,0,0,1);"><i class="fa-solid fa-sack-dollar"></i> Donate now</a>
+            <div style="position: relative; height: 85vh; overflow: hidden;">
+                <img src="{{ asset('images/slider/'.$slider->image) }}" class="d-block w-100" alt="UERD" style="object-fit: cover; height: 100%; width: 100%;">
+                
+                {{-- Dark Overlay --}}
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-start h-100" style="position: absolute; top: 0; bottom: 0; left: 10%; right: 10%; text-align: left;">
+                    <h2 class="text-white fw-bold typing-text" style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ $slider->title }}</h2>
+                    <div class="my-3" style="width:100px; border-bottom:5px solid #dc3545;"></div>
+                    <p style="font-size:1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);" class="text-white">
+                        {{ $slider->description }}
+                    </p>
+                    <div>
+                        <a href="{{ route('donate') }}" class="btn btn-warning fw-bold px-4 py-2 mt-3" style="box-shadow: 3px 3px 6px rgba(0,0,0,0.3);"><i class="fa-solid fa-sack-dollar"></i> Donate now</a>
+                    </div>
+                </div>
             </div>
         </div>
         @endforeach
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
 {{-- end of slide --}}
@@ -229,7 +237,7 @@ United Efforts for Rural Development (UERD)
     <div class="container bg-white px-2">
         <div class="pt-3 pb-3">
             <h3 class="text-center">Ongoing <span class="text-danger">Projects</span></h3>
-            <p class="text-center text-secondary">ERA's Ongoing Projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
+            <p class="text-center text-secondary">UERD's Ongoing Projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
         </div>
 
         {{-- card --}}
@@ -270,7 +278,7 @@ United Efforts for Rural Development (UERD)
         <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Sponsor</span> for Growing Fund</h4>
         <div class="d-flex justify-content-center">
             <p class="text-white text-center py-3">
-            Sponsor ERA's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
+            Sponsor UERD's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
         </p>
         </div>
 
@@ -325,7 +333,7 @@ United Efforts for Rural Development (UERD)
             <div class="col-md-12">
                 <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Become</span> a Volunteer</h4>
                 <p class="text-white py-2 text-center">
-                    Sponsor ERA's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
+                    Sponsor UERD's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
                 </p>
                 <div class="text-center">
                     <a href="#" class="btn btn-danger"><i class="fa-solid fa-user-plus"></i> Registration</a>
@@ -461,7 +469,7 @@ United Efforts for Rural Development (UERD)
                     <div class="text-center">
                         <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial" width="100" height="100">
                         <h5 class="mt-3 text-white">Jane Alam</h5>
-                        <p class="text-white">ERA's tireless efforts in promoting education, healthcare, and economic opportunities have transformed the lives of many marginalized individuals. Their holistic approach to development is making a lasting difference in our region.</p>
+                        <p class="text-white">UERD's tireless efforts in promoting education, healthcare, and economic opportunities have transformed the lives of many marginalized individuals. Their holistic approach to development is making a lasting difference in our region.</p>
                         <div class="rating">
                             <span class="text-warning">&#9733;</span>
                             <span class="text-warning">&#9733;</span>

@@ -16,15 +16,15 @@ class projectArchiveController extends Controller
     //__store
     public function store(Request $request){
         $validatedData = $request->validate([
-            'name' => 'required',
-            'partner' => 'required',
+            'project_name' => 'required',
+            'donors' => 'required',
         ]);
 
         $project = [
-            'name' => $request->name,
-            'partners' => $request->partner,
-            'from_date' => $request->from,
-            'to_date' => $request->to
+            'project_name' => $request->project_name,
+            'donors' => $request->donors,
+            'project_duration' => $request->project_duration,
+            'status' => 'completed' // Assume archive implies completed
         ];
 
         DB::table('projects')->insert($project);
@@ -53,16 +53,15 @@ class projectArchiveController extends Controller
     public function update(Request $request,$id)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'partner' => 'required',
+            'project_name' => 'required',
+            'donors' => 'required',
         ]);
 
         $project = [
-                'name' => $request->name,
-                'partners' => $request->partner,
-                'from_date' => $request->from,
-                'to_date' => $request->to
-            ];
+            'project_name' => $request->project_name,
+            'donors' => $request->donors,
+            'project_duration' => $request->project_duration,
+        ];
 
         DB::table('projects')->where('id',$id)->update($project);
         return redirect()->back()->with('success', 'Successfully Updated');

@@ -32,9 +32,9 @@
                             @foreach ($project as $key=>$value)
                             <tr>
                                 <td class="align-middle">{{ ++$key }}</td>
-                                <td class="align-middle">{{ Str::limit($value->name, 30, '...') }}</td>
-                                <td class="align-middle">{{ Str::limit($value->partners, 30, '...') }}</td>
-                                <td class="align-middle">{{ $value->from_date}}</td>
+                                <td class="align-middle">{{ Str::limit($value->project_name, 30, '...') }}</td>
+                                <td class="align-middle">{{ Str::limit($value->donors, 30, '...') }}</td>
+                                <td class="align-middle">{{ $value->project_duration}}</td>
                                 <td class="text-center align-middle">
                                     <a href="{{ route('project.archive.edit',$value->id) }}" class="btn btn-sm btn-primary text-white text-center">
                                         <i class="fadeIn animated bx bx-edit"></i>
