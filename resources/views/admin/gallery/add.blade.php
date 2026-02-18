@@ -14,17 +14,28 @@
                     <form class="row g-3" action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
+                            <label for="album" class="form-label">Album Name</label>
+                            <input type="text" name="album" class="form-control @error('album') is-invalid @enderror" id="album" value="{{ old('album') }}" placeholder="Enter Album/Project Name">
+                            @error('album')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="" placeholder="Enter Slider Top Title">
-                            <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
+                            <span class="text-info">Optional: If you select multiple images, each title will be auto-set from filename (or numbered).</span>
                             @error('title')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="img" class="form-label">Image</label>
-                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="img">
-                            @error('image')
+                            <label for="img" class="form-label">Images</label>
+                            <input type="file" name="images[]" multiple class="form-control @error('images') is-invalid @enderror @error('images.*') is-invalid @enderror" id="img">
+                            <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
+                            @error('images')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            @error('images.*')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

@@ -23,11 +23,45 @@
                 <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="activity" width="100%">
             </div>
             <div class="col-md-8 text-left">
-                <h2 class="text-left">{{ $project->title }}</h3>
+                <h2 class="text-left fw-bold">{{ $project->title }}</h2>
                 <p class="text-secondary" style="font-size: 12px;">
                     <i class="fas fa-calendar-minus"></i>
-                    {{ date("d/m/Y  h:i:s a") }}
+                    {{ date("d/m/Y", strtotime($project->created_at ?? now())) }}
                 </p>
+                
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        @if($project->location)
+                        <div class="row mb-2">
+                            <div class="col-sm-3 fw-bold">Locations:</div>
+                            <div class="col-sm-9">{{ $project->location }}</div>
+                        </div>
+                        @endif
+                        
+                        @if($project->duration)
+                        <div class="row mb-2">
+                            <div class="col-sm-3 fw-bold">Duration:</div>
+                            <div class="col-sm-9">{{ $project->duration }}</div>
+                        </div>
+                        @endif
+                        
+                        @if($project->donors)
+                        <div class="row mb-2">
+                            <div class="col-sm-3 fw-bold">Donors:</div>
+                            <div class="col-sm-9">{{ $project->donors }}</div>
+                        </div>
+                        @endif
+                        
+                        @if($project->remark)
+                        <div class="row mb-2">
+                            <div class="col-sm-3 fw-bold">Remark:</div>
+                            <div class="col-sm-9">{{ $project->remark }}</div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+
+                <h5 class="fw-bold">Objective of the Project</h5>
                 <p style="text-align:justify;">
                     {{ $project->description }}
                 </p>

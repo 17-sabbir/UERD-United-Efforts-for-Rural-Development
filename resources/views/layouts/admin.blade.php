@@ -492,10 +492,10 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{{ asset('images/application/771129main_logo.jpg') }}" class="logo-icon" alt="logo icon">
+					<img src="{{ asset('images/application/UERD logo.jpg') }}" class="logo-icon" alt="UERD logo">
 				</div>
 				<div>
-					<h4 class="logo-text text-dark">ERA</h4>
+					<h4 class="logo-text text-dark">UERD</h4>
 				</div>
                 <!-- Toggle Icon - White/Gold -->
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-dark'></i>
@@ -611,9 +611,23 @@
 							<a href="{{ route('admin.focus_areas.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Focus Area</a>
 						</li>
 						<li>
-							<a href="{{ route('admin.focus_areas.index') }}"><i class="bx bx-right-arrow-alt"></i>All Focus Areas</a>
+					<a href="{{ route('admin.focus_areas.index') }}"><i class="bx bx-right-arrow-alt"></i>All Focus Areas</a>
 						</li>
 					</ul>
+				</li>
+				<li>
+					<a href="{{ route('empowering_lives.create') }}">
+						<div class="parent-icon"><i class='bx bx-heart'></i>
+						</div>
+						<div class="menu-title">Empowering Lives</div>
+					</a>
+				</li>
+				<li>
+					<a href="{{ route('development_sustainability.create') }}">
+						<div class="parent-icon"><i class='bx bx-layer'></i>
+						</div>
+						<div class="menu-title">Dev & Sustainability</div>
+					</a>
 				</li>
 				{{-- <li>
 					<a href="{{ route('logo.create') }}">
@@ -640,7 +654,7 @@
 					<a href="{{ route('mission.vision.create') }}">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-calendar-star'></i>
 						</div>
-						<div class="menu-title">Mission Vision</div>
+						<div class="menu-title">Mission & Vision</div>
 					</a>
 				</li>
 				<li>
@@ -689,17 +703,17 @@
 					</ul>
 				</li>
 				<li>
-					<a  class="has-arrow">
+					<a class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-briefcase'></i>
 						</div>
-						<div class="menu-title">Programs</div>
+						<div class="menu-title">Program Highlights</div>
 					</a>
 					<ul>
 						<li>
-                            <a href="{{ route('programs.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Program</a>
+                            <a href="{{ route('programs.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Highlight</a>
 						</li>
 						<li>
-                            <a href="{{ route('programs.index') }}"><i class="bx bx-right-arrow-alt"></i>All Programs</a>
+                            <a href="{{ route('programs.index') }}"><i class="bx bx-right-arrow-alt"></i>All Highlights</a>
 						</li>
 					</ul>
 				</li>

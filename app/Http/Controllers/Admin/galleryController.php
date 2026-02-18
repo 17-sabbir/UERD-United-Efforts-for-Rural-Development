@@ -13,48 +13,76 @@ class galleryController extends Controller
     {
         return view('admin.gallery.add');
     }
+
     // Store
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'image' => 'required|mimes:jpg,png,jpeg,gif',
+        $request->validate([
+            'album' => 'required',
+            'title' => 'nullable',
+            'description' => 'nullable',
+            'image' => 'required_without:images|nullable|mimes:jpg,png,jpeg,gif',
+            'images' => 'required_without:image|nullable|array',
+            'images.*' => 'file|mimes:jpg,png,jpeg,gif',
         ]);
 
-        $imageName = '';
-        if ($image = $request->file('image')) {
-            $imageName = rand(10000, 99999) . "gallery." . $image->getClientOriginalExtension();
-            $image->move(public_path('images/gallery/'), $imageName);
+        $files = $request->file('images', []);
+        if (empty($files) && $request->file('image')) {
+            $files = [$request->file('image')];
         }
 
-        $gallery = array(
-            'title' => $request->title,
-            'description' => $request->description,
-            'image' => $imageName
-        );
+        $rows = [];
+        $fileCount = count($files);
 
-        DB::table('gallery')->insert($gallery);
+        foreach ($files as $index => $file) {
+            $imageName = uniqid('', true).'_gallery.'.$file->getClientOriginalExtension();
+            $file->move(public_path('images/gallery/'), $imageName);
+
+            $derivedTitle = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $derivedTitle = trim(str_replace(['_', '-'], ' ', $derivedTitle));
+
+            $title = trim((string) $request->title);
+            if ($title === '') {
+                $title = $derivedTitle !== '' ? $derivedTitle : 'Photo';
+            } elseif ($fileCount > 1) {
+                $title = $title.' ('.($index + 1).')';
+            }
+
+            $rows[] = [
+                'album' => $request->album,
+                'title' => $title,
+                'description' => $request->description,
+                'image' => $imageName,
+            ];
+        }
+
+        DB::table('gallery')->insert($rows);
+
         return redirect()->back()->with('success', 'Successfully inserted data');
     }
 
     // index
     public function index()
     {
-        $gallery = DB::table('gallery')->get();
-        return view('admin.galLery.index', compact('gallery'));
+        $gallery = DB::table('gallery')
+            ->orderBy('album', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.gallery.index', compact('gallery'));
     }
 
     // Destroy
     public function destroy($id)
     {
         $news = DB::table('gallery')->where('id', $id)->first();
-        $oldIamgeName = public_path('images/gallery/' . $news->image);
+        $oldIamgeName = public_path('images/gallery/'.$news->image);
 
         if (file_exists($oldIamgeName)) {
             @unlink($oldIamgeName);
         }
         DB::table('gallery')->where('id', $id)->delete();
+
         return redirect()->back()->with('success', 'Successfully Deleted News');
     }
 
@@ -62,6 +90,7 @@ class galleryController extends Controller
     public function edit($id)
     {
         $gallery = DB::table('gallery')->where('id', $id)->first();
+
         return view('admin.gallery.edit', compact('gallery'));
     }
 
@@ -69,6 +98,7 @@ class galleryController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
+            'album' => 'required',
             'title' => 'required',
             'description' => 'required',
         ]);
@@ -76,26 +106,27 @@ class galleryController extends Controller
         $gallery = DB::table('gallery')->where('id', $id)->first();
 
         $imageName = '';
-        $oldIamgeName = public_path('images/gallery/' . $gallery->image);
+        $oldIamgeName = public_path('images/gallery/'.$gallery->image);
 
         if ($image = $request->file('image')) {
             if (file_exists($oldIamgeName)) {
                 @unlink($oldIamgeName);
             }
-            $imageName = rand(10000, 99999) . "gallery." . $image->getClientOriginalExtension();
+            $imageName = rand(10000, 99999).'gallery.'.$image->getClientOriginalExtension();
             $image->move(public_path('images/gallery'), $imageName);
         } else {
             $imageName = $gallery->image;
         }
 
-        $gallery = array(
+        $gallery = [
+            'album' => $request->album,
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $imageName
-        );
+            'image' => $imageName,
+        ];
 
         DB::table('gallery')->where('id', $id)->update($gallery);
+
         return redirect()->back()->with('update', 'Successfully Updated News');
     }
 }
-

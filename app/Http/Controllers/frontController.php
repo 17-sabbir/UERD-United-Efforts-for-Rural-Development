@@ -133,7 +133,7 @@ class frontController extends Controller
 
     // Ongoing Project
     public function ongoing_project(){
-        $project = DB::table('ongoing_project')->paginate(15);
+        $project = DB::table('ongoing_project')->orderBy('priority', 'desc')->paginate(15);
         return view('frontend.ongoing_project',compact('project'));
     }
 
@@ -287,8 +287,64 @@ class frontController extends Controller
 
     //__All Photos
     public function all_photos(){
-        $photos = DB::table('gallery')->paginate('30');
-        return view('frontend.photos_all',compact('photos'));
+        $photosByAlbum = DB::table('gallery')
+            ->orderBy('album', 'asc')
+            ->orderBy('id', 'desc')
+            ->get()
+            ->groupBy(function ($row) {
+                return $row->album ?: 'General';
+            });
+
+        return view('frontend.photos_all', compact('photosByAlbum'));
+    }
+
+    // __Albums
+    public function albums()
+    {
+        $albumAgg = DB::table('gallery')
+            ->select('album', DB::raw('MAX(id) as cover_id'), DB::raw('COUNT(*) as photo_count'))
+            ->groupBy('album')
+            ->orderBy('cover_id', 'desc')
+            ->get();
+
+        $coverRows = DB::table('gallery')
+            ->whereIn('id', $albumAgg->pluck('cover_id'))
+            ->get()
+            ->keyBy('id');
+
+        $albums = $albumAgg->map(function ($row) use ($coverRows) {
+            $name = $row->album ?: 'General';
+            $cover = $coverRows->get($row->cover_id);
+
+            return (object) [
+                'name' => $name,
+                'cover_image' => $cover ? $cover->image : null,
+                'photo_count' => (int) $row->photo_count,
+            ];
+        })->values();
+
+        return view('frontend.gallery_albums', compact('albums'));
+    }
+
+    // __Single Album Photos
+    public function album_photos($album)
+    {
+        $query = DB::table('gallery')->orderBy('id', 'desc');
+
+        if ($album === 'General') {
+            $query->where(function ($q) {
+                $q->whereNull('album')->orWhere('album', 'General');
+            });
+        } else {
+            $query->where('album', $album);
+        }
+
+        $photos = $query->get();
+
+        return view('frontend.album_photos', [
+            'album' => $album,
+            'photos' => $photos,
+        ]);
     }
 
     // FAQ

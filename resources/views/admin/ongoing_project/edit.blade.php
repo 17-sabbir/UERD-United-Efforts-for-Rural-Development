@@ -21,6 +21,26 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
+                            <label for="priority" class="form-label">Priority (Higher number = Shows first on Home Page)</label>
+                            <input type="number" name="priority" class="form-control" id="priority" value="{{ $project->priority ?? 0 }}" placeholder="Enter Priority">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="location" class="form-label">Locations</label>
+                            <input type="text" name="location" class="form-control" id="location" value="{{ $project->location ?? '' }}" placeholder="Enter Locations">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="duration" class="form-label">Project Duration</label>
+                            <input type="text" name="duration" class="form-control" id="duration" value="{{ $project->duration ?? '' }}" placeholder="Enter Duration (e.g. 2022 to Continue)">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="donors" class="form-label">Donors</label>
+                            <input type="text" name="donors" class="form-control" id="donors" value="{{ $project->donors ?? '' }}" placeholder="Enter Donors">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="remark" class="form-label">Remark</label>
+                            <input type="text" name="remark" class="form-control" id="remark" value="{{ $project->remark ?? '' }}" placeholder="Enter Remark">
+                        </div>
+                        <div class="col-md-12">
                             <label for="img" class="form-label">Image</label>
                             <input type="file" name="image" class="form-control" id="img">
                             <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
@@ -30,7 +50,7 @@
                             <img src="{{ asset('images/project/'.$project->image) }}" alt="" width="100">
                         </div>
                         <div class="col-md-12">
-                            <label for="description" class="form-label">Description</label>
+                            <label for="description" class="form-label">Objective of the Project</label>
                             <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3">
                                 {{ $project->description }}
                             </textarea>

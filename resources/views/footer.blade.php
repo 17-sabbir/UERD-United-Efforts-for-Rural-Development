@@ -5,9 +5,11 @@
             {{-- logo and short description --}}
             <div class="col-md-4 d-flex align-items-center">
                 <div>
-                    <img src="{{ asset('images/application/771129main_logo.jpg') }}" alt="Logo" style="width: 200px; height: auto;">
-                    <p class="py-3 text-justified text-white" style="font-size: 14px;">
-                        ERA is a women led organization working in norther Bangladesh since 1999. ERA is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of of People's Republic of Government of Bangladesh.
+                    <div style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; background: #fff;">
+                        <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="UERD logo" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <p class="mt-3 mb-0 text-white" style="font-size: 14px; line-height: 1.7; text-align: justify;">
+                        UERD is a women-led organization working in northern Bangladesh since 1999. UERD is registered (No. 2443) with the NGO Affairs Bureau (NGOAB) of the Prime Minister’s Office, Government of the People’s Republic of Bangladesh.
                     </p>
                 </div>
             </div>
@@ -44,17 +46,36 @@
                         </ul>
                     </div>
                     <div class="col-md-3 py-4">
-                        <h5 class="pb-3">CONTACT</h5>
-                        <div class="d-flex py-2" style="font-size: 14px;">
-                            <div><i class="fa-solid fa-location-dot mx-2"></i></div>
-                            <div>R.K Road Khalilganj Bazar, Kurigram</div>
-                        </div>
-                        <div class="d-flex py-2" style="font-size: 14px;">
-                            <div><i class="fa-solid fa-phone mx-2"></i></div>
-                            <div>01719-691409 <br>  01324-194889 </div>
+                        <h5 class="pb-3">Contact Us</h5>
+                        <div style="font-size: 14px;">
+                            <div class="d-flex align-items-start py-2">
+                                <div class="me-2"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    Head Office: Milon Bazar,<br>
+                                    Post Office: Charnarchar,<br>
+                                    Upazila: Derai,<br>
+                                    District: Sunamganj.
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start py-2">
+                                <div class="me-2"><i class="fa-regular fa-envelope"></i></div>
+                                <div>uerd5678@gmail.com, rabicoming2009@yahoo.com</div>
+                            </div>
+                            <div class="d-flex align-items-start py-2">
+                                <div class="me-2"><i class="fa-solid fa-phone"></i></div>
+                                <div>01720-566027</div>
+                            </div>
+                            <div class="d-flex align-items-start py-2">
+                                <div class="me-2"><i class="fa-solid fa-user"></i></div>
+                                <div>
+                                    Contact Person:
+                                    {{ contact_person() && contact_person()->name ? contact_person()->name : 'Rabindu Chandra Roy' }}
+                                </div>
+                            </div>
+                            <a href="{{ route('contact') }}" class="btn btn-light btn-sm mt-2 px-3">Get in touch</a>
                         </div>
                         <div>
-                            <ul class="d-flex">
+                            <ul class="d-flex mt-3 mb-0">
                                 <li class="me-2">
                                 <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f px-1 text-white"></i></a>
                                 </li class="mx-2">
@@ -84,7 +105,7 @@
 {{-- copyright --}}
 <div class="p-3" style="background: #0A2540;">
     <div class="container text-white d-flex justify-content-between">
-       <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="United Efforts for Rural Development">ERA</abbr></small>
+       <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="United Efforts for Rural Development">UERD</abbr></small>
        <small> Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small>
     </div>
 </div>

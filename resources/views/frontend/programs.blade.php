@@ -8,7 +8,7 @@
         <li><a href="{{ url('/') }}">Home</a></li>
         <li>Programs</li>
       </ol>
-      <h2>Featured Programs</h2>
+      <h2>Program Highlights</h2>
     </div>
   </section>
   <!-- End Breadcrumbs -->
@@ -16,7 +16,7 @@
   <section id="contact" class="contact bg-light p-0">
     <div class="container bg-white py-5" data-aos="fade-up">
       <div class="section-title">
-        <h2>Featured Programs</h2>
+        <h2>Program Highlights</h2>
         @if(isset($programs) && count($programs) > 0)
             <div class="row p-3">
                 @foreach($programs as $program)

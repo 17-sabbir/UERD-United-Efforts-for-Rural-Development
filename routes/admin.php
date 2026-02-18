@@ -3,7 +3,10 @@
 use App\Http\Controllers\Admin\aboutusController;
 use App\Http\Controllers\Admin\applicationController;
 use App\Http\Controllers\Admin\ChiefMessageController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DevelopmentSustainabilityController;
 use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\Admin\EmpoweringLivesController;
 use App\Http\Controllers\Admin\ExecutiveCommitteeController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FocusAreaController;
@@ -15,18 +18,17 @@ use App\Http\Controllers\Admin\legalAffilationController;
 use App\Http\Controllers\Admin\messageController;
 use App\Http\Controllers\Admin\missionController;
 use App\Http\Controllers\Admin\newsController;
-use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\partnersController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\policyController;
 use App\Http\Controllers\Admin\ProgramController;
-use App\Http\Controllers\Admin\PublicationController;
 use App\Http\Controllers\Admin\projectArchiveController;
 use App\Http\Controllers\Admin\projectController;
+use App\Http\Controllers\Admin\PublicationController;
 use App\Http\Controllers\Admin\sliderController;
 use App\Http\Controllers\Admin\StoryController;
-use App\Http\Controllers\Admin\subscribeController;
 use App\Http\Controllers\Admin\StrategicPlanController;
+use App\Http\Controllers\Admin\subscribeController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\VolunteerController;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +41,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Auth::routes(['register' => false]);
 });
-
 
 Route::get('/admin/home', [HomeController::class, 'index'])->middleware('auth')->name('admin.home');
 Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware('auth')->name('admin.dashboard');
@@ -259,5 +260,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('donations/verify/{id}', [DonationController::class, 'verify'])->name('admin.donations.verify');
     Route::post('donations/reject/{id}', [DonationController::class, 'reject'])->name('admin.donations.reject');
     Route::get('donations/delete/{id}', [DonationController::class, 'destroy'])->name('admin.donations.delete');
+
+    // __Empowering Lives__//
+    Route::get('empowering-lives/create', [EmpoweringLivesController::class, 'create'])->name('empowering_lives.create');
+    Route::post('empowering-lives/store', [EmpoweringLivesController::class, 'store'])->name('empowering_lives.store');
+
+    // __Development & Sustainability__ //
+    Route::get('development-sustainability/create', [DevelopmentSustainabilityController::class, 'create'])->name('development_sustainability.create');
+    Route::post('development-sustainability/store', [DevelopmentSustainabilityController::class, 'store'])->name('development_sustainability.store');
 
 });

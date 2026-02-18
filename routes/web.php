@@ -13,14 +13,43 @@ require __DIR__.'/admin.php';
 
 Route::get('/', function () {
     $slider = DB::table('slider')->get();
-    $project = DB::table('ongoing_project')->take(3)->get();
+    $project = DB::table('ongoing_project')->orderBy('priority', 'desc')->take(3)->get();
     $news = DB::table('latest_news')->take(6)->get();
-    $gallery = DB::table('gallery')->take(6)->get();
+    $mission_vision = DB::table('mission_vision')->orderBy('id', 'asc')->first();
+    $albumAgg = DB::table('gallery')
+        ->select('album', DB::raw('MAX(id) as cover_id'), DB::raw('COUNT(*) as photo_count'))
+        ->groupBy('album')
+        ->orderBy('cover_id', 'desc')
+        ->get();
+
+    $coverRows = DB::table('gallery')
+        ->whereIn('id', $albumAgg->pluck('cover_id'))
+        ->get()
+        ->keyBy('id');
+
+    $albums = $albumAgg->map(function ($row) use ($coverRows) {
+        $name = $row->album ?: 'General';
+        $cover = $coverRows->get($row->cover_id);
+
+        return (object) [
+            'name' => $name,
+            'cover_image' => $cover ? $cover->image : null,
+            'photo_count' => (int) $row->photo_count,
+        ];
+    })->values();
+
+    $albumsPreview = $albums->take(6);
+    $hasMoreAlbums = $albums->count() > 6;
     $application = DB::table('applications')->get()->first();
-    $programs = DB::table('programs')->orderBy('created_at', 'desc')->take(6)->get();
+    // Fetch Empowering Lives data
+    $empoweringLives = DB::table('empowering_lives')->first();
+    // Fetch Development Sustainability data
+    $devSustainability = DB::table('development_sustainability')->first();
+    // Fetch 3 programs for the homepage highlights
+    $programs = DB::table('programs')->where('status', 'active')->orderBy('created_at', 'desc')->take(3)->get();
     $stories = DB::table('stories')->orderBy('id', 'desc')->get();
 
-    return view('home', compact('slider', 'project', 'news', 'gallery', 'application', 'programs', 'stories'));
+    return view('home', compact('slider', 'project', 'news', 'mission_vision', 'albumsPreview', 'hasMoreAlbums', 'application', 'programs', 'stories', 'empoweringLives', 'devSustainability'));
 });
 
 Route::post('user/subscribe', [frontController::class, 'subscribe'])->name('user.subscribe');
@@ -66,6 +95,8 @@ Route::post('message/store', [frontController::class, 'messageStore'])->name('me
 
 // __Gallery
 Route::get('gallery/all', [frontController::class, 'all_photos'])->name('photo.all');
+Route::get('gallery/albums', [frontController::class, 'albums'])->name('gallery.albums');
+Route::get('gallery/album/{album}', [frontController::class, 'album_photos'])->name('gallery.album');
 
 // FAQ
 Route::get('faq',[frontController::class, 'faq'])->name('faq');

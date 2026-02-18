@@ -20,20 +20,26 @@
 
         <div class="py-2">
             <h3 class="text-center">PHOTO <span class="text-danger">GALLERY</span></h3>
-            <p class="text-center text-secondary">The sole meaning of life is to serve humanity</p>
+          <p class="text-center text-secondary">Stay updated with UERD’s latest news and events, offering insights into our impactful initiatives and community engagements.</p>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5">
-            @foreach ($photos as $key => $data)
-                <div class="col mt-3">
-                    <img src="{{ asset('images/gallery/'.$data->image) }}" class="img-fluid" alt="image">
+        @foreach ($photosByAlbum as $album => $items)
+          <div class="pt-4">
+            <h4 class="mb-3">{{ $album }}</h4>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              @foreach ($items as $data)
+                <div class="col">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ asset('images/gallery/'.$data->image) }}" class="card-img-top" alt="{{ $data->title }}">
+                    <div class="card-body py-2">
+                      <div class="fw-semibold">{{ $data->title }}</div>
+                    </div>
+                  </div>
                 </div>
-            @endforeach
-        </div>
-
-        <div class="d-flex justify-content-center py-4">
-            {{ $photos->links() }}
-        </div>
+              @endforeach
+            </div>
+          </div>
+        @endforeach
 
       </div>
 

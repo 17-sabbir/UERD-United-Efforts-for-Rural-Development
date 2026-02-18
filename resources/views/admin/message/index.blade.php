@@ -12,8 +12,8 @@
                         {{ session()->get('success') }}
                     </div>
                 @endif
-                <div class="p-4 border rounded table-responsive">
-                    <table class="table table-hover table-striped">
+                <div class="p-4 border rounded table-responsive" style="max-width: 100%; overflow-x: auto;">
+                    <table class="table table-hover table-striped" style="min-width: 720px;">
                         <thead>
                             <tr>
                                 <th>SL.</th>

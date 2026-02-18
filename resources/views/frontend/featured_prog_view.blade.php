@@ -8,7 +8,7 @@
         <li><a href="{{ url('/') }}">Home</a></li>
         <li>Programs</li>
       </ol>
-      <h2>Featured Programs</h2>
+      <h2>Program Highlights</h2>
     </div>
   </section>
   <!-- End Breadcrumbs -->
@@ -17,7 +17,7 @@
   <section id="contact" class="contact bg-light p-0">
     <div class="container bg-white py-5" data-aos="fade-up">
       <div class="section-title">
-        <h2>Features Programs</h2>
+        <h2>Program Highlights</h2>
         <div class="row">
             <div class="col text-start">
                 <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="w-50">

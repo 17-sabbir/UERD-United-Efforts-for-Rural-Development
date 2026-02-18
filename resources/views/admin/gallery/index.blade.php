@@ -17,11 +17,12 @@
                         {{ session()->get('update') }}
                     </div>
                 @endif
-                <div class="p-4 border rounded table-responsive">
-                    <table class="table table-hover table-striped">
+                <div class="p-4 border rounded table-responsive" style="overflow-x:auto;">
+                    <table class="table table-hover table-striped" style="min-width: 900px;">
                         <thead>
                             <tr>
                                 <th>SL.</th>
+                                <th>Album</th>
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Description</th>
@@ -32,6 +33,7 @@
                             @foreach ($gallery as $key=>$gallery)
                             <tr>
                                 <td class="align-middle">{{ ++$key }}</td>
+                                <td class="align-middle">{{ $gallery->album ?? 'General' }}</td>
                                 <td class="align-middle">{{ $gallery->title }}</td>
                                 <td class="align-middle">
                                     <img src="{{ asset('images/gallery/'.$gallery->image) }}" alt="" width="50">

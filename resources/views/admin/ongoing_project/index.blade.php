@@ -38,15 +38,19 @@
                     </div>
                 @endif
 
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0 align-middle">
-                        <thead class="table-light">
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto; overflow-x: auto;">
+                    <table class="table table-hover mb-0 align-middle" style="min-width: 1200px;">
+                        <thead class="table-light" style="position: sticky; top: 0; z-index: 10;">
                             <tr>
                                 <th width="5%" class="ps-3 text-secondary">#</th>
-                                <th width="15%" class="text-secondary">Preview</th>
-                                <th width="25%" class="text-secondary">Title</th>
-                                <th width="35%" class="text-secondary">Description</th>
-                                <th width="15%" class="text-center text-secondary">Actions</th>
+                                <th width="10%" class="text-secondary">Preview</th>
+                                <th width="15%" class="text-secondary">Title</th>
+                                <th width="5%" class="text-center text-secondary">Priority</th>
+                                <th width="20%" class="text-secondary">Objective of the Project</th>
+                                <th width="15%" class="text-secondary">Locations</th>
+                                <th width="10%" class="text-secondary">Duration</th>
+                                <th width="10%" class="text-secondary">Donors</th>
+                                <th width="10%" class="text-center text-secondary">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,11 +63,17 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h6 class="mb-0 text-dark font-weight-bold" style="font-size: 15px;">{{ $item->title }}</h6>
+                                    <h6 class="mb-0 text-dark font-weight-bold text-wrap" style="font-size: 15px; max-width: 250px;">{{ $item->title }}</h6>
                                 </td>
-                                <td class="text-muted">
+                                <td class="text-center">
+                                    <span class="badge bg-info text-dark">{{ $item->priority }}</span>
+                                </td>
+                                <td class="text-muted text-wrap" style="max-width: 300px;">
                                     {{ Str::limit($item->description, 60, "...") }}
                                 </td>
+                                <td class="text-secondary">{{ $item->location }}</td>
+                                <td class="text-secondary">{{ $item->duration }}</td>
+                                <td class="text-secondary">{{ $item->donors }}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('project.edit', $item->id) }}" class="btn btn-sm btn-primary" title="Edit">

@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('title')
-Association for Alternative Development
+United Efforts for Rural Development (UERD)
 @endsection
 
 @section('content')
@@ -33,50 +33,120 @@ Association for Alternative Development
 </div>
 {{-- end of slide --}}
 
-{{-- Who we are --}}
-<div class="bg-light">
-    <div class="container bg-white px-2">
-        <div class="pt-5 pb-3">
-            <h3 class="text-center">Who <span class="text-danger">we are</span></h3>
-            <p class="text-center text-secondary">The sole meaning of life is to serve humanity</p>
-        </div>
-
-        <div class="row g-4 pb-3">
-            <div class="col-lg-10 col-md-12 col-12 mx-auto">
-                <p class="text-center text-secondary">ERA is a women led organization working in norther Bangladesh since 1999. ERA is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People's Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 ) from the Directorate of Women’s Affairs (DWA) in 1999. ERA also has the registration from the Directorate of Youth Development, Govt. of Bangladesh.</p>
-            </div>
-        </div>
-        <div class="text-center pb-5">
-            <a href="{{ route('programs.all') }}" class="btn btn-danger my-1"><i class="fa-solid fa-hands-holding-child"></i> Programs</a>
-            <a href="{{ route('invoked.career') }}" class="btn btn-primary my-1"><i class="fa-solid fa-circle-nodes"></i> Get Involved</a>
-            <a href="{{ route('contact') }}" class="btn btn-danger my-1"><i class="fa-solid fa-phone-volume"></i> Contact us</a>
-        </div>
-        {{-- <hr class="py-3 mt-5 m-0"> --}}
-    </div>
-</div>
+{{-- Who we are (Empowering Lives moved to Highlights section) --}}
+<!-- <div class="bg-light"> ... moved below ... </div> -->
 {{-- End of who we are --}}
 
+{{-- Highlights (from provided design) --}}
+<div class="bg-light">
+    {{-- Removed bg-white from container to let card backgrounds show --}}
+    <div class="container px-2 py-5">
+        <div class="row g-4 d-flex align-items-stretch">
+            {{-- 1. Empowering Lives (Dynamic) --}}
+            <div class="col-lg-6 d-flex">
+                <div class="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column h-100 position-relative border-start border-5 border-danger">
+                    @if(isset($empoweringLives))
+                        <div class="mb-4">
+                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">{{ $empoweringLives->title }}</h2>
+                            {{-- Specific thick red underline --}}
+                            <div style="width: 60px; height: 5px; background-color: #dc3545; border-radius: 2px;"></div>
+                        </div>
+                        <div class="text-secondary mb-4 flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                            {!! nl2br(e($empoweringLives->description)) !!}
+                        </div>
+                    @else
+                        <div class="mb-4">
+                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">Empowering Lives</h2>
+                            <div style="width: 60px; height: 5px; background-color: #dc3545; border-radius: 2px;"></div>
+                        </div>
+                        <p class="text-secondary flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                            Our organization has helped countless people overcome poverty and achieve their dreams through our various development programs.
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+            {{-- 2. Development & Sustainability (Dynamic) --}}
+            <div class="col-lg-6 d-flex">
+                <div class="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column h-100 border-end border-5 border-dark">
+                    @if(isset($devSustainability))
+                        <div class="mb-4">
+                             {{-- Parse title to check for '&' and style specifically if needed, otherwise just display --}}
+                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">
+                                {!! str_replace('&', '<span class="text-danger">&</span>', $devSustainability->title) !!}
+                                {{-- Simple trick: highlight the '&' symbol if present --}}
+                            </h2>
+                            <div style="width: 60px; height: 5px; background-color: #102a43; border-radius: 2px;"></div>
+                        </div>
+                        <div class="text-secondary flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                            {!! nl2br(e($devSustainability->description)) !!}
+                        </div>
+                    @else
+                        <div class="mb-4">
+                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">Development <span class="text-danger">&</span> sustainability</h2>
+                            <div style="width: 60px; height: 5px; background-color: #102a43; border-radius: 2px;"></div>
+                        </div>
+                        <p class="text-secondary mb-0 flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                            We believe that everyone deserves the opportunity to live a happy and fulfilling life, and we are committed to working with rural communities to create a better future for all.
+                        </p>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        {{-- Buttons Section (Moved outside the card to a new row) --}}
+        <div class="row mt-4">
+            <div class="col-12 d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{{ route('programs.all') }}" class="btn btn-danger fw-bold py-2 px-4 d-flex align-items-center" style="background-color: #e63935; border: none; border-radius: 6px; font-size: 1.1rem;">
+                    <i class="fa-solid fa-hands-holding-child me-2 fs-4"></i> Programs
+                </a>
+                <a href="{{ route('invoked.career') }}" class="btn btn-dark fw-bold py-2 px-4 d-flex align-items-center" style="background-color: #102a43; border: none; border-radius: 6px; font-size: 1.1rem;">
+                    <i class="fa-solid fa-share-nodes me-2 fs-4"></i> Get Involved
+                </a>
+                <a href="{{ route('contact') }}" class="btn btn-danger fw-bold py-2 px-4 d-flex align-items-center" style="background-color: #e63935; border: none; border-radius: 6px; font-size: 1.1rem;">
+                        <i class="fa-solid fa-phone-volume me-2 fs-4"></i> Contact us
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{{-- End Highlights --}}
+
 {{-- Mission Vision--}}
-<div class="bg-light py-5" style="background-image: url('{{ asset('img/slider/slider-2.jpg') }}');background-attachment:fixed;">
-    <div class="container px-2">
-        <div class="row">
+@php
+    $missionBg = isset($mission_vision) && !empty($mission_vision->background_image)
+        ? asset('images/mission_vision/'.$mission_vision->background_image)
+        : asset('img/slider/slider-2.jpg');
+@endphp
+<div class="py-5" style="background-image: url('{{ $missionBg }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+    <div style="background: rgba(0,0,0,0.55);">
+    <div class="container px-2 py-4">
+        <div class="row g-3 align-items-stretch" style="min-height: 320px;">
             <div class="col-md-4 col-12 mx-auto">
-                <h3 class="text-center text-white"><span style="border-bottom:3px solid #e00324;">Mission</span> <i class="fa-solid fa-bullseye text-danger"></i></h3>
-                <p style="text-align: justify;" class="text-white">
-                    ERA mission is to empower women particularly young women towards building a better world by developing their capacities and to make them active contributor within the society. Therefore ERA undertakes initiatives/programs that empower the neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them.
-                </p>
+                <div class="h-100 p-3 rounded" style="background: rgba(255,255,255,0.10);">
+                    <h3 class="text-center text-white"><span style="border-bottom:3px solid #e00324;">Mission</span> <i class="fa-solid fa-bullseye text-danger"></i></h3>
+                    <p style="text-align: justify;" class="text-white mb-0">
+                        {{ $mission_vision->mission ?? '' }}
+                    </p>
+                </div>
             </div>
             <div class="col-md-4 my-2">
-                <img src="{{ asset('img/mission.jpg') }}" class="rounded" alt="Mission and Vision" width="100%">
+                <div class="h-100 rounded" style="overflow:hidden; background: rgba(255,255,255,0.10);">
+                    <img src="{{ asset('img/mission.jpg') }}" class="img-fluid" alt="Mission and Vision" style="width: 100%; height: 100%; min-height: 320px; object-fit: cover; object-position: center; display:block;">
+                </div>
             </div>
             <div class="col-md-4 col-12 mx-auto">
-                <h3 class="text-center text-white"><span style="border-bottom:3px solid #0073ff;">Vision</span> <i class="fa-solid fa-eye-low-vision text-primary"></i></h3>
-                <p style="text-align: justify;" class="text-white">
-                    Contribute to establish an enabling environment for realization and protection of fundamental human rights of men and women where people are self-reliant as individuals.
-                </p>
+                <div class="h-100 p-3 rounded" style="background: rgba(255,255,255,0.10);">
+                    <h3 class="text-center text-white"><span style="border-bottom:3px solid #0073ff;">Vision</span> <i class="fa-solid fa-eye-low-vision text-primary"></i></h3>
+                    <p style="text-align: justify;" class="text-white mb-0">
+                        {{ $mission_vision->vision ?? '' }}
+                    </p>
+                </div>
             </div>
         </div>
         {{-- <hr class="py-3 m-0"> --}}
+    </div>
     </div>
 </div>
 {{-- End of Mission Vision --}}
@@ -85,8 +155,8 @@ Association for Alternative Development
 <div class="bg-light">
     <div class="container bg-white px-2">
         <div class="pt-5 pb-3">
-            <h3 class="text-center"> Featured <span class="text-danger">Programs</span></h3>
-            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: ERA's Featured Program brings transformative opportunities to communities in northern Bangladesh.</p>
+            <h3 class="text-center"> Program <span class="text-danger">Highlights</span></h3>
+            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: UERD's Program Highlights brings transformative opportunities to communities in northern Bangladesh.</p>
         </div>
 
         <div class="row p-3">
@@ -148,10 +218,8 @@ Association for Alternative Development
             @endif
         </div>
 
-        <div class="d-flex justify-content-center pt-5 pb-3">
-            <a href="{{ route('programs.all') }}" class="btn btn-danger"><i class="fa-solid fa-eye"></i> View all Programs</a>
-        </div>
-        <hr class="py-3 mt-4 m-0">
+        {{-- Removed 'View all Programs' button as requested --}}
+        
     </div>
 </div>
 {{-- End of Featured Programs --}}
@@ -273,20 +341,33 @@ Association for Alternative Development
     <div class="container bg-white">
         <div class="pt-5 pb-2">
             <h3 class="text-center">Photo <span class="text-danger">Gallery</span></h3>
-            <p class="text-center text-secondary">Stay updated with ERA's latest news and events, offering insights into our impactful initiatives and community engagements.</p>
+            <p class="text-center text-secondary">Stay updated with UERD’s latest news and events, offering insights into our impactful initiatives and community engagements.</p>
+            @if (!empty($hasMoreAlbums))
+                <div class="d-flex justify-content-end">
+                    <a href="{{ route('gallery.albums') }}" class="text-decoration-none">Show more</a>
+                </div>
+            @endif
         </div>
 
-        {{-- photo --}}
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
-            @foreach ($gallery as $key => $data)
-                <div class="col mt-3">
-                    <img src="{{ asset('images/gallery/'.$data->image) }}" class="img-fluid rounded" alt="image">
+        {{-- albums --}}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (($albumsPreview ?? []) as $album)
+                <div class="col">
+                    <a href="{{ route('gallery.album', ['album' => $album->name]) }}" class="text-decoration-none text-dark">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <img src="{{ asset('images/gallery/'.($album->cover_image ?? '')) }}" class="card-img-top" alt="{{ $album->name }}">
+                            <div class="card-body py-2">
+                                <div class="fw-semibold">{{ $album->name }}</div>
+                                <div class="text-secondary" style="font-size: 12px;">{{ $album->photo_count }} Photos</div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
         {{-- button --}}
         <div class="d-flex justify-content-center py-5">
-            <a href="{{ route('photo.all') }}" class="btn btn-danger"><i class="fa-solid fa-eye"></i> See all Photos</a>
+            <a href="{{ route('photo.all') }}" class="btn btn-danger"><i class="fa-solid fa-eye"></i> All Photos</a>
         </div>
     </div>
 </div>

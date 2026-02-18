@@ -29,7 +29,13 @@ class projectController extends Controller
 
         $project = array(
                 'title' => $request->title,
+                'priority' => $request->priority,
                 'description' => $request->description,
+                'objective' => $request->objective,
+                'location' => $request->location,
+                'duration' => $request->duration,
+                'donors' => $request->donors,
+                'remark' => $request->remark,
                 'image' => $imageName,
             );
 
@@ -39,7 +45,7 @@ class projectController extends Controller
 
     // index
     public function index(){
-        $project = DB::table('ongoing_project')->get();
+        $project = DB::table('ongoing_project')->orderBy('priority', 'desc')->get();
         return view('admin.ongoing_project.index', compact('project'));
     }
 
@@ -87,7 +93,13 @@ class projectController extends Controller
 
         $project = array(
             'title' => $request->title,
+            'priority' => $request->priority,
             'description' => $request->description,
+            'objective' => $request->objective,
+            'location' => $request->location,
+            'duration' => $request->duration,
+            'donors' => $request->donors,
+            'remark' => $request->remark,
             'image' => $imageName
         );
 

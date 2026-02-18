@@ -14,6 +14,13 @@
                     <form class="row g-3" action="{{ route('gallery.update',$gallery->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
+                            <label for="album" class="form-label">Album Name</label>
+                            <input type="text" name="album" class="form-control @error('album') is-invalid @enderror" id="album" value="{{ old('album', $gallery->album ?? 'General') }}">
+                            @error('album')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $gallery->title }}">
                             @error('title')

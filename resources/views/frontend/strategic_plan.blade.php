@@ -28,7 +28,7 @@
                     @if (!empty($plan->image))
                       <img src="{{ asset('images/strategic_plans/images/'.$plan->image) }}" alt="{{ $plan->title }}" style="max-width: 70%; height: auto;">
                     @else
-                      <img src="{{ asset('img/logo.png') }}" alt="" width="50%">
+                      <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="UERD logo" width="50%">
                     @endif
                   </div>
                   <div class="card-footer">

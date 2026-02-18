@@ -21,6 +21,26 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
+                            <label for="priority" class="form-label">Priority (Higher number = Shows first on Home Page)</label>
+                            <input type="number" name="priority" class="form-control" id="priority" value="0" placeholder="Enter Priority">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="location" class="form-label">Locations</label>
+                            <input type="text" name="location" class="form-control" id="location" placeholder="Enter Locations">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="duration" class="form-label">Project Duration</label>
+                            <input type="text" name="duration" class="form-control" id="duration" placeholder="Enter Duration (e.g. 2022 to Continue)">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="donors" class="form-label">Donors</label>
+                            <input type="text" name="donors" class="form-control" id="donors" placeholder="Enter Donors">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="remark" class="form-label">Remark</label>
+                            <input type="text" name="remark" class="form-control" id="remark" placeholder="Enter Remark">
+                        </div>
+                        <div class="col-md-12">
                             <label for="img" class="form-label">Image<span class="text-danger">*</span></label>
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="img">
                             <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
@@ -31,7 +51,7 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="description" class="form-label">Description<span class="text-danger">*</span></label>
+                            <label for="description" class="form-label">Objective of the Project<span class="text-danger">*</span></label>
                             <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3">
 
                             </textarea>
