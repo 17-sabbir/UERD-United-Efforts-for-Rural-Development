@@ -20,10 +20,12 @@
 
         <div class="row">
             <div class="col-md-4">
-                <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="activity" width="100%">
+            @if(!empty($project->image))
+              <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="project" width="100%">
+            @endif
             </div>
             <div class="col-md-8 text-left">
-                <h2 class="text-left fw-bold">{{ $project->title }}</h2>
+            <h2 class="text-left fw-bold">{{ $project->project_name }}</h2>
                 <p class="text-secondary" style="font-size: 12px;">
                     <i class="fas fa-calendar-minus"></i>
                     {{ date("d/m/Y", strtotime($project->created_at ?? now())) }}
@@ -31,17 +33,17 @@
                 
                 <div class="card bg-light mb-3">
                     <div class="card-body">
-                        @if($project->location)
+                        @if($project->locations)
                         <div class="row mb-2">
                             <div class="col-sm-3 fw-bold">Locations:</div>
-                            <div class="col-sm-9">{{ $project->location }}</div>
+                          <div class="col-sm-9">{{ $project->locations }}</div>
                         </div>
                         @endif
                         
-                        @if($project->duration)
+                        @if($project->project_duration || $project->start_year)
                         <div class="row mb-2">
                             <div class="col-sm-3 fw-bold">Duration:</div>
-                            <div class="col-sm-9">{{ $project->duration }}</div>
+                          <div class="col-sm-9">{{ project_period($project) }}</div>
                         </div>
                         @endif
                         
@@ -63,7 +65,7 @@
 
                 <h5 class="fw-bold">Objective of the Project</h5>
                 <p style="text-align:justify;">
-                    {{ $project->description }}
+                  {{ $project->objectives }}
                 </p>
             </div>
             <div class="py-3">

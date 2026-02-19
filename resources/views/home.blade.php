@@ -245,18 +245,20 @@ United Efforts for Rural Development (UERD)
             @foreach ($project as $key=>$project)
                 <div class="col">
                     <div class="card shadow border-0">
-                        <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="activity" width="100%" height="200px">
+                        @if(!empty($project->image))
+                            <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="project" width="100%" height="200px">
+                        @endif
                         <div class="card-body">
                             <h4 class="card-title">
-                                {{ Str::limit( $project->title ,15, '...') }}
+                                {{ Str::limit($project->project_name, 15, '...') }}
                             </h4>
                             <p class="text-secondary" style="font-size: 12px;">
                                 <i class="fas fa-calendar-minus"></i>
-                                {{ date("d/m/Y  h:i:s a") }}
+                                {{ date("d/m/Y", strtotime($project->created_at ?? now())) }}
                             </p>
                             <hr>
                             <p class="card-text py-1">
-                                {{ Str::limit($project->description, 75,"...") }}
+                                {{ Str::limit($project->objectives, 75, "...") }}
                             </p>
                             <a href="{{ route('ongoing.project.view',$project->id) }}" class="text-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Read More</a>
                         </div>
@@ -426,12 +428,13 @@ United Efforts for Rural Development (UERD)
 {{-- End of Impact part --}}
 
 {{-- Success Stories --}}
+@if(isset($stories) && count($stories) > 0)
 <div class="bg-light pb-5" style=" background-image: url('{{asset('img/testimonial_back.jpg')}}');">
     <div class="container">
         <div class="py-5">
             <h3 class="text-center text-white">Success Stories</h3>
         </div>
-        
+
         {{-- Rating Filter --}}
         <div class="text-center mb-4">
             <button class="btn btn-light me-2 filter-btn" data-rating="5">5 Star</button>
@@ -441,11 +444,11 @@ United Efforts for Rural Development (UERD)
             <button class="btn btn-light me-2 filter-btn" data-rating="1">1 Star</button>
             <button class="btn btn-light filter-btn active" data-rating="0">All</button>
         </div>
-        
+
         {{-- Success Stories Slider --}}
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                @forelse($stories as $index => $story)
+                @foreach($stories as $index => $story)
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }} story-item" data-rating="{{ $story->rating }}">
                     <div class="text-center px-3">
                         <div class="rating mb-3">
@@ -463,26 +466,10 @@ United Efforts for Rural Development (UERD)
                         <p class="text-muted" style="color: #ddd !important;">{{ $story->beneficiary_title }}</p>
                     </div>
                 </div>
-                @empty
-                <!-- Default Testimonial if no stories exist -->
-                <div class="carousel-item active story-item" data-rating="3">
-                    <div class="text-center">
-                        <img src="{{ asset('img/testimonial.jpg') }}" class="img-fluid rounded-circle border" alt="Testimonial" width="100" height="100">
-                        <h5 class="mt-3 text-white">Jane Alam</h5>
-                        <p class="text-white">UERD's tireless efforts in promoting education, healthcare, and economic opportunities have transformed the lives of many marginalized individuals. Their holistic approach to development is making a lasting difference in our region.</p>
-                        <div class="rating">
-                            <span class="text-warning">&#9733;</span>
-                            <span class="text-warning">&#9733;</span>
-                            <span class="text-warning">&#9733;</span>
-                            <span class="text-white">&#9734;</span>
-                            <span class="text-white">&#9734;</span>
-                        </div>
-                    </div>
-                </div>
-                @endforelse
+                @endforeach
             </div>
             <!-- Carousel Controls -->
-            @if($stories && count($stories) > 1)
+            @if(count($stories) > 1)
             <button class="carousel-control-prev text-dark" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -502,11 +489,11 @@ United Efforts for Rural Development (UERD)
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         const selectedRating = this.getAttribute('data-rating');
-        
+
         // Update active button
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-        
+
         // Filter stories
         const stories = document.querySelectorAll('.story-item');
         stories.forEach(story => {
@@ -519,6 +506,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 </script>
+@endif
 
 {{-- subscription part --}}
 <div class="bg-light pb-5">

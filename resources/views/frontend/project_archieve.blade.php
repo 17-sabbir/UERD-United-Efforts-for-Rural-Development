@@ -30,11 +30,19 @@
             </thead>
             <tbody>
                 @foreach ($project as $key=>$proj)
+                @php
+                  $projectName = data_get($proj, 'project_name') ?? data_get($proj, 'name') ?? data_get($proj, 'title');
+                  $projectDonors = data_get($proj, 'donors') ?? data_get($proj, 'partners');
+                  $projectDuration = data_get($proj, 'project_duration');
+                  $fromDate = data_get($proj, 'from_date');
+                  $toDate = data_get($proj, 'to_date');
+                  $projectPeriod = project_period($proj) ?: trim(($fromDate ?? '').(($fromDate || $toDate) ? ' - ' : '').($toDate ?? ''));
+                @endphp
                     <tr>
                         <td class="align-middle">{{ ++$key }}</td>
-                        <td class="text-start align-middle">{{ $proj->name }}</td>
-                        <td class="text-start align-middle">{{ $proj->partners }}</td>
-                        <td class="align-middle text-start">{{ $proj->from_date }} - {{ $proj->to_date }}</td>
+                  <td class="text-start align-middle">{{ $projectName }}</td>
+                  <td class="text-start align-middle">{{ $projectDonors }}</td>
+                  <td class="align-middle text-start">{{ $projectPeriod }}</td>
                     </tr>
                 @endforeach
             </tbody>

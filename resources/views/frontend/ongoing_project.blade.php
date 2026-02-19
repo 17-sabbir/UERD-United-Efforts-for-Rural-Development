@@ -39,12 +39,12 @@
                         <td class="text-center">{{ $project->firstItem() + $key }}.</td>
                         <td>
                             <a href="{{ route('ongoing.project.view',$data->id) }}" class="text-decoration-none fw-bold text-dark">
-                                {{ $data->title }}
+                          {{ $data->project_name }}
                             </a>
                         </td>
-                        <td>{{ $data->description }}</td>
-                        <td>{{ $data->location }}</td>
-                        <td class="text-center">{{ $data->duration }}</td>
+                      <td>{{ $data->objectives }}</td>
+                      <td>{{ $data->locations }}</td>
+                      <td class="text-center">{{ project_period($data) }}</td>
                         <td>{{ $data->donors }}</td>
                         <td>{{ $data->remark }}</td>
                     </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Project;
 
 class frontController extends Controller
 {
@@ -127,19 +128,22 @@ class frontController extends Controller
 
     // Project Archieve
     public function proj_archieve(){
-        $project = DB::table('projects')->get();
+        $project = Project::where('status', 'completed')->orderBy('created_at', 'desc')->get();
         return view('frontend.project_archieve',compact('project'));
     }
 
     // Ongoing Project
     public function ongoing_project(){
-        $project = DB::table('ongoing_project')->orderBy('priority', 'desc')->paginate(15);
+        $project = Project::where('status', 'ongoing')
+            ->orderBy('priority', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
         return view('frontend.ongoing_project',compact('project'));
     }
 
     //__ongoing Project view__//
     public function project_view($id){
-        $project = DB::table('ongoing_project')->where('id',$id)->first();
+        $project = Project::findOrFail($id);
         return view('frontend.project_view',compact('project'));
     }
 
@@ -268,20 +272,20 @@ class frontController extends Controller
     // Message Store
     public function messageStore(Request $request){
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'subject' => 'required',
-            'message' => 'required'
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|max:5000',
         ]);
 
-        $message = array([
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message
+        DB::table('messages')->insert([
+            'name' => trim($validatedData['name']),
+            'email' => strtolower(trim($validatedData['email'])),
+            'subject' => trim($validatedData['subject']),
+            'message' => trim($validatedData['message']),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-
-        DB::table('messages')->insert($message);
         return redirect()->back()->with('success','Successfully Submitted Your Message.');
     }
 

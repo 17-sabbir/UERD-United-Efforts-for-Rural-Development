@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <strong class="d-block text-dark">Duration:</strong>
-                                    <span class="text-muted">{{ $project->project_duration }}</span>
+                                    <span class="text-muted">{{ project_period($project) }}</span>
                                 </div>
                                 <div class="col-12 mb-2">
                                     <strong class="d-block text-dark">Donor:</strong>
@@ -79,7 +79,7 @@
                                 {!! nl2br(Str::limit($project->objectives, 200)) !!}
                             </p>
                             <div class="border-top pt-3">
-                                <small class="text-muted d-block mb-1"><strong>Duration:</strong> {{ $project->project_duration }}</small>
+                                <small class="text-muted d-block mb-1"><strong>Duration:</strong> {{ project_period($project) }}</small>
                                 <small class="text-muted d-block"><strong>Donor:</strong> {{ $project->donors }}</small>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 {!! nl2br(Str::limit($project->objectives, 200)) !!}
                             </p>
                             <div class="border-top pt-3">
-                                <small class="text-muted d-block mb-1"><strong>Duration:</strong> {{ $project->project_duration }}</small>
+                                <small class="text-muted d-block mb-1"><strong>Duration:</strong> {{ project_period($project) }}</small>
                                 <small class="text-muted d-block"><strong>Donor:</strong> {{ $project->donors }}</small>
                             </div>
                         </div>

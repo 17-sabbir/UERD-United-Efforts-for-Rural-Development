@@ -106,6 +106,12 @@
             border-bottom: 1px solid #f0f0f0;
         }
 
+		.sidebar-header .logo-icon {
+			width: 52px;
+			height: 52px;
+			object-fit: contain;
+		}
+
         .logo-text {
             background: -webkit-linear-gradient(45deg, #007bff, #6f42c1);
             -webkit-background-clip: text;
@@ -526,17 +532,17 @@
 					</ul>
 				</li>
 				<li>
-					<a  class="has-arrow">
+					<a class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-square"></i>
 						</div>
-						<div class="menu-title">Ongoing Project</div>
+						<div class="menu-title">Projects</div>
 					</a>
 					<ul>
 						<li>
-                            <a href="{{ route('project.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Project</a>
+							<a href="{{ route('admin.projects.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Project</a>
 						</li>
 						<li>
-                            <a href="{{ route('project.index') }}"><i class="bx bx-right-arrow-alt"></i>All Project</a>
+							<a href="{{ route('admin.projects.index') }}"><i class="bx bx-right-arrow-alt"></i>All Projects</a>
 						</li>
 					</ul>
 				</li>
@@ -793,16 +799,11 @@
 					</ul>
 				</li>
 				<li>
-					<a  class="has-arrow">
+					<a href="{{ route('message.index') }}">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-message-rounded-dots'></i>
 						</div>
 						<div class="menu-title">User Message</div>
 					</a>
-					<ul>
-						<li>
-                            <a href="{{ route('message.index') }}"><i class="bx bx-right-arrow-alt"></i>All Message</a>
-						</li>
-					</ul>
 				</li>
 				<li>
 					<a  class="has-arrow">
@@ -834,21 +835,7 @@
 						</li>
 					</ul>
 				</li> --}}
-				<li>
-					<a  class="has-arrow">
-						<div class="parent-icon"><i class='fadeIn animated bx bx-notification'></i>
-						</div>
-						<div class="menu-title">Project Archive</div>
-					</a>
-					<ul>
-						<li>
-                            <a href="{{ route('project.archive.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Project</a>
-						</li>
-						<li>
-                            <a href="{{ route('project.archive.index') }}"><i class="bx bx-right-arrow-alt"></i>All Project</a>
-						</li>
-					</ul>
-				</li>
+				{{-- Project Archive merged into Projects module --}}
 				<li>
 					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-file'></i>
@@ -1240,22 +1227,41 @@
             });
 
             // --- 2. Sidebar Scroll Position Fix ---
-            // Using SimpleBar's scroll element
-            var sidebar = document.querySelector('.sidebar-wrapper .simplebar-content-wrapper');
-            
-            // If sidebar exists
-            if (sidebar) {
-                // Restore scroll position
-                var scrollPos = localStorage.getItem('sidebarScrollPos');
-                if (scrollPos) {
-                    sidebar.scrollTop = scrollPos;
-                }
+			function getSidebarScrollEl() {
+				return document.querySelector('.sidebar-wrapper .simplebar-content-wrapper')
+					|| document.querySelector('.sidebar-wrapper');
+			}
 
-                // Save scroll position on scroll
-                sidebar.addEventListener('scroll', function() {
-                    localStorage.setItem('sidebarScrollPos', sidebar.scrollTop);
-                });
-            }
+			function restoreSidebarScroll() {
+				var sidebar = getSidebarScrollEl();
+				if (!sidebar) return;
+
+				var scrollPos = localStorage.getItem('sidebarScrollPos');
+				if (scrollPos !== null) {
+					sidebar.scrollTop = parseInt(scrollPos, 10) || 0;
+				}
+			}
+
+			function bindSidebarScrollSaver() {
+				var sidebar = getSidebarScrollEl();
+				if (!sidebar) return;
+
+				sidebar.addEventListener('scroll', function() {
+					localStorage.setItem('sidebarScrollPos', String(sidebar.scrollTop));
+				}, { passive: true });
+
+				window.addEventListener('beforeunload', function() {
+					localStorage.setItem('sidebarScrollPos', String(sidebar.scrollTop));
+				});
+			}
+
+			// Restore after page load + small delay (SimpleBar can reset scroll during init)
+			restoreSidebarScroll();
+			bindSidebarScrollSaver();
+			window.addEventListener('load', function () {
+				setTimeout(restoreSidebarScroll, 50);
+				setTimeout(restoreSidebarScroll, 250);
+			});
         });
     </script>
 </body>

@@ -1,9 +1,9 @@
 {{-- Footer started --}}
 <div class="bg-dark" style="border-top:5px solid #F0B429;">
-    <div class="container py-5">
+    <div class="container pt-3 pb-3">
         <div class="row" id="footer_link_wrapper">
             {{-- logo and short description --}}
-            <div class="col-md-4 d-flex align-items-center">
+            <div class="col-md-4 d-flex align-items-start mb-4 mb-md-0">
                 <div>
                     <div style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; background: #fff;">
                         <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="UERD logo" style="width: 100%; height: 100%; object-fit: cover; display: block;">
@@ -15,9 +15,9 @@
             </div>
 
             {{-- link and address --}}
-            <div class="col-md-8 mt-5 text-white">
+            <div class="col-md-8 mt-4 mt-md-0 text-white">
                 <div class="row">
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-2">
                         <h5 class="pb-3">Who we are</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
@@ -25,7 +25,7 @@
                             <li class="py-1"><a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-2">
                         <h5 class="pb-3">What we do</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
@@ -33,7 +33,7 @@
                             <li class="py-1"><a class="dropdown-item" href="{{ route('programs.all') }}">Programs</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-2">
                         <h5 class="pb-3">HELP</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a href="{{ route('faq') }}" class="text-white">FAQ</a></li>
@@ -43,7 +43,7 @@
                             <li class="py-1"><a href="{{ route('volunterr.opportunities') }}" class="text-white">Volunteer Opportunities</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-2">
                         <h5 class="pb-3">Contact Us</h5>
                         <div style="font-size: 14px;">
                             <div class="d-flex align-items-start py-2">
@@ -62,13 +62,6 @@
                             <div class="d-flex align-items-start py-2">
                                 <div class="me-2"><i class="fa-solid fa-phone"></i></div>
                                 <div>01720-566027</div>
-                            </div>
-                            <div class="d-flex align-items-start py-2">
-                                <div class="me-2"><i class="fa-solid fa-user"></i></div>
-                                <div>
-                                    Contact Person:
-                                    {{ contact_person() && contact_person()->name ? contact_person()->name : 'Rabindu Chandra Roy' }}
-                                </div>
                             </div>
                             <a href="{{ route('contact') }}" class="btn btn-light btn-sm mt-2 px-3">Get in touch</a>
                         </div>

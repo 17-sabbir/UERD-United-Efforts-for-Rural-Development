@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\frontController;
 use App\Http\Controllers\Frontend\PageController;
+use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
-require __DIR__.'/admin.php';
 /*
 |--------------------------------------------------------------------------
 | Clints Routes
@@ -14,7 +13,11 @@ require __DIR__.'/admin.php';
 
 Route::get('/', function () {
     $slider = DB::table('slider')->get();
-    $project = DB::table('ongoing_project')->orderBy('priority', 'desc')->take(3)->get();
+    $project = Project::where('status', 'ongoing')
+        ->orderBy('priority', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->take(3)
+        ->get();
     $news = DB::table('latest_news')->take(6)->get();
     $mission_vision = DB::table('mission_vision')->orderBy('id', 'asc')->first();
     $albumAgg = DB::table('gallery')

@@ -102,6 +102,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('message/index', [messageController::class, 'index'])->name('message.index');
     Route::get('message/delete/{id}', [messageController::class, 'destroy'])->name('message.delete');
     Route::get('message/view/{id}', [messageController::class, 'view'])->name('message.view');
+    Route::post('message/reply/{id}', [messageController::class, 'reply'])->name('message.reply');
+    Route::post('message/mark-all-read', [messageController::class, 'markAllRead'])->name('message.markAllRead');
 
     // Contact
     Route::get('contact/add', [ContactController::class, 'add'])->name('contact.add');
@@ -277,6 +279,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/organization-profile', [OrganizationProfileController::class, 'update'])->name('organization_profile.update');
 
     // Projects
-    Route::resource('projects', ProjectListController::class);
+    Route::resource('projects', ProjectListController::class)->names('admin.projects');
+    Route::patch('projects/{project}/toggle-status', [ProjectListController::class, 'toggleStatus'])->name('admin.projects.toggle-status');
 
 });

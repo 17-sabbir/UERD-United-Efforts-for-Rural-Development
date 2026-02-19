@@ -115,9 +115,7 @@
                         @enderror
                     </div>
                     <div class="mb-2">
-                        <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="3" placeholder="Message">
-                            {{ old('message') }}
-                        </textarea>
+                        <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="3" placeholder="Message">{{ old('message') }}</textarea>
                         @error('message')
                             <div class="text-danger">
                                 {{ $message }}

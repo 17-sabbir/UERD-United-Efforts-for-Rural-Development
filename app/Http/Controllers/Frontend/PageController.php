@@ -17,7 +17,7 @@ class PageController extends Controller
 
     public function projects()
     {
-        $projects = Project::latest()->get();
+        $projects = Project::orderBy('priority', 'desc')->latest()->get();
 
         return view('frontend.pages.projects', compact('projects'));
     }

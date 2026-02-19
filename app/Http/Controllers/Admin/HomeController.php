@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Donation;
+use App\Models\Project;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $total_projects = DB::table('ongoing_project')->count();
+        $total_projects = Project::count();
         $total_donations = Donation::count();
         $total_members = DB::table('team_members')->count();
         $total_news = DB::table('latest_news')->count();
