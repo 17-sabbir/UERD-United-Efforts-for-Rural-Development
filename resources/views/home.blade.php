@@ -1,43 +1,249 @@
 @extends('main')
 
+@section('body_class', 'is-home')
+
 @section('title')
 United Efforts for Rural Development (UERD)
 @endsection
 
 @section('content')
 {{-- slider --}}
+<style>
+    .hero-subtitle {
+        background-color: rgba(60, 60, 60, 0.6); /* Dark semi-transparent background */
+        backdrop-filter: blur(5px);
+        padding: 10px 25px; /* More padding */
+        border-radius: 50px; /* Pill shape */
+        display: inline-block;
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+        color: #F0B429; /* Gold text */
+        border: 1px solid #F0B429; /* Gold border */
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 700;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .hero-title {
+        font-family: 'Playfair Display', serif; 
+        font-size: 5rem; 
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        max-width: 900px;
+    }
+
+    .hero-indented {
+        padding-left: 60px; /* Only the 2nd part moves right */
+    }
+
+    @@media (max-width: 575.98px) {
+        .hero-indented { padding-left: 0; }
+        .hero-title { font-size: 3rem; }
+    }
+
+    .typewriter-cursor {
+        display: inline;
+        position: relative;
+    }
+
+    .typewriter-cursor::after {
+        content: "";
+        display: inline-block;
+        width: 3px;
+        height: 1em;
+        margin-left: 8px;
+        background: #F0B429;
+        vertical-align: -0.12em;
+        animation: tw-blink 0.9s step-end infinite;
+    }
+
+    @@keyframes tw-blink {
+        50% { opacity: 0; }
+    }
+    
+    .hero-desc {
+        font-size: 1.25rem;
+        max-width: 700px;
+        margin-bottom: 40px;
+        line-height: 1.6;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .btn-hero-primary {
+        background-color: #F59E0B; /* Orange */
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px; /* Reduced from 15px 40px */
+        font-weight: 600;
+        font-size: 1rem; /* Reduced from 1.1rem */
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px; /* Reduced specific gap */
+    }
+    
+    .btn-hero-primary:hover {
+        background-color: #D97706;
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .btn-hero-secondary {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 50px;
+        padding: 10px 30px; /* Reduced from 13px 40px */
+        font-weight: 600;
+        font-size: 1rem; /* Reduced from 1.1rem */
+        margin-left: 20px;
+        transition: all 0.3s;
+    }
+    
+    .btn-hero-secondary:hover {
+        background-color: white;
+        color: #1a202c;
+        transform: translateY(-2px);
+    }
+
+    /* Slider Arrows */
+    .carousel-control-prev, .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        backdrop-filter: blur(5px);
+        opacity: 0.8;
+        margin: 0 20px;
+    }
+    .carousel-control-prev:hover, .carousel-control-next:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        opacity: 1;
+    }
+    
+    /* Dots at bottom */
+    .carousel-indicators [data-bs-target] {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+    }
+    .carousel-indicators .active {
+        background-color: #F59E0B;
+        width: 25px;
+        border-radius: 5px; /* Pill shape for active */
+    }
+</style>
+
+{{-- Home design tokens (color + spacing consistency) --}}
+<style>
+    :root {
+        --uerd-green: #198754;
+        --uerd-accent: #F0B429;
+        --uerd-accent-strong: #EA9918;
+        --uerd-soft-bg: rgba(25, 135, 84, 0.06);
+        --uerd-muted: #6c757d;
+        --uerd-card-border: rgba(0, 0, 0, 0.06);
+        --uerd-card-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .uerd-section {
+        padding: 3rem 0;
+    }
+    @@media (min-width: 992px) {
+        .uerd-section {
+            padding: 4rem 0;
+        }
+    }
+
+    .uerd-soft-section {
+        background-color: var(--uerd-soft-bg);
+    }
+
+    .uerd-btn-pill {
+        border-radius: 999px;
+        padding: 12px 28px;
+        font-weight: 700;
+        font-size: 1.05rem;
+        transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .uerd-btn-pill:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+    }
+
+    .uerd-card-hover {
+        transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .uerd-card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.10);
+    }
+</style>
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        @foreach ($slider as $skey => $slider_item)
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $skey }}" class="{{ $skey == 0 ? 'active' : '' }}" aria-current="{{ $skey == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $skey + 1 }}"></button>
+        @endforeach
+    </div>
+
     <div class="carousel-inner">
         @foreach ($slider as $skey => $slider)
         <div class="carousel-item @if($skey == 0) active @endif">
-            <div style="position: relative; height: 85vh; overflow: hidden;">
+            <div style="position: relative; height: 100vh; overflow: hidden;"> <!-- Full viewport height -->
                 <img src="{{ asset('images/slider/'.$slider->image) }}" class="d-block w-100" alt="UERD" style="object-fit: cover; height: 100%; width: 100%;">
                 
-                {{-- Dark Overlay --}}
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+                {{-- Dark Gradient Overlay --}}
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);"></div>
 
-                <div class="carousel-caption d-flex flex-column justify-content-center align-items-start h-100" style="position: absolute; top: 0; bottom: 0; left: 10%; right: 10%; text-align: left;">
-                    <h2 class="text-white fw-bold typing-text" style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ $slider->title }}</h2>
-                    <div class="my-3" style="width:100px; border-bottom:5px solid #dc3545;"></div>
-                    <p style="font-size:1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);" class="text-white">
-                        {{ $slider->description }}
-                    </p>
-                    <div>
-                        <a href="{{ route('donate') }}" class="btn btn-warning fw-bold px-4 py-2 mt-3" style="box-shadow: 3px 3px 6px rgba(0,0,0,0.3);"><i class="fa-solid fa-sack-dollar"></i> Donate now</a>
+                <div class="container-fluid h-100 position-absolute top-0 start-0 px-lg-3">
+                    <div class="d-flex flex-column justify-content-start h-100 text-white" style="padding-top: 106px;">
+                        <div>
+                            <span class="hero-subtitle">UNITED EFFORTS FOR RURAL DEVELOPMENT</span>
+                        </div>
+                        <div class="hero-indented"> <!-- Indented Content -->
+                            <h2 class="hero-title">
+                                <span class="js-typewriter typewriter-cursor hero-title-text" data-text="{{ e($slider->title) }}">{{ $slider->title }}</span>
+                            </h2>
+                            
+                            <p class="hero-desc">
+                                <span class="js-typewriter hero-desc-text" data-text="{{ e($slider->description) }}">{{ $slider->description }}</span>
+                            </p>
+                            
+                            <div class="d-flex align-items-center">
+                                <a href="{{ route('donate') }}" class="btn btn-hero-primary">
+                                    <i class="fa-regular fa-heart me-2"></i> Donate Now
+                                </a>
+                                <a href="{{ route('programs.all') }}" class="btn btn-hero-secondary">
+                                    Our Programs
+                                </a>
+                            </div>
+                        </div> <!-- End Indented Content -->
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
+        
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 {{-- end of slide --}}
 
@@ -46,28 +252,54 @@ United Efforts for Rural Development (UERD)
 {{-- End of who we are --}}
 
 {{-- Highlights (from provided design) --}}
-<div class="bg-light">
+<div class="uerd-soft-section uerd-section">
+    <style>
+        /* Highlights cards (matches provided screenshot) */
+        .uerd-highlights-card {
+            border-radius: 2.25rem;
+        }
+        .uerd-highlights-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+        .uerd-highlights-underline {
+            width: 72px;
+            height: 5px;
+            border-radius: 3px;
+            background-color: var(--uerd-accent-strong);
+        }
+    </style>
+
     {{-- Removed bg-white from container to let card backgrounds show --}}
-    <div class="container px-2 py-5">
+    <div class="container px-2">
         <div class="row g-4 d-flex align-items-stretch">
             {{-- 1. Empowering Lives (Dynamic) --}}
             <div class="col-lg-6 d-flex">
-                <div class="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column h-100 position-relative border-start border-5 border-danger">
+                <div class="bg-white p-5 shadow-sm w-100 d-flex flex-column h-100 uerd-highlights-card">
+                    <div class="mb-4">
+                        <div class="uerd-highlights-icon bg-success text-white shadow-sm">
+                            <i class="fa-solid fa-seedling fs-4"></i>
+                        </div>
+                    </div>
                     @if(isset($empoweringLives))
                         <div class="mb-4">
-                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">{{ $empoweringLives->title }}</h2>
-                            {{-- Specific thick red underline --}}
-                            <div style="width: 60px; height: 5px; background-color: #dc3545; border-radius: 2px;"></div>
+                            <h2 class="fw-bold text-dark mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">{{ $empoweringLives->title }}</h2>
+                            <div class="uerd-highlights-underline"></div>
                         </div>
-                        <div class="text-secondary mb-4 flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                        <div class="text-secondary mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75;">
                             {!! nl2br(e($empoweringLives->description)) !!}
                         </div>
                     @else
                         <div class="mb-4">
-                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">Empowering Lives</h2>
-                            <div style="width: 60px; height: 5px; background-color: #dc3545; border-radius: 2px;"></div>
+                            <h2 class="fw-bold text-dark mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">Empowering Lives</h2>
+                            <div class="uerd-highlights-underline"></div>
                         </div>
-                        <p class="text-secondary flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                        <p class="text-secondary flex-grow-1 mb-0" style="text-align: justify; font-size: 1.1rem; line-height: 1.75;">
                             Our organization has helped countless people overcome poverty and achieve their dreams through our various development programs.
                         </p>
                     @endif
@@ -76,25 +308,30 @@ United Efforts for Rural Development (UERD)
 
             {{-- 2. Development & Sustainability (Dynamic) --}}
             <div class="col-lg-6 d-flex">
-                <div class="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column h-100 border-end border-5 border-dark">
+                <div class="bg-success text-white p-5 shadow-sm w-100 d-flex flex-column h-100 uerd-highlights-card">
+                    <div class="mb-4">
+                        <div class="uerd-highlights-icon" style="background-color: rgba(255,255,255,0.18);">
+                            <i class="fa-solid fa-globe fs-4"></i>
+                        </div>
+                    </div>
                     @if(isset($devSustainability))
                         <div class="mb-4">
-                             {{-- Parse title to check for '&' and style specifically if needed, otherwise just display --}}
-                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">
-                                {!! str_replace('&', '<span class="text-danger">&</span>', $devSustainability->title) !!}
-                                {{-- Simple trick: highlight the '&' symbol if present --}}
-                            </h2>
-                            <div style="width: 60px; height: 5px; background-color: #102a43; border-radius: 2px;"></div>
+                            @php
+                                $safeTitle = e($devSustainability->title);
+                                $safeTitle = preg_replace('/(Sustainability)/i', '<span style="color: #F0B429;">$1</span>', $safeTitle);
+                            @endphp
+                            <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">{!! $safeTitle !!}</h2>
+                            <div class="uerd-highlights-underline"></div>
                         </div>
-                        <div class="text-secondary flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                        <div class="text-white mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75; opacity: 0.9;">
                             {!! nl2br(e($devSustainability->description)) !!}
                         </div>
                     @else
                         <div class="mb-4">
-                            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">Development <span class="text-danger">&</span> sustainability</h2>
-                            <div style="width: 60px; height: 5px; background-color: #102a43; border-radius: 2px;"></div>
+                            <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">Development &amp; <span style="color: #F0B429;">Sustainability</span></h2>
+                            <div class="uerd-highlights-underline"></div>
                         </div>
-                        <p class="text-secondary mb-0 flex-grow-1" style="text-align: justify; font-size: 1.05rem; line-height: 1.6;">
+                        <p class="text-white mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75; opacity: 0.9;">
                             We believe that everyone deserves the opportunity to live a happy and fulfilling life, and we are committed to working with rural communities to create a better future for all.
                         </p>
                     @endif
@@ -105,14 +342,14 @@ United Efforts for Rural Development (UERD)
         {{-- Buttons Section (Moved outside the card to a new row) --}}
         <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center gap-3 flex-wrap">
-                <a href="{{ route('programs.all') }}" class="btn btn-danger fw-bold py-2 px-4 d-flex align-items-center" style="background-color: #e63935; border: none; border-radius: 6px; font-size: 1.1rem;">
-                    <i class="fa-solid fa-hands-holding-child me-2 fs-4"></i> Programs
+                <a href="{{ route('programs.all') }}" class="btn btn-success text-white d-inline-flex align-items-center gap-2 uerd-btn-pill" style="background-color: #198754; border: none;">
+                    Our Programs <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <a href="{{ route('invoked.career') }}" class="btn btn-dark fw-bold py-2 px-4 d-flex align-items-center" style="background-color: #102a43; border: none; border-radius: 6px; font-size: 1.1rem;">
-                    <i class="fa-solid fa-share-nodes me-2 fs-4"></i> Get Involved
+                <a href="{{ route('invoked.career') }}" class="btn btn-outline-success d-inline-flex align-items-center uerd-btn-pill" style="border-width: 2px;">
+                    Get Involved
                 </a>
-                <a href="{{ route('contact') }}" class="btn btn-danger fw-bold py-2 px-4 d-flex align-items-center" style="background-color: #e63935; border: none; border-radius: 6px; font-size: 1.1rem;">
-                        <i class="fa-solid fa-phone-volume me-2 fs-4"></i> Contact us
+                <a href="{{ route('contact') }}" class="btn btn-outline-success d-inline-flex align-items-center uerd-btn-pill" style="border-width: 2px;">
+                    Contact Us
                 </a>
             </div>
         </div>
@@ -233,95 +470,245 @@ United Efforts for Rural Development (UERD)
 {{-- End of Featured Programs --}}
 
 {{-- Ongoing Project --}}
-<div class="bg-light">
-    <div class="container bg-white px-2">
-        <div class="pt-3 pb-3">
+<div class="uerd-soft-section uerd-section">
+    <style>
+        .uerd-ongoing-card {
+            border-radius: 1.25rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        .uerd-ongoing-card.is-mint {
+            background: linear-gradient(180deg, rgba(25, 135, 84, 0.10) 0%, rgba(255, 255, 255, 0.92) 70%);
+        }
+        .uerd-ongoing-card.is-sand {
+            background: linear-gradient(180deg, rgba(240, 180, 41, 0.12) 0%, rgba(255, 255, 255, 0.92) 70%);
+        }
+        .uerd-ongoing-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+        .uerd-ongoing-readmore {
+            color: #198754;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .uerd-ongoing-readmore:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="container px-2">
+        <div class="pt-2 pb-3 text-center">
             <h3 class="text-center">Ongoing <span class="text-danger">Projects</span></h3>
-            <p class="text-center text-secondary">UERD's Ongoing Projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
+            <p class="text-center text-secondary mb-0">UERD's ongoing projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
         </div>
 
-        {{-- card --}}
-        <div class="row row-cols-1 row-cols-md-3 g-3">
-            @foreach ($project as $key=>$project)
-                <div class="col">
-                    <div class="card shadow border-0">
-                        @if(!empty($project->image))
-                            <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="project" width="100%" height="200px">
-                        @endif
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                {{ Str::limit($project->project_name, 15, '...') }}
-                            </h4>
-                            <p class="text-secondary" style="font-size: 12px;">
-                                <i class="fas fa-calendar-minus"></i>
-                                {{ date("d/m/Y", strtotime($project->created_at ?? now())) }}
+        <div class="row g-4">
+            @foreach ($project as $key => $item)
+                @php($bgClass = $key % 2 === 0 ? 'is-mint' : 'is-sand')
+                <div class="col-lg-4 col-md-6">
+                    <div class="uerd-ongoing-card uerd-card-hover {{ $bgClass }} p-4 h-100 d-flex flex-column">
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="uerd-ongoing-icon bg-success text-white shadow-sm">
+                                <i class="fa-regular fa-folder-open"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1" style="font-weight: 800; letter-spacing: -0.2px;">
+                                    {{ Str::limit($item->project_name, 32, '...') }}
+                                </h5>
+                                <div class="small text-secondary" style="opacity: 0.9;">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    {{ date('d/m/Y', strtotime($item->created_at ?? now())) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <p class="mb-0" style="color: #6c757d; line-height: 1.65;">
+                                {{ Str::limit($item->objectives, 120, '...') }}
                             </p>
-                            <hr>
-                            <p class="card-text py-1">
-                                {{ Str::limit($project->objectives, 75, "...") }}
-                            </p>
-                            <a href="{{ route('ongoing.project.view',$project->id) }}" class="text-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Read More</a>
+                        </div>
+
+                        <div class="mt-auto pt-3">
+                            <a href="{{ route('ongoing.project.view', $item->id) }}" class="uerd-ongoing-readmore d-inline-flex align-items-center gap-2">
+                                Read More <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center py-5">
-            <a href="{{ route('ongoing.project') }}" class="btn btn-danger"> <i class="fa-solid fa-eye"></i> VIEW ALL PROJECTS</a>
-        </div>
-        {{-- card --}}
 
+        <div class="d-flex justify-content-center pt-5">
+            <a href="{{ route('ongoing.project') }}" class="btn btn-outline-success uerd-btn-pill d-inline-flex align-items-center gap-2" style="border-width: 2px;">
+                View All Projects <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
     </div>
 </div>
 
 {{-- Sponsor --}}
-<div style="background-image: url('{{asset('img/slider/slider-1.jpg')}}');border-top:5px solid rgb(255, 0, 68);border-bottom:5px solid rgb(255, 0, 68);">
-    <div class="container py-5">
-        <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Sponsor</span> for Growing Fund</h4>
-        <div class="d-flex justify-content-center">
-            <p class="text-white text-center py-3">
-            Sponsor UERD's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
-        </p>
-        </div>
+<div class="bg-white uerd-section">
+    <style>
+        .uerd-sponsor-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--uerd-accent-strong);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(234, 153, 24, 0.28);
+        }
+        .uerd-sponsor-title {
+            font-weight: 800;
+            letter-spacing: -0.6px;
+        }
+        .uerd-sponsor-desc {
+            max-width: 820px;
+            margin: 0 auto;
+            color: #6c757d;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .uerd-btn-orange {
+            background-color: var(--uerd-accent-strong);
+            border: none;
+            color: #fff;
+        }
+        .uerd-btn-orange:hover {
+            background-color: #d88912;
+            color: #fff;
+        }
+    </style>
 
-        <div class="d-flex justify-content-center">
-            <a href="{{ route('contact') }}" class="btn btn-danger fw-blod"><i class="fa-solid fa-hand-holding-dollar"></i> Become a Sponsor</a>
-        </div>
+    <div class="container px-2">
+        <div class="text-center">
+            <div class="mb-4">
+                <div class="uerd-sponsor-badge">
+                    <i class="fa-regular fa-heart fs-4"></i>
+                </div>
+            </div>
 
+            <h2 class="uerd-sponsor-title mb-3">Sponsor for a Growing Fund</h2>
+            <p class="uerd-sponsor-desc mb-4">
+                Sponsor UERD's growing fund to fuel impactful initiatives in northern Bangladesh. Your support drives essential programs in healthcare, education,
+                and community resilience — making a lasting difference in lives.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{{ route('contact') }}" class="btn uerd-btn-pill uerd-btn-orange d-inline-flex align-items-center gap-2">
+                    <i class="fa-regular fa-heart"></i> Become a Sponsor
+                </a>
+                <a href="{{ route('programs.all') }}" class="btn btn-outline-success uerd-btn-pill d-inline-flex align-items-center gap-2" style="border-width: 2px;">
+                    Learn About Our Work <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 {{-- End of Sponsor --}}
 
 {{-- Latest News and Events --}}
-<div class="bg-light">
-    <div class="container bg-white pt-5">
-        <div class="py-3">
-            <h3 class="text-center">Latest News<span class="text-danger"> & Events</span></h3>
-            <p class="text-center text-secondary">The sole meaning of life is to serve humanity</p>
+<div class="uerd-soft-section uerd-section">
+    <style>
+        .uerd-news-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: rgba(25, 135, 84, 0.12);
+            color: var(--uerd-green);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+        .uerd-news-subtitle {
+            max-width: 820px;
+            margin: 0 auto;
+            color: var(--uerd-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .uerd-news-card {
+            border-radius: 14px;
+            background-color: #ffffff;
+            border: 1px solid var(--uerd-card-border);
+            box-shadow: var(--uerd-card-shadow);
+        }
+        .uerd-news-badge {
+            background-color: rgba(25, 135, 84, 0.10);
+            color: var(--uerd-green);
+            border: 1px solid rgba(25, 135, 84, 0.18);
+            font-weight: 700;
+        }
+        .uerd-news-title {
+            font-weight: 800;
+            letter-spacing: -0.25px;
+        }
+        .uerd-news-link {
+            color: var(--uerd-green);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .uerd-news-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="container px-2">
+        <div class="text-center mb-4">
+            <div class="mb-2">
+                <span class="uerd-news-pill">Stay informed</span>
+            </div>
+            <h2 class="uerd-sponsor-title mb-2">Latest News &amp; Events</h2>
+            <p class="uerd-news-subtitle mb-0">
+                The sole meaning of life is to serve humanity — stay connected with our latest stories and announcements.
+            </p>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach ($news as $key=>$data)
-                <div class="col">
-                    <div class="card border-0 shadow">
-                        <img src="{{ asset('images/news/'.$data->image) }}" class="card-img-top" alt="activity" width="100%" height="200px">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ Str::limit($data->title, 30 , '...') }}</h5>
-                            <p class="text-secondary" style="font-size: 12px;">
-                                <i class="fas fa-calendar-minus"></i>
-                                {{ date("d/m/Y  h:i:s a") }}
-                            </p>
-                            <p class="card-text py-3">
-                                {{ Str::limit($data->description, 75, '...') }}
-                            </p>
-                            <a href="{{ route('latest.news.view',$data->id) }}" class="text-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Read More</a>
+        <div class="row g-4">
+            @foreach ($news as $key => $data)
+                <div class="col-lg-4 col-md-6">
+                    <div class="uerd-news-card uerd-card-hover p-4 h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="badge rounded-pill uerd-news-badge">
+                                {{ (property_exists($data, 'category') && !empty($data->category)) ? $data->category : 'News' }}
+                            </span>
+                            <div class="small text-secondary" style="white-space: nowrap;">
+                                <i class="fa-regular fa-calendar"></i>
+                                {{ date('d M Y', strtotime((property_exists($data, 'created_at') && !empty($data->created_at)) ? $data->created_at : now())) }}
+                            </div>
+                        </div>
+
+                        <h5 class="uerd-news-title mb-2">{{ Str::limit($data->title ?? '', 55, '...') }}</h5>
+                        <p class="mb-0" style="color: #6c757d; line-height: 1.65;">
+                            {{ Str::limit(strip_tags($data->description ?? ''), 120, '...') }}
+                        </p>
+
+                        <div class="mt-auto pt-3">
+                            <a href="{{ route('latest.news.view', $data->id) }}" class="uerd-news-link d-inline-flex align-items-center gap-2">
+                                Read More <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center py-5">
-            <a href="{{ route('latest.news.all') }}" class="btn btn-danger"><i class="fa-solid fa-eye"></i> View all News & Events</a>
+
+        <div class="d-flex justify-content-center pt-5">
+            <a href="{{ route('latest.news.all') }}" class="btn btn-outline-success uerd-btn-pill d-inline-flex align-items-center gap-2" style="border-width: 2px;">
+                View All News &amp; Events <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -329,16 +716,75 @@ United Efforts for Rural Development (UERD)
 
 
 {{-- Volunteer part --}}
-<div style=" background-image: url('{{asset('img/slider/slider-1.jpg')}}');background-attachment:fixed;">
-    <div class="container">
-        <div class="row p-5">
-            <div class="col-md-12">
-                <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Become</span> a Volunteer</h4>
-                <p class="text-white py-2 text-center">
-                    Sponsor UERD's growing fund to fuel impactful initiatives in northern Bangladesh, empowering communities and fostering positive change. Your support drives essential programs in healthcare, education, and community resilience, making a lasting difference in the lives of those in need. Join us in our mission to create a brighter future for all.
-                </p>
-                <div class="text-center">
-                    <a href="#" class="btn btn-danger"><i class="fa-solid fa-user-plus"></i> Registration</a>
+<div class="uerd-volunteer uerd-section" style="background-image: url('{{ asset('img/slider/slider-1.jpg') }}');">
+    <style>
+        .uerd-volunteer {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .uerd-volunteer::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(234, 153, 24, 0.92) 0%, rgba(234, 153, 24, 0.78) 45%, rgba(234, 153, 24, 0.35) 100%);
+        }
+        .uerd-volunteer-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .uerd-volunteer-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background-color: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .uerd-volunteer-title {
+            color: #fff;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+        }
+        .uerd-volunteer-desc {
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+        .uerd-volunteer-btn {
+            background-color: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #fff;
+        }
+        .uerd-volunteer-btn:hover {
+            background-color: rgba(255, 255, 255, 0.28);
+            color: #fff;
+        }
+    </style>
+
+    <div class="uerd-volunteer-inner">
+        <div class="container px-2">
+            <div class="row align-items-center" style="min-height: 220px;">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <span class="uerd-volunteer-pill"><i class="fa-solid fa-people-group"></i> Join the cause</span>
+                    </div>
+                    <h2 class="uerd-volunteer-title mb-2">Become a Volunteer</h2>
+                    <p class="uerd-volunteer-desc mb-4">
+                        Support UERD's initiatives in northern Bangladesh by joining as a volunteer. Your time and skills help strengthen healthcare, education,
+                        and community resilience.
+                    </p>
+                    <a href="{{ route('volunterr.opportunities') }}" class="btn uerd-btn-pill uerd-volunteer-btn d-inline-flex align-items-center gap-2">
+                        Register Now <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -347,143 +793,458 @@ United Efforts for Rural Development (UERD)
 {{-- end of volunteer part --}}
 
 {{-- Photo Gallery --}}
-<div class="bg-light">
-    <div class="container bg-white">
-        <div class="pt-5 pb-2">
-            <h3 class="text-center">Photo <span class="text-danger">Gallery</span></h3>
-            <p class="text-center text-secondary">Stay updated with UERD’s latest news and events, offering insights into our impactful initiatives and community engagements.</p>
-            @if (!empty($hasMoreAlbums))
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('gallery.albums') }}" class="text-decoration-none">Show more</a>
-                </div>
-            @endif
+<div class="uerd-soft-section uerd-section">
+    <style>
+        .uerd-gallery-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: rgba(234, 153, 24, 0.14);
+            color: #EA9918;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+        .uerd-gallery-subtitle {
+            max-width: 820px;
+            margin: 0 auto;
+            color: #6c757d;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .uerd-gallery-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+        .uerd-gallery-cover {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .uerd-gallery-album-title {
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+        .uerd-gallery-meta {
+            font-size: 12px;
+            color: #6c757d;
+        }
+        .uerd-gallery-more {
+            color: #198754;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .uerd-gallery-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="container px-2">
+        <div class="text-center mb-4">
+            <div class="mb-2">
+                <span class="uerd-gallery-pill">Photo gallery</span>
+            </div>
+            <h2 class="uerd-sponsor-title mb-2">Photo Gallery</h2>
+            <p class="uerd-gallery-subtitle mb-0">
+                Explore moments from UERD’s field activities, community programs, and events across northern Bangladesh.
+            </p>
         </div>
 
-        {{-- albums --}}
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @if (!empty($hasMoreAlbums))
+            <div class="d-flex justify-content-end mb-2">
+                <a href="{{ route('gallery.albums') }}" class="uerd-gallery-more d-inline-flex align-items-center gap-2">
+                    Show more <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        @endif
+
+        <div class="row g-4">
             @foreach (($albumsPreview ?? []) as $album)
-                <div class="col">
+                <div class="col-lg-4 col-md-6">
                     <a href="{{ route('gallery.album', ['album' => $album->name]) }}" class="text-decoration-none text-dark">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <img src="{{ asset('images/gallery/'.($album->cover_image ?? '')) }}" class="card-img-top" alt="{{ $album->name }}">
-                            <div class="card-body py-2">
-                                <div class="fw-semibold">{{ $album->name }}</div>
-                                <div class="text-secondary" style="font-size: 12px;">{{ $album->photo_count }} Photos</div>
+                        <div class="uerd-gallery-card uerd-card-hover h-100">
+                            <img src="{{ asset('images/gallery/'.($album->cover_image ?? '')) }}" class="uerd-gallery-cover" alt="{{ $album->name }}">
+                            <div class="p-3">
+                                <div class="d-flex align-items-start justify-content-between gap-3">
+                                    <div class="uerd-gallery-album-title">{{ $album->name }}</div>
+                                    <div class="uerd-gallery-meta" style="white-space: nowrap;">
+                                        <i class="fa-regular fa-images"></i> {{ $album->photo_count }} Photos
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </a>
                 </div>
             @endforeach
         </div>
-        {{-- button --}}
-        <div class="d-flex justify-content-center py-5">
-            <a href="{{ route('photo.all') }}" class="btn btn-danger"><i class="fa-solid fa-eye"></i> All Photos</a>
+
+        <div class="d-flex justify-content-center pt-5">
+            <a href="{{ route('photo.all') }}" class="btn btn-outline-success uerd-btn-pill d-inline-flex align-items-center gap-2" style="border-width: 2px;">
+                All Photos <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 </div>
 {{-- End of Photo Gallery --}}
 
 {{-- Impact part --}}
-<div style="background-image: url('{{asset('img/map.png')}}'); background-attachment:fixed;">
-    <div class="container">
-        <div class="p-5">
-            <h4 class="text-uppercasse text-white text-center"><span class="text-danger">Our</span> Impact</h4>
-            <div class="row justify-content-sm-center">
-                <div class="col-md-6">
-                    <p class="text-white py-2 text-center">
-                        Transforming lives and communities in northern Bangladesh through sustainable development initiatives, empowering individuals and fostering positive change. Join us in making a lasting difference for a brighter future.
-                    </p>
+<div class="uerd-impact uerd-section" style="background-color: var(--uerd-green);">
+    <style>
+        .uerd-impact-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: rgba(234, 153, 24, 0.16);
+            color: #EA9918;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+        .uerd-impact-title {
+            color: #ffffff;
+            font-weight: 900;
+            letter-spacing: -0.7px;
+            line-height: 1.05;
+        }
+        .uerd-impact-underline {
+            width: 72px;
+            height: 5px;
+            border-radius: 3px;
+            background-color: #EA9918;
+        }
+        .uerd-impact-desc {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.75;
+            max-width: 520px;
+        }
+        .uerd-impact-stat {
+            border-radius: 14px;
+            background-color: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        }
+        .uerd-impact-stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.14);
+            border: 1px solid rgba(234, 153, 24, 0.35);
+            color: #EA9918;
+        }
+        .uerd-impact-stat-value {
+            color: #ffffff;
+            font-weight: 900;
+            letter-spacing: -0.4px;
+            line-height: 1.1;
+        }
+        .uerd-impact-stat-label {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.85rem;
+        }
+    </style>
+
+    <div class="container px-2">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="mb-2">
+                    <span class="uerd-impact-pill">Our impact</span>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                {{-- Year --}}
-                <div class="col-md-2 col-sm-6 col-xs-12 bg-white text-center py-2 mx-2 my-1 rounded">
-                    <i class="fa-regular fa-calendar-check text-secondary pt-3"></i>
-                    <h6>Year</h6>
-                    <h2 class="text-danger fw-bold">1998</h2>
-                </div>
-                {{-- District --}}
-                <div class="col-md-2 col-sm-6 col-xs-12 bg-white text-center py-2 mx-2 my-1 rounded">
-                    <i class="fa-solid fa-map-location-dot text-secondary pt-3"></i>
-                    <h6>District</h6>
-                    <h2 class="text-danger fw-bold">03</h2>
-                </div>
-                {{-- Project --}}
-                <div class="col-md-2 col-sm-6 col-xs-12 bg-white text-center py-2 mx-2 my-1 rounded">
-                    <i class="fa-solid fa-hands-holding-circle text-secondary pt-3"></i>
-                    <h6>Project</h6>
-                    <h2 class="text-danger fw-bold">41</h2>
-                </div>
-                {{-- People --}}
-                <div class="col-md-2 col-sm-6 col-xs-12 bg-white text-center py-2 mx-2 my-1 rounded">
-                    <i class="fa-solid fa-users-viewfinder text-secondary pt-3"></i>
-                    <h6>People</h6>
-                    <h2 class="text-danger fw-bold">1.3M</h2>
-                </div>
+                <h2 class="uerd-impact-title mb-3">Over 25 Years of Changing Lives</h2>
+                <div class="uerd-impact-underline mb-3"></div>
+                <p class="uerd-impact-desc mb-0">
+                    Transforming lives and communities in northern Bangladesh through sustainable development initiatives — empowering individuals and fostering
+                    positive change. Join us in making a lasting difference for a brighter future.
+                </p>
             </div>
 
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="uerd-impact-stat p-4 text-center h-100">
+                            <div class="mb-2">
+                                <span class="uerd-impact-stat-icon"><i class="fa-regular fa-calendar-check"></i></span>
+                            </div>
+                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">1998</div>
+                            <div class="uerd-impact-stat-label">Founded</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="uerd-impact-stat p-4 text-center h-100">
+                            <div class="mb-2">
+                                <span class="uerd-impact-stat-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+                            </div>
+                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">03</div>
+                            <div class="uerd-impact-stat-label">Districts</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="uerd-impact-stat p-4 text-center h-100">
+                            <div class="mb-2">
+                                <span class="uerd-impact-stat-icon"><i class="fa-solid fa-hands-holding-circle"></i></span>
+                            </div>
+                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">41+</div>
+                            <div class="uerd-impact-stat-label">Projects</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="uerd-impact-stat p-4 text-center h-100">
+                            <div class="mb-2">
+                                <span class="uerd-impact-stat-icon"><i class="fa-solid fa-users-viewfinder"></i></span>
+                            </div>
+                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">1.3M+</div>
+                            <div class="uerd-impact-stat-label">Lives Impacted</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 {{-- End of Impact part --}}
 
-{{-- Success Stories --}}
-@if(isset($stories) && count($stories) > 0)
-<div class="bg-light pb-5" style=" background-image: url('{{asset('img/testimonial_back.jpg')}}');">
-    <div class="container">
-        <div class="py-5">
-            <h3 class="text-center text-white">Success Stories</h3>
+<!-- Success Stories -->
+<?php if (isset($stories) && count($stories) > 0): ?>
+<div class="uerd-soft-section uerd-section">
+    <style>
+        .uerd-story-filter {
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-weight: 800;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            background: rgba(255, 255, 255, 0.70);
+        }
+        .uerd-story-filter.active {
+            background-color: #198754 !important;
+            border-color: #198754 !important;
+            color: #ffffff !important;
+        }
+        .uerd-story-wrap {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        .uerd-story-card {
+            background: #ffffff;
+            border-radius: 22px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+            padding: 44px 28px;
+        }
+
+        .uerd-story-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 22px;
+            text-align: left;
+        }
+        .uerd-story-left {
+            width: 170px;
+            flex: 0 0 170px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .uerd-story-right {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        .uerd-story-text {
+            max-width: 100%;
+            margin: 0;
+            color: #6c757d;
+            font-style: italic;
+            line-height: 1.85;
+            font-size: 1.05rem;
+        }
+        .uerd-story-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #198754;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 2.2rem;
+        }
+        .uerd-story-avatar-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 999px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border: 2px solid rgba(25, 135, 84, 0.25);
+        }
+        .uerd-story-name {
+            font-weight: 900;
+            letter-spacing: -0.2px;
+        }
+        .uerd-story-role {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        @@media (max-width: 575.98px) {
+            .uerd-story-layout {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .uerd-story-left {
+                width: auto;
+                flex-basis: auto;
+            }
+            .uerd-story-right {
+                width: 100%;
+                text-align: center;
+            }
+            .uerd-story-text { text-align: center; }
+        }
+        /* Carousel controls & indicators to match screenshot */
+        #testimonialCarousel .carousel-control-prev,
+        #testimonialCarousel .carousel-control-next {
+            width: auto;
+            opacity: 1;
+            top: auto;
+            bottom: 26px;
+            transform: none;
+        }
+        #testimonialCarousel .carousel-control-prev { left: calc(50% - 130px); }
+        #testimonialCarousel .carousel-control-next { left: calc(50% + 92px); }
+        .uerd-story-navbtn {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.85);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #198754;
+        }
+        #testimonialCarousel .carousel-control-prev-icon,
+        #testimonialCarousel .carousel-control-next-icon {
+            filter: none;
+            width: 18px;
+            height: 18px;
+        }
+        #testimonialCarousel .carousel-indicators {
+            margin-bottom: 32px;
+        }
+        #testimonialCarousel .carousel-indicators [data-bs-target] {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            border: 0;
+            margin: 0 4px;
+            background-color: rgba(0, 0, 0, 0.18);
+            opacity: 1;
+        }
+        #testimonialCarousel .carousel-indicators .active {
+            width: 18px;
+            background-color: #198754;
+        }
+    </style>
+
+    <div class="container px-2">
+        <div class="text-center mb-4">
+            <h2 class="uerd-sponsor-title mb-2">Success Stories</h2>
         </div>
 
         {{-- Rating Filter --}}
         <div class="text-center mb-4">
-            <button class="btn btn-light me-2 filter-btn" data-rating="5">5 Star</button>
-            <button class="btn btn-light me-2 filter-btn" data-rating="4">4 Star</button>
-            <button class="btn btn-light me-2 filter-btn" data-rating="3">3 Star</button>
-            <button class="btn btn-light me-2 filter-btn" data-rating="2">2 Star</button>
-            <button class="btn btn-light me-2 filter-btn" data-rating="1">1 Star</button>
-            <button class="btn btn-light filter-btn active" data-rating="0">All</button>
+            <button class="btn uerd-story-filter me-2 filter-btn" data-rating="5">5 ★</button>
+            <button class="btn uerd-story-filter me-2 filter-btn" data-rating="4">4 ★</button>
+            <button class="btn uerd-story-filter me-2 filter-btn" data-rating="3">3 ★</button>
+            <button class="btn uerd-story-filter me-2 filter-btn" data-rating="2">2 ★</button>
+            <button class="btn uerd-story-filter me-2 filter-btn" data-rating="1">1 ★</button>
+            <button class="btn uerd-story-filter filter-btn active" data-rating="0">All</button>
         </div>
 
-        {{-- Success Stories Slider --}}
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach($stories as $index => $story)
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }} story-item" data-rating="{{ $story->rating }}">
-                    <div class="text-center px-3">
-                        <div class="rating mb-3">
-                            @for($i = 1; $i <= 5; $i++)
-                                @if($i <= $story->rating)
-                                    <span class="text-warning fs-4">&#9733;</span>
-                                @else
-                                    <span class="text-white fs-4">&#9734;</span>
-                                @endif
-                            @endfor
-                        </div>
-                        <p class="text-white mt-3 mb-4 px-2" style="font-style: italic; font-size: 1.1rem; word-wrap: break-word; overflow-wrap: break-word;">"{{ Str::limit($story->description, 200) }}"</p>
-                        <img src="{{ asset('images/stories/'.$story->image) }}" class="img-fluid rounded-circle border" alt="{{ $story->beneficiary_name }}" width="100" height="100">
-                        <h5 class="mt-3 text-white mb-0">{{ $story->beneficiary_name }}</h5>
-                        <p class="text-muted" style="color: #ddd !important;">{{ $story->beneficiary_title }}</p>
+        <div class="uerd-story-wrap">
+            <!-- Success Stories Slider -->
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <?php if (count($stories) > 1): ?>
+                    <div class="carousel-indicators">
+                        <?php foreach ($stories as $i => $story): ?>
+                            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="<?php echo e($i); ?>" class="<?php echo e($i == 0 ? 'active' : ''); ?>" aria-current="<?php echo e($i == 0 ? 'true' : 'false'); ?>" aria-label="Slide <?php echo e($i + 1); ?>"></button>
+                        <?php endforeach; ?>
                     </div>
+                <?php endif; ?>
+
+                <div class="carousel-inner">
+                    <?php foreach ($stories as $index => $story): ?>
+                        <?php $initial = strtoupper(mb_substr(trim($story->beneficiary_name ?? 'U'), 0, 1)); ?>
+                        <div class="carousel-item <?php echo e($index == 0 ? 'active' : ''); ?> story-item" data-rating="<?php echo e($story->rating); ?>">
+                            <div class="uerd-story-card uerd-card-hover">
+                                <div class="uerd-story-layout">
+                                    <div class="uerd-story-left">
+                                        <div class="mb-3">
+                                            <?php if (!empty($story->image)): ?>
+                                                <img src="<?php echo e(asset('images/stories/'.$story->image)); ?>" class="uerd-story-avatar-img" alt="<?php echo e($story->beneficiary_name); ?>">
+                                            <?php else: ?>
+                                                <span class="uerd-story-avatar"><?php echo e($initial); ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="uerd-story-name text-center"><?php echo e($story->beneficiary_name); ?></div>
+                                        <div class="uerd-story-role text-center"><?php echo e($story->beneficiary_title); ?></div>
+                                    </div>
+
+                                    <div class="uerd-story-right">
+                                        <div class="rating mb-3">
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                                <?php if ($i <= $story->rating): ?>
+                                                    <span class="text-warning fs-5">&#9733;</span>
+                                                <?php else: ?>
+                                                    <span class="text-muted fs-5">&#9733;</span>
+                                                <?php endif; ?>
+                                            <?php endfor; ?>
+                                        </div>
+
+                                        <p class="uerd-story-text mb-0"><?php echo e(Str::limit($story->description, 220)); ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                @endforeach
+
+                <?php if (count($stories) > 1): ?>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="uerd-story-navbtn" aria-hidden="true">
+                            <span class="carousel-control-prev-icon"></span>
+                        </span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="uerd-story-navbtn" aria-hidden="true">
+                            <span class="carousel-control-next-icon"></span>
+                        </span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                <?php endif; ?>
             </div>
-            <!-- Carousel Controls -->
-            @if(count($stories) > 1)
-            <button class="carousel-control-prev text-dark" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            @endif
         </div>
-        {{-- End of Success Stories Slider --}}
+        <!-- End of Success Stories Slider -->
     </div>
 </div>
-{{-- End of Success Stories --}}
+<?php endif; ?>
+<!-- End of Success Stories -->
 
 <script>
 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -494,19 +1255,21 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
 
-        // Filter stories
-        const stories = document.querySelectorAll('.story-item');
-        stories.forEach(story => {
-            if (selectedRating === '0') {
-                story.style.display = 'block';
-            } else {
-                story.style.display = story.getAttribute('data-rating') === selectedRating ? 'block' : 'none';
-            }
+        // Filter stories (keep carousel active item valid)
+        const items = Array.from(document.querySelectorAll('.story-item'));
+        items.forEach(item => {
+            const match = (selectedRating === '0') || (item.getAttribute('data-rating') === selectedRating);
+            item.style.display = match ? '' : 'none';
+            item.classList.remove('active');
         });
+
+        const firstVisible = items.find(i => i.style.display !== 'none');
+        if (firstVisible) {
+            firstVisible.classList.add('active');
+        }
     });
 });
 </script>
-@endif
 
 {{-- subscription part --}}
 <div class="bg-light pb-5">
@@ -557,5 +1320,63 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 @endsection
 
 @push('js')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const carouselEl = document.getElementById('carouselExampleIndicators');
+        if (!carouselEl) return;
+
+        let activeTimeouts = [];
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function clearTypingTimers() {
+            activeTimeouts.forEach((t) => clearTimeout(t));
+            activeTimeouts = [];
+        }
+
+        function typeInto(el, text, speed) {
+            el.textContent = '';
+            let i = 0;
+
+            const tick = () => {
+                if (i > text.length) return;
+                el.textContent = text.slice(0, i);
+                i += 1;
+                activeTimeouts.push(setTimeout(tick, speed));
+            };
+
+            tick();
+        }
+
+        function runTypewriterForActiveSlide() {
+            clearTypingTimers();
+
+            const activeItem = carouselEl.querySelector('.carousel-item.active');
+            if (!activeItem) return;
+
+            const titleEl = activeItem.querySelector('.hero-title-text');
+            const descEl = activeItem.querySelector('.hero-desc-text');
+
+            const titleText = titleEl ? (titleEl.getAttribute('data-text') || titleEl.textContent || '') : '';
+            const descText = descEl ? (descEl.getAttribute('data-text') || descEl.textContent || '') : '';
+
+            if (prefersReducedMotion) {
+                if (titleEl) titleEl.textContent = titleText;
+                if (descEl) descEl.textContent = descText;
+                return;
+            }
+
+            if (titleEl) {
+                activeTimeouts.push(setTimeout(() => typeInto(titleEl, titleText, 28), 150));
+            }
+            if (descEl) {
+                activeTimeouts.push(setTimeout(() => typeInto(descEl, descText, 14), 900));
+            }
+        }
+
+        runTypewriterForActiveSlide();
+        carouselEl.addEventListener('slid.bs.carousel', runTypewriterForActiveSlide);
+    });
+</script>
 
 @endpush

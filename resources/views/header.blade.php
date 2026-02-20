@@ -1,31 +1,113 @@
-<div style="border-bottom:5px solid #F0B429; position: relative; z-index: 1000;">
+<header id="site-header" class="site-header fixed-top" style="border-bottom:5px solid #F0B429; z-index: 1000; transition: all 0.3s ease;">
     <style>
         @media (min-width: 992px) and (max-width: 1399.98px) {
             .navbar .navbar-nav { column-gap: 4px !important; }
             .navbar .navbar-nav .nav-link { padding-left: .5rem; padding-right: .5rem; }
             .navbar .navbar-brand span { font-size: 17px !important; }
         }
+        
+        /* Home Page Header Styles */
+        body.is-home .site-header {
+            background-color: transparent;
+            border-bottom: none !important;
+        }
+        
+        body.is-home .site-header .navbar {
+            background-color: transparent !important;
+            backdrop-filter: none !important;
+            border-bottom: none !important;
+        }
+
+        body.is-home .site-header .nav-link,
+        body.is-home .site-header .navbar-brand span {
+            color: #ffffff !important;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        body.is-home.scrolled .site-header {
+            background-color: #ffffff;
+            border-bottom: 5px solid #F0B429 !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        body.is-home.scrolled .site-header .navbar {
+             background-color: #ffffff !important;
+        }
+
+        body.is-home.scrolled .site-header .nav-link, 
+        body.is-home.scrolled .site-header .navbar-brand * {
+            color: #212529 !important; /* text-dark */
+            text-shadow: none;
+        }
+        
+        /* Logo Styles */
+        .brand-logo-container {
+            width: 50px;
+            height: 50px;
+            background-color: #198754; /* Green background like screenshot */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .brand-logo-img {
+            max-width: 35px;
+            max-height: 35px;
+            object-fit: contain;
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .brand-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .brand-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        /* Ensure normal pages keep default look */
+        body:not(.is-home) .site-header {
+            position: relative;
+        }
     </style>
     <div class="container-fluid px-2 px-lg-3">
-        <nav class="navbar navbar-expand-xl navbar-light bg-white py-2 py-lg-3" style="position: static;">
+        <nav class="navbar navbar-expand-xl navbar-light py-2 py-lg-3" style="position: static;">
         <div class="container-fluid px-0">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" style="gap: 0; padding: 0;">
-                <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="UERD logo" id="logo" style="height: 68px; width: auto; display: block; object-fit: contain; margin-right: -10px;">
-                <span class="fw-bold text-dark" style="font-size: 19px; line-height: 1.15;">United Efforts for Rural Development</span>
+                <div class="brand-logo-container">
+                    {{-- User requested logo inside the U shape/container --}}
+                    <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="UERD" class="brand-logo-img" style="border-radius: 50%;"> 
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">UERD</span>
+                    <span class="brand-subtitle">Rural Development</span>
+                </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
     
             <div class="collapse navbar-collapse align-items-lg-center" id="navbarNav">
-                <ul class="navbar-nav ms-lg-5" style="column-gap: 6px;">
+                <ul class="navbar-nav mx-auto" style="column-gap: 20px;">
                     <!-- Home -->
                     <li class="nav-item"><a href="{{ url('/') }}" class="nav-link fw-bold text-dark">Home</a></li>
                 <!-- About us -->
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    About us
-                </a>
+                    <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About us
+                    </a>
                 <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                     <li><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
                     {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li> --}}
@@ -81,10 +163,12 @@
                     <li><a class="dropdown-item" href="{{ route('publication') }}">Publication</a></li>
                 </ul>
                 </li>
+                </ul>
 
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center" style="column-gap: 20px;">
                     <!-- Contact -->
-                    <li class="nav-item fw-bold"><a href="{{ route('contact') }}" class="nav-link text-dark">Contact</a></li>
-                    <li class="nav-item fw-bold ms-lg-auto ps-lg-2"><a href="{{ route('donate') }}" class="btn btn-primary btn-sm text-white px-3">Donate</a></li>
+                    <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link text-dark" style="font-weight: 500; font-size: 1.05rem;">Contact</a></li>
+                    <li class="nav-item"><a href="{{ route('donate') }}" class="btn d-inline-flex align-items-center justify-content-center gap-2 text-white" style="border-radius: 50px; background-color: #EA9918; border: none; padding: 10px 30px; font-weight: 600; font-size: 1.05rem; box-shadow: none;"><i class="fa-regular fa-heart"></i> Donate</a></li>
                 </ul>
             </div>
         </div>
@@ -94,6 +178,24 @@
   </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        // Header Scroll Effect for Home Page
+        if(document.body.classList.contains('is-home')){
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    document.body.classList.add('scrolled');
+                } else {
+                    document.body.classList.remove('scrolled');
+                }
+            });
+            // Initial check
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            }
+        }
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function(){
@@ -121,3 +223,5 @@
         }
     });
 </script>
+
+</header>
