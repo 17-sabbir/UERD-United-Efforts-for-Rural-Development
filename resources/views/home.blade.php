@@ -10,29 +10,30 @@ United Efforts for Rural Development (UERD)
 {{-- slider --}}
 <style>
     .hero-subtitle {
-        background-color: rgba(60, 60, 60, 0.6); /* Dark semi-transparent background */
-        backdrop-filter: blur(5px);
-        padding: 10px 25px; /* More padding */
-        border-radius: 50px; /* Pill shape */
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        padding: 8px 20px;
+        border-radius: 9999px; /* Pill */
         display: inline-block;
-        font-size: 0.9rem;
-        letter-spacing: 1.5px;
-        color: #F0B429; /* Gold text */
-        border: 1px solid #F0B429; /* Gold border */
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        color: var(--brand-gold); /* Highlight */
+        border: 1px solid rgba(252, 211, 47, 0.3);
         margin-bottom: 25px;
         text-transform: uppercase;
         font-weight: 700;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
     
     .hero-title {
         font-family: 'Playfair Display', serif; 
-        font-size: 5rem; 
-        font-weight: 700;
+        font-size: 4.5rem; 
+        font-weight: 800;
         line-height: 1.1;
         margin-bottom: 25px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        letter-spacing: -0.02em;
         max-width: 900px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .hero-indented {
@@ -55,7 +56,7 @@ United Efforts for Rural Development (UERD)
         width: 3px;
         height: 1em;
         margin-left: 8px;
-        background: #F0B429;
+        background: var(--accent-color);
         vertical-align: -0.12em;
         animation: tw-blink 0.9s step-end infinite;
     }
@@ -73,35 +74,38 @@ United Efforts for Rural Development (UERD)
     }
     
     .btn-hero-primary {
-        background-color: #F59E0B; /* Orange */
+        background-color: var(--brand-orange);
         color: white;
         border: none;
-        border-radius: 50px;
-        padding: 12px 30px; /* Reduced from 15px 40px */
-        font-weight: 600;
-        font-size: 1rem; /* Reduced from 1.1rem */
-        transition: all 0.3s;
+        border-radius: 9999px;
+        padding: 14px 32px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: inline-flex;
         align-items: center;
-        gap: 8px; /* Reduced specific gap */
+        gap: 8px;
+        box-shadow: 0 4px 14px 0 rgba(249, 116, 21, 0.39);
     }
     
     .btn-hero-primary:hover {
-        background-color: #D97706;
+        background-color: #ff8c3a;
         transform: translateY(-2px);
         color: white;
+        box-shadow: 0 6px 20px rgba(249, 116, 21, 0.23);
     }
     
     .btn-hero-secondary {
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
         color: white;
-        border: 2px solid white;
-        border-radius: 50px;
-        padding: 10px 30px; /* Reduced from 13px 40px */
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 9999px;
+        padding: 14px 32px;
         font-weight: 600;
-        font-size: 1rem; /* Reduced from 1.1rem */
+        font-size: 1rem;
         margin-left: 20px;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .btn-hero-secondary:hover {
@@ -137,7 +141,7 @@ United Efforts for Rural Development (UERD)
         border: none;
     }
     .carousel-indicators .active {
-        background-color: #F59E0B;
+        background-color: var(--accent-color);
         width: 25px;
         border-radius: 5px; /* Pill shape for active */
     }
@@ -146,21 +150,21 @@ United Efforts for Rural Development (UERD)
 {{-- Home design tokens (color + spacing consistency) --}}
 <style>
     :root {
-        --uerd-green: #198754;
-        --uerd-accent: #F0B429;
-        --uerd-accent-strong: #EA9918;
-        --uerd-soft-bg: rgba(25, 135, 84, 0.06);
-        --uerd-muted: #6c757d;
-        --uerd-card-border: rgba(0, 0, 0, 0.06);
-        --uerd-card-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        --uerd-green: var(--primary-color);
+        --uerd-accent: var(--accent-color);
+        --uerd-accent-strong: #E6660D; /* Darker Orange */
+        --uerd-soft-bg: rgba(21, 131, 104, 0.04); /* Soft Teal Bg */
+        --uerd-muted: #64748b; /* Slate 500 */
+        --uerd-card-border: rgba(255, 255, 255, 0.6);
+        --uerd-card-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05); /* Softer, larger shadow */
     }
 
     .uerd-section {
-        padding: 3rem 0;
+        padding: 4rem 0; /* More white space */
     }
     @@media (min-width: 992px) {
         .uerd-section {
-            padding: 4rem 0;
+            padding: 6rem 0;
         }
     }
 
@@ -169,24 +173,30 @@ United Efforts for Rural Development (UERD)
     }
 
     .uerd-btn-pill {
-        border-radius: 999px;
-        padding: 12px 28px;
+        border-radius: 9999px;
+        padding: 14px 32px;
         font-weight: 700;
-        font-size: 1.05rem;
-        transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: 0.3px;
     }
 
     .uerd-btn-pill:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
     }
 
     .uerd-card-hover {
-        transition: transform 180ms ease, box-shadow 180ms ease;
+        border-radius: 0.875rem; /* Rounded xl */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--uerd-card-border);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
     }
     .uerd-card-hover:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.10);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px -4px rgba(21, 131, 104, 0.08); /* Colored shadow hint */
+        border-color: rgba(21, 131, 104, 0.15);
     }
 </style>
 
@@ -318,7 +328,7 @@ United Efforts for Rural Development (UERD)
                         <div class="mb-4">
                             @php
                                 $safeTitle = e($devSustainability->title);
-                                $safeTitle = preg_replace('/(Sustainability)/i', '<span style="color: #F0B429;">$1</span>', $safeTitle);
+                                $safeTitle = preg_replace('/(Sustainability)/i', '<span style="color: var(--accent-color);">$1</span>', $safeTitle);
                             @endphp
                             <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">{!! $safeTitle !!}</h2>
                             <div class="uerd-highlights-underline"></div>
@@ -328,7 +338,7 @@ United Efforts for Rural Development (UERD)
                         </div>
                     @else
                         <div class="mb-4">
-                            <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">Development &amp; <span style="color: #F0B429;">Sustainability</span></h2>
+                            <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">Development &amp; <span style="color: var(--accent-color);">Sustainability</span></h2>
                             <div class="uerd-highlights-underline"></div>
                         </div>
                         <p class="text-white mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75; opacity: 0.9;">
@@ -342,7 +352,7 @@ United Efforts for Rural Development (UERD)
         {{-- Buttons Section (Moved outside the card to a new row) --}}
         <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center gap-3 flex-wrap">
-                <a href="{{ route('programs.all') }}" class="btn btn-success text-white d-inline-flex align-items-center gap-2 uerd-btn-pill" style="background-color: #198754; border: none;">
+                <a href="{{ route('programs.all') }}" class="btn btn-success text-white d-inline-flex align-items-center gap-2 uerd-btn-pill" style="background-color: var(--primary-color); border: none;">
                     Our Programs <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <a href="{{ route('invoked.career') }}" class="btn btn-outline-success d-inline-flex align-items-center uerd-btn-pill" style="border-width: 2px;">
@@ -645,6 +655,23 @@ United Efforts for Rural Development (UERD)
             border: 1px solid var(--uerd-card-border);
             box-shadow: var(--uerd-card-shadow);
         }
+
+        .uerd-news-thumb {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(16, 42, 67, 0.06);
+            aspect-ratio: 16 / 9;
+        }
+        .uerd-news-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 260ms ease;
+        }
+        .uerd-news-card:hover .uerd-news-thumb img {
+            transform: scale(1.04);
+        }
         .uerd-news-badge {
             background-color: rgba(25, 135, 84, 0.10);
             color: var(--uerd-green);
@@ -680,6 +707,15 @@ United Efforts for Rural Development (UERD)
             @foreach ($news as $key => $data)
                 <div class="col-lg-4 col-md-6">
                     <div class="uerd-news-card uerd-card-hover p-4 h-100 d-flex flex-column">
+                        <div class="uerd-news-thumb mb-3">
+                            <img
+                                src="{{ !empty($data->image) ? asset('images/news/'.$data->image) : asset('img/mission.jpg') }}"
+                                alt="{{ $data->title ?? 'News image' }}"
+                                loading="lazy"
+                                onerror="this.onerror=null;this.src='{{ asset('img/mission.jpg') }}';"
+                            >
+                        </div>
+
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <span class="badge rounded-pill uerd-news-badge">
                                 {{ (property_exists($data, 'category') && !empty($data->category)) ? $data->category : 'News' }}

@@ -5,6 +5,16 @@ use App\Http\Controllers\Frontend\PageController;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
+Route::get('lang/{locale}', function (string $locale) {
+    $supported = ['en', 'bn'];
+
+    abort_unless(in_array($locale, $supported, true), 404);
+
+    session(['locale' => $locale]);
+
+    return redirect()->back()->withCookie(cookie('locale', $locale, 60 * 24 * 365));
+})->name('locale.switch');
 /*
 |--------------------------------------------------------------------------
 | Clints Routes
@@ -103,7 +113,7 @@ Route::get('gallery/albums', [frontController::class, 'albums'])->name('gallery.
 Route::get('gallery/album/{album}', [frontController::class, 'album_photos'])->name('gallery.album');
 
 // FAQ
-Route::get('faq',[frontController::class, 'faq'])->name('faq');
+Route::get('faq', [frontController::class, 'faq'])->name('faq');
 
 // Organization Profile
 Route::get('organization-profile', [PageController::class, 'profile'])->name('frontend.profile');

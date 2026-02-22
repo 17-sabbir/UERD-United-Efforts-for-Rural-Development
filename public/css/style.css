@@ -84,12 +84,12 @@ ul {
 
 #logo {
   width: 300px;
-}
-
-.back-to-top {
-  position: fixed;
-  bottom: 55px;
-  right: 15px;
+  --primary-color: #198754;
+  /* Brand Green */
+  --secondary-color: #102A43;
+  /* Brand Navy */
+  --accent-color: #F0B429;
+  /* Brand Gold */
 }
 
 /* On screens that are 992px or less, set the background color to blue */
@@ -136,7 +136,7 @@ section {
   display: block;
   width: 50px;
   height: 3px;
-  background: #ea2127;
+  background: var(--accent-color);
   bottom: 0;
   left: calc(50% - 25px);
 }
@@ -201,7 +201,7 @@ section {
 .breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #106eea;
+  color: var(--accent-color);
   content: "/";
 }
 
@@ -220,7 +220,7 @@ section {
   min-height: 200px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
   position: relative;
-  background: #f32249;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   border-radius: 15px;
 }
 

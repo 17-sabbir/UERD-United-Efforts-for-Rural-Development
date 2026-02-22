@@ -20,68 +20,95 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        /* Import Vibrant Vision Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800;900&display=swap');
 
         body {
-            font-family: 'Poppins', sans-serif !important;
-            background-color: #ffffff; /* Clean White */
-            color: #0A2540; /* Deep Navy Text */
+            font-family: 'DM Sans', sans-serif !important;
+            background-color: #F8FAFC; /* Canvas */
+            color: #131920; /* Ink */
             -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .navbar-brand {
+            font-family: 'Playfair Display', serif !important;
+        }
+
+        :root {
+            --uerd-primary: var(--primary-color);
+            --uerd-secondary: var(--secondary-color);
+            --uerd-accent: var(--accent-color);
         }
         
         /* Glass Navbar & Header Improvements */
         .navbar {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.98); 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.8); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(19, 25, 32, 0.05); /* Glass Shadow */
         }
         
-        /* Modernize Buttons - Premium Style */
+        /* Modernize Buttons - Pill Style */
         .btn {
-            border-radius: 6px; /* Professional, trustworthy */
+            border-radius: 9999px; /* Pill shape */
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* Subtle shadow */
-            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+            padding: 0.6rem 1.5rem; /* Spacious */
         }
         .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.15);
         }
         
         .btn-danger {
-            background-color: #e3342f;
+            background-color: #E61932; /* Urgency Rose */
             border: none;
+            box-shadow: 0 4px 14px 0 rgba(230, 25, 50, 0.39);
         }
         
         .btn-primary {
-            background: #102A43 !important; /* Deep Navy Blue */
-            border: 1px solid #102A43 !important;
+            background: var(--uerd-primary) !important;
+            border: 1px solid var(--uerd-primary) !important;
             color: #ffffff !important;
+            box-shadow: 0 4px 14px 0 rgba(21, 131, 104, 0.39); /* Teal Glow */
         }
         .btn-primary:hover {
-            background: #0A2540 !important; /* Darker Navy */
-            border-color: #0A2540 !important;
+            filter: brightness(1.1);
+            box-shadow: 0 6px 20px rgba(21, 131, 104, 0.23);
         }
 
-        /* Modernize Cards */
+        .btn-warning {
+            background: var(--uerd-accent) !important;
+            border-color: var(--uerd-accent) !important;
+            color: #ffffff !important; /* Better contrast */
+            box-shadow: 0 4px 14px 0 rgba(249, 116, 21, 0.39); /* Orange Glow */
+        }
+        .btn-warning:hover {
+            filter: brightness(1.05);
+        }
+
+        /* Modernize Cards - Soft UI */
         .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
-            transition: transform 0.3s ease;
-            background: #ffffff;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 0.875rem; /* Rounded XL */
+            box-shadow: 0 8px 32px rgba(19, 25, 32, 0.05) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
             overflow: hidden;
+            backdrop-filter: blur(4px);
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+            box-shadow: 0 20px 40px rgba(19, 25, 32, 0.08) !important;
+            border-color: rgba(21, 131, 104, 0.2); /* Hint of Primary */
         }
         .card-img-top {
-            transition: transform 0.5s ease;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card:hover .card-img-top {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* Modern Typography */
@@ -102,8 +129,23 @@
             background: #f1f1f1;
         }
         ::-webkit-scrollbar-thumb {
-            background: #dc3545;
+            background: linear-gradient(180deg, var(--uerd-primary), var(--uerd-accent));
             border-radius: 5px;
+        }
+
+        /* Accessible, interactive focus rings */
+        :focus-visible {
+            outline: 3px solid rgba(240, 180, 41, 0.45);
+            outline-offset: 2px;
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                scroll-behavior: auto !important;
+                transition: none !important;
+                animation: none !important;
+            }
         }
         
         /* Smooth Scrolling */

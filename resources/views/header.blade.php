@@ -1,5 +1,31 @@
-<header id="site-header" class="site-header fixed-top" style="border-bottom:5px solid #F0B429; z-index: 1000; transition: all 0.3s ease;">
+<header id="site-header" class="site-header fixed-top" style="z-index: 1000; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
     <style>
+        .site-header .nav-link {
+            position: relative;
+            transition: color 200ms ease;
+            font-weight: 500;
+        }
+        .site-header .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0.5rem;
+            right: 0.5rem;
+            bottom: 0.2rem;
+            height: 3px;
+            border-radius: 999px;
+            background: var(--brand-orange);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            box-shadow: 0 2px 4px rgba(249, 116, 21, 0.4);
+        }
+        .site-header .nav-link:hover::after,
+        .site-header .nav-link:focus-visible::after,
+        .site-header .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
         @media (min-width: 992px) and (max-width: 1399.98px) {
             .navbar .navbar-nav { column-gap: 4px !important; }
             .navbar .navbar-nav .nav-link { padding-left: .5rem; padding-right: .5rem; }
@@ -10,71 +36,83 @@
         body.is-home .site-header {
             background-color: transparent;
             border-bottom: none !important;
+            padding-top: 20px;
         }
         
         body.is-home .site-header .navbar {
             background-color: transparent !important;
             backdrop-filter: none !important;
             border-bottom: none !important;
+            box-shadow: none !important;
         }
 
         body.is-home .site-header .nav-link,
         body.is-home .site-header .navbar-brand span {
             color: #ffffff !important;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 12px rgba(0,0,0,0.2);
         }
 
         body.is-home.scrolled .site-header {
-            background-color: #ffffff;
-            border-bottom: 5px solid #F0B429 !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding-top: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); /* Soft glass shadow */
         }
 
         body.is-home.scrolled .site-header .navbar {
-             background-color: #ffffff !important;
+             background-color: transparent !important;
         }
 
         body.is-home.scrolled .site-header .nav-link, 
         body.is-home.scrolled .site-header .navbar-brand * {
-            color: #212529 !important; /* text-dark */
+            color: var(--secondary-color) !important; /* Ink */
             text-shadow: none;
         }
         
         /* Logo Styles */
         .brand-logo-container {
-            width: 50px;
-            height: 50px;
-            background-color: #198754; /* Green background like screenshot */
-            border-radius: 12px;
+            width: 48px;
+            height: 48px;
+            /* background: linear-gradient(135deg, var(--primary-color), #0d5f49); */
+            background: #fff; /* Ensure white background for transparent images if any, also nice for logos */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            overflow: hidden; /* Ensure image stays inside */
         }
         
         .brand-logo-img {
-            max-width: 35px;
-            max-height: 35px;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fill the circle */
+            /* Removed filter to show original colors */
         }
         
         .brand-text {
             display: flex;
             flex-direction: column;
-            line-height: 1.1;
+            line-height: 1;
         }
         
         .brand-title {
-            font-weight: 700;
-            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.5rem;
             letter-spacing: -0.5px;
         }
         
         .brand-subtitle {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            font-weight: 400;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            opacity: 0.85;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
         }
         
         /* Ensure normal pages keep default look */
@@ -115,7 +153,6 @@
                     <li><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a></li>
                     <li><a class="dropdown-item" href="{{ route('executive.committee') }}">Executive Committee</a></li>
                     <li><a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a></li>
-                    <li><a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
                     <li><a class="dropdown-item" href="{{ route('about.impact') }}">Impact</a></li>
                 </ul>
                 </li>

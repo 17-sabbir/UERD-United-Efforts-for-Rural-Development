@@ -1,24 +1,48 @@
 :root {
-    /* Branding Colors */
-    --primary-color: #102A43;
-    /* Deep Navy Blue */
-    --secondary-color: #627D98;
-    /* Slate Grey */
-    --accent-color: #F0B429;
-    /* Burnished Gold */
-    --white-color: #FFFFFF;
-    /* Clean White */
-    --text-dark: #0A2540;
-    /* Deep Navy for Text */
+    /* Branding Colors - Vibrant Vision Interface */
+    /* Psychology:
+         - Teal: Healing, Trust, Growth
+         - Orange: Energy, Warmth, Highlights
+         - Ink: Credibility, High Contrast */
+
+    --primary-color: #158368;
+    /* Brand Teal */
+    --secondary-color: #131920;
+    /* Brand Ink/Navy */
+    --accent-color: #F97415;
+    /* Brand Vibrant Orange */
+
+    --white-color: #F8FAFC;
+    /* Canvas / Soft White */
+    --text-dark: #131920;
+    /* Ink */
+
+    /* New Palette Additions */
+    --brand-teal: #158368;
+    --brand-orange: #F97415;
+    --brand-rose: #E61932;
+    /* Urgency */
+    --brand-gold: #FCD32F;
+    /* Highlight */
+    --brand-indigo: #6466F1;
+    /* Decor */
+    --brand-canvas: #F8FAFC;
 
     /* Bootstrap 5 Overrides */
     --bs-primary: var(--primary-color);
     --bs-secondary: var(--secondary-color);
     --bs-warning: var(--accent-color);
+    --bs-danger: var(--brand-rose);
     --bs-light: var(--white-color);
     --bs-dark: var(--text-dark);
     --bs-body-bg: var(--white-color);
     --bs-body-color: var(--text-dark);
+
+    /* Explicit brand tokens */
+    --brand-green: var(--primary-color);
+    /* Backward compat */
+    --brand-navy: var(--secondary-color);
+    /* Backward compat */
 }
 
 /* Base utility overrides for specificity */

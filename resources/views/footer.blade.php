@@ -1,68 +1,117 @@
 {{-- Footer started --}}
-<div class="uerd-footer" style="border-top: 1px solid rgba(240, 180, 41, 0.28);">
+<div class="uerd-footer" style="border-top: 1px solid rgba(249, 116, 21, 0.3);">
     <style>
         .uerd-footer {
-            background: linear-gradient(90deg, #221711 0%, #160f0b 55%, #120c09 100%);
+            background: linear-gradient(180deg, #131920 0%, #0B0F13 100%); /* Brand Ink Dark Gradient */
+            color: #F8FAFC;
         }
-        .uerd-footer a { color: rgba(255, 255, 255, 0.82); }
-        .uerd-footer a:hover { color: #ffffff; }
+        .uerd-footer a { 
+            color: rgba(255, 255, 255, 0.7); 
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .uerd-footer a:hover { 
+            color: var(--brand-orange); 
+            padding-left: 5px; /* Slight movement */
+        }
         .uerd-footer-heading {
             color: #ffffff;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-            margin-bottom: 18px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            font-size: 1.25rem;
+            position: relative;
+        }
+        .uerd-footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: var(--brand-orange);
+            border-radius: 2px;
         }
         .uerd-footer-link {
             display: inline-flex;
-            padding: 6px 0;
+            padding: 8px 0;
             text-decoration: none;
+            font-size: 0.95rem;
         }
-        .uerd-footer-muted { color: rgba(255, 255, 255, 0.72); }
+        .uerd-footer-muted { 
+            color: rgba(255, 255, 255, 0.6); 
+            font-family: 'DM Sans', sans-serif;
+        }
         .uerd-footer-brand {
             display: inline-flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
         .uerd-footer-logo {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background-color: #198754;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%; /* Circle */
+            background: linear-gradient(135deg, var(--brand-teal), #0d5f49);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             color: #ffffff;
             font-weight: 900;
-            font-size: 22px;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(21, 131, 104, 0.3);
+            border: 2px solid rgba(255,255,255,0.1);
         }
         .uerd-footer-social {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.08);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%; /* Circle */
+            background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.10);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.78);
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .uerd-footer-social:hover {
-            background-color: rgba(255, 255, 255, 0.12);
+            background-color: var(--brand-orange);
+            border-color: var(--brand-orange);
             color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(249, 116, 21, 0.3);
+            padding-left: 0; /* Override generic a:hover padding */
         }
         .uerd-footer-contact {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 7px 0;
-            color: rgba(255, 255, 255, 0.78);
+            gap: 15px;
+            padding: 10px 0;
+            color: rgba(255, 255, 255, 0.75);
+            font-family: 'DM Sans', sans-serif;
         }
-        .uerd-footer-contact i { color: #198754; }
+        .uerd-footer-contact i { 
+            color: var(--brand-teal); 
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
         .uerd-footer-ul { list-style: none; padding: 0; margin: 0; }
         .uerd-footer-bottom {
-            background: rgba(0, 0, 0, 0.20);
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: #0B0F13; /* Darker bottom */
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-family: 'DM Sans', sans-serif;
+        }
+        .back-to-top {
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--brand-teal) !important;
+            border-color: var(--brand-teal) !important;
         }
     </style>
 
@@ -70,14 +119,16 @@
         <div class="row g-4">
             <div class="col-lg-4">
                 <div class="uerd-footer-brand mb-3">
-                    <div class="uerd-footer-logo">U</div>
+                    <div class="uerd-footer-logo" style="padding: 0; overflow: hidden; background: #fff;">
+                        <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="U" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
                     <div>
-                        <div class="fw-bold" style="color:#fff; font-size: 1.25rem; line-height: 1.1;">UERD</div>
-                        <div class="uerd-footer-muted" style="line-height: 1.2;">Rural Development</div>
+                        <div class="fw-bold" style="color:#fff; font-size: 1.5rem; line-height: 1.0; font-family: 'Playfair Display', serif;">UERD</div>
+                        <div class="uerd-footer-muted" style="line-height: 1.2; font-size: 0.9rem; letter-spacing: 0.5px;">Rural Development</div>
                     </div>
                 </div>
 
-                <p class="uerd-footer-muted mb-4" style="max-width: 360px; line-height: 1.8;">
+                <p class="uerd-footer-muted mb-4" style="max-width: 360px; line-height: 1.8; opacity: 0.8;">
                     United Efforts for Rural Development — empowering communities in northern Bangladesh since 1998.
                 </p>
 
