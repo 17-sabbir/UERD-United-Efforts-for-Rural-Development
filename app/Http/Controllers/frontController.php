@@ -256,11 +256,6 @@ class frontController extends Controller
         return view('frontend.fundraising');
     }
 
-    // Corporate Partnership
-    public function corporate(){
-        return view('frontend.corporate_partner');
-    }
-
     // Get Contact
     public function contact(){
         $head_office = DB::table('contacts')->where('type', 'head_office')->where('status', 'active')->first();

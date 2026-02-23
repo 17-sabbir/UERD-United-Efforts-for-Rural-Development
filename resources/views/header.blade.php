@@ -147,13 +147,12 @@
                         About us
                     </a>
                 <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                    <li><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
-                    {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li> --}}
-                    <li><a class="dropdown-item" href="{{ route('team.members') }}">Team Members</a></li>
-                    <li><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a></li>
-                    <li><a class="dropdown-item" href="{{ route('executive.committee') }}">Executive Committee</a></li>
-                    <li><a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a></li>
                     <li><a class="dropdown-item" href="{{ route('about.impact') }}">Impact</a></li>
+                    <li><a class="dropdown-item" href="{{ route('success.stories') }}">Success Stories</a></li>
+                    <li><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a></li>
+                    {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li> --}}
                 </ul>
                 </li>
 
@@ -168,7 +167,6 @@
                     {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a></li> --}}
                     <li><a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Programs</a></li>
                     <li><a class="dropdown-item" href="{{ route('project.archieve') }}">Project Archieve</a></li>
-                    <li><a class="dropdown-item" href="{{ route('success.stories') }}">Success Stories</a></li>
                 </ul>
                 </li>
 
@@ -178,11 +176,8 @@
                     Get Involved
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="involvedDropdown">
-                    <li><a class="dropdown-item" href="{{ route('volunterr.opportunities') }}">Volunteer Opportunities</a></li>
-                    <li><a class="dropdown-item" href="{{ route('donate') }}">Donate</a></li>
-                    <li><a class="dropdown-item" href="{{ route('fundraising') }}">Fundraising Campaign</a></li>
-                    <li><a class="dropdown-item" href="{{ route('corporate.partnership') }}">Corporate Partnership</a></li>
                     <li><a class="dropdown-item" href="{{ route('invoked.career') }}">Career with UERD</a></li>
+                    <li><a class="dropdown-item" href="{{ route('fundraising') }}">Fundraising Campaign</a></li>
                 </ul>
                 </li>
 
@@ -192,12 +187,22 @@
                     News & Events
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="eventsDropdown">
-                    <li><a class="dropdown-item" href="{{ route('latest.news.all') }}">News & Events</a></li>
-                    <li><a class="dropdown-item" href="{{ route('events.calender') }}">Events Calender</a></li>
-                    <li><a class="dropdown-item" href="{{ route('youtube.video') }}">Youtube Video</a></li>
-                    <li><a class="dropdown-item" href="{{ route('strategic.plan') }}">UERD Strategic Plan</a></li>
-                    <li><a class="dropdown-item" href="{{ route('policy.guideline') }}">Policy & Guideline</a></li>
-                    <li><a class="dropdown-item" href="{{ route('publication') }}">Publication</a></li>
+                    <li><a class="dropdown-item" href="{{ route('latest.news.all') }}">Latest News</a></li>
+                    <li><a class="dropdown-item" href="{{ route('events.calender') }}">Events Calendar</a></li>
+                    <li><a class="dropdown-item" href="#">Photo Gallery</a></li>
+                    <li><a class="dropdown-item" href="{{ route('youtube.video') }}">Youtube Videos</a></li>
+                    <li><a class="dropdown-item" href="{{ route('publication') }}">Publications</a></li>
+                </ul>
+                </li>
+
+                <!-- Members -->
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="membersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Members
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="membersDropdown">
+                    <li><a class="dropdown-item" href="{{ route('team.members') }}">Team Member</a></li>
+                    <li><a class="dropdown-item" href="{{ route('executive.committee') }}">Executive Committee</a></li>
                 </ul>
                 </li>
                 </ul>
