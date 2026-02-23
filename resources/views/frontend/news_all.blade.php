@@ -2,17 +2,7 @@
 
 @section('content')
 
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>What We Do</li>
-      </ol>
-      <h2>Latest News</h2>
-    </div>
-  </section>
-  <!-- End Breadcrumbs -->
+
 
     <!-- ======= Ongoing Project Section ======= -->
   <section id="contact" class="contact">

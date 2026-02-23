@@ -2,57 +2,78 @@
 
 @section('content')
 
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
+  <!-- ======= Modern Breadcrumbs ======= -->
+  <section class="modern-breadcrumbs">
+    <div class="container text-center">
+      <h2>Message from Chief Executive</h2>
+      <ol class="d-inline-flex justify-content-center">
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li>About us</li>
+        <li class="current">Chief Executive Message</li>
       </ol>
-      <h2>Message form Cheif Executive</h2>
     </div>
   </section>
-  <!-- End Breadcrumbs -->
 
-  <!-- ======= Message Section ======= -->
-  <section id="testimonials" class="testimonials bg-light p-0">
-    <div class="container bg-white py-5">
-      <div class="section-title">
-        <h2>Message from Chief Executive</h2>
+  <!-- ======= Modern Content Section: Editorial Layout ======= -->
+  <section class="modern-container" style="background-color: #fcefe9;">
+    <div class="container" data-aos="fade-up">
+
         @if(isset($message))
-        <div class="testimonials-slider">
-          <div class="testimonial-wrap">
-            <div class="testimonial-item">
-              <div class="d-flex justify-content-center">
-                @if($message->photo)
-                <img src="{{ asset('images/chief_message/'.$message->photo) }}" class="testimonial-img" alt="{{ $message->name }}">
-                @endif
-              </div>
-              <h3 class="fs-3">{{ $message->name }}</h3>
-              <h4 class="fs-5 text-dark">{{ $message->designation }}</h4>
-              @if($message->title)
-              <h5 class="text-muted mb-3">{{ $message->title }}</h5>
-              @endif
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                {!! nl2br(e($message->message)) !!}
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              @if($message->signature)
-              <div class="mt-3">
-                <img src="{{ asset('images/chief_message/'.$message->signature) }}" alt="Signature" style="max-width: 150px;">
-              </div>
-              @endif
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-11">
+                <div class="card border-0 shadow-lg overflow-hidden rounded-3" style="min-height: 600px;">
+                    <div class="row g-0 h-100">
+                        <!-- Image Side (Cover style on large screens) -->
+                        <div class="col-lg-5 position-relative bg-dark">
+                            @if($message->photo)
+                                <img src="{{ asset('images/chief_message/'.$message->photo) }}" class="img-fluid w-100 h-100" style="object-fit: cover; opacity: 0.9;" alt="{{ $message->name }}">
+                            @else
+                                <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-secondary">
+                                    <i class="fa-solid fa-user fa-5x text-white opacity-50"></i>
+                                </div>
+                            @endif
+                            <!-- Overlay Gradient -->
+                            <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                                <h3 class="text-white fw-bold mb-0">{{ $message->name }}</h3>
+                                <p class="text-white-50 mb-0 small text-uppercase letter-spacing-2">{{ $message->designation }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Text Side -->
+                        <div class="col-lg-7 bg-white p-5 d-flex flex-column justify-content-center position-relative">
+                             <!-- Watermark -->
+                             <div class="position-absolute top-0 end-0 p-4 opacity-10">
+                                 <i class="fa-solid fa-feather-pointed fa-4x text-dark"></i>
+                             </div>
+
+                             <span class="d-block text-danger fw-bold text-uppercase small mb-2 letter-spacing-1">From the Desk of the CEO</span>
+                             <h2 class="display-6 fw-bold text-dark mb-4">A Vision for Tomorrow</h2>
+
+                             <div class="position-relative ps-4 border-start border-2 border-danger">
+                                 <p class="text-muted" style="font-family: 'Georgia', serif; font-size: 1.15rem; line-height: 1.8;">
+                                    {!! nl2br(e($message->message)) !!}
+                                 </p>
+                             </div>
+
+                             @if($message->signature)
+                                <div class="mt-5 border-top pt-3 d-inline-block" style="max-width: 250px;">
+                                    <img src="{{ asset('images/chief_message/'.$message->signature) }}" alt="Signature" class="img-fluid" style="filter: contrast(1.2);">
+                                </div>
+                             @endif
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- End Message item -->
         </div>
         @else
-        <p class="text-muted fs-5">Message content will be updated soon.</p>
+        <div class="col-12 text-center py-5">
+             <div class="modern-card">
+                 <i class="fa-solid fa-envelope-open-text display-4 text-muted mb-3 opacity-50"></i>
+                 <h3>Message Coming Soon</h3>
+                 <p class="text-muted">The Chief Executive's message is currently being updated.</p>
+             </div>
+        </div>
         @endif
-      </div>
+
     </div>
   </section>
-  <!-- End Message Section -->
-
 @endsection

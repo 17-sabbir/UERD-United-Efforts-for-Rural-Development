@@ -2,17 +2,7 @@
 
 @section('content')
 
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>Stay Informed</li>
-      </ol>
-      <h2>Publications</h2>
-    </div>
-  </section>
-  <!-- End Breadcrumbs -->
+
 
 <!-- ======= Publication Section ======= -->
   <section id="publication" class="contact bg-light p-0">

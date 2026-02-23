@@ -2,95 +2,86 @@
 
 @section('content')
 
-  <!-- Breadcrumbs -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>About us</li>
-      </ol>
-      <h2>Team Members</h2>
-    </div>
-  </section>
-  <!-- End Breadcrumbs -->
-
-<!-- Contact Section -->
-  <section id="contact" class="contact p-0 m-0">
+  <!-- ======= Modern Content Section ======= -->
+  <section class="modern-container" style="padding-top: 100px;">
     <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <section class="bg-light py-3 py-md-5 py-xl-8">
-                <div class="container">
-                    <div class="row justify-content-md-center">
-                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                        <h2 class="mb-3 display-5 text-center">Our Team</h2>
-                        <p class="text-secondary mb-4 text-center lead fs-4">We are a group of innovative, experienced, and proficient teams. You will love to collaborate with us.</p>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="container overflow-hidden">
-                    <div class="row gy-4 gy-lg-0 gx-xxl-5">
-                        @if(isset($team) && count($team) > 0)
-                            @foreach($team as $member)
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-                                    <div class="card-body p-0">
-                                        <figure class="m-0 p-0">
-                                        @if($member->photo)
-                                        <img class="img-fluid" loading="lazy" src="{{ asset('images/team_members/'.$member->photo) }}" alt="{{ $member->name }}">
-                                        @else
-                                        <img class="img-fluid" loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="{{ $member->name }}">
-                                        @endif
-                                        <figcaption class="m-0 p-4">
-                                            <h4 class="mb-1">{{ $member->name }}</h4>
-                                            <p class="text-secondary mb-0">{{ $member->designation }}</p>
-                                            @if($member->department)
-                                            <p class="text-muted small mb-2">{{ $member->department }}</p>
-                                            @endif
-                                            @if($member->bio)
-                                            <p class="small">{{ Str::limit($member->bio, 80) }}</p>
-                                            @endif
-                                            <div class="d-flex justify-content-center mt-3">
-                                                @if($member->facebook)
-                                                <a href="{{ $member->facebook }}" target="_blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
-                                                @elseif(application()->facebook)
-                                                <a href="{{ application()->facebook }}" target="_blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
-                                                @endif
-                                                
-                                                @if($member->twitter)
-                                                <a href="{{ $member->twitter }}" target="_blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
-                                                @elseif(application()->twitter)
-                                                <a href="{{ application()->twitter }}" target="_blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
-                                                @endif
-                                                
-                                                @if($member->instagram)
-                                                <a href="{{ $member->instagram }}" target="_blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
-                                                @elseif(application()->instagram)
-                                                <a href="{{ application()->instagram }}" target="_blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
-                                                @endif
-                                                
-                                                @if($member->youtube)
-                                                <a href="{{ $member->youtube }}" target="_blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
-                                                @elseif(application()->youtube)
-                                                <a href="{{ application()->youtube }}" target="_blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
-                                                @endif
-                                            </div>
-                                        </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        @else
-                        <div class="col-12">
-                            <p class="text-center text-muted fs-5">No team members found.</p>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-            </section>
+        
+        <div class="text-center mb-5">
+            <span class="text-secondary fw-bold text-uppercase letter-spacing-2">Meet The Team</span>
+            <h2 class="modern-title d-block mt-2 border-0 position-static">Dedicated Professionals</h2>
+            <style>.modern-title::after{display:none !important;}</style>
+            <p class="modern-text mx-auto" style="max-width: 600px;">
+                We are a group of innovative, experienced, and proficient individuals working together to create impact.
+            </p>
         </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+            @if(isset($team) && count($team) > 0)
+                @foreach($team as $member)
+                <div class="col" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
+                    <div class="team-modern-card h-100 bg-white rounded-4 overflow-hidden text-center position-relative">
+                        
+                        <!-- Colorful Border Top -->
+                        <div class="position-absolute top-0 start-0 w-100" style="height: 6px; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); z-index: 5;"></div>
+
+                        <div class="team-img-wrapper position-relative overflow-hidden m-3 rounded-circle shadow-sm mx-auto" style="width: 180px; height: 180px; border: 4px solid #fff;">
+                            <div class="ratio ratio-1x1 h-100">
+                                @if($member->image)
+                                    <img src="{{ asset('images/team_members/'.$member->image) }}" class="object-fit-cover w-100 h-100 transition-transform" alt="{{ $member->name }}">
+                                @else
+                                    <div class="bg-light d-flex align-items-center justify-content-center w-100 h-100">
+                                        <i class="fa-solid fa-user fa-3x text-secondary opacity-25"></i>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="team-content px-4 pb-4 pt-1">
+                            <h5 class="fw-bold mb-1 text-dark">{{ $member->name }}</h5>
+                            <span class="badge rounded-pill bg-light text-primary px-3 py-2 mb-2 shadow-sm d-inline-block">{{ $member->designation ?? 'Team Member' }}</span>
+                            
+                            @if($member->department)
+                            <p class="text-muted small mb-3">{{ $member->department }}</p>
+                            @endif
+
+                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                @if(isset($member->facebook) && $member->facebook)
+                                <a href="{{ $member->facebook }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-circle shadow-sm" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-facebook-f"></i></a>
+                                @endif
+                                
+                                @if(isset($member->twitter) && $member->twitter)
+                                <a href="{{ $member->twitter }}" target="_blank" class="btn btn-sm btn-outline-info rounded-circle shadow-sm" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-twitter"></i></a>
+                                @endif
+                                
+                                @if(isset($member->linkedin) && $member->linkedin)
+                                <a href="{{ $member->linkedin }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-circle shadow-sm" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-linkedin-in"></i></a>
+                                @endif
+
+                                @if(isset($member->email) && $member->email)
+                                <a href="mailto:{{ $member->email }}" class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-envelope"></i></a>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                @endforeach
+            @else
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted fs-5">No active team members found.</p>
+                </div>
+            @endif
+        </div>
+
+        <style>
+            .team-modern-card { transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.04); }
+            .team-modern-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+            .team-modern-card:hover img { transform: scale(1.1); }
+            .btn-outline-primary:hover, .btn-outline-info:hover, .btn-outline-danger:hover { transform: translateY(-3px); }
+            .transition-transform { transition: transform 0.5s ease; }
+        </style>
+
     </div>
   </section>
-<!-- End Contact Section -->
+
 @endsection

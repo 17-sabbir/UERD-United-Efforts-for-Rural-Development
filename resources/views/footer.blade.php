@@ -151,25 +151,20 @@
             <div class="col-lg-2 col-md-4">
                 <div class="uerd-footer-heading">Quick Links</div>
                 <ul class="uerd-footer-ul">
-                    <li><a class="uerd-footer-link" href="{{ url('/') }}">Home</a></li>
                     <li><a class="uerd-footer-link" href="{{ route('frontend.profile') }}">About Us</a></li>
                     <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Programs</a></li>
                     <li><a class="uerd-footer-link" href="{{ route('ongoing.project') }}">Projects</a></li>
                     <li><a class="uerd-footer-link" href="{{ route('latest.news.all') }}">News &amp; Events</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('gallery.albums') }}">Gallery</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-3 col-md-4">
                 <div class="uerd-footer-heading">Our Programs</div>
                 <ul class="uerd-footer-ul">
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Women's Empowerment</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Youth Development</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Healthcare Access</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Agricultural Skills</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Education Support</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Micro Finance</a></li>
+                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Economic Development</a></li>
+                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Healthcare</a></li>
+                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Education</a></li>
+                    <li><a class="uerd-footer-link" href="{{ route('ongoing.project') }}">Ongoing Projects</a></li>
                 </ul>
             </div>
 

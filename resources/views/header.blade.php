@@ -188,8 +188,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="eventsDropdown">
                     <li><a class="dropdown-item" href="{{ route('latest.news.all') }}">Latest News</a></li>
-                    <li><a class="dropdown-item" href="{{ route('events.calender') }}">Events Calendar</a></li>
-                    <li><a class="dropdown-item" href="#">Photo Gallery</a></li>
+                    <li><a class="dropdown-item" href="{{ route('gallery.albums') }}">Photo Gallery</a></li>
                     <li><a class="dropdown-item" href="{{ route('youtube.video') }}">Youtube Videos</a></li>
                     <li><a class="dropdown-item" href="{{ route('publication') }}">Publications</a></li>
                 </ul>

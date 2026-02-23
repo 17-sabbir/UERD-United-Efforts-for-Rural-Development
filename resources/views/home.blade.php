@@ -1058,7 +1058,7 @@ United Efforts for Rural Development (UERD)
     <style>
         .uerd-story-filter {
             border-radius: 999px;
-            padding: 8px 14px;
+            padding: 2px 10px;
             font-weight: 800;
             border: 1px solid rgba(0, 0, 0, 0.10);
             background: rgba(255, 255, 255, 0.70);
@@ -1368,17 +1368,27 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         function clearTypingTimers() {
             activeTimeouts.forEach((t) => clearTimeout(t));
             activeTimeouts = [];
+            // Remove cursor from all typewriter elements to ensure no stuck cursors
+            document.querySelectorAll('.js-typewriter').forEach(el => el.classList.remove('typewriter-cursor'));
         }
 
         function typeInto(el, text, speed) {
             el.textContent = '';
+            // Ensure cursor is visible while typing
+            el.classList.add('typewriter-cursor');
+            
             let i = 0;
 
             const tick = () => {
-                if (i > text.length) return;
+                if (i > text.length) {
+                    // Typing finished, remove cursor
+                    el.classList.remove('typewriter-cursor');
+                    return;
+                }
                 el.textContent = text.slice(0, i);
-                i += 1;
-                activeTimeouts.push(setTimeout(tick, speed));
+                i++;
+                const timer = setTimeout(tick, speed);
+                activeTimeouts.push(timer);
             };
 
             tick();

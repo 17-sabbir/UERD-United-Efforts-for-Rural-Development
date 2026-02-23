@@ -90,7 +90,7 @@ Route::get('programs', [frontController::class, 'programs'])->name('programs.all
 Route::get('programs/view/{id}', [frontController::class, 'programsView'])->name('programs.view');
 Route::get('success/stories', [frontController::class, 'stories'])->name('success.stories');
 Route::get('success/stories/view/{id}', [frontController::class, 'storiesView'])->name('success.stories.view');
-Route::get('events/calender', [frontController::class, 'calender'])->name('events.calender');
+
 
 // Stay Informed
 Route::get('strategic/plan', [frontController::class, 'strategic_plan'])->name('strategic.plan');

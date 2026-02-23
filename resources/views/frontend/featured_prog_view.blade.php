@@ -1,16 +1,11 @@
 @extends('main')
 
 @section('content')
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>Programs</li>
-      </ol>
-      <h2>Program Highlights</h2>
-    </div>
-  </section>
+  <div class="container pt-5 pb-3 text-center">
+      <h1 class="display-3 fw-bold text-uppercase" style="background: linear-gradient(to right, #009688, #8bc34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Program Details
+      </h1>
+  </div>
   <!-- End Breadcrumbs -->
 
   {{-- Featured Program Single View --}}

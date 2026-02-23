@@ -188,11 +188,6 @@ class frontController extends Controller
         return view('frontend.news_view',compact('news'));
     }
 
-    // Events Calender
-    public function calender(){
-        return view('frontend.calender');
-    }
-
     // Strategic Plan
     public function strategic_plan(){
         $strategicPlans = DB::table('strategic_plans')->orderBy('created_at', 'desc')->get();
