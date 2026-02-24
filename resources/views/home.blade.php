@@ -13,7 +13,7 @@ United Efforts for Rural Development (UERD)
         background-color: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(12px);
         padding: 8px 20px;
-        border-radius: 9999px; /* Pill */
+        border-radius: 9990px; /* Pill */
         display: inline-block;
         font-size: 0.85rem;
         letter-spacing: 2px;
@@ -23,6 +23,7 @@ United Efforts for Rural Development (UERD)
         text-transform: uppercase;
         font-weight: 700;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        margin-left: 10px; 
     }
     
     .hero-title {
@@ -43,6 +44,7 @@ United Efforts for Rural Development (UERD)
     @@media (max-width: 575.98px) {
         .hero-indented { padding-left: 0; }
         .hero-title { font-size: 3rem; }
+        .hero-subtitle { margin-left: 0; }
     }
 
     .typewriter-cursor {
@@ -114,6 +116,36 @@ United Efforts for Rural Development (UERD)
         transform: translateY(-2px);
     }
 
+    /* Watch/Story pill button (matches provided design) */
+    .btn-watch-story {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 26px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(48,30,12,0.95) 0%, rgba(36,46,18,0.95) 100%);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.06);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .btn-watch-story i {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.06);
+        border-radius: 999px;
+        font-size: 0.95rem;
+    }
+    .btn-watch-story:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.32);
+        text-decoration: none;
+    }
+
     /* Slider Arrows */
     .carousel-control-prev, .carousel-control-next {
         width: 50px;
@@ -145,6 +177,22 @@ United Efforts for Rural Development (UERD)
         width: 25px;
         border-radius: 5px; /* Pill shape for active */
     }
+
+    /* Remove right-side padding/spacing on home full-width pager (carousel) */
+    body.is-home {
+        overflow-x: hidden; /* prevent small horizontal gaps */
+    }
+    body.is-home .carousel,
+    body.is-home .carousel-inner,
+    body.is-home .carousel-item {
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+    }
+    /* Remove extra margin on carousel controls that created visible gap */
+    body.is-home .carousel-control-prev,
+    body.is-home .carousel-control-next {
+        margin: 0 !important;
+    }
 </style>
 
 {{-- Home design tokens (color + spacing consistency) --}}
@@ -165,6 +213,22 @@ United Efforts for Rural Development (UERD)
     @@media (min-width: 992px) {
         .uerd-section {
             padding: 6rem 0;
+        }
+    }
+
+    /* Reduce stacked section gap (used only where applied) */
+    .uerd-section-tight-top {
+        padding-top: 2.25rem;
+    }
+    .uerd-section-tight-bottom {
+        padding-bottom: 2.25rem;
+    }
+    @@media (min-width: 992px) {
+        .uerd-section-tight-top {
+            padding-top: 3rem;
+        }
+        .uerd-section-tight-bottom {
+            padding-bottom: 3rem;
         }
     }
 
@@ -200,7 +264,7 @@ United Efforts for Rural Development (UERD)
     }
 </style>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide m-0 p-0" data-bs-ride="carousel">
     <div class="carousel-indicators">
         @foreach ($slider as $skey => $slider_item)
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $skey }}" class="{{ $skey == 0 ? 'active' : '' }}" aria-current="{{ $skey == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $skey + 1 }}"></button>
@@ -216,10 +280,10 @@ United Efforts for Rural Development (UERD)
                 {{-- Dark Gradient Overlay --}}
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);"></div>
 
-                <div class="container-fluid h-100 position-absolute top-0 start-0 px-lg-3">
+                <div class="container-fluid h-100 position-absolute top-0 start-0 px-0">
                     <div class="d-flex flex-column justify-content-start h-100 text-white" style="padding-top: 106px;">
-                        <div>
-                            <span class="hero-subtitle">UNITED EFFORTS FOR RURAL DEVELOPMENT</span>
+                        <div class="ms-2">
+                            <span class="hero-subtitle">SINCE 2000 — NORTHERN BANGLADESH</span>
                         </div>
                         <div class="hero-indented"> <!-- Indented Content -->
                             <h2 class="hero-title">
@@ -230,12 +294,14 @@ United Efforts for Rural Development (UERD)
                                 <span class="js-typewriter hero-desc-text" data-text="{{ e($slider->description) }}">{{ $slider->description }}</span>
                             </p>
                             
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center gap-3">
                                 <a href="{{ route('donate') }}" class="btn btn-hero-primary">
                                     <i class="fa-regular fa-heart me-2"></i> Donate Now
                                 </a>
-                                <a href="{{ route('programs.all') }}" class="btn btn-hero-secondary">
-                                    Our Programs
+                               {{-- View Success Story should go to success stories list --}}
+                                <a href="{{ route('success.stories') }}" class="btn-watch-story">
+                                    <i class="fa-solid fa-play"></i>
+                                    View Success Story
                                 </a>
                             </div>
                         </div> <!-- End Indented Content -->
@@ -262,21 +328,37 @@ United Efforts for Rural Development (UERD)
 {{-- End of who we are --}}
 
 {{-- Highlights (from provided design) --}}
-<div class="uerd-soft-section uerd-section">
+<div class="uerd-soft-section uerd-section" style="padding-top: 2rem; padding-bottom: 2rem;">
     <style>
         /* Highlights cards (matches provided screenshot) */
         .uerd-highlights-card {
             border-radius: 2.25rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .uerd-highlights-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1) !important;
+        }
+
         .uerd-highlights-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             flex: 0 0 auto;
+            transition: transform 0.4s ease;
         }
+        
+        .uerd-highlights-card:hover .uerd-highlights-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
         .uerd-highlights-underline {
             width: 72px;
             height: 5px;
@@ -285,20 +367,244 @@ United Efforts for Rural Development (UERD)
         }
     </style>
 
+    {{-- First "Our Impact" section removed as requested --}}
+    
+    {{-- Our Impact Section (New Insertion) --}}
+    <section class="uerd-impact-section position-relative">
+        <style>
+            .uerd-impact-section {
+                /* Background image with strong Orange/Yellow gradient overlay */
+                background: linear-gradient(135deg, rgba(255, 160, 0, 0.92) 0%, rgba(255, 111, 0, 0.96) 100%),
+                            url('{{ asset("img/slider/slider-3.jpg") }}');
+                background-size: cover;
+                background-position: center;
+                /* background-attachment: fixed; Optional: Parallax effect */
+                padding: 1rem 2rem; /* Side padding (mobile/tablet) */
+                color: #ffffff;
+            }
+            @media (min-width: 992px) {
+                .uerd-impact-section {
+                    padding-left: 4rem;
+                    padding-right: 4rem;
+                }
+            }
+            @media (min-width: 1400px) {
+                .uerd-impact-section {
+                    padding-left: 6rem;
+                    padding-right: 6rem;
+                }
+            }
+            .uerd-impact-badge {
+                display: inline-block;
+                padding: 8px 20px;
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                border-radius: 50px;
+                font-size: 0.85rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                margin-bottom: 24px;
+                color: #fff;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+            .uerd-impact-heading {
+                font-size: 3.5rem;
+                font-weight: 800;
+                line-height: 1.1;
+                margin-bottom: 24px;
+                text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                color: #ffffff; /* Pure white for impact */
+            }
+            .uerd-impact-text {
+                font-size: 1.15rem;
+                line-height: 1.8;
+                opacity: 0.95;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.95); /* Slightly off-white for readability */
+                text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+                max-width: 90%;
+            }
+            /* Glassmorphism Cards */
+            .uerd-glass-card {
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                border-radius: 24px;
+                padding: 35px 25px;
+                text-align: center;
+                height: 100%;
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            .uerd-glass-card:hover {
+                transform: translateY(-8px);
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.6);
+            }
+            .uerd-glass-stat {
+                font-size: 3rem;
+                font-weight: 900;
+                margin-bottom: 8px;
+                line-height: 1;
+                text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                color: #ffffff;
+            }
+            .uerd-glass-label {
+                font-size: 0.95rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 700;
+                opacity: 0.9;
+                color: rgba(255, 255, 255, 0.9);
+            }
+            .uerd-glass-icon {
+                font-size: 1.8rem;
+                margin-bottom: 16px;
+                opacity: 1;
+                color: #ffffff;
+                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            }
+        </style>
+        
+        <div class="container">
+            <div class="row align-items-center g-5">
+                {{-- Left Column: Text --}}
+                <div class="col-lg-5" style="padding: 2rem;">
+                    <span class="uerd-impact-badge"><i class="fa-solid fa-bolt me-2"></i> Our Impact</span>
+                    <h2 class="uerd-impact-heading">Over 25 Years of Changing Lives</h2>
+                    <p class="uerd-impact-text lead mb-4">
+                        Every number creates a story. From the fields of Rangpur to remote villages, we are building a legacy of hope, resilience, and transformation.
+                        <span style="color: #ffca28; font-weight: 700;">Real Families, Real Change. Sustainable Development for All.</span>
+                    </p>
+                </div>
+
+                {{-- Right Column: Stats Grid --}}
+                <div class="col-lg-7" style="padding: 2rem;">
+                    <div class="row g-4">
+                        {{-- Stat 1 --}}
+                        <div class="col-6">
+                            <div class="uerd-glass-card">
+                                <i class="fa-regular fa-calendar-check uerd-glass-icon"></i>
+                                <div class="uerd-glass-stat count-up" data-target="1998">0</div>
+                                <div class="uerd-glass-label">Founded</div>
+                            </div>
+                        </div>
+                        {{-- Stat 2 --}}
+                        <div class="col-6">
+                            <div class="uerd-glass-card">
+                                <i class="fa-solid fa-map-location-dot uerd-glass-icon"></i>
+                                <div class="uerd-glass-stat count-up" data-target="{{ $districtsCount ?? 3 }}">0</div>
+                                <div class="uerd-glass-label">Upazila Covered</div>
+                            </div>
+                        </div>
+                        {{-- Stat 3 --}}
+                        <div class="col-6">
+                            <div class="uerd-glass-card">
+                                <i class="fa-solid fa-hands-holding-circle uerd-glass-icon"></i>
+                                <div class="uerd-glass-stat count-up" data-target="{{ $projectsCount ?? 41 }}">0</div>
+                                <div class="uerd-glass-label">Projects</div> {{-- Will append + via JS --}}
+                            </div>
+                        </div>
+                        {{-- Stat 4 --}}
+                        <div class="col-6">
+                            <div class="uerd-glass-card">
+                                <i class="fa-solid fa-users-viewfinder uerd-glass-icon"></i>
+                                <div class="uerd-glass-stat count-up-decimal" data-target="1.3">0</div>
+                                <div class="uerd-glass-label">Lives Impacted</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Increment Counter Script --}}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Integer Counters
+                const counters = document.querySelectorAll('.count-up');
+                // Decimal Counters (for 1.3M+)
+                const decimalCounters = document.querySelectorAll('.count-up-decimal');
+                const options = { threshold: 0.5 };
+                
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const target = +counter.getAttribute('data-target');
+                            const isDecimal = counter.classList.contains('count-up-decimal');
+                            const duration = 2000; 
+                            const increment = target / (duration / 16); 
+                            
+                            let current = 0;
+                            const updateCounter = () => {
+                                current += increment;
+                                if (current < target) {
+                                    if(isDecimal) {
+                                         counter.innerText = current.toFixed(1);
+                                    } else {
+                                         counter.innerText = Math.ceil(current);
+                                         if(target < 10) counter.innerText = Math.ceil(current).toString().padStart(2, '0');
+                                    }
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    // Final value set
+                                    if(isDecimal) {
+                                        counter.innerText = target + 'M+';
+                                    } else {
+                                        counter.innerText = target < 10 ? target.toString().padStart(2, '0') : target;
+                                        // Append '+' for Projects (target 41)
+                                        if(target === 41) counter.innerText += '+';
+                                    }
+                                }
+                            };
+                            updateCounter();
+                            observer.unobserve(counter);
+                        }
+                    });
+                }, options);
+                
+                counters.forEach(c => observer.observe(c));
+                decimalCounters.forEach(c => observer.observe(c));
+            });
+        </script>
+    </section>
+
     {{-- Removed bg-white from container to let card backgrounds show --}}
-    <div class="container px-2">
-        <div class="row g-4 d-flex align-items-stretch">
+    <div class="container-fluid px-0">
+
+        {{-- Section Header --}}
+       <div class="row mb-0 mt-5 justify-content-center text-center">
+    <div class="col-lg-8">
+        <h1 class="fw-bold text-dark display-5 mb-1" style="font-weight: 900; letter-spacing: -1px;">
+            United Efforts for Rural Development
+        </h1>
+        <div class="text-uppercase text-secondary fw-bold mb-3" 
+             style="letter-spacing: 2px; font-size: 0.85rem; opacity: 0.7;">
+            (UERD)
+        </div>
+        <p class="fs-5 text-muted fst-italic" 
+           style="font-family: 'Playfair Display', serif;">
+            "Where every effort counts, every life matters"
+        </p>
+    </div>
+</div>
+
+        <div class="row g-4 d-flex align-items-stretch justify-content-center px-lg-4">
             {{-- 1. Empowering Lives (Dynamic) --}}
             <div class="col-lg-6 d-flex">
-                <div class="bg-white p-5 shadow-sm w-100 d-flex flex-column h-100 uerd-highlights-card">
+                <div class="bg-white py-5 px-4 shadow-sm w-100 d-flex flex-column h-100 uerd-highlights-card" style="padding-left: 3rem !important; padding-right: 3rem !important;">
                     <div class="mb-4">
                         <div class="uerd-highlights-icon bg-success text-white shadow-sm">
-                            <i class="fa-solid fa-seedling fs-4"></i>
+                            <i class="fa-solid fa-seedling fs-5"></i>
                         </div>
                     </div>
                     @if(isset($empoweringLives))
                         <div class="mb-4">
-                            <h2 class="fw-bold text-dark mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">{{ $empoweringLives->title }}</h2>
+                            <h2 class="fw-bold text-dark mb-3" style="font-size: 2.5rem; letter-spacing: -0.5px;">{{ $empoweringLives->title }}</h2>
                             <div class="uerd-highlights-underline"></div>
                         </div>
                         <div class="text-secondary mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75;">
@@ -306,11 +612,11 @@ United Efforts for Rural Development (UERD)
                         </div>
                     @else
                         <div class="mb-4">
-                            <h2 class="fw-bold text-dark mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">Empowering Lives</h2>
+                            <h2 class="fw-bold text-dark mb-3" style="font-size: 2.5rem; letter-spacing: -0.5px;">Empowering Lives</h2>
                             <div class="uerd-highlights-underline"></div>
                         </div>
                         <p class="text-secondary flex-grow-1 mb-0" style="text-align: justify; font-size: 1.1rem; line-height: 1.75;">
-                            Our organization has helped countless people overcome poverty and achieve their dreams through our various development programs.
+                            From the rice fields of Rangpur to the riverbanks of Kurigram — we've walked alongside communities, helping families break free from the cycle of poverty through education, skill-building, and sustainable support.
                         </p>
                     @endif
                 </div>
@@ -318,10 +624,10 @@ United Efforts for Rural Development (UERD)
 
             {{-- 2. Development & Sustainability (Dynamic) --}}
             <div class="col-lg-6 d-flex">
-                <div class="bg-success text-white p-5 shadow-sm w-100 d-flex flex-column h-100 uerd-highlights-card">
+                <div class="bg-success text-white py-5 px-4 shadow-sm w-100 d-flex flex-column h-100 uerd-highlights-card" style="padding-left: 3rem !important; padding-right: 3rem !important;">
                     <div class="mb-4">
                         <div class="uerd-highlights-icon" style="background-color: rgba(255,255,255,0.18);">
-                            <i class="fa-solid fa-globe fs-4"></i>
+                            <i class="fa-solid fa-globe fs-5"></i>
                         </div>
                     </div>
                     @if(isset($devSustainability))
@@ -330,7 +636,7 @@ United Efforts for Rural Development (UERD)
                                 $safeTitle = e($devSustainability->title);
                                 $safeTitle = preg_replace('/(Sustainability)/i', '<span style="color: var(--accent-color);">$1</span>', $safeTitle);
                             @endphp
-                            <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">{!! $safeTitle !!}</h2>
+                            <h2 class="fw-bold mb-3" style="font-size: 2.5rem; letter-spacing: -0.5px;">{!! $safeTitle !!}</h2>
                             <div class="uerd-highlights-underline"></div>
                         </div>
                         <div class="text-white mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75; opacity: 0.9;">
@@ -338,11 +644,11 @@ United Efforts for Rural Development (UERD)
                         </div>
                     @else
                         <div class="mb-4">
-                            <h2 class="fw-bold mb-3" style="font-size: 3rem; letter-spacing: -0.5px;">Development &amp; <span style="color: var(--accent-color);">Sustainability</span></h2>
+                            <h2 class="fw-bold mb-3" style="font-size: 2.5rem; letter-spacing: -0.5px;">Development &amp; <span style="color: var(--accent-color);">Sustainability</span></h2>
                             <div class="uerd-highlights-underline"></div>
                         </div>
                         <p class="text-white mb-0 flex-grow-1" style="text-align: justify; font-size: 1.1rem; line-height: 1.75; opacity: 0.9;">
-                            We believe that everyone deserves the opportunity to live a happy and fulfilling life, and we are committed to working with rural communities to create a better future for all.
+                            We don't just help — we build lasting foundations. Our projects are designed to create self-sustaining communities where healthcare, economic growth, and environmental care go hand in hand.
                         </p>
                     @endif
                 </div>
@@ -368,48 +674,72 @@ United Efforts for Rural Development (UERD)
 </div>
 {{-- End Highlights --}}
 
-{{-- Mission Vision--}}
-@php
-    $missionBg = isset($mission_vision) && !empty($mission_vision->background_image)
-        ? asset('images/mission_vision/'.$mission_vision->background_image)
-        : asset('img/slider/slider-2.jpg');
-@endphp
-<div class="py-5" style="background-image: url('{{ $missionBg }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
-    <div style="background: rgba(0,0,0,0.55);">
-    <div class="container px-2 py-4">
-        <div class="row g-3 align-items-stretch" style="min-height: 320px;">
-            <div class="col-md-4 col-12 mx-auto">
-                <div class="h-100 p-3 rounded" style="background: rgba(255,255,255,0.10);">
-                    <h3 class="text-center text-white"><span style="border-bottom:3px solid #e00324;">Mission</span> <i class="fa-solid fa-bullseye text-danger"></i></h3>
-                    <p style="text-align: justify;" class="text-white mb-0">
+{{-- Mission Vision Key Focus --}}
+<div class="pt-3 pb-5" style="background-color: #198754; position: relative; overflow: hidden;">
+    {{-- Pattern Overlay (CSS only) --}}
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px; opacity: 0.1;"></div>
+    
+    <div class="container px-2 pt-2 pb-4 position-relative">
+        <div class="text-center text-white mb-5">
+            <h2 class="fw-bold display-5 mb-2">What Drives Us</h2>
+            <p class="fs-5" style="color: #ffda6a; letter-spacing: 1px;">Our foundation rests on these three pillars</p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            {{-- Mission --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="h-100 p-4 rounded-4" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px);">
+                    <div class="mb-3 d-inline-flex align-items-center justify-content-center bg-white bg-opacity-10 rounded-3" style="width: 50px; height: 50px;">
+                        <i class="fa-solid fa-bullseye text-warning fs-4"></i>
+                    </div>
+                    <h3 class="text-white fw-bold mb-3 border-bottom border-warning border-3 d-inline-block pb-1">Mission</h3>
+                    <p style="text-align: justify; font-size: 1.05rem; line-height: 1.6;" class="text-white opacity-90 mb-0">
                         {{ $mission_vision->mission ?? '' }}
                     </p>
                 </div>
             </div>
-            <div class="col-md-4 my-2">
-                <div class="h-100 rounded" style="overflow:hidden; background: rgba(255,255,255,0.10);">
-                    <img src="{{ asset('img/mission.jpg') }}" class="img-fluid" alt="Mission and Vision" style="width: 100%; height: 100%; min-height: 320px; object-fit: cover; object-position: center; display:block;">
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mx-auto">
-                <div class="h-100 p-3 rounded" style="background: rgba(255,255,255,0.10);">
-                    <h3 class="text-center text-white"><span style="border-bottom:3px solid #0073ff;">Vision</span> <i class="fa-solid fa-eye-low-vision text-primary"></i></h3>
-                    <p style="text-align: justify;" class="text-white mb-0">
+            
+            {{-- Vision --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="h-100 p-4 rounded-4" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px);">
+                     <div class="mb-3 d-inline-flex align-items-center justify-content-center bg-white bg-opacity-10 rounded-3" style="width: 50px; height: 50px;">
+                        <i class="fa-solid fa-eye text-info fs-4"></i>
+                    </div>
+                    <h3 class="text-white fw-bold mb-3 border-bottom border-info border-3 d-inline-block pb-1">Vision</h3>
+                    <p style="text-align: justify; font-size: 1.05rem; line-height: 1.6;" class="text-white opacity-90 mb-0">
                         {{ $mission_vision->vision ?? '' }}
                     </p>
                 </div>
             </div>
+
+            {{-- Key Focus --}}
+            <div class="col-lg-4 col-md-6 mx-auto">
+                 <div class="h-100 p-4 rounded-4" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px);">
+                     <div class="mb-3 d-inline-flex align-items-center justify-content-center bg-white bg-opacity-10 rounded-3" style="width: 50px; height: 50px;">
+                        <i class="fa-regular fa-compass text-warning fs-4"></i>
+                    </div>
+                    <h3 class="text-white fw-bold mb-3 border-bottom border-warning border-3 d-inline-block pb-1">Key Focus</h3>
+                    <p style="text-align: justify; font-size: 1.05rem; line-height: 1.6;" class="text-white opacity-90 mb-0">
+                        {{ $mission_vision->key_focus ?? 'Education & skill development, healthcare access, women\'s empowerment, climate adaptation, food security, and sustainable livelihood programs.' }}
+                    </p>
+                </div>
+            </div>
         </div>
-        {{-- <hr class="py-3 m-0"> --}}
-    </div>
     </div>
 </div>
-{{-- End of Mission Vision --}}
+{{-- End of Mission Vision Key Focus --}}
 
 {{-- Featured Programs --}}
-<div class="bg-light">
-    <div class="container bg-white px-2">
-        <div class="pt-5 pb-3">
+<div class="bg-light uerd-section pt-5 pb-5">
+    <style>
+        /* Fix for overlay text visibility issues */
+        .featuredImage .overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+    </style>
+    <div class="container">
+        <div class="pt-3 pb-3">
             <h3 class="text-center"> Program <span class="text-danger">Highlights</span></h3>
             <p class="text-center text-secondary">Elevating Lives, Empowering Futures: UERD's Program Highlights brings transformative opportunities to communities in northern Bangladesh.</p>
         </div>
@@ -480,7 +810,7 @@ United Efforts for Rural Development (UERD)
 {{-- End of Featured Programs --}}
 
 {{-- Ongoing Project --}}
-<div class="uerd-soft-section uerd-section">
+<div class="uerd-soft-section uerd-section uerd-section-tight-top uerd-section-tight-bottom">
     <style>
         .uerd-ongoing-card {
             border-radius: 1.25rem;
@@ -513,9 +843,9 @@ United Efforts for Rural Development (UERD)
         }
     </style>
 
-    <div class="container px-2">
-        <div class="pt-2 pb-3 text-center">
-            <h3 class="text-center">Ongoing <span class="text-danger">Projects</span></h3>
+    <div class="container">
+        <div class="pb-2 text-center">
+            <h3 class="text-center mt-0">Ongoing <span class="text-danger">Projects</span></h3>
             <p class="text-center text-secondary mb-0">UERD's ongoing projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
         </div>
 
@@ -524,20 +854,27 @@ United Efforts for Rural Development (UERD)
                 @php($bgClass = $key % 2 === 0 ? 'is-mint' : 'is-sand')
                 <div class="col-lg-4 col-md-6">
                     <div class="uerd-ongoing-card uerd-card-hover {{ $bgClass }} p-4 h-100 d-flex flex-column">
-                        <div class="d-flex gap-3 align-items-start">
-                            <div class="uerd-ongoing-icon bg-success text-white shadow-sm">
-                                <i class="fa-regular fa-folder-open"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <h5 class="mb-1" style="font-weight: 800; letter-spacing: -0.2px;">
-                                    {{ Str::limit($item->project_name, 32, '...') }}
-                                </h5>
-                                <div class="small text-secondary" style="opacity: 0.9;">
-                                    <i class="fa-regular fa-calendar"></i>
-                                    {{ date('d/m/Y', strtotime($item->created_at ?? now())) }}
+                                <div class="d-flex gap-3 align-items-start">
+                                    @if(!empty($item->image))
+                                        <div class="uerd-ongoing-icon shadow-sm" style="width:56px;height:56px;border-radius:12px;overflow:hidden;flex:0 0 auto;">
+                                            <img src="{{ asset('images/project/'.$item->image) }}" alt="{{ $item->title ?? $item->project_name ?? 'Project' }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                        </div>
+                                    @else
+                                        <div class="uerd-ongoing-icon bg-success text-white shadow-sm">
+                                            <i class="fa-regular fa-folder-open"></i>
+                                        </div>
+                                    @endif
+
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1" style="font-weight: 800; letter-spacing: -0.2px;">
+                                            {{ Str::limit($item->project_name ?? $item->title ?? '', 32, '...') }}
+                                        </h5>
+                                        <div class="small text-secondary" style="opacity: 0.9;">
+                                            <i class="fa-regular fa-calendar"></i>
+                                            {{ date('d/m/Y', strtotime($item->created_at ?? now())) }}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
                         <div class="pt-3">
                             <p class="mb-0" style="color: #6c757d; line-height: 1.65;">
@@ -555,7 +892,7 @@ United Efforts for Rural Development (UERD)
             @endforeach
         </div>
 
-        <div class="d-flex justify-content-center pt-5">
+        <div class="d-flex justify-content-center pt-4">
             <a href="{{ route('ongoing.project') }}" class="btn btn-outline-success uerd-btn-pill d-inline-flex align-items-center gap-2" style="border-width: 2px;">
                 View All Projects <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -564,7 +901,7 @@ United Efforts for Rural Development (UERD)
 </div>
 
 {{-- Sponsor --}}
-<div class="bg-white uerd-section">
+<div class="bg-white uerd-section uerd-section-tight-top">
     <style>
         .uerd-sponsor-badge {
             width: 64px;
@@ -627,7 +964,7 @@ United Efforts for Rural Development (UERD)
 {{-- End of Sponsor --}}
 
 {{-- Latest News and Events --}}
-<div class="uerd-soft-section uerd-section">
+<div class="uerd-soft-section uerd-section uerd-section-tight-top">
     <style>
         .uerd-news-pill {
             display: inline-flex;
@@ -690,6 +1027,79 @@ United Efforts for Rural Development (UERD)
         .uerd-news-link:hover {
             text-decoration: underline;
         }
+
+        .uerd-hscroll-wrap {
+            position: relative;
+        }
+        .uerd-hscroll {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 0 34px;
+        }
+        .uerd-hscroll::-webkit-scrollbar { display: none; }
+        .uerd-hscroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .uerd-hscroll-item {
+            flex: 0 0 auto;
+            width: 320px;
+            scroll-snap-align: start;
+        }
+        @@media (max-width: 575.98px) {
+            .uerd-hscroll {
+                padding: 0 22px;
+            }
+            .uerd-hscroll-item {
+                width: 280px;
+            }
+        }
+
+        .uerd-hscroll-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(25, 135, 84, 0.35);
+            background: #fff;
+            color: var(--uerd-green);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--uerd-card-shadow);
+            z-index: 2;
+        }
+        .uerd-hscroll-nav:hover {
+            border-color: rgba(25, 135, 84, 0.55);
+        }
+        .uerd-hscroll-nav.is-prev { left: 8px; }
+        .uerd-hscroll-nav.is-next { right: 8px; }
+
+        .uerd-hscroll-track {
+            height: 10px;
+            background: rgba(25, 135, 84, 0.14);
+            border-radius: 999px;
+            position: relative;
+            max-width: none;
+            margin: 16px 34px 0;
+        }
+        @@media (max-width: 575.98px) {
+            .uerd-hscroll-track {
+                margin: 14px 22px 0;
+            }
+        }
+        .uerd-hscroll-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 999px;
+            background: var(--uerd-green);
+            width: 120px;
+        }
     </style>
 
     <div class="container px-2">
@@ -703,42 +1113,56 @@ United Efforts for Rural Development (UERD)
             </p>
         </div>
 
-        <div class="row g-4">
-            @foreach ($news as $key => $data)
-                <div class="col-lg-4 col-md-6">
-                    <div class="uerd-news-card uerd-card-hover p-4 h-100 d-flex flex-column">
-                        <div class="uerd-news-thumb mb-3">
-                            <img
-                                src="{{ !empty($data->image) ? asset('images/news/'.$data->image) : asset('img/mission.jpg') }}"
-                                alt="{{ $data->title ?? 'News image' }}"
-                                loading="lazy"
-                                onerror="this.onerror=null;this.src='{{ asset('img/mission.jpg') }}';"
-                            >
-                        </div>
+        <div class="uerd-hscroll-wrap">
+            <button type="button" class="uerd-hscroll-nav is-prev" aria-label="Scroll news left" data-hscroll-prev="uerdNewsScroll">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
 
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <span class="badge rounded-pill uerd-news-badge">
-                                {{ (property_exists($data, 'category') && !empty($data->category)) ? $data->category : 'News' }}
-                            </span>
-                            <div class="small text-secondary" style="white-space: nowrap;">
-                                <i class="fa-regular fa-calendar"></i>
-                                {{ date('d M Y', strtotime((property_exists($data, 'created_at') && !empty($data->created_at)) ? $data->created_at : now())) }}
+            <div id="uerdNewsScroll" class="uerd-hscroll">
+                @foreach ($news as $key => $data)
+                    <div class="uerd-hscroll-item">
+                        <div class="uerd-news-card uerd-card-hover p-4 h-100 d-flex flex-column">
+                            <div class="uerd-news-thumb mb-3">
+                                <img
+                                    src="{{ !empty($data->image) ? asset('images/news/'.$data->image) : asset('img/mission.jpg') }}"
+                                    alt="{{ $data->title ?? 'News image' }}"
+                                    loading="lazy"
+                                    onerror="this.onerror=null;this.src='{{ asset('img/mission.jpg') }}';"
+                                >
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="badge rounded-pill uerd-news-badge">
+                                    {{ (property_exists($data, 'category') && !empty($data->category)) ? $data->category : 'News' }}
+                                </span>
+                                <div class="small text-secondary" style="white-space: nowrap;">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    {{ date('d M Y', strtotime((property_exists($data, 'created_at') && !empty($data->created_at)) ? $data->created_at : now())) }}
+                                </div>
+                            </div>
+
+                            <h5 class="uerd-news-title mb-2">{{ Str::limit($data->title ?? '', 55, '...') }}</h5>
+                            <p class="mb-0" style="color: #6c757d; line-height: 1.65;">
+                                {{ Str::limit(strip_tags($data->description ?? ''), 120, '...') }}
+                            </p>
+
+                            <div class="mt-auto pt-3">
+                                <a href="{{ route('latest.news.view', $data->id) }}" class="uerd-news-link d-inline-flex align-items-center gap-2">
+                                    Read More <i class="fa-solid fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
-
-                        <h5 class="uerd-news-title mb-2">{{ Str::limit($data->title ?? '', 55, '...') }}</h5>
-                        <p class="mb-0" style="color: #6c757d; line-height: 1.65;">
-                            {{ Str::limit(strip_tags($data->description ?? ''), 120, '...') }}
-                        </p>
-
-                        <div class="mt-auto pt-3">
-                            <a href="{{ route('latest.news.view', $data->id) }}" class="uerd-news-link d-inline-flex align-items-center gap-2">
-                                Read More <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
+            <button type="button" class="uerd-hscroll-nav is-next" aria-label="Scroll news right" data-hscroll-next="uerdNewsScroll">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="uerd-hscroll-track" aria-hidden="true" data-hscroll-track-for="uerdNewsScroll">
+                <div class="uerd-hscroll-indicator" data-hscroll-indicator-for="uerdNewsScroll"></div>
+            </div>
         </div>
 
         <div class="d-flex justify-content-center pt-5">
@@ -752,7 +1176,7 @@ United Efforts for Rural Development (UERD)
 
 
 {{-- Volunteer part --}}
-<div class="uerd-volunteer uerd-section" style="background-image: url('{{ asset('img/slider/slider-1.jpg') }}');">
+<div class="uerd-volunteer uerd-section mt-5" style="background-image: url('{{ asset('img/slider/slider-1.jpg') }}');">
     <style>
         .uerd-volunteer {
             background-size: cover;
@@ -829,7 +1253,7 @@ United Efforts for Rural Development (UERD)
 {{-- end of volunteer part --}}
 
 {{-- Photo Gallery --}}
-<div class="uerd-soft-section uerd-section">
+<div class="uerd-soft-section uerd-section pt-5 pb-5">
     <style>
         .uerd-gallery-pill {
             display: inline-flex;
@@ -881,6 +1305,15 @@ United Efforts for Rural Development (UERD)
         .uerd-gallery-more:hover {
             text-decoration: underline;
         }
+
+        .uerd-gallery-scroll .uerd-hscroll-item {
+            width: 270px;
+        }
+        @@media (max-width: 575.98px) {
+            .uerd-gallery-scroll .uerd-hscroll-item {
+                width: 240px;
+            }
+        }
     </style>
 
     <div class="container px-2">
@@ -894,35 +1327,43 @@ United Efforts for Rural Development (UERD)
             </p>
         </div>
 
-        @if (!empty($hasMoreAlbums))
-            <div class="d-flex justify-content-end mb-2">
-                <a href="{{ route('gallery.albums') }}" class="uerd-gallery-more d-inline-flex align-items-center gap-2">
-                    Show more <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        @endif
+    
 
-        <div class="row g-4">
-            @foreach (($albumsPreview ?? []) as $album)
-                <div class="col-lg-4 col-md-6">
-                    <a href="{{ route('gallery.album', ['album' => $album->name]) }}" class="text-decoration-none text-dark">
-                        <div class="uerd-gallery-card uerd-card-hover h-100">
-                            <img src="{{ asset('images/gallery/'.($album->cover_image ?? '')) }}" class="uerd-gallery-cover" alt="{{ $album->name }}">
-                            <div class="p-3">
-                                <div class="d-flex align-items-start justify-content-between gap-3">
-                                    <div class="uerd-gallery-album-title">{{ $album->name }}</div>
-                                    <div class="uerd-gallery-meta" style="white-space: nowrap;">
-                                        <i class="fa-regular fa-images"></i> {{ $album->photo_count }} Photos
+        <div class="uerd-hscroll-wrap uerd-gallery-scroll">
+            <button type="button" class="uerd-hscroll-nav is-prev" aria-label="Scroll gallery left" data-hscroll-prev="uerdGalleryScroll">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <div id="uerdGalleryScroll" class="uerd-hscroll">
+                @foreach (($albumsPreview ?? []) as $album)
+                    <div class="uerd-hscroll-item">
+                        <a href="{{ route('gallery.album', ['album' => $album->name]) }}" class="text-decoration-none text-dark">
+                            <div class="uerd-gallery-card uerd-card-hover h-100">
+                                <img src="{{ asset('images/gallery/'.($album->cover_image ?? '')) }}" class="uerd-gallery-cover" alt="{{ $album->name }}">
+                                <div class="p-3">
+                                    <div class="d-flex align-items-start justify-content-between gap-3">
+                                        <div class="uerd-gallery-album-title">{{ $album->name }}</div>
+                                        <div class="uerd-gallery-meta" style="white-space: nowrap;">
+                                            <i class="fa-regular fa-images"></i> {{ $album->photo_count }} Photos
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+
+            <button type="button" class="uerd-hscroll-nav is-next" aria-label="Scroll gallery right" data-hscroll-next="uerdGalleryScroll">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="uerd-hscroll-track" aria-hidden="true" data-hscroll-track-for="uerdGalleryScroll">
+                <div class="uerd-hscroll-indicator" data-hscroll-indicator-for="uerdGalleryScroll"></div>
+            </div>
         </div>
 
-        <div class="d-flex justify-content-center pt-5">
+        <div class="d-flex justify-content-center pt-4">
             <a href="{{ route('photo.all') }}" class="btn btn-outline-success uerd-btn-pill d-inline-flex align-items-center gap-2" style="border-width: 2px;">
                 All Photos <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -931,130 +1372,163 @@ United Efforts for Rural Development (UERD)
 </div>
 {{-- End of Photo Gallery --}}
 
-{{-- Impact part --}}
-<div class="uerd-impact uerd-section" style="background-color: var(--uerd-green);">
+
+{{-- Donors & Partners --}}
+<?php if (isset($partners) && count($partners) > 0) { ?>
+<div class="bg-white uerd-section pt-4">
     <style>
-        .uerd-impact-pill {
+        .uerd-partner-pill {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 4px 10px;
+            padding: 6px 14px;
             border-radius: 999px;
-            background-color: rgba(234, 153, 24, 0.16);
-            color: #EA9918;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            font-size: 0.65rem;
+            background-color: rgba(234, 153, 24, 0.14);
+            color: var(--uerd-accent-strong);
+            font-weight: 900;
+            letter-spacing: 0.9px;
+            font-size: 0.7rem;
             text-transform: uppercase;
         }
-        .uerd-impact-title {
-            color: #ffffff;
-            font-weight: 900;
-            letter-spacing: -0.7px;
-            line-height: 1.05;
+        .uerd-partner-subtitle {
+            max-width: 820px;
+            margin: 0 auto;
+            color: var(--uerd-muted);
+            line-height: 1.7;
+            font-size: 0.98rem;
         }
-        .uerd-impact-underline {
-            width: 72px;
-            height: 5px;
-            border-radius: 3px;
-            background-color: #EA9918;
+
+        .uerd-partner-scroll .uerd-hscroll-item {
+            width: 220px;
         }
-        .uerd-impact-desc {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.75;
-            max-width: 520px;
+        @@media (max-width: 575.98px) {
+            .uerd-partner-scroll .uerd-hscroll-item {
+                width: 200px;
+            }
         }
-        .uerd-impact-stat {
-            border-radius: 14px;
-            background-color: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+
+        .uerd-partner-card {
+            border-radius: 18px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: var(--uerd-card-shadow);
+            padding: 18px 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
         }
-        .uerd-impact-stat-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+
+        .uerd-partner-logo {
+            height: 44px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .uerd-partner-logo img {
+            max-height: 44px;
+            max-width: 140px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .uerd-partner-mark {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.14);
-            border: 1px solid rgba(234, 153, 24, 0.35);
-            color: #EA9918;
-        }
-        .uerd-impact-stat-value {
-            color: #ffffff;
+            border: 1px solid rgba(25, 135, 84, 0.20);
+            color: var(--uerd-green);
             font-weight: 900;
             letter-spacing: -0.4px;
-            line-height: 1.1;
+            background: rgba(21, 131, 104, 0.06);
         }
-        .uerd-impact-stat-label {
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 0.85rem;
+
+        .uerd-partner-name {
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
         }
     </style>
 
     <div class="container px-2">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-                <div class="mb-2">
-                    <span class="uerd-impact-pill">Our impact</span>
-                </div>
-                <h2 class="uerd-impact-title mb-3">Over 25 Years of Changing Lives</h2>
-                <div class="uerd-impact-underline mb-3"></div>
-                <p class="uerd-impact-desc mb-0">
-                    Transforming lives and communities in northern Bangladesh through sustainable development initiatives — empowering individuals and fostering
-                    positive change. Join us in making a lasting difference for a brighter future.
-                </p>
+        <div class="text-center mb-4">
+            <div class="mb-2">
+                <span class="uerd-partner-pill">Trusted by</span>
+            </div>
+            <h2 class="uerd-sponsor-title mb-2">Donors &amp; Partners</h2>
+            <p class="uerd-partner-subtitle mb-0">
+                Trusted by leading organizations worldwide — together, we amplify our impact.
+            </p>
+        </div>
+
+        <div class="uerd-hscroll-wrap uerd-partner-scroll">
+            <button type="button" class="uerd-hscroll-nav is-prev" aria-label="Scroll partners left" data-hscroll-prev="uerdPartnersScroll">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <div id="uerdPartnersScroll" class="uerd-hscroll">
+                <?php foreach ($partners as $partner) { ?>
+                    <?php
+                        $partnerName = $partner->name ?? '';
+                    $words = preg_split('/\s+/', trim($partnerName));
+                    $initials = '';
+                    foreach (array_filter($words) as $w) {
+                        $initials .= mb_strtoupper(mb_substr($w, 0, 1));
+                        if (mb_strlen($initials) >= 2) {
+                            break;
+                        }
+                    }
+                    if ($initials === '') {
+                        $initials = 'UE';
+                    }
+                    ?>
+
+                    <div class="uerd-hscroll-item">
+                        <div class="uerd-partner-card uerd-card-hover">
+                            <?php if (! empty($partner->image)) { ?>
+                                <div class="uerd-partner-logo">
+                                    <img
+                                        src="<?php echo e(asset('images/partner/'.$partner->image)); ?>"
+                                        alt="<?php echo e($partnerName); ?>"
+                                        loading="lazy"
+                                        onerror="this.onerror=null;this.closest('.uerd-partner-logo').style.display='none';"
+                                    >
+                                </div>
+                            <?php } else { ?>
+                                <div class="uerd-partner-mark"><?php echo e($initials); ?></div>
+                            <?php } ?>
+
+                            <div class="uerd-partner-name"><?php echo e($partnerName); ?></div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
 
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <div class="uerd-impact-stat p-4 text-center h-100">
-                            <div class="mb-2">
-                                <span class="uerd-impact-stat-icon"><i class="fa-regular fa-calendar-check"></i></span>
-                            </div>
-                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">1998</div>
-                            <div class="uerd-impact-stat-label">Founded</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="uerd-impact-stat p-4 text-center h-100">
-                            <div class="mb-2">
-                                <span class="uerd-impact-stat-icon"><i class="fa-solid fa-map-location-dot"></i></span>
-                            </div>
-                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">03</div>
-                            <div class="uerd-impact-stat-label">Districts</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="uerd-impact-stat p-4 text-center h-100">
-                            <div class="mb-2">
-                                <span class="uerd-impact-stat-icon"><i class="fa-solid fa-hands-holding-circle"></i></span>
-                            </div>
-                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">41+</div>
-                            <div class="uerd-impact-stat-label">Projects</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="uerd-impact-stat p-4 text-center h-100">
-                            <div class="mb-2">
-                                <span class="uerd-impact-stat-icon"><i class="fa-solid fa-users-viewfinder"></i></span>
-                            </div>
-                            <div class="uerd-impact-stat-value" style="font-size: 1.9rem;">1.3M+</div>
-                            <div class="uerd-impact-stat-label">Lives Impacted</div>
-                        </div>
-                    </div>
-                </div>
+            <button type="button" class="uerd-hscroll-nav is-next" aria-label="Scroll partners right" data-hscroll-next="uerdPartnersScroll">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="uerd-hscroll-track" aria-hidden="true" data-hscroll-track-for="uerdPartnersScroll">
+                <div class="uerd-hscroll-indicator" data-hscroll-indicator-for="uerdPartnersScroll"></div>
             </div>
         </div>
     </div>
 </div>
-{{-- End of Impact part --}}
+<?php } ?>
+
+{{-- End of Donors & Partners --}}
 
 <!-- Success Stories -->
-<?php if (isset($stories) && count($stories) > 0): ?>
-<div class="uerd-soft-section uerd-section">
+<?php if (isset($stories) && count($stories) > 0) { ?>
+<div class="uerd-soft-section uerd-section uerd-section-tight-bottom pt-4">
     <style>
         .uerd-story-filter {
             border-radius: 999px;
@@ -1104,6 +1578,34 @@ United Efforts for Rural Development (UERD)
             font-style: italic;
             line-height: 1.85;
             font-size: 1.05rem;
+        }
+        /* Clamp long story descriptions and provide read-more toggle */
+        .uerd-story-text {
+            max-height: 9.5rem; /* approx 5 lines */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 260ms ease;
+        }
+        .uerd-story-text.expanded {
+            max-height: 2000px;
+        }
+        .uerd-story-text::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2.4rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%);
+            pointer-events: none;
+        }
+        .uerd-story-text.expanded::after { display: none; }
+        .uerd-story-readmore {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--uerd-green);
+            font-weight: 700;
+            cursor: pointer;
         }
         .uerd-story-avatar {
             width: 130px;
@@ -1203,7 +1705,7 @@ United Efforts for Rural Development (UERD)
         </div>
 
         {{-- Rating Filter --}}
-        <div class="text-center mb-4">
+        <div class="text-center mb-5">
             <button class="btn uerd-story-filter me-2 filter-btn" data-rating="5">5 ★</button>
             <button class="btn uerd-story-filter me-2 filter-btn" data-rating="4">4 ★</button>
             <button class="btn uerd-story-filter me-2 filter-btn" data-rating="3">3 ★</button>
@@ -1215,27 +1717,27 @@ United Efforts for Rural Development (UERD)
         <div class="uerd-story-wrap">
             <!-- Success Stories Slider -->
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                <?php if (count($stories) > 1): ?>
+                <?php if (count($stories) > 1) { ?>
                     <div class="carousel-indicators">
-                        <?php foreach ($stories as $i => $story): ?>
+                        <?php foreach ($stories as $i => $story) { ?>
                             <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="<?php echo e($i); ?>" class="<?php echo e($i == 0 ? 'active' : ''); ?>" aria-current="<?php echo e($i == 0 ? 'true' : 'false'); ?>" aria-label="Slide <?php echo e($i + 1); ?>"></button>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
 
                 <div class="carousel-inner">
-                    <?php foreach ($stories as $index => $story): ?>
+                    <?php foreach ($stories as $index => $story) { ?>
                         <?php $initial = strtoupper(mb_substr(trim($story->beneficiary_name ?? 'U'), 0, 1)); ?>
                         <div class="carousel-item <?php echo e($index == 0 ? 'active' : ''); ?> story-item" data-rating="<?php echo e($story->rating); ?>">
                             <div class="uerd-story-card uerd-card-hover">
                                 <div class="uerd-story-layout">
                                     <div class="uerd-story-left">
                                         <div class="mb-3">
-                                            <?php if (!empty($story->image)): ?>
+                                            <?php if (! empty($story->image)) { ?>
                                                 <img src="<?php echo e(asset('images/stories/'.$story->image)); ?>" class="uerd-story-avatar-img" alt="<?php echo e($story->beneficiary_name); ?>">
-                                            <?php else: ?>
+                                            <?php } else { ?>
                                                 <span class="uerd-story-avatar"><?php echo e($initial); ?></span>
-                                            <?php endif; ?>
+                                            <?php } ?>
                                         </div>
                                         <div class="uerd-story-name text-center"><?php echo e($story->beneficiary_name); ?></div>
                                         <div class="uerd-story-role text-center"><?php echo e($story->beneficiary_title); ?></div>
@@ -1243,24 +1745,27 @@ United Efforts for Rural Development (UERD)
 
                                     <div class="uerd-story-right">
                                         <div class="rating mb-3">
-                                            <?php for ($i = 1; $i <= 5; $i++): ?>
-                                                <?php if ($i <= $story->rating): ?>
+                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                <?php if ($i <= $story->rating) { ?>
                                                     <span class="text-warning fs-5">&#9733;</span>
-                                                <?php else: ?>
+                                                <?php } else { ?>
                                                     <span class="text-muted fs-5">&#9733;</span>
-                                                <?php endif; ?>
-                                            <?php endfor; ?>
+                                                <?php } ?>
+                                            <?php } ?>
                                         </div>
 
-                                        <p class="uerd-story-text mb-0"><?php echo e(Str::limit($story->description, 220)); ?></p>
+                                        <p class="uerd-story-text mb-0"><?php echo $story->description; ?></p>
+                                        <?php if(mb_strlen(strip_tags($story->description)) > 240) { ?>
+                                            <a class="uerd-story-readmore" data-story-index="<?php echo e($index); ?>">Read More</a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </div>
 
-                <?php if (count($stories) > 1): ?>
+                <?php if (count($stories) > 1) { ?>
                     <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                         <span class="uerd-story-navbtn" aria-hidden="true">
                             <span class="carousel-control-prev-icon"></span>
@@ -1273,14 +1778,16 @@ United Efforts for Rural Development (UERD)
                         </span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                <?php endif; ?>
+                <?php } ?>
             </div>
         </div>
         <!-- End of Success Stories Slider -->
     </div>
 </div>
-<?php endif; ?>
+<?php } ?>
 <!-- End of Success Stories -->
+
+
 
 <script>
 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1307,8 +1814,23 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.uerd-story-readmore').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const right = this.closest('.uerd-story-right');
+            const text = right ? right.querySelector('.uerd-story-text') : null;
+            if (!text) return;
+            const expanded = text.classList.toggle('expanded');
+            this.textContent = expanded ? 'Read Less' : 'Read More';
+        });
+    });
+});
+</script>
+
 {{-- subscription part --}}
-<div class="bg-light pb-5">
+<div class="bg-light pt-5 pb-5">
     <div class="container bg-white pb-5 rounded">
         <div class="py-5">
             <h3 class="text-center"><span class="text-danger">Stay</span> connected <span class="text-danger"> with us</span></h3>
@@ -1422,6 +1944,61 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
         runTypewriterForActiveSlide();
         carouselEl.addEventListener('slid.bs.carousel', runTypewriterForActiveSlide);
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function initHScroll(scrollId) {
+            const scroller = document.getElementById(scrollId);
+            if (!scroller) return;
+
+            const prevBtn = document.querySelector('[data-hscroll-prev="' + scrollId + '"]');
+            const nextBtn = document.querySelector('[data-hscroll-next="' + scrollId + '"]');
+            const track = document.querySelector('[data-hscroll-track-for="' + scrollId + '"]');
+            const indicator = document.querySelector('[data-hscroll-indicator-for="' + scrollId + '"]');
+
+            function updateUI() {
+                const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+                const hasOverflow = maxScroll > 2;
+
+                if (prevBtn) prevBtn.style.display = hasOverflow ? '' : 'none';
+                if (nextBtn) nextBtn.style.display = hasOverflow ? '' : 'none';
+                if (track) track.style.display = hasOverflow ? '' : 'none';
+
+                if (!indicator || !track) return;
+                if (!hasOverflow) {
+                    indicator.style.left = '0px';
+                    indicator.style.width = track.clientWidth + 'px';
+                    return;
+                }
+
+                const trackWidth = track.clientWidth;
+                const visibleFraction = scroller.clientWidth / scroller.scrollWidth;
+                const indicatorWidth = Math.max(44, Math.floor(trackWidth * visibleFraction));
+                const maxLeft = Math.max(0, trackWidth - indicatorWidth);
+                const left = Math.min(maxLeft, Math.max(0, (scroller.scrollLeft / maxScroll) * maxLeft));
+
+                indicator.style.width = indicatorWidth + 'px';
+                indicator.style.left = left + 'px';
+            }
+
+            function scrollByAmount(direction) {
+                const amount = Math.max(260, Math.floor(scroller.clientWidth * 0.86));
+                scroller.scrollBy({ left: direction * amount, behavior: 'smooth' });
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', () => scrollByAmount(-1));
+            if (nextBtn) nextBtn.addEventListener('click', () => scrollByAmount(1));
+
+            scroller.addEventListener('scroll', updateUI, { passive: true });
+            window.addEventListener('resize', updateUI);
+            updateUI();
+        }
+
+        initHScroll('uerdNewsScroll');
+        initHScroll('uerdGalleryScroll');
+        initHScroll('uerdPartnersScroll');
     });
 </script>
 

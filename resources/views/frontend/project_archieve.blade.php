@@ -42,8 +42,17 @@
                         <div class="col-md-1 d-none d-md-block text-center">
                             <span class="fs-4 fw-bold text-light text-stroke">{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         </div>
-                        
-                        <div class="col-md-7 mb-3 mb-md-0">
+
+                        <div class="col-md-2 d-none d-md-block">
+                            @php $img = data_get($proj, 'image') ?? null; @endphp
+                            @if($img)
+                                <img src="{{ asset('images/project/'.$img) }}" alt="{{ $projectName }}" class="img-fluid rounded" style="height:72px; object-fit:cover; width:100%;">
+                            @else
+                                <div class="bg-light rounded" style="height:72px;"></div>
+                            @endif
+                        </div>
+
+                        <div class="col-md-6 mb-3 mb-md-0">
                             <h5 class="fw-bold text-dark mb-1">{{ $projectName }}</h5>
                             @if($projectDonors)
                             <div class="d-flex align-items-center mt-2">
@@ -54,8 +63,8 @@
                             </div>
                             @endif
                         </div>
-                        
-                        <div class="col-md-4 text-md-end">
+
+                        <div class="col-md-3 text-md-end">
                             <div class="d-inline-flex align-items-center bg-light px-3 py-2 rounded-pill">
                                 <i class="fa-regular fa-calendar-check text-success me-2"></i>
                                 <span class="small fw-bold text-dark">{{ $projectPeriod }}</span>

@@ -1,16 +1,7 @@
 @extends('main')
 
 @section('content')
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>Programs</li>
-      </ol>
-      <h2>Success Story</h2>
-    </div>
-  </section>
+  <!-- ======= Breadcrumbs removed ======= -->
   <!-- End Breadcrumbs -->
 
   {{-- Featured Program Single View --}}

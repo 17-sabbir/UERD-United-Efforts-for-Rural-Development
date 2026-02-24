@@ -68,7 +68,7 @@
 
                     <!-- Footer / Link -->
                     <div class="card-footer bg-white border-top-0 p-4 pt-0">
-                        <a href="{{ Route::has('stories.view') ? route('stories.view', $story->id) : '#' }}" class="btn btn-outline-primary w-100 rounded-pill fw-bold text-uppercase small">
+                        <a href="{{ route('success.stories.view', $story->id) }}" class="btn btn-outline-primary w-100 rounded-pill fw-bold text-uppercase small">
                             Read Full Story
                         </a>
                     </div>

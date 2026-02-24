@@ -123,12 +123,12 @@
 			width: 52px;
 			height: 52px;
 			object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid white;
 		}
 
         .logo-text {
-            background: -webkit-linear-gradient(45deg, #007bff, #6f42c1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff !important;
             font-weight: 800;
             letter-spacing: 0.5px;
         }
@@ -511,13 +511,13 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{{ asset('images/application/UERD logo.jpg') }}" class="logo-icon" alt="UERD logo">
+					<img src="{{ asset('images/application/UERD logo.png') }}" class="logo-icon" alt="UERD logo">
 				</div>
 				<div>
-					<h4 class="logo-text text-dark">UERD</h4>
+					<h4 class="logo-text">UERD</h4>
 				</div>
                 <!-- Toggle Icon - White/Gold -->
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-dark'></i>
+				<div class="toggle-icon ms-auto"><i class='bx bx-menu text-white'></i>
 				</div>
 			</div>
 			<!--navigation-->

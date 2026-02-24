@@ -26,7 +26,8 @@
                         </div>
                         <div class="col-md-12">
                             <label for="location" class="form-label">Locations</label>
-                            <input type="text" name="location" class="form-control" id="location" placeholder="Enter Locations">
+                            <input type="text" name="location" class="form-control" id="location" placeholder="Example: Derai Upazila, Sunamganj Sadar Upazila">
+                                <small class="form-text text-muted">* Enter Upazila names separated by commas (example list for Sunamganj District): Derai , Jamalganj, Sunamganj Sadar, Tahirpur, Jagannathpur, Upazila of Sunamganj .</small>
                         </div>
                         <div class="col-md-12">
                             <label for="duration" class="form-label">Project Duration</label>

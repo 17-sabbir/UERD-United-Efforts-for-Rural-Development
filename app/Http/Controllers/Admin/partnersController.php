@@ -67,6 +67,7 @@ class partnersController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required',
+            'image' => 'nullable|mimes:jpg,png,gif,jpeg',
         ]);
 
         $partner_donor = DB::table('partners')->where('id',$id)->first();
@@ -78,7 +79,7 @@ class partnersController extends Controller
             if(file_exists($oldImage)){
                 @unlink($oldImage);
             }
-            $imageName = rand(10000,99999) . 'partner_donor' . $image->getClientOriginalExtension();
+            $imageName = rand(10000,99999). 'partner_donor.' . $image->getClientOriginalExtension();
             $image->move(public_path('images/partner/'), $imageName);
         }
         else{

@@ -33,7 +33,20 @@ class frontController extends Controller
     // vision and mission
     public function vision_mission(){
         $mission_vision = DB::table('mission_vision')->first();
-        return view('frontend.mission_vision',compact('mission_vision'));
+
+        // Try to load key focus areas for inclusion on the Mission & Vision page
+        $focus_areas = collect();
+        try {
+            $focus_areas = DB::table('focus_areas')
+                ->where('is_active', 1)
+                ->orderBy('order', 'asc')
+                ->orderBy('id', 'asc')
+                ->get();
+        } catch (\Throwable $e) {
+            // ignore if table doesn't exist yet
+        }
+
+        return view('frontend.mission_vision', compact('mission_vision', 'focus_areas'));
     }
 
     // team members
@@ -66,11 +79,7 @@ class frontController extends Controller
         return view('frontend.partner',compact('partners'));
     }
 
-    // impact
-    public function impact(){
-        $impact = DB::table('impact')->orderBy('order', 'asc')->get();
-        return view('frontend.impact', compact('impact'));
-    }
+    // impact page removed — method deleted because page is no longer required.
 
     // Key Focus Area
     public function key_focus(){

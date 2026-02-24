@@ -33,7 +33,14 @@
                        <span class="display-6 fw-bold text-muted">#{{ str_pad($project->firstItem() + $key, 2, '0', STR_PAD_LEFT) }}</span>
                    </div>
 
-                  <div class="mb-4 pt-2">
+                  <div class="mb-4 pt-2 d-flex gap-3">
+                      @if(!empty($data->image))
+                          <div class="flex-shrink-0" style="width:96px; height:72px; overflow:hidden; border-radius:8px;">
+                              <img src="{{ asset('images/project/'.$data->image) }}" alt="{{ $data->project_name }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                          </div>
+                      @endif
+
+                      <div class="flex-grow-1">
                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 mb-2">
                             Ongoing
                        </span>
@@ -45,6 +52,7 @@
                       <small class="text-muted d-block">
                           <i class="fa-solid fa-map-pin me-1 text-danger"></i> {{ $data->locations }}
                       </small>
+                      </div>
                   </div>
 
                   <div class="project-details mb-4">

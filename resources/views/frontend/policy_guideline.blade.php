@@ -2,16 +2,7 @@
 
 @section('content')
 
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>Stay Informed</li>
-      </ol>
-      <h2>Policy and Guideline</h2>
-    </div>
-  </section>
+  <!-- ======= Breadcrumbs removed ======= -->
   <!-- End Breadcrumbs -->
 
     <!-- ======= Policy and Guideline Section ======= -->

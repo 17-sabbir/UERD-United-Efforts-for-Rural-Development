@@ -50,6 +50,13 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="col-md-12">
+                            <label for="key_focus" class="form-label">Key Focus</label>
+                            <textarea id="key_focus" name="key_focus" class="form-control @error('key_focus') is-invalid @enderror" rows="3">{{ old('key_focus', $mission->key_focus ?? '') }}</textarea>
+                            @error('key_focus')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Save</button>
                         </div>
@@ -71,6 +78,12 @@
                         <h6>Mission:</h6>
                         <p class="text-justify">
                             {{ isset($mission->mission)? $mission->mission:'' }}
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <h6>Key Focus:</h6>
+                        <p class="text-justify">
+                            {{ isset($mission->key_focus)? $mission->key_focus:'' }}
                         </p>
                     </div>
                 </div>

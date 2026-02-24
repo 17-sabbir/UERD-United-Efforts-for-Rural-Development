@@ -29,37 +29,42 @@
         <div class="tab-pane fade show active" id="pills-all" role="tabpanel">
             <div class="row g-4">
                 @foreach($projects as $project)
-                <div class="col-lg-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="card h-100 shadow-sm border-0 border-top border-4 {{ $project->status == 'ongoing' ? 'border-success' : 'border-secondary' }}">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h4 class="card-title fw-bold text-dark mb-0">{{ $project->project_name }}</h4>
-                                <span class="badge {{ $project->status == 'ongoing' ? 'bg-success' : 'bg-secondary' }}">{{ ucfirst($project->status) }}</span>
-                            </div>
+                        {{-- Image Section (Top) --}}
+                        <div style="height: 220px; overflow: hidden; position: relative;">
+                            @if(!empty($project->image))
+                                <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top w-100 h-100" alt="{{ $project->project_name }}" style="object-fit: cover;">
+                            @else
+                                <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                                    <i class="fa-regular fa-folder-open fa-3x text-secondary opacity-25"></i>
+                                </div>
+                            @endif
+                            <span class="position-absolute top-0 end-0 m-3 badge {{ $project->status == 'ongoing' ? 'bg-success' : 'bg-secondary' }}">{{ ucfirst($project->status) }}</span>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-dark mb-3" style="min-height: 48px;">{{Str::limit($project->project_name, 60)}}</h5>
                             
-                            <h6 class="text-danger fw-bold border-bottom pb-2 mb-3">Objectives</h6>
-                            <p class="card-text text-secondary mb-4" style="font-size: 0.95rem;">
-                                {!! nl2br(Str::limit($project->objectives, 250)) !!}
-                                <!-- Full text hidden/modal logic could be added here -->
+                            <h6 class="text-danger fw-bold border-bottom pb-2 mb-3" style="font-size: 0.9rem;">Objectives</h6>
+                            <p class="card-text text-secondary mb-4 flex-grow-1" style="font-size: 0.9rem;">
+                                {!! nl2br(Str::limit($project->objectives, 150)) !!}
                             </p>
 
-                            <div class="row pt-3 border-top g-2" style="font-size: 0.9rem;">
-                                <div class="col-md-6 mb-2">
-                                    <strong class="d-block text-dark">Location:</strong>
-                                    <span class="text-muted">{{ $project->locations }}</span>
+                            <div class="small text-muted mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <strong><i class="fa-solid fa-location-dot me-1"></i> Location:</strong>
+                                    <span class="text-end">{{ Str::limit($project->locations, 20) }}</span>
                                 </div>
-                                <div class="col-md-6 mb-2">
-                                    <strong class="d-block text-dark">Duration:</strong>
-                                    <span class="text-muted">{{ project_period($project) }}</span>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    <strong class="d-block text-dark">Donor:</strong>
-                                    <span class="text-muted fst-italic">{{ $project->donors }}</span>
-                                </div>
-                                <div class="col-12">
-                                     <strong class="text-success">{{ $project->total_beneficiary }}</strong>
+                                <div class="d-flex justify-content-between">
+                                    <strong><i class="fa-regular fa-clock me-1"></i> Duration:</strong>
+                                    <span class="text-end">{{ project_period($project) }}</span>
                                 </div>
                             </div>
+
+                            <a href="{{ route('ongoing.project.view', $project->id) }}" class="btn btn-outline-primary w-100 mt-auto rounded-pill">
+                                Read More <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -71,17 +76,42 @@
         <div class="tab-pane fade" id="pills-ongoing" role="tabpanel">
              <div class="row g-4">
                 @foreach($projects->where('status', 'ongoing') as $project)
-                 <div class="col-lg-6">
+                 <div class="col-lg-4 col-md-6">
                     <div class="card h-100 shadow-sm border-0 border-top border-4 border-success">
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold text-dark mb-3">{{ $project->project_name }}</h4>
-                            <p class="card-text text-secondary mb-4">
-                                {!! nl2br(Str::limit($project->objectives, 200)) !!}
+                        {{-- Image Section (Top) --}}
+                        <div style="height: 220px; overflow: hidden; position: relative;">
+                            @if(!empty($project->image))
+                                <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top w-100 h-100" alt="{{ $project->project_name }}" style="object-fit: cover;">
+                            @else
+                                <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                                    <i class="fa-regular fa-folder-open fa-3x text-secondary opacity-25"></i>
+                                </div>
+                            @endif
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success">{{ ucfirst($project->status) }}</span>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-dark mb-3" style="min-height: 48px;">{{Str::limit($project->project_name, 60)}}</h5>
+                            
+                            <h6 class="text-danger fw-bold border-bottom pb-2 mb-3" style="font-size: 0.9rem;">Objectives</h6>
+                            <p class="card-text text-secondary mb-4 flex-grow-1" style="font-size: 0.9rem;">
+                                {!! nl2br(Str::limit($project->objectives, 150)) !!}
                             </p>
-                            <div class="border-top pt-3">
-                                <small class="text-muted d-block mb-1"><strong>Duration:</strong> {{ project_period($project) }}</small>
-                                <small class="text-muted d-block"><strong>Donor:</strong> {{ $project->donors }}</small>
+
+                            <div class="small text-muted mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <strong><i class="fa-solid fa-location-dot me-1"></i> Location:</strong>
+                                    <span class="text-end">{{ Str::limit($project->locations, 20) }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <strong><i class="fa-regular fa-clock me-1"></i> Duration:</strong>
+                                    <span class="text-end">{{ project_period($project) }}</span>
+                                </div>
                             </div>
+
+                            <a href="{{ route('ongoing.project.view', $project->id) }}" class="btn btn-outline-success w-100 mt-auto rounded-pill">
+                                Read More <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -93,17 +123,42 @@
         <div class="tab-pane fade" id="pills-completed" role="tabpanel">
              <div class="row g-4">
                 @foreach($projects->where('status', 'completed') as $project)
-                 <div class="col-lg-6">
+                 <div class="col-lg-4 col-md-6">
                     <div class="card h-100 shadow-sm border-0 border-top border-4 border-secondary">
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold text-dark mb-3">{{ $project->project_name }}</h4>
-                            <p class="card-text text-secondary mb-4">
-                                {!! nl2br(Str::limit($project->objectives, 200)) !!}
+                        {{-- Image Section (Top) --}}
+                        <div style="height: 220px; overflow: hidden; position: relative;">
+                            @if(!empty($project->image))
+                                <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top w-100 h-100" alt="{{ $project->project_name }}" style="object-fit: cover;">
+                            @else
+                                <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                                    <i class="fa-regular fa-folder-open fa-3x text-secondary opacity-25"></i>
+                                </div>
+                            @endif
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-secondary">{{ ucfirst($project->status) }}</span>
+                        </div>
+
+                         <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-dark mb-3" style="min-height: 48px;">{{Str::limit($project->project_name, 60)}}</h5>
+                            
+                            <h6 class="text-danger fw-bold border-bottom pb-2 mb-3" style="font-size: 0.9rem;">Objectives</h6>
+                            <p class="card-text text-secondary mb-4 flex-grow-1" style="font-size: 0.9rem;">
+                                {!! nl2br(Str::limit($project->objectives, 150)) !!}
                             </p>
-                            <div class="border-top pt-3">
-                                <small class="text-muted d-block mb-1"><strong>Duration:</strong> {{ project_period($project) }}</small>
-                                <small class="text-muted d-block"><strong>Donor:</strong> {{ $project->donors }}</small>
+
+                            <div class="small text-muted mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <strong><i class="fa-solid fa-location-dot me-1"></i> Location:</strong>
+                                    <span class="text-end">{{ Str::limit($project->locations, 20) }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <strong><i class="fa-regular fa-clock me-1"></i> Duration:</strong>
+                                    <span class="text-end">{{ project_period($project) }}</span>
+                                </div>
                             </div>
+
+                            <a href="{{ route('ongoing.project.view', $project->id) }}" class="btn btn-outline-secondary w-100 mt-auto rounded-pill">
+                                Read More <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

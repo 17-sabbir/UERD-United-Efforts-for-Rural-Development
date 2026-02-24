@@ -29,6 +29,7 @@ Route::get('/', function () {
         ->take(3)
         ->get();
     $news = DB::table('latest_news')->take(6)->get();
+    $partners = DB::table('partners')->orderBy('id', 'desc')->get();
     $mission_vision = DB::table('mission_vision')->orderBy('id', 'asc')->first();
     $albumAgg = DB::table('gallery')
         ->select('album', DB::raw('MAX(id) as cover_id'), DB::raw('COUNT(*) as photo_count'))
@@ -63,7 +64,41 @@ Route::get('/', function () {
     $programs = DB::table('programs')->where('status', 'active')->orderBy('created_at', 'desc')->take(3)->get();
     $stories = DB::table('stories')->orderBy('id', 'desc')->get();
 
-    return view('home', compact('slider', 'project', 'news', 'mission_vision', 'albumsPreview', 'hasMoreAlbums', 'application', 'programs', 'stories', 'empoweringLives', 'devSustainability'));
+    // Dynamic stats: projects count and distinct districts covered by projects
+    $projectsCount = DB::table('projects')->count();
+
+    // Gather locations from projects and compute distinct upazilas (prefer Upazila names)
+    $rawLocations = DB::table('projects')->whereNotNull('locations')->pluck('locations')->toArray();
+    $upazilas = [];
+    foreach ($rawLocations as $loc) {
+        // Normalize common prepositions into commas so we can split reliably
+        $normalized = preg_replace('/\s+of\s+|\s+in\s+/i', ',', $loc);
+        $parts = array_filter(array_map('trim', explode(',', $normalized)));
+        foreach ($parts as $p) {
+            if ($p === '') continue;
+
+            // skip parts that are clearly district labels
+            if (preg_match('/\bDistrict\b/i', $p)) {
+                continue;
+            }
+
+            // If the part contains the word 'Upazila', extract the name before it
+            if (preg_match('/^(.*?)\s*Upazila\b/i', $p, $m)) {
+                $name = trim($m[1]);
+            } else {
+                // Otherwise assume the part itself is an upazila/locality (covers formats like "Derai, Sunamgonj")
+                $name = trim($p);
+            }
+
+            if ($name !== '') {
+                $upazilas[strtolower($name)] = $name; // use lowercase key for uniqueness
+            }
+        }
+    }
+    // Keep the variable name expected by the view (`districtsCount`) but it now counts unique upazilas
+    $districtsCount = count($upazilas);
+
+    return view('home', compact('slider', 'project', 'news', 'partners', 'mission_vision', 'albumsPreview', 'hasMoreAlbums', 'application', 'programs', 'stories', 'empoweringLives', 'devSustainability', 'projectsCount', 'districtsCount'));
 });
 
 Route::post('user/subscribe', [frontController::class, 'subscribe'])->name('user.subscribe');
@@ -76,7 +111,7 @@ Route::get('origin/affilation', [frontController::class, 'origin_affilation'])->
 Route::get('committee', [frontController::class, 'committee'])->name('executive.committee');
 Route::get('cheif/message', [frontController::class, 'cheif_msg'])->name('cheif.message');
 Route::get('partner/donor', [frontController::class, 'partner'])->name('partner.donor');
-Route::get('about/impact', [frontController::class, 'impact'])->name('about.impact');
+// Route 'about/impact' removed — Impact page no longer required.
 
 // Programs
 // Route::get('key/focus', [frontController::class, 'key_focus'])->name('key.focus.area');
@@ -90,7 +125,6 @@ Route::get('programs', [frontController::class, 'programs'])->name('programs.all
 Route::get('programs/view/{id}', [frontController::class, 'programsView'])->name('programs.view');
 Route::get('success/stories', [frontController::class, 'stories'])->name('success.stories');
 Route::get('success/stories/view/{id}', [frontController::class, 'storiesView'])->name('success.stories.view');
-
 
 // Stay Informed
 Route::get('strategic/plan', [frontController::class, 'strategic_plan'])->name('strategic.plan');

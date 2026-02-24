@@ -334,6 +334,9 @@ ul {
   color: white;
   font-size: 20px;
   z-index: 5;
+  /* Improve visibility always */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .featuredImage .overlay::before {

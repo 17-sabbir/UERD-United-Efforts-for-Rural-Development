@@ -120,7 +120,7 @@
             <div class="col-lg-4">
                 <div class="uerd-footer-brand mb-3">
                     <div class="uerd-footer-logo" style="padding: 0; overflow: hidden; background: #fff;">
-                        <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="U" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="{{ asset('images/application/UERD logo.png') }}" alt="U" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div>
                         <div class="fw-bold" style="color:#fff; font-size: 1.5rem; line-height: 1.0; font-family: 'Playfair Display', serif;">UERD</div>

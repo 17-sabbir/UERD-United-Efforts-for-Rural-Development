@@ -102,16 +102,15 @@
         .brand-title {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
-            font-size: 1.5rem;
+            font-size: 1.1rem; /* reduced */
             letter-spacing: -0.5px;
         }
-        
+
         .brand-subtitle {
             font-family: 'DM Sans', sans-serif;
-            font-size: 0.8rem;
-            opacity: 0.85;
+            font-size: 0.75rem; /* reduced */
             font-weight: 500;
-            letter-spacing: 0.5px;
+            opacity: 0.9;
             margin-top: 2px;
         }
         
@@ -126,11 +125,11 @@
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" style="gap: 0; padding: 0;">
                 <div class="brand-logo-container">
                     {{-- User requested logo inside the U shape/container --}}
-                    <img src="{{ asset('images/application/UERD logo.jpg') }}" alt="UERD" class="brand-logo-img" style="border-radius: 50%;"> 
+                    <img src="{{ asset('images/application/UERD logo.png') }}" alt="UERD" class="brand-logo-img" style="border-radius: 50%;"> 
                 </div>
                 <div class="brand-text">
                     <span class="brand-title">UERD</span>
-                    <span class="brand-subtitle">Rural Development</span>
+                    <span class="brand-subtitle">United Efforts for Rural Development</span>
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,9 +146,9 @@
                         About us
                     </a>
                 <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                    <li><a class="dropdown-item" href="{{ route('about.impact') }}">Impact</a></li>
                     <li><a class="dropdown-item" href="{{ route('success.stories') }}">Success Stories</a></li>
                     <li><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission Vision &amp; Focus</a></li>
                     <li><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a></li>
                     <li><a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a></li>
                     {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li> --}}
@@ -191,6 +190,8 @@
                     <li><a class="dropdown-item" href="{{ route('gallery.albums') }}">Photo Gallery</a></li>
                     <li><a class="dropdown-item" href="{{ route('youtube.video') }}">Youtube Videos</a></li>
                     <li><a class="dropdown-item" href="{{ route('publication') }}">Publications</a></li>
+                    <li><a class="dropdown-item" href="{{ route('strategic.plan') }}">Strategic Plan</a></li>
+                    <li><a class="dropdown-item" href="{{ route('policy.guideline') }}">Policy &amp; Guideline</a></li>
                 </ul>
                 </li>
 
