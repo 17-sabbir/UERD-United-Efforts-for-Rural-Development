@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-xl-9 mx-auto">
-        <h6 class="mb-0 text-uppercase">Add Logo and Favicon</h6>
+        <h6 class="mb-0 text-uppercase">Application Settings</h6>
         <hr/>
         <div class="card">
             <div class="card-body">
@@ -15,6 +15,17 @@
                         @csrf
                         <div class="col-md-12">
                             <label for="logo" class="form-label">Logo</label>
+                            @if(!empty($application->main_logo) && file_exists(public_path('images/application/'.$application->main_logo)))
+                                <div class="mb-2">
+                                    <span class="text-muted small">Current Logo:</span><br>
+                                    <img src="{{ asset('images/application/'.$application->main_logo) }}" alt="Current Logo" height="50" class="border rounded p-1">
+                                </div>
+                            @else
+                                <div class="mb-2">
+                                    <span class="text-muted small">Current Logo (default):</span><br>
+                                    <img src="{{ asset('images/application/UERD logo.png') }}" alt="Default Logo" height="50" class="border rounded p-1">
+                                </div>
+                            @endif
                             <input type="file" name="main_logo" class="form-control @error('logo') is-invalid @enderror" id="logo">
                             @error('main_logo')
                                 <div class="text-danger">{{ $message }}</div>
@@ -22,6 +33,17 @@
                         </div>
                         <div class="col-md-12">
                             <label for="fav" class="form-label">Favicon</label>
+                            @if(!empty($application->fav_icon) && file_exists(public_path('images/application/'.$application->fav_icon)))
+                                <div class="mb-2">
+                                    <span class="text-muted small">Current Favicon:</span><br>
+                                    <img src="{{ asset('images/application/'.$application->fav_icon) }}" alt="Current Favicon" height="32" class="border rounded p-1">
+                                </div>
+                            @else
+                                <div class="mb-2">
+                                    <span class="text-muted small">Current Favicon (default):</span><br>
+                                    <img src="{{ asset('images/application/UERD logo.png') }}" alt="Default Favicon" height="32" class="border rounded p-1">
+                                </div>
+                            @endif
                             <input type="file" name="fev_icon" class="form-control @error('fav') is-invalid @enderror" id="fav">
                             @error('fev_icon')
                                 <div class="text-danger">{{ $message }}</div>
@@ -89,12 +111,24 @@
 
                     <div class="col-md-2 h6 text-end py-1">Main Logo: </div>
                     <div class="col-md-10 py-1">
-                        <img src="{{ asset(isset($application->main_logo)?'images/application/'.$application->main_logo:'') }}" alt="" width="100">
+                        @if(!empty($application->main_logo) && file_exists(public_path('images/application/'.$application->main_logo)))
+                            <img src="{{ asset('images/application/'.$application->main_logo) }}" alt="Main Logo" width="100" class="border rounded p-1">
+                            <span class="badge bg-success ms-2">Dynamic</span>
+                        @else
+                            <img src="{{ asset('images/application/UERD logo.png') }}" alt="Default Logo" width="100" class="border rounded p-1 opacity-75">
+                            <span class="badge bg-secondary ms-2">Default (Static)</span>
+                        @endif
                     </div>
 
                     <div class="col-md-2 h6 text-end py-1">Fav Icon: </div>
                     <div class="col-md-10 py-1">
-                        <img src="{{ asset(isset($application->fav_icon)?'images/application/'.$application->fav_icon:'') }}" alt="" width="50">
+                        @if(!empty($application->fav_icon) && file_exists(public_path('images/application/'.$application->fav_icon)))
+                            <img src="{{ asset('images/application/'.$application->fav_icon) }}" alt="Favicon" width="50" class="border rounded p-1">
+                            <span class="badge bg-success ms-2">Dynamic</span>
+                        @else
+                            <img src="{{ asset('images/application/UERD logo.png') }}" alt="Default Favicon" width="50" class="border rounded p-1 opacity-75">
+                            <span class="badge bg-secondary ms-2">Default (Static)</span>
+                        @endif
                     </div>
                 </div>
             </div>

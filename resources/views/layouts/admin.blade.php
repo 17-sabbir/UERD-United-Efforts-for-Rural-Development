@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!--favicon-->
-	<link rel="icon" href="{{ asset('images/application/'.application()->fav_icon) }}" type="image/png" />
+	@php $appSettings = application(); @endphp
+	<link rel="icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? asset('images/application/'.$appSettings->fav_icon) : asset('images/application/UERD logo.png') }}" type="image/png" />
 	<!--plugins-->
 	<link href="{{ asset('admin/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
 	<link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -511,7 +512,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{{ asset('images/application/UERD logo.png') }}" class="logo-icon" alt="UERD logo">
+					<img src="{{ $appSettings && !empty($appSettings->main_logo) ? asset('images/application/'.$appSettings->main_logo) : asset('images/application/UERD logo.png') }}" class="logo-icon" alt="UERD logo">
 				</div>
 				<div>
 					<h4 class="logo-text">UERD</h4>
@@ -657,9 +658,9 @@
 				</li> --}}
 				<li>
 					<a href="{{ route('logo.create') }}">
-						<div class="parent-icon"><i class='bx bx-folder'></i>
+						<div class="parent-icon"><i class='bx bx-cog'></i>
 						</div>
-						<div class="menu-title">Application</div>
+						<div class="menu-title">Settings</div>
 					</a>
 				</li>
 				<li>
@@ -705,6 +706,13 @@
                             <a href="{{ route('executive.index') }}"><i class="bx bx-right-arrow-alt"></i>All Members</a>
 						</li>
 					</ul>
+				</li>
+				<li>
+					<a href="{{ route('admin.management_structure.index') }}">
+						<div class="parent-icon"><i class='fadeIn animated bx bx-sitemap'></i>
+						</div>
+						<div class="menu-title">Management Structure</div>
+					</a>
 				</li>
 				<li>
 					<a  class="has-arrow">
@@ -1081,107 +1089,7 @@
 		</footer>
 	</div>
 	<!--end wrapper-->
-	<!--start switcher-->
-	<div class="switcher-wrapper">
-		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
-		</div>
-		<div class="switcher-body">
-			<div class="d-flex align-items-center">
-				<h5 class="mb-0 text-uppercase">{{ __('admin.theme_customizer') }}</h5>
-				<button type="button" class="btn-close close-switcher" aria-label="Close"></button>
-			</div>
-			<hr/>
-			<h6 class="mb-0">{{ __('admin.theme_styles') }}</h6>
-			<hr/>
-			<div class="d-flex align-items-center justify-content-between">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
-					<label class="form-check-label" for="lightmode">{{ __('admin.light') }}</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
-					<label class="form-check-label" for="darkmode">{{ __('admin.dark') }}</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
-					<label class="form-check-label" for="semidark">{{ __('admin.semi_dark') }}</label>
-				</div>
-			</div>
-			<hr/>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
-				<label class="form-check-label" for="minimaltheme">{{ __('admin.minimal_theme') }}</label>
-			</div>
-			<hr/>
-			<h6 class="mb-0">{{ __('admin.header_colors') }}</h6>
-			<hr/>
-			<div class="header-colors-indigators">
-				<div class="row row-cols-auto g-3">
-					<div class="col">
-						<div class="indigator headercolor1" id="headercolor1"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor2" id="headercolor2"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor3" id="headercolor3"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor4" id="headercolor4"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor5" id="headercolor5"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor6" id="headercolor6"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor7" id="headercolor7"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor8" id="headercolor8"></div>
-					</div>
-				</div>
-			</div>
 
-			<hr/>
-			<h6 class="mb-0">{{ __('admin.sidebar_backgrounds') }}</h6>
-			<hr/>
-			<div class="header-colors-indigators">
-				<div class="row row-cols-auto g-3">
-					<div class="col">
-						<div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
-					</div>
-				</div>
-			</div>
-
-			<hr/>
-			<button type="button" class="btn btn-outline-secondary w-100" id="uerd-theme-reset">Reset</button>
-
-		</div>
-	</div>
-	<!--end switcher-->
 
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>

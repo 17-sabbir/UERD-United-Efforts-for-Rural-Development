@@ -16,17 +16,20 @@ class missionController extends Controller
 
     //__Store__//
     public function store(Request $request){
-        $validatedData = $request->validate([
-            'vision' => 'required',
-            'mission' => 'required',
-            'key_focus' => 'nullable|string',
+        $request->validate([
+            'vision'           => 'required',
+            'mission'          => 'required',
+            'key_focus'        => 'nullable|string',
             'background_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $data = array();
-        $data['vision'] = $request->vision;
+        // ── Focus Area: store plain text ───────────────────────────────────
+        $keyFocusValue = trim($request->input('key_focus', '')) ?: null;
+
+        $data            = [];
+        $data['vision']  = $request->vision;
         $data['mission'] = $request->mission;
-        $data['key_focus'] = $request->key_focus;
+        $data['key_focus'] = $keyFocusValue;
 
         $existing = DB::table('mission_vision')->first();
         $backgroundImageName = $existing->background_image ?? null;

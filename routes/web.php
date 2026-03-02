@@ -114,7 +114,6 @@ Route::get('partner/donor', [frontController::class, 'partner'])->name('partner.
 // Route 'about/impact' removed — Impact page no longer required.
 
 // Programs
-// Route::get('key/focus', [frontController::class, 'key_focus'])->name('key.focus.area');
 Route::get('project/archieve', [frontController::class, 'proj_archieve'])->name('project.archieve');
 Route::get('ongoing/project', [frontController::class, 'ongoing_project'])->name('ongoing.project');
 Route::get('ongoing/project/view/{id}', [frontController::class, 'project_view'])->name('ongoing.project.view');

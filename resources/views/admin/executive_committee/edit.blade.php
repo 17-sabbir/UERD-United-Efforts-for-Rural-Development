@@ -56,7 +56,16 @@
                             <input type="url" name="youtube" class="form-control" id="youtube" value="{{ $data->youtube }}" placeholder="https://youtube.com/channel/...">
                         </div>
                         <div class="col-md-12">
-                            <label for="order" class="form-label">Order</label>
+                            <label class="form-label">Parent Member <small class="text-muted">(optional — leave blank for root node)</small></label>
+                            <select name="parent_id" class="form-select">
+                                <option value="">— No Parent (Root Node) —</option>
+                                @foreach($allMembers as $m)
+                                    <option value="{{ $m->id }}" {{ $data->parent_id == $m->id ? 'selected' : '' }}>{{ $m->name }} — {{ $m->designation }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="order" class="form-label">Order <small class="text-muted">(within same level)</small></label>
                             <input type="number" name="order" class="form-control" id="order" value="{{ $data->order }}">
                         </div>
                         <div class="col-12">

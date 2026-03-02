@@ -488,7 +488,7 @@ United Efforts for Rural Development (UERD)
                         <div class="col-6">
                             <div class="uerd-glass-card">
                                 <i class="fa-regular fa-calendar-check uerd-glass-icon"></i>
-                                <div class="uerd-glass-stat count-up" data-target="1998">0</div>
+                                <div class="uerd-glass-stat count-up" data-target="2000">0</div>
                                 <div class="uerd-glass-label">Founded</div>
                             </div>
                         </div>
@@ -719,7 +719,7 @@ United Efforts for Rural Development (UERD)
                         <i class="fa-regular fa-compass text-warning fs-4"></i>
                     </div>
                     <h3 class="text-white fw-bold mb-3 border-bottom border-warning border-3 d-inline-block pb-1">Key Focus</h3>
-                    <p style="text-align: justify; font-size: 1.05rem; line-height: 1.6;" class="text-white opacity-90 mb-0">
+                    <p style="text-align:justify;font-size:1.05rem;line-height:1.6;" class="text-white opacity-90 mb-0">
                         {{ $mission_vision->key_focus ?? 'Education & skill development, healthcare access, women\'s empowerment, climate adaptation, food security, and sustainable livelihood programs.' }}
                     </p>
                 </div>
@@ -1755,7 +1755,7 @@ United Efforts for Rural Development (UERD)
                                         </div>
 
                                         <p class="uerd-story-text mb-0"><?php echo $story->description; ?></p>
-                                        <?php if(mb_strlen(strip_tags($story->description)) > 240) { ?>
+                                        <?php if (mb_strlen(strip_tags($story->description)) > 240) { ?>
                                             <a class="uerd-story-readmore" data-story-index="<?php echo e($index); ?>">Read More</a>
                                         <?php } ?>
                                     </div>

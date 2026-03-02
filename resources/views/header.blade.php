@@ -124,8 +124,9 @@
         <div class="container-fluid px-0">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" style="gap: 0; padding: 0;">
                 <div class="brand-logo-container">
-                    {{-- User requested logo inside the U shape/container --}}
-                    <img src="{{ asset('images/application/UERD logo.png') }}" alt="UERD" class="brand-logo-img" style="border-radius: 50%;"> 
+                    {{-- Dynamic logo: use uploaded logo if set, else fall back to static --}}
+                    @php $appSettings = application(); @endphp
+                    <img src="{{ $appSettings && !empty($appSettings->main_logo) ? asset('images/application/'.$appSettings->main_logo) : asset('images/application/UERD logo.png') }}" alt="UERD" class="brand-logo-img" style="border-radius: 50%;"> 
                 </div>
                 <div class="brand-text">
                     <span class="brand-title">UERD</span>

@@ -277,6 +277,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Organization Profile
     Route::get('/organization-profile', [OrganizationProfileController::class, 'index'])->name('organization_profile.index');
     Route::post('/organization-profile', [OrganizationProfileController::class, 'update'])->name('organization_profile.update');
+    Route::get('/management-structure', [OrganizationProfileController::class, 'managementStructure'])->name('admin.management_structure.index');
+    Route::post('/management-structure', [OrganizationProfileController::class, 'updateManagementStructure'])->name('admin.management_structure.update');
 
     // Projects
     Route::resource('projects', ProjectListController::class)->names('admin.projects');

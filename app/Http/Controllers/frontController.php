@@ -33,20 +33,7 @@ class frontController extends Controller
     // vision and mission
     public function vision_mission(){
         $mission_vision = DB::table('mission_vision')->first();
-
-        // Try to load key focus areas for inclusion on the Mission & Vision page
-        $focus_areas = collect();
-        try {
-            $focus_areas = DB::table('focus_areas')
-                ->where('is_active', 1)
-                ->orderBy('order', 'asc')
-                ->orderBy('id', 'asc')
-                ->get();
-        } catch (\Throwable $e) {
-            // ignore if table doesn't exist yet
-        }
-
-        return view('frontend.mission_vision', compact('mission_vision', 'focus_areas'));
+        return view('frontend.mission_vision', compact('mission_vision'));
     }
 
     // team members
@@ -63,8 +50,21 @@ class frontController extends Controller
 
     // executive committee
     public function committee(){
-        $committee = DB::table('executive_committee')->orderBy('order', 'asc')->get();
-        return view('frontend.exe_committee', compact('committee'));
+        $all = DB::table('executive_committee')->orderBy('order', 'asc')->get();
+        // Build nested tree
+        $buildTree = function($nodes, $parentId = null) use (&$buildTree) {
+            $result = [];
+            foreach ($nodes as $node) {
+                if ($node->parent_id == $parentId) {
+                    $node->children = $buildTree($nodes, $node->id);
+                    $result[] = $node;
+                }
+            }
+            return $result;
+        };
+        $tree = $buildTree($all);
+        $orgProfile = \App\Models\OrganizationProfile::first();
+        return view('frontend.exe_committee', compact('tree', 'orgProfile'));
     }
 
     // Message form Cheif Executive
