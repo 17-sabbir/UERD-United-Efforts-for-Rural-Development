@@ -480,15 +480,12 @@
             transform: scale(0.97);
         }
 
-    </style>
-            box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2);
-        }
-
         .btn-danger.btn-sm {
             background-color: rgba(220, 53, 69, 0.1);
             color: #dc3545;
             border: none;
         }
+
         .btn-danger.btn-sm:hover {
             background-color: #dc3545;
             color: #fff;
