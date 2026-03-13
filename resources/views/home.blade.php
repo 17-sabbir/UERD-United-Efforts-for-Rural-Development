@@ -28,7 +28,7 @@ United Efforts for Rural Development (UERD)
     
     .hero-title {
         font-family: 'Playfair Display', serif; 
-        font-size: 4.5rem; 
+        font-size: 3rem; 
         font-weight: 800;
         line-height: 1.1;
         margin-bottom: 25px;
@@ -72,7 +72,8 @@ United Efforts for Rural Development (UERD)
         max-width: 700px;
         margin-bottom: 40px;
         line-height: 1.6;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        color: #ffffff; /* Ensure white color */
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Improved shadow for visibility */
     }
     
     .btn-hero-primary {
