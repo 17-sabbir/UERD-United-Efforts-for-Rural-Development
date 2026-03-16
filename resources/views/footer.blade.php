@@ -104,6 +104,10 @@
             font-family: 'DM Sans', sans-serif;
         }
         .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
             border-radius: 50%;
             width: 45px;
             height: 45px;
@@ -186,16 +190,15 @@
         </div>
     </div>
 </div>
-<div class="text-end">
-    <a href="#" class="btn btn-primary shadow back-to-top">
-        <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    </a>
-</div>
+
+<a href="#" class="btn btn-primary shadow back-to-top">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</a>
 
 {{-- copyright --}}
 <div class="uerd-footer-bottom p-3">
-    <div class="container text-white d-flex flex-column flex-md-row justify-content-between gap-2">
+    <div class="container text-white d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 text-center">
         <small>Copyright © {{ date('Y') }} || All right reserved by <abbr title="United Efforts for Rural Development">UERD</abbr></small>
-        <small>Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small>
+        {{-- <small>Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small> --}}
     </div>
 </div>

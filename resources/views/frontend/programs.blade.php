@@ -3,9 +3,9 @@
 @section('content')
 
   <div class="container pt-5 pb-3 text-center">
-      <h1 class="display-3 fw-bold text-uppercase" style="background: linear-gradient(to right, #009688, #8bc34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-          Program Highlights
-      </h1>
+      <h2 class="display-3 fw-bold text-uppercase" style="background: linear-gradient(to right, #009688, #8bc34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Key Focus Area
+      </h2>
   </div>
 
   <!-- ======= Alternating Features Section ======= -->

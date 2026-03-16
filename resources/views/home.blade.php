@@ -741,8 +741,8 @@ United Efforts for Rural Development (UERD)
     </style>
     <div class="container">
         <div class="pt-3 pb-3">
-            <h3 class="text-center"> Program <span class="text-danger">Highlights</span></h3>
-            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: UERD's Program Highlights brings transformative opportunities to communities in northern Bangladesh.</p>
+            <h3 class="text-center"> Key Focus <span class="text-danger">Area</span></h3>
+            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: UERD's Key Focus Area brings transformative opportunities to communities in northern Bangladesh.</p>
         </div>
 
         <div class="row p-3">
