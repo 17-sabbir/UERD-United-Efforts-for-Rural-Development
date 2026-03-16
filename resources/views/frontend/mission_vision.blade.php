@@ -50,7 +50,7 @@
                     <div class="feature-icon-wrapper" style="background: rgba(46,139,87,0.1); color: #2E8B57;">
                         <i class="fa-solid fa-crosshairs"></i>
                     </div>
-                    <h3 class="modern-title" style="margin-bottom: 25px;">Focus Area</h3>
+                    <h3 class="modern-title" style="margin-bottom: 25px;">Our Values</h3>
                     <p class="modern-text">
                         {{ $mission_vision->key_focus ?? 'Women Empowerment...' }}
                     </p>

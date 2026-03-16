@@ -48,9 +48,9 @@
 
                         {{-- ===== FOCUS AREA ===== --}}
                         <div class="col-md-12">
-                            <label for="key_focus" class="form-label">Focus Area</label>
+                            <label for="key_focus" class="form-label">Our Values</label>
                             <textarea id="key_focus" name="key_focus" class="form-control" rows="3"
-                                      placeholder="Focus area description…">{{ old('key_focus', $mission->key_focus ?? '') }}</textarea>
+                                      placeholder="Our values description…">{{ old('key_focus', $mission->key_focus ?? '') }}</textarea>
                         </div>
                         {{-- ===== END FOCUS AREA ===== --}}
 
@@ -80,7 +80,7 @@
                         <p>{{ $mission->mission ?? '—' }}</p>
                     </div>
                     <div class="col-md-12">
-                        <h6 class="fw-semibold text-success">Focus Area:</h6>
+                        <h6 class="fw-semibold text-success">Our Values:</h6>
                         <p>{{ $mission->key_focus ?? '—' }}</p>
                     </div>
                 </div>

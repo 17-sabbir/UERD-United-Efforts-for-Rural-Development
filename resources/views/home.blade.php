@@ -719,7 +719,7 @@ United Efforts for Rural Development (UERD)
                      <div class="mb-3 d-inline-flex align-items-center justify-content-center bg-white bg-opacity-10 rounded-3" style="width: 50px; height: 50px;">
                         <i class="fa-regular fa-compass text-warning fs-4"></i>
                     </div>
-                    <h3 class="text-white fw-bold mb-3 border-bottom border-warning border-3 d-inline-block pb-1">Key Focus</h3>
+                    <h3 class="text-white fw-bold mb-3 border-bottom border-warning border-3 d-inline-block pb-1">Our Values</h3>
                     <p style="text-align:justify;font-size:1.05rem;line-height:1.6;" class="text-white opacity-90 mb-0">
                         {{ $mission_vision->key_focus ?? 'Education & skill development, healthcare access, women\'s empowerment, climate adaptation, food security, and sustainable livelihood programs.' }}
                     </p>
