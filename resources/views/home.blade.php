@@ -731,81 +731,195 @@ United Efforts for Rural Development (UERD)
 {{-- End of Mission Vision Key Focus --}}
 
 {{-- Featured Programs --}}
-<div class="bg-light uerd-section pt-5 pb-5">
+<div class="py-5" style="background-color: #f8f9fa;">
     <style>
-        /* Fix for overlay text visibility issues */
-        .featuredImage .overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        .program-card {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        .program-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.2) 100%);
+            pointer-events: none;
+        }
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.25);
+        }
+        .program-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .program-card:hover img {
+            transform: scale(1.1);
+        }
+        .program-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+            color: white;
+            transform: translateY(10px);
+            transition: transform 0.4s ease;
+        }
+        .program-card:hover .program-card-content {
+            transform: translateY(0);
+        }
+        .program-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .program-desc {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            max-height: 0;
+            overflow: hidden;
+            margin-bottom: 0;
+            transition: all 0.5s ease;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.5;
+        }
+        .program-card:hover .program-desc {
+            opacity: 1;
+            max-height: 150px;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+        .program-btn {
+            display: inline-block;
+            background-color: var(--primary-color, #198754);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.1s;
+        }
+        .program-card:hover .program-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(5px);
         }
     </style>
+    
     <div class="container">
-        <div class="pt-3 pb-3">
-            <h3 class="text-center"> Key Focus <span class="text-danger">Area</span></h3>
-            <p class="text-center text-secondary">Elevating Lives, Empowering Futures: UERD's Key Focus Area brings transformative opportunities to communities in northern Bangladesh.</p>
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center pt-3">
+                <h3 class="fw-bold mb-3 display-6">Key Focus <span class="text-danger">Area</span></h3>
+                <p class="text-secondary lead fs-6">Elevating Lives, Empowering Futures: UERD's Key Focus Area brings transformative opportunities to communities in northern Bangladesh.</p>
+                <div class="d-flex justify-content-center mt-4">
+                    <div style="width: 60px; height: 4px; background: var(--primary-color, #198754); border-radius: 2px;"></div>
+                </div>
+            </div>
         </div>
 
-        <div class="row p-3">
+        <div class="row g-4">
             @if(isset($programs) && count($programs) > 0)
                 @foreach($programs as $program)
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="{{ route('programs.view', $program->id) }}">
-                        <div class="featuredImage">
-                            @if($program->image)
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                    <div class="program-card h-100">
+                        @if($program->status)
+                            <span class="status-badge">
+                                <i class="fa-solid fa-circle {{ $program->status == 'active' ? 'text-success' : 'text-secondary' }} me-1" style="font-size: 0.6rem;"></i>
+                                {{ ucfirst($program->status) }}
+                            </span>
+                        @endif
+                        
+                        @if($program->image)
                             <img src="{{ asset('images/programs/'.$program->image) }}" alt="{{ $program->title }}">
-                            @else
+                        @else
                             <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="{{ $program->title }}">
-                            @endif
-                            <div class="overlay">
-                                <p class="h4">{{ $program->title }}</p>
-                                <p class="textmuted">{{ Str::limit($program->description, 150) }}</p>
-                                @if($program->status)
-                                <span class="badge badge-{{ $program->status == 'active' ? 'success' : ($program->status == 'completed' ? 'secondary' : 'info') }}">{{ ucfirst($program->status) }}</span>
-                                @endif
-                            </div>
+                        @endif
+                        
+                        <div class="program-card-content">
+                            <h4 class="program-title">{{ $program->title }}</h4>
+                            <p class="program-desc">{{ Str::limit($program->description, 120) }}</p>
+                            <a href="{{ route('programs.view', $program->id) }}" class="program-btn mt-2">
+                                Learn More <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
-                    </a>
+                        
+                        <a href="{{ route('programs.view', $program->id) }}" class="position-absolute top-0 start-0 w-100 h-100 z-1"></a>
+                    </div>
                 </div>
                 @endforeach
             @else
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                <a href="#">
-                    <div class="featuredImage">
-                        <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                        <div class="overlay">
-                            <p class="h4">Women's Empowerment Initiative</p>
-                            <p class="textmuted"> Promoting gender equality and empowerment through education, skill-building, and advocacy for women's rights.</p>
+                <!-- Mock Data for Display when empty -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="program-card h-100">
+                        <span class="status-badge"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.6rem;"></i>Active</span>
+                        <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Women Empowerment">
+                        <div class="program-card-content">
+                            <h4 class="program-title">Women's Empowerment</h4>
+                            <p class="program-desc">Promoting gender equality and empowerment through education, skill-building, and advocacy for women's rights.</p>
+                            <a href="#" class="program-btn mt-2">Learn More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
+                        <a href="#" class="position-absolute top-0 start-0 w-100 h-100 z-1"></a>
                     </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                <a href="#">
-                    <div class="featuredImage">
-                        <img src="https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                        <div class="overlay">
-                            <p class="h4">Youth Development Project</p>
-                            <p class="textmuted"> Empowering the next generation through mentorship, education, and community engagement to foster leadership.</p>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="program-card h-100">
+                        <span class="status-badge"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.6rem;"></i>Active</span>
+                        <img src="https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Youth Development">
+                        <div class="program-card-content">
+                            <h4 class="program-title">Youth Development</h4>
+                            <p class="program-desc">Empowering the next generation through mentorship, education, and community engagement to foster leadership.</p>
+                            <a href="#" class="program-btn mt-2">Learn More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
+                        <a href="#" class="position-absolute top-0 start-0 w-100 h-100 z-1"></a>
                     </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                <a href="#">
-                    <div class="featuredImage">
-                        <img src="https://images.pexels.com/photos/4388165/pexels-photo-4388165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                        <div class="overlay">
-                            <p class="h4">Healthcare Access Program</p>
-                            <p class="textmuted">Providing essential healthcare services, awareness campaigns, and medical assistance to underserved communities in Bangladesh.</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="program-card h-100">
+                         <span class="status-badge"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.6rem;"></i>Active</span>
+                        <img src="https://images.pexels.com/photos/4388165/pexels-photo-4388165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Healthcare Access">
+                        <div class="program-card-content">
+                            <h4 class="program-title">Healthcare Access</h4>
+                            <p class="program-desc">Providing essential healthcare services, awareness campaigns, and medical assistance to underserved communities in Bangladesh.</p>
+                            <a href="#" class="program-btn mt-2">Learn More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
+                        <a href="#" class="position-absolute top-0 start-0 w-100 h-100 z-1"></a>
                     </div>
-                </a>
-            </div>
+                </div>
             @endif
         </div>
-
-        {{-- Removed 'View all Programs' button as requested --}}
-        
     </div>
 </div>
 {{-- End of Featured Programs --}}
