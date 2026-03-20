@@ -26,8 +26,8 @@
 
                         <div class="team-img-wrapper position-relative overflow-hidden m-3 rounded-circle shadow-sm mx-auto" style="width: 180px; height: 180px; border: 4px solid #fff;">
                             <div class="ratio ratio-1x1 h-100">
-                                @if($member->image)
-                                    <img src="{{ asset('images/team_members/'.$member->image) }}" class="object-fit-cover w-100 h-100 transition-transform" alt="{{ $member->name }}">
+                                @if($member->photo)
+                                    <img src="{{ asset('images/team_members/'.$member->photo) }}" class="object-fit-cover w-100 h-100 transition-transform" alt="{{ $member->name }}">
                                 @else
                                     <div class="bg-light d-flex align-items-center justify-content-center w-100 h-100">
                                         <i class="fa-solid fa-user fa-3x text-secondary opacity-25"></i>
