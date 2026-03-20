@@ -720,8 +720,8 @@ United Efforts for Rural Development (UERD)
                         <i class="fa-regular fa-compass text-warning fs-4"></i>
                     </div>
                     <h3 class="text-white fw-bold mb-3 border-bottom border-warning border-3 d-inline-block pb-1">Our Values</h3>
-                    <p style="text-align:justify;font-size:1.05rem;line-height:1.6;" class="text-white opacity-90 mb-0">
-                        {{ $mission_vision->key_focus ?? 'Education & skill development, healthcare access, women\'s empowerment, climate adaptation, food security, and sustainable livelihood programs.' }}
+                    <p style="text-align: left; font-size: 1.05rem; line-height: 1.6;" class="text-white opacity-90 mb-0">
+                        {{ isset($mission_vision->key_focus) ? str_replace(',', ', ', $mission_vision->key_focus) : 'Education & skill development, healthcare access, women\'s empowerment, climate adaptation, food security, and sustainable livelihood programs.' }}
                     </p>
                 </div>
             </div>
