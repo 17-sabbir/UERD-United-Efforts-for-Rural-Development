@@ -128,7 +128,7 @@
                     </div>
                     <div>
                         <div class="fw-bold" style="color:#fff; font-size: 1.5rem; line-height: 1.0; font-family: 'Playfair Display', serif;">UERD</div>
-                        <div class="uerd-footer-muted" style="line-height: 1.2; font-size: 0.9rem; letter-spacing: 0.5px;">Rural Development</div>
+                        {{-- <div class="uerd-footer-muted" style="line-height: 1.2; font-size: 0.9rem; letter-spacing: 0.5px;">Rural Development</div> --}}
                     </div>
                 </div>
 

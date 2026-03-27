@@ -284,7 +284,7 @@ United Efforts for Rural Development (UERD)
                 <div class="container-fluid h-100 position-absolute top-0 start-0 px-0">
                     <div class="d-flex flex-column justify-content-start h-100 text-white" style="padding-top: 106px;">
                         <div class="ms-2">
-                            <span class="hero-subtitle">SINCE 2000 — NORTHERN BANGLADESH</span>
+                            <span class="hero-subtitle">SINCE 2000 — NORTH-EAST BANGLADESH</span>
                         </div>
                         <div class="hero-indented"> <!-- Indented Content -->
                             <h2 class="hero-title">
