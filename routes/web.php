@@ -60,8 +60,8 @@ Route::get('/', function () {
     $empoweringLives = DB::table('empowering_lives')->first();
     // Fetch Development Sustainability data
     $devSustainability = DB::table('development_sustainability')->first();
-    // Fetch 3 programs for the homepage highlights
-    $programs = DB::table('programs')->where('status', 'active')->orderBy('created_at', 'desc')->take(3)->get();
+    // Fetch all active programs for homepage key focus area
+    $programs = DB::table('programs')->where('status', 'active')->orderBy('created_at', 'desc')->get();
     $stories = DB::table('stories')->orderBy('id', 'desc')->get();
 
     // Dynamic stats: projects count and distinct districts covered by projects

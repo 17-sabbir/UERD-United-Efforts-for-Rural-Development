@@ -1323,7 +1323,7 @@ United Efforts for Rural Development (UERD)
 
 
 {{-- Volunteer part --}}
-<div class="uerd-volunteer uerd-section mt-5" style="background-image: url('{{ asset('img/slider/slider-1.jpg') }}');">
+<div class="uerd-volunteer uerd-section mt-5" style="background-image: url('{{ asset('img/vera.jpg') }}');">
     <style>
         .uerd-volunteer {
             background-size: cover;
