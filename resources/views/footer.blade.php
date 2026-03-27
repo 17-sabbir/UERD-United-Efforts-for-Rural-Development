@@ -133,7 +133,7 @@
                 </div>
 
                 <p class="uerd-footer-muted mb-4" style="max-width: 360px; line-height: 1.8; opacity: 0.8;">
-                    United Efforts for Rural Development — empowering communities in North-East Bangladesh since 1998.
+                    United Efforts for Rural Development — empowering communities in North-East Bangladesh since 2000.
                 </p>
 
                 <div class="d-flex gap-2">

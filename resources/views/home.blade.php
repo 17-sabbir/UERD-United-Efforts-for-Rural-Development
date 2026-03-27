@@ -376,7 +376,7 @@ United Efforts for Rural Development (UERD)
             .uerd-impact-section {
                 /* Background image with strong Orange/Yellow gradient overlay */
                 background: linear-gradient(135deg, rgba(255, 160, 0, 0.92) 0%, rgba(255, 111, 0, 0.96) 100%),
-                            url('{{ asset("img/slider/slider-3.jpg") }}');
+                            url('{{ asset("img/impact.jpg") }}');
                 background-size: cover;
                 background-position: center;
                 /* background-attachment: fixed; Optional: Parallax effect */
