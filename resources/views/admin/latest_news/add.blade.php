@@ -23,7 +23,6 @@
                         <div class="col-md-12">
                             <label for="img" class="form-label">Image</label>
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="img">
-                            <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
                             @error('image')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

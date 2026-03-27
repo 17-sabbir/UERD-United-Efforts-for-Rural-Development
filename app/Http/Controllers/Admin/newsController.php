@@ -20,9 +20,7 @@ class newsController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:jpg,png,jpeg,gif',
-        ], [
-            'image.mimes' => 'The image must be a file of type: jpg, png, jpeg, gif.',
+            'image' => 'required|image',
         ]);
 
         $imageName = '';
@@ -78,9 +76,7 @@ class newsController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'nullable|mimes:jpg,png,jpeg,gif',
-        ], [
-            'image.mimes' => 'The image must be a file of type: jpg, png, jpeg, gif.',
+            'image' => 'nullable|image',
         ]);
 
         $news = DB::table('latest_news')->where('id', $id)->first();
