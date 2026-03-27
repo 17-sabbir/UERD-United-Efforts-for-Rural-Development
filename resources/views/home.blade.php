@@ -835,6 +835,38 @@ United Efforts for Rural Development (UERD)
             letter-spacing: 0.5px;
             backdrop-filter: blur(5px);
         }
+        .focus-scroll-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1.25rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.25rem 0.25rem 1rem;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x proximity;
+        }
+        .focus-scroll-row::-webkit-scrollbar {
+            height: 8px;
+        }
+        .focus-scroll-row::-webkit-scrollbar-thumb {
+            background: rgba(25, 135, 84, 0.45);
+            border-radius: 999px;
+        }
+        .focus-scroll-item {
+            flex: 0 0 clamp(260px, 32vw, 390px);
+            max-width: none;
+            padding: 0;
+            scroll-snap-align: start;
+        }
+        .focus-scroll-item .program-card {
+            min-height: 380px;
+        }
+        @media (max-width: 767.98px) {
+            .focus-scroll-item {
+                flex-basis: min(86vw, 340px);
+            }
+        }
     </style>
     
     <div class="container">
@@ -848,10 +880,10 @@ United Efforts for Rural Development (UERD)
             </div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 focus-scroll-row">
             @if(isset($programs) && count($programs) > 0)
                 @foreach($programs as $program)
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                <div class="col-lg-4 col-md-6 focus-scroll-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                     <div class="program-card h-100">
                         @if($program->status)
                             <span class="status-badge">
@@ -880,7 +912,7 @@ United Efforts for Rural Development (UERD)
                 @endforeach
             @else
                 <!-- Mock Data for Display when empty -->
-                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="col-lg-4 col-md-6 focus-scroll-item" data-aos="fade-up">
                     <div class="program-card h-100">
                         <span class="status-badge"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.6rem;"></i>Active</span>
                         <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Women Empowerment">
@@ -893,7 +925,7 @@ United Efforts for Rural Development (UERD)
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-4 col-md-6 focus-scroll-item" data-aos="fade-up" data-aos-delay="100">
                     <div class="program-card h-100">
                         <span class="status-badge"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.6rem;"></i>Active</span>
                         <img src="https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Youth Development">
@@ -906,7 +938,7 @@ United Efforts for Rural Development (UERD)
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 focus-scroll-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="program-card h-100">
                          <span class="status-badge"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.6rem;"></i>Active</span>
                         <img src="https://images.pexels.com/photos/4388165/pexels-photo-4388165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Healthcare Access">

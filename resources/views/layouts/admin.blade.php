@@ -730,7 +730,7 @@
 					<a class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-briefcase'></i>
 						</div>
-						<div class="menu-title">Program Highlights</div>
+						<div class="menu-title">Key Focus Area</div>
 					</a>
 					<ul>
 						<li>
