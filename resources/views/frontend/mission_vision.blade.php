@@ -5,10 +5,10 @@
   <!-- ======= Modern Breadcrumbs ======= -->
   <section class="modern-breadcrumbs">
     <div class="container text-center">
-      <h2>Mission & Vision</h2>
+            <h2>Mission, Vision & Values</h2>
       <ol class="d-inline-flex justify-content-center">
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li class="current">Mission & Vision</li>
+                <li class="current">Mission, Vision & Values</li>
       </ol>
     </div>
   </section>

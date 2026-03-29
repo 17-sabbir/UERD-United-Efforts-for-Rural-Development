@@ -5,10 +5,10 @@
   <!-- ======= Modern Breadcrumbs ======= -->
   <section class="modern-breadcrumbs">
     <div class="container text-center">
-      <h2>Message from Chief Executive</h2>
+            <h2>Message from Executive Director</h2>
       <ol class="d-inline-flex justify-content-center">
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li class="current">Chief Executive Message</li>
+                <li class="current">Executive Director Message</li>
       </ol>
     </div>
   </section>
@@ -45,7 +45,7 @@
                                  <i class="fa-solid fa-feather-pointed fa-4x text-dark"></i>
                              </div>
 
-                             <span class="d-block text-danger fw-bold text-uppercase small mb-2 letter-spacing-1">From the Desk of the CEO</span>
+                             <span class="d-block text-danger fw-bold text-uppercase small mb-2 letter-spacing-1">From the Desk of the Executive Director</span>
                              <h2 class="display-6 fw-bold text-dark mb-4">A Vision for Tomorrow</h2>
 
                              <div class="position-relative ps-4 border-start border-2 border-danger">
@@ -69,7 +69,7 @@
              <div class="modern-card">
                  <i class="fa-solid fa-envelope-open-text display-4 text-muted mb-3 opacity-50"></i>
                  <h3>Message Coming Soon</h3>
-                 <p class="text-muted">The Chief Executive's message is currently being updated.</p>
+                 <p class="text-muted">The Executive Director's message is currently being updated.</p>
              </div>
         </div>
         @endif

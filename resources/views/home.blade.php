@@ -873,7 +873,7 @@ United Efforts for Rural Development (UERD)
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center pt-3">
                 <h3 class="fw-bold mb-3 display-6">Key Focus <span class="text-danger">Area</span></h3>
-                <p class="text-secondary lead fs-6">Elevating Lives, Empowering Futures: UERD's Key Focus Area brings transformative opportunities to communities in northern Bangladesh.</p>
+                <p class="text-secondary lead fs-6">Elevating Lives, Empowering Futures: UERD's Key Focus Area brings transformative opportunities to communities in North-East Bangladesh.</p>
                 <div class="d-flex justify-content-center mt-4">
                     <div style="width: 60px; height: 4px; background: var(--primary-color, #198754); border-radius: 2px;"></div>
                 </div>
@@ -993,7 +993,7 @@ United Efforts for Rural Development (UERD)
     <div class="container">
         <div class="pb-2 text-center">
             <h3 class="text-center mt-0">Ongoing <span class="text-danger">Projects</span></h3>
-            <p class="text-center text-secondary mb-0">UERD's ongoing projects actively address community needs, fostering sustainable development in northern Bangladesh.</p>
+            <p class="text-center text-secondary mb-0">UERD's ongoing projects actively address community needs, fostering sustainable development in North-East Bangladesh.</p>
         </div>
 
         <div class="row g-4">
@@ -1093,7 +1093,7 @@ United Efforts for Rural Development (UERD)
 
             <h2 class="uerd-sponsor-title mb-3">Sponsor for a Growing Fund</h2>
             <p class="uerd-sponsor-desc mb-4">
-                Sponsor UERD's growing fund to fuel impactful initiatives in northern Bangladesh. Your support drives essential programs in healthcare, education,
+                Sponsor UERD's growing fund to fuel impactful initiatives in North-East Bangladesh. Your support drives essential programs in healthcare, education,
                 and community resilience — making a lasting difference in lives.
             </p>
 
@@ -1386,7 +1386,7 @@ United Efforts for Rural Development (UERD)
                     </div>
                     <h2 class="uerd-volunteer-title mb-2">Become a Volunteer</h2>
                     <p class="uerd-volunteer-desc mb-4">
-                        Support UERD's initiatives in northern Bangladesh by joining as a volunteer. Your time and skills help strengthen healthcare, education,
+                        Support UERD's initiatives in North-East Bangladesh by joining as a volunteer. Your time and skills help strengthen healthcare, education,
                         and community resilience.
                     </p>
                     <a href="{{ route('volunterr.opportunities') }}" class="btn uerd-btn-pill uerd-volunteer-btn d-inline-flex align-items-center gap-2">
@@ -1470,7 +1470,7 @@ United Efforts for Rural Development (UERD)
             </div>
             <h2 class="uerd-sponsor-title mb-2">Photo Gallery</h2>
             <p class="uerd-gallery-subtitle mb-0">
-                Explore moments from UERD’s field activities, community programs, and events across northern Bangladesh.
+                Explore moments from UERD’s field activities, community programs, and events across North-East Bangladesh.
             </p>
         </div>
 
@@ -2150,3 +2150,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 @endpush
+

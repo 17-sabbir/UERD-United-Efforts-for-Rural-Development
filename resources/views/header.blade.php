@@ -149,9 +149,9 @@
                 <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                     <li><a class="dropdown-item" href="{{ route('success.stories') }}">Success Stories</a></li>
                     <li><a class="dropdown-item" href="{{ route('frontend.profile') }}">Organization Profile</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission Vision &amp; Focus</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission, Vision &amp; Values</a></li>
                     <li><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a></li>
-                    <li><a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Executive Director</a></li>
                     {{-- <li><a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a></li> --}}
                 </ul>
                 </li>

@@ -8,12 +8,12 @@
         <div class="card">
             <div class="card-body">
                 @if (session()->has('success'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success">
                         {{ session()->get('success') }}
                     </div>
                 @endif
                 @if (session()->has('update'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success">
                         {{ session()->get('update') }}
                     </div>
                 @endif
@@ -36,20 +36,28 @@
                             <tr>
                                 <td class="align-middle">{{ ++$key }}</td>
                                 <td class="align-middle">
-                                    <img src="{{ asset('images/application/'.$data->main_logo) }}" alt="" width="50">
+                                    @if(!empty($data->main_logo) && file_exists(public_path('images/application/'.$data->main_logo)))
+                                        <img src="{{ asset('images/application/'.$data->main_logo) }}" alt="Logo" width="50" class="border rounded p-1">
+                                    @else
+                                        <span class="badge bg-secondary">No Logo</span>
+                                    @endif
                                 </td>
                                 <td class="align-middle">
-                                    <img src="{{ asset('images/application/'.$data->fav_icon) }}" alt="" width="50">
+                                    @if(!empty($data->fav_icon) && file_exists(public_path('images/application/'.$data->fav_icon)))
+                                        <img src="{{ asset('images/application/'.$data->fav_icon) }}" alt="Favicon" width="50" class="border rounded p-1">
+                                    @else
+                                        <span class="badge bg-secondary">No Icon</span>
+                                    @endif
                                 </td>
-                                <td class="align-middle">{{ $data->facebook }}</td>
-                                <td class="align-middle">{{ $data->twitter }}</td>
-                                <td class="align-middle">{{ $data->instagram }}</td>
-                                <td class="align-middle">{{ $data->youtube }}</td>
+                                <td class="align-middle">{{ $data->facebook ?? '-' }}</td>
+                                <td class="align-middle">{{ $data->twitter ?? '-' }}</td>
+                                <td class="align-middle">{{ $data->instagram ?? '-' }}</td>
+                                <td class="align-middle">{{ $data->youtube ?? '-' }}</td>
                                 <td class="text-center align-middle">
-                                    <a href="{{ route('gallery.edit',$data->id) }}" class="btn btn-sm btn-primary text-white text-center">
+                                    <a href="{{ route('logo.edit',$data->id) }}" class="btn btn-sm btn-primary text-white text-center" title="Edit">
                                         <i class="fadeIn animated bx bx-edit"></i>
                                     </a>
-                                    <a href="{{ route('gallery.delete',$data->id) }}" class="btn btn-sm btn-danger text-white text-center">
+                                    <a href="{{ route('logo.delete',$data->id) }}" class="btn btn-sm btn-danger text-white text-center" title="Delete" onclick="return confirm('Are you sure?')">
                                         <i class="fadeIn animated bx bx-trash-alt"></i>
                                     </a>
                                 </td>
@@ -63,3 +71,4 @@
     </div>
 </div>
 @endsection
+
