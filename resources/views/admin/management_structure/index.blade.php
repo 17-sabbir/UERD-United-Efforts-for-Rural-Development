@@ -36,27 +36,7 @@
                     {{-- CKEditor mounts here — must use {!! !!} so saved HTML renders correctly --}}
                     <div id="editor-container">{!! $orgProfile->management_content ?? '' !!}</div>
 
-                    {{-- PDF Upload --}}
-                    <div class="mt-4 p-3 rounded-3" style="background:#f8f9fa; border:1px solid #dee2e6;">
-                        <label class="form-label fw-semibold mb-1">
-                            <i class="bx bxs-file-pdf text-danger me-1"></i> Organogram PDF
-                        </label>
-                        <div class="d-flex align-items-center gap-3 flex-wrap mb-2">
-                            @if(!empty($orgProfile->organogram_pdf))
-                                <a href="{{ asset('storage/' . $orgProfile->organogram_pdf) }}" target="_blank"
-                                   class="btn btn-sm btn-outline-success">
-                                    <i class="bx bx-show me-1"></i> View Current PDF
-                                </a>
-                                <span class="text-muted" style="font-size:.82rem;">Uploaded: {{ basename($orgProfile->organogram_pdf) }}</span>
-                            @else
-                                <span class="badge bg-secondary">Using default static PDF</span>
-                                <small class="text-muted">Upload a PDF to replace the default.</small>
-                            @endif
-                        </div>
-                           <input type="file" class="form-control" name="organogram_pdf" accept=".pdf"
-                               style="max-width:420px;">
-                           <small class="text-muted">Max 50MB. If no file is uploaded, the default organogram PDF will be used.</small>
-                    </div>
+                    <!-- Organogram PDF upload/display removed -->
 
                     <div class="d-flex align-items-center justify-content-between mt-4">
                         <small class="text-muted"><i class="bx bx-info-circle me-1"></i>সরাসরি বাংলা বা English টাইপ করুন। Bold করতে Ctrl+B, Heading toolbar থেকে বেছে নিন।</small>
