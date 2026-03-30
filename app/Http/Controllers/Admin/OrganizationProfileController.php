@@ -30,7 +30,7 @@ class OrganizationProfileController extends Controller
     {
         $request->validate([
             'management_content' => 'nullable|string',
-            'organogram_pdf'     => 'nullable|mimes:pdf|max:5120',
+            'organogram_pdf'     => 'nullable|mimes:pdf|max:51200', // 50MB max
         ]);
 
         $data = ['management_content' => $request->management_content];
@@ -71,7 +71,7 @@ class OrganizationProfileController extends Controller
             'vision'                    => 'nullable|string',
             'mission'                   => 'nullable|string',
             'management_description'    => 'nullable|string',
-            'organogram_pdf'            => 'nullable|mimes:pdf|max:5120',
+            'organogram_pdf'            => 'nullable|mimes:pdf|max:51200', // 50MB max
         ]);
 
         $data = $request->except(['_token', 'organogram_pdf']);

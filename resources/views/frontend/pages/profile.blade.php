@@ -22,17 +22,18 @@
                             </li>
                             <li class="list-group-item py-3">
                                 <strong>Head Office:</strong> <br>
-                                <small class="text-secondary">{!! nl2br(e($orgProfile->head_office_address)) !!}</small>
+                                @php $headOffice = DB::table('contacts')->where('type', 'head_office')->where('status', 'active')->first(); @endphp
+                                <small class="text-secondary">{!! nl2br(e($orgProfile->head_office_address ?? ($headOffice->address ?? ''))) !!}</small>
                             </li>
                              <li class="list-group-item py-3">
                                 <strong>Liaison Office:</strong> <br>
-                                <small class="text-secondary">{!! nl2br(e($orgProfile->liaison_office_address)) !!}</small>
+                                <small class="text-secondary">{!! nl2br(e($orgProfile->liaison_office_address ?? '')) !!}</small>
                             </li>
                         </ul>
-                        <div class="p-3 bg-light">
-                             <a href="mailto:{{ explode(',', $orgProfile->email)[0] }}" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>
-                             <a href="tel:{{ $orgProfile->phone }}" class="btn btn-outline-dark w-100"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
-                        </div>
+                            <div class="p-3 bg-light">
+                                <a href="mailto:{{ $orgProfile->email ?? ($headOffice->email ?? '') }}" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>
+                                <a href="tel:{{ $orgProfile->phone ?? ($headOffice->mobile ?? '') }}" class="btn btn-outline-dark w-100"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -93,8 +94,9 @@
                 {{-- Staff & Assets quick stats based on doc --}}
                 <div class="row g-3 text-center">
                     <div class="col-6 col-md-3">
+                         @php $staffCount = max(0, DB::table('team_members')->count() - 1); @endphp
                          <div class="p-3 border rounded h-100 d-flex flex-column justify-content-center">
-                             <h3 class="fw-bold text-dark mb-0">02</h3>
+                             <h3 class="fw-bold text-dark mb-0">{{ str_pad($staffCount, 2, '0', STR_PAD_LEFT) }}</h3>
                              <small class="text-uppercase text-secondary" style="font-size: 0.7rem;">Full Time Staff</small>
                          </div>
                     </div>

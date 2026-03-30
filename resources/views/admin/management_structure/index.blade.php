@@ -53,9 +53,9 @@
                                 <small class="text-muted">Upload a PDF to replace the default.</small>
                             @endif
                         </div>
-                        <input type="file" class="form-control" name="organogram_pdf" accept=".pdf"
+                           <input type="file" class="form-control" name="organogram_pdf" accept=".pdf"
                                style="max-width:420px;">
-                        <small class="text-muted">Max 5MB. If no file is uploaded, the default organogram PDF will be used.</small>
+                           <small class="text-muted">Max 50MB. If no file is uploaded, the default organogram PDF will be used.</small>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-between mt-4">
@@ -116,5 +116,19 @@ ClassicEditor
     .catch(function(error) {
         console.error('CKEditor error:', error);
     });
+</script>
+<script>
+// Client-side file size validation (50MB max)
+document.querySelector('form#mgmt-form').addEventListener('submit', function(e){
+    var fileInput = document.querySelector('input[name="organogram_pdf"]');
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+        var maxBytes = 50 * 1024 * 1024; // 50MB
+        if (fileInput.files[0].size > maxBytes) {
+            e.preventDefault();
+            alert('Organogram PDF must be 50MB or smaller. Please choose a smaller file.');
+            return false;
+        }
+    }
+});
 </script>
 @endsection

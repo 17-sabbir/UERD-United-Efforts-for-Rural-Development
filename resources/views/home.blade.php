@@ -477,7 +477,7 @@ United Efforts for Rural Development (UERD)
                     <span class="uerd-impact-badge"><i class="fa-solid fa-bolt me-2"></i> Our Impact</span>
                     <h2 class="uerd-impact-heading">Over 25 Years of Changing Lives</h2>
                     <p class="uerd-impact-text lead mb-4">
-                        Every number creates a story. From the fields of Rangpur to remote villages, we are building a legacy of hope, resilience, and transformation.
+                        Every number creates a story. From the floodplains of Sunamganj to the most remote haor villages, we are building a legacy of hope, resilience, and transformation.
                         <span style="color: #ffca28; font-weight: 700;">Real Families, Real Change. Sustainable Development for All.</span>
                     </p>
                 </div>
@@ -997,7 +997,12 @@ United Efforts for Rural Development (UERD)
         </div>
 
         <div class="row g-4">
+            @php
+                $isMobile = request()->header('User-Agent') && preg_match('/Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', request()->header('User-Agent'));
+                $maxCards = $isMobile ? 4 : 3;
+            @endphp
             @foreach ($project as $key => $item)
+                @if($key < $maxCards)
                 @php($bgClass = $key % 2 === 0 ? 'is-mint' : 'is-sand')
                 <div class="col-lg-4 col-md-6">
                     <div class="uerd-ongoing-card uerd-card-hover {{ $bgClass }} p-4 h-100 d-flex flex-column">

@@ -124,7 +124,8 @@
             <div class="col-lg-4">
                 <div class="uerd-footer-brand mb-3">
                     <div class="uerd-footer-logo" style="padding: 0; overflow: hidden; background: #fff;">
-                        <img src="{{ asset('images/application/UERD logo.png') }}" alt="U" style="width: 100%; height: 100%; object-fit: cover;">
+                        @php $appSettings = application(); @endphp
+                        <img src="{{ $appSettings && !empty($appSettings->main_logo) ? asset('images/application/'.$appSettings->main_logo) : asset('images/application/UERD logo.png') }}" alt="UERD" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div>
                         <div class="fw-bold" style="color:#fff; font-size: 1.5rem; line-height: 1.0; font-family: 'Playfair Display', serif;">UERD</div>
@@ -174,17 +175,18 @@
 
             <div class="col-lg-3 col-md-4">
                 <div class="uerd-footer-heading">Contact Us</div>
+                @php $headOffice = DB::table('contacts')->where('type', 'head_office')->where('status', 'active')->first(); @endphp
                 <div class="uerd-footer-contact">
                     <div><i class="fa-solid fa-location-dot"></i></div>
-                    <div>Head Office: Milon Bazar, Post Office: Charnarchar, Upazila: Derai, District: Sunamganj.</div>
+                    <div>{{ $headOffice->address ?? 'Head Office Address Not Set' }}</div>
                 </div>
                 <div class="uerd-footer-contact">
                     <div><i class="fa-solid fa-phone"></i></div>
-                    <div>01720-566027</div>
+                    <div>{{ $headOffice->mobile ?? '' }}</div>
                 </div>
                 <div class="uerd-footer-contact">
                     <div><i class="fa-regular fa-envelope"></i></div>
-                    <div>uerd5678@gmail.com, rabicoming2009@yahoo.com</div>
+                    <div>{{ $headOffice->email ?? '' }}</div>
                 </div>
             </div>
         </div>

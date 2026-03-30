@@ -12,7 +12,7 @@ Organization Profile
                 <h5 class="mb-0">Organization Profile Information</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.organization_profile.update') }}" method="POST" enctype="multipart/form-data">
+                <form id="org-profile-form" action="{{ route('admin.organization_profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -124,3 +124,20 @@ Organization Profile
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+// Client-side file size validation for organization profile form (50MB max)
+document.getElementById('org-profile-form')?.addEventListener('submit', function(e){
+    var fileInput = document.getElementById('organogram_pdf');
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+        var maxBytes = 50 * 1024 * 1024; // 50MB
+        if (fileInput.files[0].size > maxBytes) {
+            e.preventDefault();
+            alert('Organogram PDF must be 50MB or smaller. Please choose a smaller file.');
+            return false;
+        }
+    }
+});
+</script>
+@endpush

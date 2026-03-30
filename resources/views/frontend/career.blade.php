@@ -78,18 +78,17 @@
                       <h4 class="fw-bold mb-4">Recruitment Contact</h4>
                       <p class="mb-4 text-white-50">Please reach out to our head office for any recruitment inquiries.</p>
                       
+                      @php $headOffice = DB::table('contacts')->where('type', 'head_office')->where('status', 'active')->first(); @endphp
                       <div class="d-flex align-items-start mb-3">
                           <i class="fa-solid fa-map-location-dot mt-1 me-3 text-warning"></i>
                           <span>
                               <strong>Head Office:</strong><br>
-                              Milon Bazar, Post Office: Charnarchar,<br>
-                              Upazila: Derai, District: Sunamganj.
+                              {{ $headOffice->address ?? '' }}
                           </span>
                       </div>
-                      
                       <div class="d-flex align-items-center">
                           <i class="fa-solid fa-envelope me-3 text-warning"></i>
-                          <span>uerd5678@gmail.com, rabicoming2009@yahoo.com</span>
+                          <span>{{ $headOffice->email ?? '' }}</span>
                       </div>
                   </div>
               </div>
