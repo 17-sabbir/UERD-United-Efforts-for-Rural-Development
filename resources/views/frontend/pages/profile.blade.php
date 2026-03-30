@@ -31,8 +31,16 @@
                             </li>
                         </ul>
                             <div class="p-3 bg-light">
-                                <a href="mailto:{{ $orgProfile->email ?? ($headOffice->email ?? '') }}" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>
-                                <a href="tel:{{ $orgProfile->phone ?? ($headOffice->mobile ?? '') }}" class="btn btn-outline-dark w-100"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
+                                @php
+                                    $contactEmail = $orgProfile->email ?? ($headOffice->email ?? 'uerd.org@gmail.com');
+                                    $contactPhone = $orgProfile->phone ?? ($headOffice->mobile ?? null);
+                                @endphp
+                                <a href="mailto:{{ $contactEmail }}" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>
+                                @if($contactPhone)
+                                    <a href="tel:{{ $contactPhone }}" class="btn btn-outline-dark w-100"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
+                                @else
+                                    <a class="btn btn-outline-dark w-100 disabled" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
+                                @endif
                             </div>
                     </div>
                 </div>

@@ -289,16 +289,7 @@
             <li><a href="{{ url('/') }}">Home</a></li>
             <li class="current">Executive Committee</li>
         </ol>
-        @php
-            $pdfPath = !empty($orgProfile->organogram_pdf)
-                ? asset('storage/' . $orgProfile->organogram_pdf)
-                : asset('frontend/file/UERD_Organogram.pdf');
-        @endphp
-        <div class="mt-3">
-            <a href="{{ $pdfPath }}" target="_blank" class="btn btn-success btn-sm rounded-pill px-4">
-                <i class="fa-solid fa-file-pdf me-2"></i> View Organogram (PDF)
-            </a>
-        </div>
+        <!-- Organogram PDF link removed as requested -->
     </div>
 </section>
 

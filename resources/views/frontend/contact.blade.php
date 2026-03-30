@@ -159,7 +159,7 @@
                          <div class="d-flex flex-column gap-3 mt-4">
                              <div class="d-flex align-items-center gap-3">
                                  <div class="bg-white bg-opacity-25 rounded-circle p-2"><i class="fa-solid fa-envelope"></i></div>
-                                 <span>info@uerd.org</span>
+                                 <span>uerd.org@gmail.com</span>
                              </div>
                              <div class="d-flex align-items-center gap-3">
                                  <div class="bg-white bg-opacity-25 rounded-circle p-2"><i class="fa-solid fa-phone"></i></div>
