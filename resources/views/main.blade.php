@@ -9,7 +9,32 @@
     </title>
     {{-- favicon --}}
     @php $appSettings = application(); @endphp
-    <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? asset('images/application/'.$appSettings->fav_icon) : asset('images/application/UERD logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? secure_url('public/images/application/'.$appSettings->fav_icon) : secure_url('public/images/application/UERD logo.png') }}" type="image/x-icon">
+        @php
+            $logoUrl = $appSettings && !empty($appSettings->main_logo)
+                ? secure_url('public/images/application/'.$appSettings->main_logo)
+                : secure_url('public/images/application/UERD logo.png');
+        @endphp
+
+        <meta property="og:title" content="{{ config('app.name') }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url('/') }}">
+        <link rel="canonical" href="{{ url('/') }}">
+        <meta property="og:image" content="{{ $logoUrl }}">
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ config('app.name') }}">
+        <meta name="twitter:image" content="{{ $logoUrl }}">
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "{{ url('/') }}",
+            "logo": "{{ $logoUrl }}",
+            "name": "{{ config('app.name') }}"
+        }
+        </script>
     {{-- bootstrap css --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
