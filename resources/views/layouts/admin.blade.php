@@ -669,6 +669,13 @@
 					</a>
 				</li>
 				<li>
+					<a href="{{ route('admin.organogram.index') }}">
+						<div class="parent-icon"><i class='bx bx-sitemap'></i>
+						</div>
+						<div class="menu-title">Organogram</div>
+					</a>
+				</li>
+				<li>
 					<a href="{{ route('mission.vision.create') }}">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-calendar-star'></i>
 						</div>

@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\ProjectListController;
 use App\Http\Controllers\Admin\subscribeController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\VolunteerController;
+use App\Http\Controllers\Admin\OrganogramController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/youtube/delete/{id}', [YoutubeVideoController::class, 'destroy'])->name('youtube.delete');
     Route::get('/youtube/edit/{id}', [YoutubeVideoController::class, 'edit'])->name('youtube.edit');
     Route::post('/youtube/update/{id}', [YoutubeVideoController::class, 'update'])->name('youtube.update');
+
+    // Organogram
+    Route::get('/organogram', [OrganogramController::class, 'index'])->name('admin.organogram.index');
+    Route::post('/organogram', [OrganogramController::class, 'store'])->name('admin.organogram.store');
 
     // Ongoing Project
     Route::get('/project/add', [projectController::class, 'add'])->name('project.add');

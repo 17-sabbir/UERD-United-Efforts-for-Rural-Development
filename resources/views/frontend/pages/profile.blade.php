@@ -38,7 +38,7 @@
                         </ul>
                             <div class="p-3 bg-light">
                                 @php
-                                    $contactEmail = $orgProfile->email ?? (optional($headOffice)->email ?? 'uerd.org@gmail.com');
+                                    $contactEmail = 'uerd.org@gmail.com';
                                     $contactPhone = $orgProfile->phone ?? (optional($headOffice)->mobile ?? null);
                                 @endphp
                                 <a href="mailto:{{ $contactEmail }}" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>

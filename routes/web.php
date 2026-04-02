@@ -3,8 +3,14 @@
 use App\Http\Controllers\frontController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Models\Project;
+use App\Models\Organogram;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/organogram', function() {
+    $organogram = Organogram::first();
+    return view('frontend.pages.organogram', compact('organogram'));
+})->name('frontend.organogram');
 
 Route::get('lang/{locale}', function (string $locale) {
     $supported = ['en', 'bn'];
