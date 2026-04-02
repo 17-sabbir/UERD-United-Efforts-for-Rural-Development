@@ -25,7 +25,7 @@
 
     {{-- Favicon, Open Graph and Structured Data (dynamic logo) --}}
     @php $appSettings = $appSettings ?? application(); @endphp
-    <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? secure_url('public/images/application/'.$appSettings->fav_icon) : secure_url('public/images/application/UERD logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? asset('images/application/'.$appSettings->fav_icon) : asset('images/application/UERD logo.png') }}" type="image/x-icon">
 
     @php
         $logoUrl = $appSettings && !empty($appSettings->main_logo)

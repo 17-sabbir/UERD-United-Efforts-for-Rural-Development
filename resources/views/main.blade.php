@@ -9,11 +9,11 @@
     </title>
     {{-- favicon --}}
     @php $appSettings = application(); @endphp
-    <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? secure_url('public/images/application/'.$appSettings->fav_icon) : secure_url('public/images/application/UERD logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? asset('images/application/'.$appSettings->fav_icon) : asset('images/application/UERD logo.png') }}" type="image/x-icon">
         @php
             $logoUrl = $appSettings && !empty($appSettings->main_logo)
-                ? secure_url('public/images/application/'.$appSettings->main_logo)
-                : secure_url('public/images/application/UERD logo.png');
+                ? asset('images/application/'.$appSettings->main_logo)
+                : asset('images/application/UERD logo.png');
         @endphp
 
         <meta property="og:title" content="{{ config('app.name') }}">
