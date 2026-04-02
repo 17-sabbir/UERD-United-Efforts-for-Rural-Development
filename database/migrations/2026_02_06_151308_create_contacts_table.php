@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['head_office', 'branch', 'person']);
+            $table->enum('type', ['head_office', 'liaison_office', 'branch', 'person']);
             $table->string('title')->nullable(); // Office title or Person designation
             $table->text('address')->nullable(); // For offices only
             $table->string('name')->nullable(); // For persons only
