@@ -20,6 +20,7 @@
                             <select name="type" id="type" class="form-select @error('type') is-invalid @enderror" required>
                                 <option value="">Select Type</option>
                                 <option value="head_office" {{ $contact->type == 'head_office' ? 'selected' : '' }}>Head Office</option>
+                                <option value="liaison_office" {{ $contact->type == 'liaison_office' ? 'selected' : '' }}>Liaison Office</option>
                                 <option value="branch" {{ $contact->type == 'branch' ? 'selected' : '' }}>Branch</option>
                                 <option value="person" {{ $contact->type == 'person' ? 'selected' : '' }}>Person</option>
                             </select>
@@ -53,7 +54,7 @@
                         </div>
 
                         <!-- Office Fields -->
-                        <div id="office-fields" style="display: {{ ($contact->type == 'head_office' || $contact->type == 'branch') ? 'block' : 'none' }};">
+                        <div id="office-fields" style="display: {{ ($contact->type == 'head_office' || $contact->type == 'liaison_office' || $contact->type == 'branch') ? 'block' : 'none' }};">
                             <div class="col-md-12">
                                 <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
                                 <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror" rows="3" placeholder="Enter office address">{{ $contact->address }}</textarea>
@@ -147,6 +148,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeSelect.value === 'head_office') {
         titleLabel.textContent = 'Head Office Name';
         titleRequired.style.display = 'none';
+    } else if (typeSelect.value === 'liaison_office') {
+        titleLabel.textContent = 'Liaison Office Name';
+        titleRequired.style.display = 'none';
     } else if (typeSelect.value === 'branch') {
         titleLabel.textContent = 'Branch Name';
         titleRequired.style.display = 'none';
@@ -158,9 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
     typeSelect.addEventListener('change', function() {
         const type = this.value;
         
-        if (type === 'head_office' || type === 'branch') {
+        if (type === 'head_office' || type === 'liaison_office' || type === 'branch') {
             if (type === 'head_office') {
                 titleLabel.textContent = 'Head Office Name';
+            } else if (type === 'liaison_office') {
+                titleLabel.textContent = 'Liaison Office Name';
             } else {
                 titleLabel.textContent = 'Branch Name';
             }

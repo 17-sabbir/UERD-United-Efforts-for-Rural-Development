@@ -20,6 +20,7 @@
                             <select name="type" id="type" class="form-select @error('type') is-invalid @enderror" required>
                                 <option value="">Select Type</option>
                                 <option value="head_office" {{ old('type') == 'head_office' ? 'selected' : '' }}>Head Office</option>
+                                <option value="liaison_office" {{ old('type') == 'liaison_office' ? 'selected' : '' }}>Liaison Office</option>
                                 <option value="branch" {{ old('type') == 'branch' ? 'selected' : '' }}>Branch</option>
                                 <option value="person" {{ old('type') == 'person' ? 'selected' : '' }}>Person</option>
                             </select>
@@ -145,9 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
     typeSelect.addEventListener('change', function() {
         const type = this.value;
         
-        if (type === 'head_office' || type === 'branch') {
+        if (type === 'head_office' || type === 'liaison_office' || type === 'branch') {
             if (type === 'head_office') {
                 titleLabel.textContent = 'Head Office Name';
+            } else if (type === 'liaison_office') {
+                titleLabel.textContent = 'Liaison Office Name';
             } else {
                 titleLabel.textContent = 'Branch Name';
             }

@@ -25,9 +25,9 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'type' => 'required|in:head_office,branch,person',
+            'type' => 'required|in:head_office,liaison_office,branch,person',
             'title' => 'required_if:type,person',
-            'address' => 'required_if:type,head_office,branch',
+            'address' => 'required_if:type,head_office,liaison_office,branch',
             'name' => 'required_if:type,person',
             'mobile' => 'nullable',
             'mobile2' => 'nullable',
@@ -70,9 +70,9 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'type' => 'required|in:head_office,branch,person',
+            'type' => 'required|in:head_office,liaison_office,branch,person',
             'title' => 'required_if:type,person',
-            'address' => 'required_if:type,head_office,branch',
+            'address' => 'required_if:type,head_office,liaison_office,branch',
             'name' => 'required_if:type,person',
             'mobile' => 'nullable',
             'mobile2' => 'nullable',

@@ -31,6 +31,8 @@
                                 <td class="align-middle">
                                     @if($contact->type == 'head_office')
                                         <span class="badge bg-success">Head Office</span>
+                                    @elseif($contact->type == 'liaison_office')
+                                        <span class="badge bg-warning text-dark">Liaison Office</span>
                                     @elseif($contact->type == 'branch')
                                         <span class="badge bg-info">Branch</span>
                                     @else
@@ -39,7 +41,7 @@
                                 </td>
                                 <td class="align-middle">{{ $contact->title }}</td>
                                 <td class="align-middle">
-                                    @if($contact->type == 'head_office' || $contact->type == 'branch')
+                                    @if($contact->type == 'head_office' || $contact->type == 'liaison_office' || $contact->type == 'branch')
                                         {{ Str::limit($contact->address, 50) }}
                                     @else
                                         {{ $contact->name }}
