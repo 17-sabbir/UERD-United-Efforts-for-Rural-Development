@@ -26,15 +26,16 @@
         <meta name="twitter:title" content="{{ config('app.name') }}">
         <meta name="twitter:image" content="{{ $logoUrl }}">
 
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "{{ url('/') }}",
-            "logo": "{{ $logoUrl }}",
-            "name": "{{ config('app.name') }}"
-        }
-        </script>
+        @php
+            $orgSchema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'Organization',
+                'url' => url('/'),
+                'logo' => $logoUrl,
+                'name' => config('app.name'),
+            ];
+        @endphp
+        <script type="application/ld+json">{!! json_encode($orgSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
     {{-- bootstrap css --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">

@@ -24,6 +24,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     {{-- Favicon, Open Graph and Structured Data (dynamic logo) --}}
+    @php $appSettings = $appSettings ?? application(); @endphp
     <link rel="shortcut icon" href="{{ $appSettings && !empty($appSettings->fav_icon) ? secure_url('public/images/application/'.$appSettings->fav_icon) : secure_url('public/images/application/UERD logo.png') }}" type="image/x-icon">
 
     @php
@@ -41,15 +42,16 @@
     <meta name="twitter:title" content="{{ config('app.name') }}">
     <meta name="twitter:image" content="{{ $logoUrl }}">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "url": "{{ url('/') }}",
-      "logo": "{{ $logoUrl }}",
-      "name": "{{ config('app.name') }}"
-    }
-    </script>
+    @php
+        $orgSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'url' => url('/'),
+            'logo' => $logoUrl,
+            'name' => config('app.name'),
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($orgSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 
 </head>
 <body>
