@@ -542,6 +542,7 @@
 						</li>
 					</ul>
 				</li>
+
 				<li>
 					<a class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-square"></i>
@@ -768,6 +769,22 @@
 						</li>
 						<li>
                             <a href="{{ route('stories.index') }}"><i class="bx bx-right-arrow-alt"></i>All Stories</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow">
+						<div class="parent-icon"><i class='bx bxl-youtube'></i>
+						</div>
+						<div class="menu-title">YouTube</div>
+					</a>
+					<ul>
+						<li>
+							<a href="{{ route('youtube.add') }}"><i class="bx bx-right-arrow-alt"></i>Add YouTube Video</a>
+						</li>
+						<li>
+							<a href="{{ route('youtube.index') }}"><i class="bx bx-right-arrow-alt"></i>All YouTube Videos</a>
 						</li>
 					</ul>
 				</li>

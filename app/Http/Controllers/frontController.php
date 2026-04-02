@@ -164,7 +164,8 @@ class frontController extends Controller
 
     // Youtube
     public function youtube(){
-        return view('frontend.youtube');
+        $videos = \App\Models\YoutubeVideo::where('is_active', 1)->orderBy('order', 'asc')->get();
+        return view('frontend.youtube', compact('videos'));
     }
 
     // Programs

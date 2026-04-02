@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\projectArchiveController;
 use App\Http\Controllers\Admin\projectController;
 use App\Http\Controllers\Admin\PublicationController;
 use App\Http\Controllers\Admin\sliderController;
+use App\Http\Controllers\Admin\YoutubeVideoController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\StrategicPlanController;
 use App\Http\Controllers\Admin\OrganizationProfileController;
@@ -61,6 +62,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/slider/delete/{id}', [sliderController::class, 'destroy'])->name('slider.delete');
     Route::get('/slider/edit/{id}', [sliderController::class, 'edit'])->name('slider.edit');
     Route::post('/slider/update/{id}', [sliderController::class, 'update'])->name('slider.update');
+
+    // Youtube Videos
+    Route::get('/youtube/add', [YoutubeVideoController::class, 'add'])->name('youtube.add');
+    Route::post('/youtube/store', [YoutubeVideoController::class, 'store'])->name('youtube.store');
+    Route::get('/youtube/all', [YoutubeVideoController::class, 'index'])->name('youtube.index');
+    Route::get('/youtube/delete/{id}', [YoutubeVideoController::class, 'destroy'])->name('youtube.delete');
+    Route::get('/youtube/edit/{id}', [YoutubeVideoController::class, 'edit'])->name('youtube.edit');
+    Route::post('/youtube/update/{id}', [YoutubeVideoController::class, 'update'])->name('youtube.update');
 
     // Ongoing Project
     Route::get('/project/add', [projectController::class, 'add'])->name('project.add');

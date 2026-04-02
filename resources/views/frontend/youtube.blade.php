@@ -9,36 +9,27 @@
       <div class="section-title">
         <h2>Youtube <i class="fa-brands fa-youtube" style="color: red;"></i> </h2>
             <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/3FmhcHp1baU?si=cVzKcLr44knQ37fF" title="YouTube video" allowfullscreen></iframe>
+                @if(isset($videos) && $videos->count())
+                    @foreach($videos as $v)
+                        <div class="col-md-4 mb-3">
+                            <div class="ratio ratio-16x9">
+                                <?php
+                                $link = $v->youtube_link;
+                                $videoId = null;
+                                if (preg_match('/(?:v=|embed\/|youtu\.be\/)([A-Za-z0-9_\-]+)/', $link, $m)) {
+                                    $videoId = $m[1];
+                                }
+                                $src = $videoId ? 'https://www.youtube.com/embed/'.$videoId : $link;
+                                ?>
+                                <iframe src="{{ $src }}" title="{{ $v->title ?? 'YouTube video' }}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12">
+                        <p>No videos found.</p>
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/ZYMpWO66pJA?si=J_3AlMw6A1TlpQvn" title="YouTube video" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/FOXArgMqOcc?si=PGZn456AMrm6uJs-" title="YouTube video" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/5Plplf6bPHg?si=lx44iR4jDrFE43zL" title="YouTube video" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/I07NA-IF4NQ?si=np3az3N1djuT4Hc2" title="YouTube video" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/tXGx0-DDCSU?si=-6vAsIA-G-nBDDXn" title="YouTube video" allowfullscreen></iframe>
-                    </div>
-                </div>
+                @endif
             </div>
       </div>
     </div>

@@ -164,12 +164,18 @@
             </div>
 
             <div class="col-lg-3 col-md-4">
-                <div class="uerd-footer-heading">Our Programs</div>
+                <div class="uerd-footer-heading">FAQ</div>
+                @php
+                    $footerFaqs = DB::table('faq')->orderBy('order', 'asc')->limit(4)->get();
+                @endphp
                 <ul class="uerd-footer-ul">
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Economic Development</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Healthcare</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Education</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('ongoing.project') }}">Ongoing Projects</a></li>
+                    @if(isset($footerFaqs) && count($footerFaqs) > 0)
+                        @foreach($footerFaqs as $f)
+                            <li><a class="uerd-footer-link" href="{{ route('faq') }}">{{ \Illuminate\Support\Str::limit($f->question, 40) }}</a></li>
+                        @endforeach
+                    @else
+                        <li><a class="uerd-footer-link" href="{{ route('faq') }}">View FAQs</a></li>
+                    @endif
                 </ul>
             </div>
 
