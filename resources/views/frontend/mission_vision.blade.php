@@ -58,6 +58,38 @@
             </div>
         </div>
 
+        <!-- Our Objectives Section -->
+        <div class="row justify-content-center mt-5 pt-3">
+            <div class="col-lg-10">
+                <h2 class="fw-bold mb-4" style="color: #1a2b4c;">Our Objectives</h2>
+                
+                <div class="d-flex flex-column gap-3">
+                    
+                    @if(isset($objectives) && count($objectives) > 0)
+                        @foreach($objectives as $objective)
+                        <!-- Objective -->
+                        <div class="bg-white p-4 border" style="border-radius: 4px;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0 me-4" style="color: #0a58ca; font-size: 1.5rem;">
+                                    <i class="{{ $objective->icon ?? 'fa-solid fa-check' }}"></i>
+                                </div>
+                                <div class="text-secondary" style="font-size: 15px; font-weight: 500;">
+                                    {{ $objective->description }}
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @else
+                        <!-- Fallback/Default Objective -->
+                        <div class="alert alert-info text-center w-100">
+                            No objectives found. Please add objectives from the admin panel.
+                        </div>
+                    @endif
+
+                </div>
+            </div>
+        </div>
+
     </div>
   </section>
 

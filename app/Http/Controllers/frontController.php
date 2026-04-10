@@ -33,7 +33,8 @@ class frontController extends Controller
     // vision and mission
     public function vision_mission(){
         $mission_vision = DB::table('mission_vision')->first();
-        return view('frontend.mission_vision', compact('mission_vision'));
+        $objectives = DB::table('objectives')->where('status', 1)->orderBy('order', 'asc')->get();
+        return view('frontend.mission_vision', compact('mission_vision', 'objectives'));
     }
 
     // team members
@@ -132,7 +133,7 @@ class frontController extends Controller
             ]);
         }
 
-        return view('frontend.key_focus', compact('focus_areas'));
+        return view('frontend.keyfocus', compact('focus_areas'));
     }
 
     // Project Archieve

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\invokedController;
 use App\Http\Controllers\Admin\legalAffilationController;
 use App\Http\Controllers\Admin\messageController;
 use App\Http\Controllers\Admin\missionController;
+use App\Http\Controllers\Admin\ObjectiveController;
 use App\Http\Controllers\Admin\newsController;
 use App\Http\Controllers\Admin\partnersController;
 use App\Http\Controllers\Admin\PaymentMethodController;
@@ -134,6 +135,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // __Mission and Vision__//
     Route::get('/mission/vision/create', [missionController::class, 'create'])->name('mission.vision.create');
     Route::post('/mission/vision/store', [missionController::class, 'store'])->name('mission.vision.store');
+
+    // __Objective__//
+    Route::get('/objective', [ObjectiveController::class, 'index'])->name('objective.index');
+    Route::get('/objective/create', [ObjectiveController::class, 'create'])->name('objective.create');
+    Route::post('/objective/store', [ObjectiveController::class, 'store'])->name('objective.store');
+    Route::get('/objective/edit/{id}', [ObjectiveController::class, 'edit'])->name('objective.edit');
+    Route::post('/objective/update/{id}', [ObjectiveController::class, 'update'])->name('objective.update');
+    Route::get('/objective/delete/{id}', [ObjectiveController::class, 'delete'])->name('objective.delete');
 
     // __Origin and Legal Affilation__//
     Route::get('/origin/legal_affilation/create', [legalAffilationController::class, 'create'])->name('origin.legal_affilation.create');

@@ -683,6 +683,13 @@
 					</a>
 				</li>
 				<li>
+					<a href="{{ route('objective.index') }}">
+						<div class="parent-icon"><i class='fadeIn animated bx bx-target-lock'></i>
+						</div>
+						<div class="menu-title">Objectives</div>
+					</a>
+				</li>
+				<li>
 					<a  class="has-arrow">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-detail'></i>
 						</div>
