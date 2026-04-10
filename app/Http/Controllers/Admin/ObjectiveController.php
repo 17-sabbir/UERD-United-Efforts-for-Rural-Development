@@ -24,14 +24,20 @@ class ObjectiveController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'description' => 'required|string',
-            'icon' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'order' => 'nullable|integer',
         ]);
+
+        $imageName = null;
+        if ($image = $request->file('image')) {
+            $imageName = rand(10000, 99999) . "_objective." . $image->getClientOriginalExtension();
+            $image->move(public_path('images/objectives'), $imageName);
+        }
 
         $data = [
             'title' => $request->title,
             'description' => $request->description,
-            'icon' => $request->icon ?? 'fa-solid fa-check',
+            'image' => $imageName,
             'order' => $request->order ?? 0,
             'status' => $request->status ? 1 : 0,
             'created_at' => now(),
@@ -53,14 +59,25 @@ class ObjectiveController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'description' => 'required|string',
-            'icon' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'order' => 'nullable|integer',
         ]);
+
+        $item = DB::table('objectives')->where('id', $id)->first();
+        $imageName = $item->image;
+
+        if ($image = $request->file('image')) {
+            if ($imageName && is_file(public_path('images/objectives/' . $imageName))) {
+                @unlink(public_path('images/objectives/' . $imageName));
+            }
+            $imageName = rand(10000, 99999) . "_objective." . $image->getClientOriginalExtension();
+            $image->move(public_path('images/objectives'), $imageName);
+        }
 
         $data = [
             'title' => $request->title,
             'description' => $request->description,
-            'icon' => $request->icon ?? 'fa-solid fa-check',
+            'image' => $imageName,
             'order' => $request->order ?? 0,
             'status' => $request->status ? 1 : 0,
             'updated_at' => now(),
@@ -72,6 +89,11 @@ class ObjectiveController extends Controller
 
     public function delete($id)
     {
+        $item = DB::table('objectives')->where('id', $id)->first();
+        if ($item && $item->image && is_file(public_path('images/objectives/' . $item->image))) {
+            @unlink(public_path('images/objectives/' . $item->image));
+        }
+
         DB::table('objectives')->where('id', $id)->delete();
         return redirect()->back()->with('success', 'Objective deleted successfully');
     }

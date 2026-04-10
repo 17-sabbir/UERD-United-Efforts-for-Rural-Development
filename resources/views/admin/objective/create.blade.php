@@ -11,7 +11,7 @@
                     <div class="alert alert-success">{{ session()->get('success') }}</div>
                 @endif
                 <div class="p-4 border rounded">
-                    <form class="row g-3" action="{{ route('objective.store') }}" method="post">
+                    <form class="row g-3" action="{{ route('objective.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <label for="description" class="form-label">Objective Description <span class="text-danger">*</span></label>
@@ -21,9 +21,12 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="icon" class="form-label">Font Awesome Icon Class (Optional)</label>
-                            <input type="text" name="icon" class="form-control" id="icon" placeholder="e.g. fa-solid fa-hand-fist">
-                            <small class="text-muted">You can find icons at <a href="https://fontawesome.com/icons" target="_blank">FontAwesome</a></small>
+                            <label for="image" class="form-label">Objective Image (Optional)</label>
+                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image" accept="image/*">
+                            @error('image')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Upload an image instead of using an icon.</small>
                         </div>
                         <div class="col-md-6 mt-4">
                             <div class="form-check">

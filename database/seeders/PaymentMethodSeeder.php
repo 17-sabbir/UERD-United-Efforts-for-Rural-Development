@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class PaymentMethodSeeder extends Seeder
 {
@@ -21,8 +21,8 @@ class PaymentMethodSeeder extends Seeder
             [
                 'type' => 'bkash',
                 'icon_image' => null, // Will use existing img/bkash.png from public folder
-                'account_name' => 'AFAD Bangladesh',
-                'account_number' => '+8801825-003211',
+                'account_name' => 'UERD Bangladesh',
+                'account_number' => '+8801625039452',
                 'bank_details' => null,
                 'is_active' => true,
                 'display_order' => 1,
@@ -32,8 +32,8 @@ class PaymentMethodSeeder extends Seeder
             [
                 'type' => 'nagad',
                 'icon_image' => null, // Will use existing img/nagad.png from public folder
-                'account_name' => 'AFAD Bangladesh',
-                'account_number' => '+8801825-003211',
+                'account_name' => 'UERD Bangladesh',
+                'account_number' => '+8801625039452',
                 'bank_details' => null,
                 'is_active' => true,
                 'display_order' => 2,
@@ -43,8 +43,8 @@ class PaymentMethodSeeder extends Seeder
             [
                 'type' => 'rocket',
                 'icon_image' => null, // Will use existing img/rocket.png from public folder
-                'account_name' => 'AFAD Bangladesh',
-                'account_number' => '+8801825-003211',
+                'account_name' => 'UERD Bangladesh',
+                'account_number' => '+8801625039452',
                 'bank_details' => null,
                 'is_active' => true,
                 'display_order' => 3,
@@ -54,8 +54,8 @@ class PaymentMethodSeeder extends Seeder
             [
                 'type' => 'upay',
                 'icon_image' => null, // Will use existing img/upay.png from public folder
-                'account_name' => 'AFAD Bangladesh',
-                'account_number' => '+8801825-003211',
+                'account_name' => 'UERD Bangladesh',
+                'account_number' => '+8801625039452',
                 'bank_details' => null,
                 'is_active' => true,
                 'display_order' => 4,

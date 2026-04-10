@@ -82,7 +82,7 @@
                             <div class="col-md-12 mb-3">
                                 <label for="account_number" class="form-label">Account/Mobile Number <span class="text-danger">*</span></label>
                                 <input type="text" name="account_number" class="form-control @error('account_number') is-invalid @enderror" 
-                                       id="account_number" placeholder="e.g., +8801825-003211" value="{{ old('account_number', $data->account_number) }}" required>
+                                       id="account_number" placeholder="e.g., +8801625039452" value="{{ old('account_number', $data->account_number) }}" required>
                                 @error('account_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

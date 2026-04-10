@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                                 <th>SL.</th>
-                                <th>Icon</th>
+                                <th>Image</th>
                                 <th style="width: 50%;">Description</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
@@ -32,7 +32,13 @@
                             @foreach ($data as $key=>$item)
                             <tr>
                                 <td class="align-middle">{{ ++$key }}</td>
-                                <td class="align-middle text-primary" style="font-size: 1.5rem;"><i class="{{ $item->icon }}"></i></td>
+                                <td class="align-middle">
+                                    @if($item->image)
+                                    <img src="{{ asset('images/objectives/' . $item->image) }}" alt="Objective Image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                    @else
+                                    <i class="fa-solid fa-image text-muted" style="font-size: 1.5rem;"></i>
+                                    @endif
+                                </td>
                                 <td class="align-middle">{{ $item->description }}</td>
                                 <td class="align-middle">
                                     @if($item->status == 1)

@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center">
             <div class="ms-3">
                 <h3 class="font-weight-bold mb-1">Welcome Back, Admin!</h3>
-                <p class="mb-0 text-light opacity-75">Here is your daily impact overview for ERA.</p>
+                <p class="mb-0 text-light opacity-75">Here is your daily impact overview for UERD.</p>
             </div>
             <div class="ms-auto d-none d-md-block">
                 <i class="bx bx-bar-chart-alt-2 text-white" style="font-size: 4rem; opacity: 0.2;"></i>

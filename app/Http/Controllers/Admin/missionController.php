@@ -20,7 +20,7 @@ class missionController extends Controller
             'vision'           => 'required',
             'mission'          => 'required',
             'key_focus'        => 'nullable|string',
-            'background_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'background_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         // ── Focus Area: store plain text ───────────────────────────────────

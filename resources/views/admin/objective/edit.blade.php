@@ -11,7 +11,7 @@
                     <div class="alert alert-success">{{ session()->get('update') }}</div>
                 @endif
                 <div class="p-4 border rounded">
-                    <form class="row g-3" action="{{ route('objective.update',$data->id) }}" method="post">
+                    <form class="row g-3" action="{{ route('objective.update',$data->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <label for="description" class="form-label">Objective Description <span class="text-danger">*</span></label>
@@ -21,13 +21,17 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="icon" class="form-label">Font Awesome Icon Class (Optional)</label>
-                            <input type="text" name="icon" class="form-control" id="icon" value="{{ $data->icon }}" placeholder="e.g. fa-solid fa-hand-fist">
-                            <small class="text-muted">You can find icons at <a href="https://fontawesome.com/icons" target="_blank">FontAwesome</a></small>
+                            <label for="image" class="form-label">Objective Image (Optional)</label>
+                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image" accept="image/*">
+                            @error('image')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            @if($data->image)
                             <div class="mt-2 d-flex align-items-center">
-                                <span>Preview: </span>
-                                <i class="{{ $data->icon }} text-primary ms-2" style="font-size: 1.5rem;"></i>
+                                <span>Current Image: </span>
+                                <img src="{{ asset('images/objectives/' . $data->image) }}" alt="Objective Image" class="ms-2" style="width: 50px; height: 50px; object-fit: cover;">
                             </div>
+                            @endif
                         </div>
                         <div class="col-md-6 mt-4">
                             <div class="form-check">

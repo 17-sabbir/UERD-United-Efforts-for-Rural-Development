@@ -70,8 +70,12 @@
                         <!-- Objective -->
                         <div class="bg-white p-4 border" style="border-radius: 4px;">
                             <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-4" style="color: #0a58ca; font-size: 1.5rem;">
-                                    <i class="{{ $objective->icon ?? 'fa-solid fa-check' }}"></i>
+                                <div class="flex-shrink-0 me-4 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; border-radius: 5px;">
+                                    @if($objective->image)
+                                        <img src="{{ asset('images/objectives/'.$objective->image) }}" alt="Objective Icon" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    @else
+                                        <i class="fa-solid fa-check" style="color: #0a58ca; font-size: 1.5rem;"></i>
+                                    @endif
                                 </div>
                                 <div class="text-secondary" style="font-size: 15px; font-weight: 500;">
                                     {{ $objective->description }}
