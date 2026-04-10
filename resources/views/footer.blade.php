@@ -157,8 +157,8 @@
                 <div class="uerd-footer-heading">Quick Links</div>
                 <ul class="uerd-footer-ul">
                     <li><a class="uerd-footer-link" href="{{ route('frontend.profile') }}">About Us</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Programs</a></li>
-                    <li><a class="uerd-footer-link" href="{{ route('ongoing.project') }}">Projects</a></li>
+                    <li><a class="uerd-footer-link" href="{{ route('programs.all') }}">Key Focus Areas</a></li>
+                    <li><a class="uerd-footer-link" href="{{ route('ongoing.project') }}">Ongoing Projects</a></li>
                     <li><a class="uerd-footer-link" href="{{ route('latest.news.all') }}">News &amp; Events</a></li>
                 </ul>
             </div>

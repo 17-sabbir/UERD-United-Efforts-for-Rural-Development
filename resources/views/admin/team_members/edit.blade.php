@@ -37,7 +37,11 @@
                         </div>
                         <div class="col-md-12">
                             <label for="img" class="form-label">Old Photo:</label>
-                            <img src="{{ asset('images/team_members/'.$data->photo) }}" alt="" width="100">
+                            @if($data->photo)
+                                <img src="{{ asset('images/team_members/'.$data->photo) }}" alt="" width="100">
+                            @else
+                                <span class="text-muted">No photo uploaded</span>
+                            @endif
                         </div>
                         <div class="col-md-12">
                             <label for="bio" class="form-label">Bio (Optional)</label>

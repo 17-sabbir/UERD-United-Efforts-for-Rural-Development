@@ -20,7 +20,7 @@ class TeamMemberController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'designation' => 'required',
-            'photo' => 'required|mimes:jpg,png,jpeg,gif',
+            'photo' => 'nullable|mimes:jpg,png,jpeg,gif',
             'order' => 'nullable|integer',
         ]);
 
@@ -58,11 +58,13 @@ class TeamMemberController extends Controller
     public function destroy($id)
     {
         $item = DB::table('team_members')->where('id', $id)->first();
-        $oldImageName = public_path('images/team_members/' . $item->photo);
-
-        if (file_exists($oldImageName)) {
-            @unlink($oldImageName);
+        if ($item && $item->photo) {
+            $oldImageName = public_path('images/team_members/' . $item->photo);
+            if (is_file($oldImageName)) {
+                @unlink($oldImageName);
+            }
         }
+        
         DB::table('team_members')->where('id', $id)->delete();
         return redirect()->back()->with('success', 'Successfully Deleted');
     }
@@ -89,7 +91,7 @@ class TeamMemberController extends Controller
         $oldImageName = public_path('images/team_members/' . $item->photo);
 
         if ($photo = $request->file('photo')) {
-            if (file_exists($oldImageName)) {
+            if ($item->photo && is_file($oldImageName)) {
                 @unlink($oldImageName);
             }
             $photoName = rand(10000, 99999) . "team." . $photo->getClientOriginalExtension();

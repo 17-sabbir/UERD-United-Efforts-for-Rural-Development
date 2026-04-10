@@ -38,7 +38,11 @@
                                 <td class="align-middle">{{ $item->designation }}</td>
                                 <td class="align-middle">{{ $item->department }}</td>
                                 <td class="align-middle">
-                                    <img src="{{ asset('images/team_members/'.$item->photo) }}" alt="" width="50">
+                                    @if($item->photo)
+                                        <img src="{{ asset('images/team_members/'.$item->photo) }}" alt="" width="50">
+                                    @else
+                                        <span class="badge bg-secondary">No Photo</span>
+                                    @endif
                                 </td>
                                 <td class="align-middle">{{ $item->order }}</td>
                                 <td class="text-center align-middle">

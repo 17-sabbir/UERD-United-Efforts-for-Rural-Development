@@ -30,7 +30,7 @@
                             @if($ext == 'pdf')
                                 <!-- Show PDF in embedded viewer with fallback option -->
                                 <object data="{{ asset($organogram->file_path) }}" type="application/pdf" width="100%" height="800px" style="border: 1px solid #eaeaea;">
-                                    <p>Alternative text - include a link <a href="{{ asset($organogram->file_path) }}">to the PDF!</a></p>
+                                    <p>The organizational structure of UERD is outlined <a href="{{ asset($organogram->file_path) }}"> below</a></p>
                                 </object>
                                 <div class="mt-4">
                                      <a href="{{ asset($organogram->file_path) }}" target="_blank" class="btn btn-outline-danger btn-lg px-5 rounded-pill"><i class="fa-solid fa-file-pdf me-2"></i> View/Download Full PDF</a>
