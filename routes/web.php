@@ -34,7 +34,7 @@ Route::get('/', function () {
         ->orderBy('created_at', 'desc')
         ->take(3)
         ->get();
-    $news = DB::table('latest_news')->take(6)->get();
+    $news = DB::table('latest_news')->orderBy('news_date', 'desc')->orderBy('id', 'desc')->take(6)->get();
     $partners = DB::table('partners')->orderBy('id', 'desc')->get();
     $mission_vision = DB::table('mission_vision')->orderBy('id', 'asc')->first();
     $albumAgg = DB::table('gallery')

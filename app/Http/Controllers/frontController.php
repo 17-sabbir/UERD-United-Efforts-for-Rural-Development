@@ -159,7 +159,7 @@ class frontController extends Controller
 
     //__Latest News All__//
     public function news_all(){
-        $news = DB::table('latest_news')->paginate(15);
+        $news = DB::table('latest_news')->orderBy('news_date', 'desc')->orderBy('id', 'desc')->paginate(15);
         return view('frontend.news_all',compact('news'));
     }
 

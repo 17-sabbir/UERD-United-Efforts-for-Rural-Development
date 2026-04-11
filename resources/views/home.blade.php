@@ -1287,7 +1287,7 @@ United Efforts for Rural Development (UERD)
                                 </span>
                                 <div class="small text-secondary" style="white-space: nowrap;">
                                     <i class="fa-regular fa-calendar"></i>
-                                    {{ date('d M Y', strtotime((property_exists($data, 'created_at') && !empty($data->created_at)) ? $data->created_at : now())) }}
+                                    {{ !empty($data->news_date) ? \Carbon\Carbon::parse($data->news_date)->format('d M Y') : date('d M Y', strtotime((property_exists($data, 'created_at') && !empty($data->created_at)) ? $data->created_at : now())) }}
                                 </div>
                             </div>
 
