@@ -21,9 +21,9 @@ class galleryController extends Controller
             'album' => 'required',
             'title' => 'nullable',
             'description' => 'nullable',
-            'image' => 'required_without:images|nullable|mimes:jpg,png,jpeg,gif',
+            'image' => 'required_without:images|nullable|image|mimes:jpg,png,jpeg,gif,webp',
             'images' => 'required_without:image|nullable|array',
-            'images.*' => 'file|mimes:jpg,png,jpeg,gif',
+            'images.*' => 'image|mimes:jpg,png,jpeg,gif,webp',
         ]);
 
         $files = $request->file('images', []);
