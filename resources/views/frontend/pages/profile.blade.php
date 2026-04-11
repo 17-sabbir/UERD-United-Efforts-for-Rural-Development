@@ -40,14 +40,26 @@
                                 @php
                                     $contactEmail = 'uerd.org@gmail.com';
                                     $contactPhone = $orgProfile->phone ?? (optional($headOffice)->mobile ?? null);
+                                    // if phone is not set, use a default dummy or leave empty
                                 @endphp
-                                <a href="mailto:{{ $contactEmail }}" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>
+                                <a href="javascript:void(0)" onclick="alert('Please mail on uerd.org@gmail.com')" class="btn btn-outline-danger w-100 mb-2"><i class="fa-solid fa-envelope me-2"></i> Email Us</a>
                                 @if($contactPhone)
-                                    <a href="tel:{{ $contactPhone }}" class="btn btn-outline-dark w-100"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
+                                    <a href="javascript:void(0)" onclick="handleCallUs('{{ $contactPhone }}')" class="btn btn-outline-dark w-100"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
                                 @else
                                     <a class="btn btn-outline-dark w-100 disabled" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-phone me-2"></i> Call Us</a>
                                 @endif
                             </div>
+                            
+                            <script>
+                                function handleCallUs(phoneNum) {
+                                    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                                    if (isMobile) {
+                                        window.location.href = "tel:" + phoneNum;
+                                    } else {
+                                        alert("You cannot make call from web");
+                                    }
+                                }
+                            </script>
                     </div>
                 </div>
             </div>

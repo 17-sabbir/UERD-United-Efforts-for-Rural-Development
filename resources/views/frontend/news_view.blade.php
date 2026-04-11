@@ -26,7 +26,7 @@
                 <h2 class="text-left">{{ $news->title }}</h2>
                 <p class="text-secondary" style="font-size: 12px;">
                     <i class="fas fa-calendar-minus"></i>
-                    {{ date("d/m/Y  h:i:s a") }}
+                    {{ $news->news_date ? \Carbon\Carbon::parse($news->news_date)->format('d F, Y') : date("d M, Y") }}
                 </p>
                 <p style="text-align:justify;">
                     {{ $news->description }}

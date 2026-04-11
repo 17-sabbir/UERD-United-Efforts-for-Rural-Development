@@ -21,6 +21,7 @@ class newsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'image' => 'required|image',
+            'news_date' => 'required|date',
         ]);
 
         $imageName = '';
@@ -33,6 +34,7 @@ class newsController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'image' => $imageName,
+            'news_date' => $request->news_date,
         ];
 
         DB::table('latest_news')->insert($news);
@@ -77,6 +79,7 @@ class newsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'image' => 'nullable|image',
+            'news_date' => 'required|date',
         ]);
 
         $news = DB::table('latest_news')->where('id', $id)->first();
@@ -98,6 +101,7 @@ class newsController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'image' => $imageName,
+            'news_date' => $request->news_date,
         ];
 
         DB::table('latest_news')->where('id', $id)->update($news);

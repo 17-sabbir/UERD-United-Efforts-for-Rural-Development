@@ -21,6 +21,13 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
+                            <label for="news_date" class="form-label">News Date</label>
+                            <input type="date" name="news_date" class="form-control @error('news_date') is-invalid @enderror" id="news_date" value="{{ old('news_date') }}" required>
+                            @error('news_date')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
                             <label for="img" class="form-label">Image</label>
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="img">
                             @error('image')

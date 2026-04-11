@@ -19,7 +19,7 @@
                             <h5 class="card-title text-start">{{ Str::limit($data->title, 25, '...') }}</h5>
                             <p class="text-secondary text-start" style="font-size: 12px;">
                                 <i class="fas fa-calendar-minus"></i>
-                                {{ date("d/m/Y  h:i:s a") }}
+                                {{ $data->news_date ? \Carbon\Carbon::parse($data->news_date)->format('d F, Y') : date("d M, Y") }}
                             </p>
                             <p class="card-text py-3 text-start">
                                 {{ Str::limit($data->description,75,"...") }}

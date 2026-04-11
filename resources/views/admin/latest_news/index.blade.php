@@ -45,8 +45,9 @@
                             <tr>
                                 <th width="5%" class="ps-3 text-secondary">#</th>
                                 <th width="15%" class="text-secondary">Image</th>
-                                <th width="25%" class="text-secondary">Title</th>
-                                <th width="40%" class="text-secondary">Description</th>
+                                <th width="20%" class="text-secondary">Title</th>
+                                <th width="15%" class="text-secondary">Date</th>
+                                <th width="30%" class="text-secondary">Description</th>
                                 <th width="15%" class="text-center text-secondary">Actions</th>
                             </tr>
                         </thead>
@@ -61,7 +62,9 @@
                                 </td>
                                 <td>
                                     <h6 class="mb-0 text-dark font-weight-bold" style="font-size: 15px;">{{ $item->title }}</h6>
-                                    <!-- Date removed to prevent errors with stdClass/Query Builder -->
+                                </td>
+                                <td class="text-muted">
+                                    {{ $item->news_date ? \Carbon\Carbon::parse($item->news_date)->format('d M, Y') : 'N/A' }}
                                 </td>
                                 <td class="text-muted">
                                     {{ Str::limit($item->description, 60, '...') }}

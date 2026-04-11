@@ -997,14 +997,10 @@ United Efforts for Rural Development (UERD)
         </div>
 
         <div class="row g-4">
-            @php
-                $isMobile = request()->header('User-Agent') && preg_match('/Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', request()->header('User-Agent'));
-                $maxCards = $isMobile ? 4 : 3;
-            @endphp
             @foreach ($project as $key => $item)
-                @if($key < $maxCards)
+                @if($key < 4)
                 @php($bgClass = $key % 2 === 0 ? 'is-mint' : 'is-sand')
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 {{ $key == 3 ? 'd-lg-none' : '' }}">
                     <div class="uerd-ongoing-card uerd-card-hover {{ $bgClass }} p-4 h-100 d-flex flex-column">
                                 <div class="d-flex gap-3 align-items-start">
                                     @if(!empty($item->image))
@@ -1021,9 +1017,10 @@ United Efforts for Rural Development (UERD)
                                         <h5 class="mb-1" style="font-weight: 800; letter-spacing: -0.2px;">
                                             {{ Str::limit($item->project_name ?? $item->title ?? '', 32, '...') }}
                                         </h5>
-                                        <div class="small text-secondary" style="opacity: 0.9;">
-                                            <i class="fa-regular fa-calendar"></i>
-                                            {{ date('d/m/Y', strtotime($item->created_at ?? now())) }}
+                                        <div class="small text-secondary fw-bold" style="opacity: 0.9;">
+                                            @if(!empty($item->project_duration) || !empty($item->duration) || !empty($item->start_year))
+                                                <i class="fa-regular fa-clock"></i> Duration: {{ $item->project_duration ?? $item->duration ?? (($item->start_year ?? '') . ' - ' . ($item->end_year ?? 'Present')) }}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

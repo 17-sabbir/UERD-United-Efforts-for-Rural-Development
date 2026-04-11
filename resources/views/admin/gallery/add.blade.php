@@ -31,7 +31,7 @@
                         <div class="col-md-12">
                             <label for="img" class="form-label">Images</label>
                             <input type="file" name="images[]" multiple class="form-control @error('images') is-invalid @enderror @error('images.*') is-invalid @enderror" id="img">
-                            <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
+                            <span class="text-info">You can upload multiple images of any dimension and size.</span>
                             @error('images')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

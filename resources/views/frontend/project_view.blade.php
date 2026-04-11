@@ -21,12 +21,8 @@
             </div>
             <div class="col-md-8 text-left">
             <h2 class="text-left fw-bold">{{ $project->project_name }}</h2>
-                <p class="text-secondary" style="font-size: 12px;">
-                    <i class="fas fa-calendar-minus"></i>
-                    {{ date("d/m/Y", strtotime($project->created_at ?? now())) }}
-                </p>
                 
-                <div class="card bg-light mb-3">
+                <div class="card bg-light mb-3 mt-3">
                     <div class="card-body">
                         @if($project->locations)
                         <div class="row mb-2">
