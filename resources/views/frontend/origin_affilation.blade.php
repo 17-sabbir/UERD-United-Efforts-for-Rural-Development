@@ -31,7 +31,7 @@
                        UERD is registered with the <strong>NGO Affairs Bureau (NGOAB)</strong> of the Prime Minister’s Office, Government of the People's Republic of Bangladesh (Registration No. 2443).
                    </p>
                    <p class="mb-4" style="line-height: 1.8;">
-                       We also hold registration from the <strong>Directorate of Women’s Affairs (DWA)</strong> (Registration No. DWA/Kuri/Reg/29/99), obtained in 1999.
+                       We also hold registration from the <strong>Directorate of Women’s Affairs (DWA)</strong>
                    </p>
                    <p class="mb-4" style="line-height: 1.8;">
                        Additionally, UERD is registered with the <strong>Directorate of Youth Development</strong>, Government of Bangladesh.

@@ -17,7 +17,7 @@ class OrganizationProfileSeeder extends Seeder
             'head_office_address' => "Milon bazar,\nPost Office: Charnarchar,\nUpazila: Derai,\nDistrict: Sunamgonj.",
             'liaison_office_address' => "House # 25, Road # 11,\nBlock-Kha, P.C Culture Society\nMohammadpur, Dhaka-1207.",
             'email' => 'uerd5678@gmail.com, rabicoming2009@yahoo.com',
-            'phone' => '01720-566027',
+            'phone' => '01625039452',
             'contact_person' => 'Rabindu Chandra Roy',
             'establishment_year' => '2000-06-06',
             'organization_type' => 'Non-government, nonprofit and non-political Voluntary social development organization.',

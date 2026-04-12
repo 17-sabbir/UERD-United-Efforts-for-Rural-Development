@@ -58,7 +58,7 @@
                   </div>
 
                   <div class="bg-primary bg-opacity-10 p-4 rounded-4 mb-4">
-                      <h5 class="fw-bold text-primary mb-3"><i class="fa-regular fa-clock me-2"></i> Office Hours</h5>
+                      <h5 class="fw-bold text-dark mb-3"><i class="fa-regular fa-clock me-2"></i> Office Hours</h5>
                       <ul class="list-unstyled mb-0 text-dark">
                           <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Saturday to Thursday: 09:00 AM to 05:00 PM</li>
                           <li><i class="fa-solid fa-minus text-secondary me-2"></i> Friday: Weekly Holiday</li>
