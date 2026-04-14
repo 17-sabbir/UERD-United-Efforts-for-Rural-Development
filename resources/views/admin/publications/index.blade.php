@@ -17,7 +17,7 @@
                         <i class="bx bx-plus"></i> Add New Publication
                     </a>
                 </div>
-                <div class="p-4 border rounded table-responsive">
+                <div class="p-4 border rounded table-responsive" style="max-height: calc(100vh - 260px); overflow-y: auto;">
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
