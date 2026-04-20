@@ -2,58 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Project;
 
 class frontController extends Controller
 {
     // about us
-    public function about_us(){
+    public function about_us()
+    {
         $about_us = DB::table('about_us')->first();
-        return view('frontend.about_us',compact('about_us'));
+
+        return view('frontend.about_us', compact('about_us'));
     }
 
     // Subscribe
-    public function subscribe(Request $request){
+    public function subscribe(Request $request)
+    {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|unique:subscribe|max:255',
         ]);
 
-        $subscribe = array([
+        $subscribe = [[
             'name' => $request->name,
-            'email' => $request->email
-        ]);
+            'email' => $request->email,
+        ]];
 
         DB::table('subscribe')->insert($subscribe);
-        return redirect()->back()->with('success','Thanks for Subscribed us!!!!');
+
+        return redirect()->back()->with('success', 'Thanks for Subscribed us!!!!');
     }
 
     // vision and mission
-    public function vision_mission(){
+    public function vision_mission()
+    {
         $mission_vision = DB::table('mission_vision')->first();
         $objectives = DB::table('objectives')->where('status', 1)->orderBy('order', 'asc')->get();
+
         return view('frontend.mission_vision', compact('mission_vision', 'objectives'));
     }
 
     // team members
-    public function teamMembers(){
+    public function teamMembers()
+    {
         $team = DB::table('team_members')->orderBy('order', 'asc')->get();
+
         return view('frontend.team_members', compact('team'));
     }
 
     // origin and legal affilation
-    public function origin_affilation(){
+    public function origin_affilation()
+    {
         $affilation = DB::table('legal_affilation')->get();
-        return view('frontend.origin_affilation',compact('affilation'));
+
+        return view('frontend.origin_affilation', compact('affilation'));
     }
 
     // executive committee
-    public function committee(){
+    public function committee()
+    {
         $all = DB::table('executive_committee')->orderBy('order', 'asc')->get();
         // Build nested tree
-        $buildTree = function($nodes, $parentId = null) use (&$buildTree) {
+        $buildTree = function ($nodes, $parentId = null) use (&$buildTree) {
             $result = [];
             foreach ($nodes as $node) {
                 if ($node->parent_id == $parentId) {
@@ -61,29 +72,36 @@ class frontController extends Controller
                     $result[] = $node;
                 }
             }
+
             return $result;
         };
         $tree = $buildTree($all);
         $orgProfile = \App\Models\OrganizationProfile::first();
+
         return view('frontend.exe_committee', compact('tree', 'orgProfile'));
     }
 
     // Message form Cheif Executive
-    public function cheif_msg(){
+    public function cheif_msg()
+    {
         $message = DB::table('chief_executive_message')->orderBy('id', 'desc')->first();
+
         return view('frontend.cheif_message', compact('message'));
     }
 
     // Partner and Donor
-    public function partner(){
+    public function partner()
+    {
         $partners = DB::table('partners')->get();
-        return view('frontend.partner',compact('partners'));
+
+        return view('frontend.partner', compact('partners'));
     }
 
     // impact page removed — method deleted because page is no longer required.
 
     // Key Focus Area
-    public function key_focus(){
+    public function key_focus()
+    {
         $focus_areas = collect();
 
         try {
@@ -98,7 +116,7 @@ class frontController extends Controller
 
         if ($focus_areas->isEmpty()) {
             $focus_areas = collect([
-                (object)[
+                (object) [
                     'title' => 'Women Empowerment',
                     'description' => 'UERD mainly focuses on women empowerment, eradicating the gender Based Violence in community level, sub-distrit, district and national level.  UERD undertakes initiatives that empower the destitute and neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them. UERD  works on acclerating the women dignity and eqaul opportunity. UERD sensitizes the government and non-government institutions for strengthening the socio-economic status of women, and ensuring the full enforcement of such arrangement though training and advocacy. It also sensitizes and influences the different level of stakeholders (policy makers, local government representatives, media, communities and religious leaders) on GVB. UERD provides the income generation training to the women for the socio-economic empowerment.',
                     'icon_class' => null,
@@ -106,7 +124,7 @@ class frontController extends Controller
                     'image_path' => null,
                     'default_image' => 'img/key_area/power.png',
                 ],
-                (object)[
+                (object) [
                     'title' => 'Community Empowerment',
                     'description' => 'UERD believes Community empowerment is only possible when everyone’s voices are heard. Women’s voices, particularly those living in poverty, are often unheard. Women often have the least power in communities, usually not knowing their rights or how to realize them, meaning the potential of half the population is not realized. As a result, UERD Providing people, especially women living in poverty, with the tools to claim entitlements, develop leadership and take collective action through community-level organizations. In parallel, equipping local governments to be more accountable and responsive, creating violence-free enabling environments for women through realizing their potential, and increasing access to information and services. UERD works on strengthening women-led community based organizations to uphold voices and realize their rights. Awareness for prevention and action to address violence, particularly against women and children. At the same time, though increasing access to the the information, UERD creating sustainable impact as institutions become more accountable and pro-poor through ensuring access of the community to information.',
                     'icon_class' => null,
@@ -114,7 +132,7 @@ class frontController extends Controller
                     'image_path' => null,
                     'default_image' => 'img/key_area/women.png',
                 ],
-                (object)[
+                (object) [
                     'title' => 'Livelihood',
                     'description' => 'UERD is playing influential role in the development sectors for bringing a sustainable livelihoods and social changes of the women.  UERD try to  Improve the livelihoods, income and food security of extremely poor women, children and men living on the norther Baangladesh particularly the  island char. UERD  provide technical skills training, grants or interest-free loans to procure a viable market asset or start a business. Promoting agricultural farming, disaster preparedness, livelihood security, access to finance and micro-enterprise as means of income. UERD works  for the market linkage.',
                     'icon_class' => null,
@@ -122,7 +140,7 @@ class frontController extends Controller
                     'image_path' => null,
                     'default_image' => 'img/key_area/livelihood.png',
                 ],
-                (object)[
+                (object) [
                     'title' => 'Social Protection',
                     'description' => 'Ensure access to health, education and employment opportunities, through community mobilization and linkages with government services, social safety net programs and emergency relief during crises.',
                     'icon_class' => null,
@@ -137,106 +155,139 @@ class frontController extends Controller
     }
 
     // Project Archieve
-    public function proj_archieve(){
+    public function proj_archieve()
+    {
         $project = Project::where('status', 'completed')->orderBy('created_at', 'desc')->get();
-        return view('frontend.project_archieve',compact('project'));
+
+        return view('frontend.project_archieve', compact('project'));
     }
 
     // Ongoing Project
-    public function ongoing_project(){
+    public function ongoing_project()
+    {
         $project = Project::where('status', 'ongoing')
-            ->orderBy('priority', 'desc')
+            ->orderBy('priority', 'asc')
             ->orderBy('created_at', 'desc')
             ->paginate(15);
-        return view('frontend.ongoing_project',compact('project'));
+
+        return view('frontend.ongoing_project', compact('project'));
     }
 
-    //__ongoing Project view__//
-    public function project_view($id){
+    // __ongoing Project view__//
+    public function project_view($id)
+    {
         $project = Project::findOrFail($id);
-        return view('frontend.project_view',compact('project'));
+
+        return view('frontend.project_view', compact('project'));
     }
 
-    //__Latest News All__//
-    public function news_all(){
+    // __Latest News All__//
+    public function news_all()
+    {
         $news = DB::table('latest_news')->orderBy('news_date', 'desc')->orderBy('id', 'desc')->paginate(15);
-        return view('frontend.news_all',compact('news'));
+
+        return view('frontend.news_all', compact('news'));
     }
 
     // Youtube
-    public function youtube(){
+    public function youtube()
+    {
         $videos = \App\Models\YoutubeVideo::where('is_active', 1)->orderBy('order', 'asc')->get();
+
         return view('frontend.youtube', compact('videos'));
     }
 
     // Programs
-    public function programs(){
+    public function programs()
+    {
         $programs = DB::table('programs')->orderBy('id', 'desc')->get();
+
         return view('frontend.programs', compact('programs'));
     }
 
     // Program View
-    public function programsView($id){
+    public function programsView($id)
+    {
         $program = DB::table('programs')->where('id', $id)->first();
+
         return view('frontend.featured_prog_view', compact('program'));
     }
 
     // Stories
-    public function stories(){
+    public function stories()
+    {
         $stories = DB::table('stories')->orderBy('id', 'desc')->get();
+
         return view('frontend.stories', compact('stories'));
     }
 
     // Story View
-    public function storiesView($id){
+    public function storiesView($id)
+    {
         $story = DB::table('stories')->where('id', $id)->first();
+
         return view('frontend.story_view', compact('story'));
     }
 
-    //__Latest News view__//
-    public function news_view($id){
-        $news = DB::table('latest_news')->where('id',$id)->first();
-        return view('frontend.news_view',compact('news'));
+    // __Latest News view__//
+    public function news_view($id)
+    {
+        $news = DB::table('latest_news')->where('id', $id)->first();
+
+        return view('frontend.news_view', compact('news'));
     }
 
     // Strategic Plan
-    public function strategic_plan(){
+    public function strategic_plan()
+    {
         $strategicPlans = DB::table('strategic_plans')->orderBy('created_at', 'desc')->get();
+
         return view('frontend.strategic_plan', compact('strategicPlans'));
     }
 
     // Policy Guideline
-    public function policy_guideline(){
+    public function policy_guideline()
+    {
         $policy = DB::table('policy_guideline')->get();
-        return view('frontend.policy_guideline',compact('policy'));
+
+        return view('frontend.policy_guideline', compact('policy'));
     }
 
     // Publication
-    public function publication(){
+    public function publication()
+    {
         $publications = DB::table('publications')->orderBy('created_at', 'desc')->get();
+
         return view('frontend.publication', compact('publications'));
     }
 
     // Get Involved
-    public function career(){
+    public function career()
+    {
         $career = DB::table('invoked')->get();
-        return view('frontend.career',compact('career'));
+
+        return view('frontend.career', compact('career'));
     }
 
     // Volunteer Opportunities
-    public function volOpportunities(){
+    public function volOpportunities()
+    {
         $volunteers = DB::table('volunteers')->where('status', 'open')->orderBy('id', 'desc')->get();
+
         return view('frontend.volunteer_opportunities', compact('volunteers'));
     }
 
     // Donate
-    public function donate(){
+    public function donate()
+    {
         $paymentMethods = \App\Models\PaymentMethod::active()->get();
+
         return view('frontend.donate', compact('paymentMethods'));
     }
 
     // Donation Submit
-    public function donationSubmit(Request $request){
+    public function donationSubmit(Request $request)
+    {
         $validatedData = $request->validate([
             'donor_name' => 'required|string|max:255',
             'donor_phone' => 'required|string|max:20',
@@ -258,20 +309,24 @@ class frontController extends Controller
     }
 
     // Fundraising
-    public function fundraising(){
+    public function fundraising()
+    {
         return view('frontend.fundraising');
     }
 
     // Get Contact
-    public function contact(){
+    public function contact()
+    {
         $head_office = DB::table('contacts')->where('type', 'head_office')->where('status', 'active')->first();
         $branches = DB::table('contacts')->where('type', 'branch')->where('status', 'active')->get();
         $persons = DB::table('contacts')->where('type', 'person')->where('status', 'active')->get();
+
         return view('frontend.contact', compact('head_office', 'branches', 'persons'));
     }
 
     // Message Store
-    public function messageStore(Request $request){
+    public function messageStore(Request $request)
+    {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -287,11 +342,13 @@ class frontController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return redirect()->back()->with('success','Successfully Submitted Your Message.');
+
+        return redirect()->back()->with('success', 'Successfully Submitted Your Message.');
     }
 
-    //__All Photos
-    public function all_photos(){
+    // __All Photos
+    public function all_photos()
+    {
         $photosByAlbum = DB::table('gallery')
             ->orderBy('album', 'asc')
             ->orderBy('id', 'desc')
@@ -353,8 +410,10 @@ class frontController extends Controller
     }
 
     // FAQ
-    public function faq(){
+    public function faq()
+    {
         $faqs = DB::table('faq')->orderBy('order', 'asc')->get();
+
         return view('frontend.faq', compact('faqs'));
     }
 }

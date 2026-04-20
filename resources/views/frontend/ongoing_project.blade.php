@@ -30,7 +30,7 @@
               <div class="project-card h-100 bg-white p-4 rounded-4 shadow-sm position-relative border-start border-4 border-primary">
                   <!-- Floating Number -->
                    <div class="position-absolute top-0 end-0 mt-3 me-3 opacity-25">
-                       <span class="display-6 fw-bold text-muted">#{{ str_pad($project->firstItem() + $key, 2, '0', STR_PAD_LEFT) }}</span>
+                       <span class="display-6 fw-bold text-muted">#{{ str_pad((int) ($data->priority ?? ($project->firstItem() + $key)), 2, '0', STR_PAD_LEFT) }}</span>
                    </div>
 
                   <div class="mb-4 pt-2 d-flex gap-3">
