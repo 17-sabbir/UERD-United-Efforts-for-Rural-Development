@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\frontController;
 use App\Http\Controllers\Frontend\PageController;
-use App\Models\Project;
 use App\Models\Organogram;
+use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/organogram', function() {
+Route::get('/organogram', function () {
     $organogram = Organogram::first();
+
     return view('frontend.pages.organogram', compact('organogram'));
 })->name('frontend.organogram');
 
@@ -30,7 +31,7 @@ Route::get('lang/{locale}', function (string $locale) {
 Route::get('/', function () {
     $slider = DB::table('slider')->get();
     $project = Project::where('status', 'ongoing')
-        ->orderBy('priority', 'desc')
+        ->orderBy('priority', 'asc')
         ->orderBy('created_at', 'desc')
         ->take(3)
         ->get();
@@ -81,7 +82,9 @@ Route::get('/', function () {
         $normalized = preg_replace('/\s+of\s+|\s+in\s+/i', ',', $loc);
         $parts = array_filter(array_map('trim', explode(',', $normalized)));
         foreach ($parts as $p) {
-            if ($p === '') continue;
+            if ($p === '') {
+                continue;
+            }
 
             // skip parts that are clearly district labels
             if (preg_match('/\bDistrict\b/i', $p)) {
